@@ -1,21 +1,31 @@
-import os
 import sys
 from pathlib import Path
-
-from openai import OpenAI
 
 from ragas import Dataset, experiment
 from ragas.llms import llm_factory
 from ragas.metrics import DiscreteMetric
+from openai import OpenAI
 
 # Add the current directory to the path so we can import rag module when run as a script
 sys.path.insert(0, str(Path(__file__).parent))
 from rag import default_rag_client
 
-openai_client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
-rag_client = default_rag_client(llm_client=openai_client, logdir="evals/logs")
-llm = llm_factory("gpt-4o", client=openai_client)
 
+client = OpenAI(
+    api_key="anything",
+    base_url="http://localhost:4000/v1"
+)
+
+llm = llm_factory(
+    "ggml-org/gpt-oss-120b-GGUF",
+    client=client,
+    adapter="litellm"
+)
+
+
+
+
+rag_client = default_rag_client(llm_client=llm, logdir="evals/logs")
 
 def load_dataset():
     dataset = Dataset(
