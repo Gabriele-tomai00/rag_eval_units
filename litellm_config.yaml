@@ -1,0 +1,6 @@
+model_list:
+  - model_name: ggml-org/gpt-oss-120b-GGUF
+    litellm_params:
+      model: openai/ggml-org/gpt-oss-120b-GGUF
+      api_base: http://172.30.42.129:8080/v1
+      api_key: not_necessary
