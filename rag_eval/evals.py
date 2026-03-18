@@ -119,9 +119,9 @@ judge_client = OpenAI(
 JUDGE_SYSTEM_PROMPT = (
     "You are a strict evaluator. "
     "You will receive a response, grading notes, and an expected answer. "
-    "Return ONLY a JSON object with a single key 'result' whose value is "
-    "'pass' if the response covers the key points, or 'fail' otherwise. "
-    "No explanation, no extra keys."
+    "Think step by step, then on the LAST LINE output ONLY a JSON object "
+    "with a single key 'result' whose value is 'pass' or 'fail'. "
+    "Example last line: {\"result\": \"pass\"}"
 )
 
 JUDGE_USER_TEMPLATE = (
@@ -135,7 +135,7 @@ JUDGE_USER_TEMPLATE = (
 def judge_score(response: str, grading_notes: str, expected_answer: str) -> str:
     """
     Call the judge LLM and return 'pass', 'fail', or 'error'.
-    Uses response_format json_object to avoid instructor/response_model issues.
+    Extracts the verdict from the last line, allowing the model to reason freely.
     """
     prompt = JUDGE_USER_TEMPLATE.format(
         response=response,
@@ -150,10 +150,9 @@ def judge_score(response: str, grading_notes: str, expected_answer: str) -> str:
                 {"role": "user",   "content": prompt},
             ],
             response_format={"type": "json_object"},
-            max_tokens=32,
+            max_tokens=512,  # enough space for reasoning + final JSON line
             temperature=0.0,
         )
-
 
         msg = completion.choices[0].message
         raw = msg.content or ""
@@ -163,14 +162,16 @@ def judge_score(response: str, grading_notes: str, expected_answer: str) -> str:
             raw = getattr(msg, "reasoning_content", "") or ""
 
         print(f"Judge raw response: repr={repr(raw)}")
-        parsed = json.loads(raw)
 
+        # Extract last non-empty line — where the JSON verdict should be
+        last_line = [l.strip() for l in raw.strip().splitlines() if l.strip()][-1]
+        parsed = json.loads(last_line)
 
-
-        value  = parsed.get("result", "").strip().lower()
+        value = parsed.get("result", "").strip().lower()
         return value if value in ("pass", "fail") else "error"
+
     except Exception as e:
-        print(f"Judge error: {e}")
+        print(f"Judge error: {type(e).__name__}: {e}")
         return "error"
 
 
@@ -199,9 +200,9 @@ def load_dataset() -> Dataset:
             "expected_answer": "Piazzale Europa 1, 34127 Trieste, Italia",
         },
         {
-            "question":        "si può stampare all'università?",
+            "question":        "dove si può stampare all'università?",
             "grading_notes":   "deve menzionare dove è possibile stampare o chi contattare",
-            "expected_answer": "Sì, è possibile stampare presso l'Ufficio Applicativi per la carriera dello studente",
+            "expected_answer": "Sì, è possibile stampare presso l'edificio H3",
         },
         {
             "question":        "a chi devo rivolgermi per info e chiarimenti su tasse?",
@@ -232,29 +233,35 @@ async def run_experiment(row: dict) -> dict:
       2. Score the answer with the judge LLM (manual call, no instructor)
       3. Return the full result dict for CSV saving
     """
-    rag_result = query_rag(_index, row["question"])
 
-    score = judge_score(
-        response=rag_result["answer"],
-        grading_notes=row["grading_notes"],
-        expected_answer=row.get("expected_answer", ""),
-    )
+    try:
+        rag_result = query_rag(_index, row["question"])
 
-    return {
-        # dataset fields
-        "question":        row["question"],
-        "grading_notes":   row["grading_notes"],
-        "expected_answer": row.get("expected_answer", ""),
-        # RAG output
-        "answer":          rag_result["answer"],
-        "contexts":        " | ".join(rag_result["contexts"]),
-        # evaluation
-        "score":           score,
-        # retrieval debug
-        "top_chunk_score": rag_result["chunks"][0]["score"]  if rag_result["chunks"] else None,
-        "top_chunk_src":   rag_result["chunks"][0]["source"] if rag_result["chunks"] else None,
-    }
+        score = judge_score(
+            response=rag_result["answer"],
+            grading_notes=row["grading_notes"],
+            expected_answer=row.get("expected_answer", ""),
+        )
 
+
+        return {
+            # dataset fields
+            "question":        row["question"],
+            "grading_notes":   row["grading_notes"],
+            "expected_answer": row.get("expected_answer", ""),
+            # RAG output
+            "answer":          rag_result["answer"],
+            "contexts":        " | ".join(rag_result["contexts"]),
+            # evaluation
+            "score":           score,
+            # retrieval debug
+            "top_chunk_score": rag_result["chunks"][0]["score"]  if rag_result["chunks"] else None,
+            "top_chunk_src":   rag_result["chunks"][0]["source"] if rag_result["chunks"] else None,
+        }
+    except Exception as e:
+        print(f"Judge error: {type(e).__name__}: {e}")
+        print(f"Raw response was: repr={repr(raw)}")
+        return "error"
 
 # ==============================================================================
 # ENTRY POINT
