@@ -1,10 +1,11 @@
 question,grading_notes,expected_answer,answer,contexts,score,top_chunk_score,top_chunk_src
 a chi devo rivolgermi per info e chiarimenti su tasse?,deve indicare un ufficio o contatto specifico per le tasse universitarie,Devi rivolgerti all'ufficio tasse o alla segreteria studenti,"Per avere informazioni e chiarimenti sulle tasse universitarie devi rivolgerti all’**Ufficio Applicativi per la carriera dello studente e i contributi universitari**.  
 
-- **Telefono:** +39 040 558 3731 (disponibile martedì, mercoledì e venerdì dalle 12:00 alle 13:00)  
+- **Telefono:** +39 040 558 3731 (martedì, mercoledì e venerdì, dalle 12:00 alle 13:00)  
 - **E‑mail:** tasse.studenti@amm.units.it  
+- **Indirizzo:** Piazzale Europa, 1 – 34127 Trieste (Edificio Centrale A)  
 
-L’ufficio riceve anche il pubblico su appuntamento il lunedì dalle 15:00 alle 16:40 e il giovedì dalle 09:00 alle 11:10; per prenotare è necessario accedere al servizio **EasyPlanning** e scegliere la voce “Tasse”. Quando ti presenti allo sportello porta la ricevuta di prenotazione e un documento di identità (o delega, se ti fai rappresentare).","## Modalità di pagamento e rimborso delle tasse universitarie 
+L’ufficio accetta prenotazioni per le giornate in presenza (lunedì 15:00‑16:40 e giovedì 09:00‑11:10) tramite il servizio **EasyPlanning** scegliendo la voce “Tasse”. Quando ti presenti, porta la ricevuta di prenotazione e un documento di identità; in caso di impossibilità a recarti di persona, puoi delegare un terzo munito di delega e copia del tuo documento.","## Modalità di pagamento e rimborso delle tasse universitarie 
 
 Le tasse universitarie devono essere pagate esclusivamente utilizzando la piattaforma di pagamento PagoPA.  
 Per pagamenti tramite Carta Docente o da parte di altro Ente o Azienda, invia una mail a tasse.studenti@amm.units.it.
@@ -1662,7 +1663,13 @@ Cerca
     * Vivere a Trieste
     * Centro Linguistico di Ateneo (CLA)
     * Teaching and Learning Centre",error,0.5692,https://portale.units.it/it/ateneo/campus
-si può stampare all'università?,deve menzionare dove è possibile stampare o chi contattare,"Sì, è possibile stampare presso l'Ufficio Applicativi per la carriera dello studente","Sì, è possibile stampare all’Università. Nei laboratori informatici dell’edificio H3 sono disponibili due stampanti il cui utilizzo è gestito da un programma di monitoraggio. Ogni utente dispone di un credito‑stampa di 4 €/anno, valido fino al 31 agosto; il credito residuo non è cumulabile e viene rinnovato il 1 settembre di ogni anno. Le tariffe sono 0,015 € per foglio fronte‑retro (circa 266 copie all’anno) e 0,020 € per foglio singolo (circa 200 copie all’anno).","## Credito stampa 
+si può stampare all'università?,deve menzionare dove è possibile stampare o chi contattare,"Sì, è possibile stampare presso l'Ufficio Applicativi per la carriera dello studente","Sì, è possibile stampare all’università. Nei laboratori informatici dell’Aula informatica (Edificio H3) sono disponibili due stampanti il cui utilizzo è gestito da un programma di monitoraggio. Ogni utente dispone di un credito‑stampa di 4 €/anno, valido fino al 31 agosto; dal 1 settembre il credito viene rinnovato.  
+
+Le tariffe sono le seguenti:  
+- foglio fronte‑retro: 0,015 € (circa 266 copie all’anno);  
+- foglio singolo: 0,020 € (circa 200 copie all’anno).  
+
+Il credito residuo non è cumulabile tra gli anni.","## Credito stampa 
 
 L'uso delle 2 stampati è monitorato attraverso un programma di gestione che permette il verificare il numero di stampe effettuate.  
 Ai fruitori delle postazioni informatiche dell'Edificio H3 viene riconosciuto un credito-stampa di 4 €/anno da consumarsi entro il 31 agosto di ogni anno.  

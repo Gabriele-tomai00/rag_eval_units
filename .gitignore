@@ -1,1 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
 env/
+.uv/
+
+# RAG index (ChromaDB, large binary files)
+rag_index/
+
+# Evaluation outputs (results vary per run, not source code)
+evals/experiments/
+evals/*.csv
+
+# Environment
+.env
+
+# macOS
+.DS_Store
+
+# HuggingFace model cache (very large)
+~/.cache/huggingface/
+.cache/
