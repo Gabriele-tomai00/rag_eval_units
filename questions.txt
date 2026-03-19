@@ -1,0 +1,17 @@
+10 domande tipo e il contenuto della risposta
+
+1) dove si trova la sede dell'università di Trieste? https://portale.units.it/it/ateneo/campus
+2) si può stampare?  https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica
+3) obiettivi formativi ing elettronica e informatica https://lauree.units.it/it/0320106200800001/il-corso
+4) procedura di immatricolazione https://lauree.units.it/it/0320106200800001/come-iscriversi
+5) dimmi quali sono i vari curriculum del corso Scienze e Tecnologie per l'ambiente e la natura https://www.biologia.units.it/index.php?/corsi/5/Laurea-in-Scienze-e-Tecnologie-per-lambiente-e-la-natura
+6) come si pagano le tasse? https://portale.units.it/it/studiare/contributi/lauree-magistrali-e-magistrali-ciclo-unico
+7) info e chiarimenti su tasse https://portale.units.it/it/studiare/contributi/lauree-magistrali-e-magistrali-ciclo-unico
+8) parlami di L’iniziativa Climbing for Climate (CFC) https://portale.units.it/it/terza-missione/sostenibilita
+9) inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE https://degree.units.it/it/0320106203600002/area-studenti/calendario-didattico
+10) inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE https://degree.units.it/it/0320106202400001/area-studenti/calendario-didattico
+
+
+CASI PARTICOLARI:
+9) da quanti CFU è l'esame di Software development methods https://www.units.it/landing/presentazioni-corsi/pdf/piani-di-studio/IN23_PercorsoStudio2024_25.pdf
+8) dimmi l'orario lezioni di Fisica del 6-03-2026 https://orari.units.it/agendaweb/index.php?view=easycourse&form-type=corso&include=corso&txtcurr=1+-+Comune&anno=2025&scuola=DipartimentodiFisica&corso=SM20A&anno2%5B%5D=PDS0-2025%7C1&visualizzazione_orario=cal&date=16-03-2026&periodo_didattico=&_lang=it&list=&week_grid_type=-1&ar_codes_=&ar_select_=&col_cells=0&empty_box=0&only_grid=0&highlighted_date=0&all_events=0&faculty_group=0
