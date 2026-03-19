@@ -197,44 +197,44 @@ def load_dataset() -> Dataset:
         {
             "question":        "sede dell'università di Trieste",
             "grading_notes":   "deve menzionare Piazzale Europa e Trieste",
-            "ground_truth": "Piazzale Europa 1, 34127 Trieste, Italia",
+            "ground_truth":    "Piazzale Europa 1, 34127 Trieste, Italia",
         },
         {
             "question":        "dove stampare all università",
             "grading_notes":   "deve menzionare dove è possibile stampare o chi contattare",
-            "ground_truth": "Sì, è possibile stampare presso l'edificio H3",
+            "ground_truth":    "Sì, è possibile stampare presso l'edificio H3",
         },
         {
             "question":        "obiettivi formativi ingegneria elettronica e informatica: Capacità di applicare conoscenza e comprensione per curriculum Ingegneria biomedica",
             "grading_notes":   "deve includere il fatto che si fanno esercitazioni e laboratorio, gli strumenti didattici utilizzati",
-            "ground_truth": "I laureati in Ingegneria Elettronica e Informatica, curriculum ingegneria biomedica, devono avere una conoscenza sufficientemente ampia da essere in grado di affrontare problemi che coinvolgono ambiti diversi dell'Ingegneria dell'Informazione, e in particolare l'ambito biomedica. "
+            "ground_truth":    "I laureati in Ingegneria Elettronica e Informatica, curriculum ingegneria biomedica, devono avere una conoscenza sufficientemente ampia da essere in grado di affrontare problemi che coinvolgono ambiti diversi dell'Ingegneria dell'Informazione, e in particolare l'ambito biomedica. "
                                 " Lo studio delle conoscenze di base e' quindi affiancato da esercitazioni scritte ed in laboratorio: per prendere confidenza con le nozioni trattate durante i corsi, infatti, gli esercizi scritti e le prove di laboratorio previste forzano l'allievo ad applicare le conoscenze ed i concetti acquisiti. "
                                 " Gli strumenti didattici utilizzati per conseguire i suddetti obiettivi sono lezioni ordinarie, lezioni integrative, seminari, esercitazioni. L'acquisizione delle conoscenze e' valutata mediante verifiche orali e/o scritte, nonche' tramite la prova finale.",
         },
         {
             "question":        "scadenza per immatricolazione",
             "grading_notes":   "deve includere la data di scaenda per immatricolarsi per per l a.a. 2025/26",
-            "ground_truth": "Immatricolazioni dal 9 giugno al 6 ottobre 2025",
+            "ground_truth":    "Immatricolazioni dal 9 giugno al 6 ottobre 2025",
         },
         {
             "question":        "quali sono i vari curriculum del corso Scienze e Tecnologie per l'ambiente e la natura",
             "grading_notes":   "deve indicare 3 diversi percorsi di studio/curriculm",
-            "ground_truth": "Curriculum Ambientale, Biologico e Didattico",
+            "ground_truth":    "Curriculum Ambientale, Biologico e Didattico",
         },
         {
             "question":        "contatti per info tasse",
             "grading_notes":   "deve indicare un ufficio o contatto specifico per le tasse universitarie",
-            "ground_truth": "Ufficio Applicativi per la carriera dello studente e i contributi universitari",
+            "ground_truth":    "Ufficio Applicativi per la carriera dello studente e i contributi universitari",
         },
         {
             "question":        "contatti dell ufficio tasse",
             "grading_notes":   "deve includere almeno un numero di telefono e una mail",
-            "ground_truth": "Servizio telefonico: Martedì, Mercoledì, Venerdì: 12.00 - 13.00 Telefono: +39 040 558 3731 E-mail: tasse.studenti@amm.units.it",
+            "ground_truth":    "Servizio telefonico: Martedì, Mercoledì, Venerdì: 12.00 - 13.00 Telefono: +39 040 558 3731 E-mail: tasse.studenti@amm.units.it",
         },
         {
             "question":        "parlami dell iniziativa Climbing for Climate (CFC)",
             "grading_notes":   "deve indicare un iniziativa organizzata dalla RUS",
-            "ground_truth": "è organizzata dalla RUS- Rete delle Università per lo Sviluppo Sostenibile in collaborazione con il CAI-Club alpino italiano. CFC è anche l acronimo dei CloroFluoroCarburi, composti chimici contenenti cloro, fluoro e carbonio, che, essendo in parte responsabili della riduzione dello strato di ozono presente nella stratosfera, ed avendo un elevato effetto serra sono stati banditi dalla produzione a seguito del protocollo di Montreal del 1987. ",
+            "ground_truth":    "è organizzata dalla RUS- Rete delle Università per lo Sviluppo Sostenibile in collaborazione con il CAI-Club alpino italiano. CFC è anche l acronimo dei CloroFluoroCarburi, composti chimici contenenti cloro, fluoro e carbonio, che, essendo in parte responsabili della riduzione dello strato di ozono presente nella stratosfera, ed avendo un elevato effetto serra sono stati banditi dalla produzione a seguito del protocollo di Montreal del 1987. ",
         },
         {
             "question":        "inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE",
@@ -244,7 +244,18 @@ def load_dataset() -> Dataset:
         {
             "question":        "inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE",
             "grading_notes":   "deve indicare giorno di inizio e giorno di fine per l anno scolastico 2025",
-            "ground_truth": "dal 29 settembre 2025 al 19 dicembre 2025",
+            "ground_truth":    "dal 29 settembre 2025 al 19 dicembre 2025",
+        },
+        # fail because document not present
+        {
+            "question":        "l aula T dell'edificio A è libera il giorno 20 marzo 2026?",
+            "grading_notes":   "deve ammettere di non avere informazioni sufficienti, NON deve inventare un contenuto",
+            "ground_truth":    "Non ho informazioni su questo argomento",
+        },
+        {
+            "question":        "dimmi i corsi disponibili del dipartimento di musicologia",
+            "grading_notes":   "deve ammettere di non avere informazioni sufficienti, NON deve inventare un contenuto",
+            "ground_truth":    "Non ho informazioni su questo argomento",
         },
     ]
 
