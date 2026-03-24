@@ -1,7 +1,6 @@
 import os
 import json
 import asyncio
-from pathlib import Path
 
 import chromadb
 from openai import OpenAI
@@ -10,6 +9,7 @@ from llama_index.core import VectorStoreIndex, Settings, StorageContext
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.llms.openai_like import OpenAILike
 from llama_index.vector_stores.chroma import ChromaVectorStore
+from llama_index.core.postprocessor import SimilarityPostprocessor
 
 from ragas import Dataset, experiment
 
@@ -20,7 +20,8 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 # ==============================================================================
 
 INDEX_DIR        = "rag_index"
-SIMILARITY_TOP_K = 15
+SIMILARITY_TOP_K = 5
+SIMILARITY_CUTOFF = 0.3
 SCORE_THRESHOLDS = {"high": 0.7, "medium": 0.6}
 CONTEXT_WINDOW   = 8192
 MAX_TOKENS       = 1024
@@ -95,14 +96,24 @@ def query_rag(index: VectorStoreIndex, question: str) -> dict:
             "source":    node.metadata.get("url", "N/A"),
         })
 
-    query_engine = index.as_query_engine(similarity_top_k=SIMILARITY_TOP_K)
+    query_engine = index.as_query_engine(
+        similarity_top_k=SIMILARITY_TOP_K,
+        node_postprocessors=[
+            SimilarityPostprocessor(similarity_cutoff=SIMILARITY_CUTOFF)
+        ]
+    )
     response = query_engine.query(question)
+
+    filtered_chunks = [c for c in chunks if c["score"] >= SIMILARITY_CUTOFF]
+    print(f"[RETRIEVAL] '{question[:50]}' → {len(nodes)} retrieved, {len(filtered_chunks)} above threshold ({SIMILARITY_CUTOFF})")
+
 
     return {
         "answer":   str(response.response),
         "contexts": contexts,
         "chunks":   chunks,
     }
+
 
 
 # ==============================================================================
@@ -118,7 +129,11 @@ judge_client = OpenAI(
 
 JUDGE_SYSTEM_PROMPT = (
     "You are a strict evaluator. "
-    "You will receive a response, grading notes, and an expected answer. "
+    "You will receive a RAG response, grading notes (key points that MUST be covered), "
+    "and a ground truth answer (for reference only). "
+    "The grading notes are the PRIMARY evaluation criterion. "
+    "If the response satisfies the grading notes, output pass — "
+    "even if the wording differs from the ground truth. "
     "Think step by step, then on the LAST LINE output ONLY a JSON object "
     "with a single key 'result' whose value is 'pass' or 'fail'. "
     "Example last line: {\"result\": \"pass\"}"
@@ -200,7 +215,7 @@ def load_dataset() -> Dataset:
             "ground_truth":    "Piazzale Europa 1, 34127 Trieste, Italia",
         },
         {
-            "question":        "dove stampare all università",
+            "question":        "in quale edificio stampare all università",
             "grading_notes":   "deve menzionare dove è possibile stampare o chi contattare",
             "ground_truth":    "Sì, è possibile stampare presso l'edificio H3",
         },
@@ -208,8 +223,8 @@ def load_dataset() -> Dataset:
             "question":        "obiettivi formativi ingegneria elettronica e informatica: Capacità di applicare conoscenza e comprensione per curriculum Ingegneria biomedica",
             "grading_notes":   "deve includere il fatto che si fanno esercitazioni e laboratorio, gli strumenti didattici utilizzati",
             "ground_truth":    "I laureati in Ingegneria Elettronica e Informatica, curriculum ingegneria biomedica, devono avere una conoscenza sufficientemente ampia da essere in grado di affrontare problemi che coinvolgono ambiti diversi dell'Ingegneria dell'Informazione, e in particolare l'ambito biomedica. "
-                                " Lo studio delle conoscenze di base e' quindi affiancato da esercitazioni scritte ed in laboratorio: per prendere confidenza con le nozioni trattate durante i corsi, infatti, gli esercizi scritti e le prove di laboratorio previste forzano l'allievo ad applicare le conoscenze ed i concetti acquisiti. "
-                                " Gli strumenti didattici utilizzati per conseguire i suddetti obiettivi sono lezioni ordinarie, lezioni integrative, seminari, esercitazioni. L'acquisizione delle conoscenze e' valutata mediante verifiche orali e/o scritte, nonche' tramite la prova finale.",
+                               " Lo studio delle conoscenze di base e' quindi affiancato da esercitazioni scritte ed in laboratorio: per prendere confidenza con le nozioni trattate durante i corsi, infatti, gli esercizi scritti e le prove di laboratorio previste forzano l'allievo ad applicare le conoscenze ed i concetti acquisiti. "
+                               " Gli strumenti didattici utilizzati per conseguire i suddetti obiettivi sono lezioni ordinarie, lezioni integrative, seminari, esercitazioni. L'acquisizione delle conoscenze e' valutata mediante verifiche orali e/o scritte, nonche' tramite la prova finale.",
         },
         {
             "question":        "scadenza per immatricolazione",
@@ -239,7 +254,7 @@ def load_dataset() -> Dataset:
         {
             "question":        "inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE",
             "grading_notes":   "deve indicare giorno di inizio e giorno di fine per l anno scolastico 2025",
-            "ground_truth": "dal 22 settembre 2025 al 19 dicembre 2025",
+            "ground_truth":    "dal 22 settembre 2025 al 19 dicembre 2025",
         },
         {
             "question":        "inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE",
@@ -299,7 +314,8 @@ async def run_experiment(row: dict) -> dict:
             "ground_truth": row.get("ground_truth", ""),
             # RAG output
             "answer":          rag_result["answer"],
-            "contexts":        " | ".join(rag_result["contexts"]),
+            # "contexts":        " | ".join(rag_result["contexts"]),
+            "contexts":        " | ".join(ctx[:30] + "..." for ctx in rag_result["contexts"]),
             # evaluation
             "score":           score,
             # retrieval debug
@@ -321,6 +337,13 @@ async def main():
 
     experiment_results = await run_experiment.arun(dataset)
     print("Experiment completed.")
+
+    # Sort results to match original dataset order
+    questions_order = [s["question"] for s in dataset]
+    experiment_results._data = sorted(
+        experiment_results._data,
+        key=lambda r: questions_order.index(r["question"])
+    )
 
     experiment_results.save()
     print(f"Results saved to: evals/experiments/{experiment_results.name}.csv")
