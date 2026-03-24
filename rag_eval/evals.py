@@ -13,6 +13,10 @@ from llama_index.core.postprocessor import SimilarityPostprocessor
 
 from ragas import Dataset, experiment
 
+from openai import AsyncOpenAI
+from ragas.llms import llm_factory
+from ragas.metrics.collections import Faithfulness
+
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 # ==============================================================================
@@ -127,16 +131,25 @@ judge_client = OpenAI(
     base_url="http://localhost:4000/v1",
 )
 
+# JUDGE_SYSTEM_PROMPT = (
+#     "You are a strict evaluator. "
+#     "You will receive a RAG response, grading notes (key points that MUST be covered), "
+#     "and a ground truth answer (for reference only). "
+#     "The grading notes are the PRIMARY evaluation criterion. "
+#     "If the response satisfies the grading notes, output pass — "
+#     "even if the wording differs from the ground truth. "
+#     "Think step by step, then on the LAST LINE output ONLY a JSON object "
+#     "with a single key 'result' whose value is 'pass' or 'fail'. "
+#     "Example last line: {\"result\": \"pass\"}"
+# )
+
 JUDGE_SYSTEM_PROMPT = (
-    "You are a strict evaluator. "
-    "You will receive a RAG response, grading notes (key points that MUST be covered), "
-    "and a ground truth answer (for reference only). "
-    "The grading notes are the PRIMARY evaluation criterion. "
-    "If the response satisfies the grading notes, output pass — "
-    "even if the wording differs from the ground truth. "
-    "Think step by step, then on the LAST LINE output ONLY a JSON object "
-    "with a single key 'result' whose value is 'pass' or 'fail'. "
-    "Example last line: {\"result\": \"pass\"}"
+    "You are a strict evaluator. Your ONLY task is to output a JSON object. "
+    "1. Analyze the Response against the Grading Notes. "
+    "2. If the notes are satisfied, result is 'pass', otherwise 'fail'. "
+    "3. NEVER write introductory text or reasoning. "
+    "4. Output ONLY the JSON object. "
+    "Example: {\"result\": \"pass\"}"
 )
 
 JUDGE_USER_TEMPLATE = (
@@ -189,6 +202,50 @@ def judge_score(response: str, grading_notes: str, ground_truth: str) -> str:
         print(f"Judge error: {type(e).__name__}: {e}")
         return "error"
 
+# ==============================================================================
+# RAGAS METRICS SETUP
+# Uses the same LiteLLM proxy as the judge, but via AsyncOpenAI client
+# ==============================================================================
+
+from ragas.llms import llm_factory
+from ragas.run_config import RunConfig
+
+_ragas_async_client = AsyncOpenAI(
+    api_key="anything",
+    base_url="http://172.30.42.129:8080/v1",
+    timeout=300
+)
+
+_ragas_llm = llm_factory(
+    model="openai/ggml-org/gpt-oss-120b-GGUF",
+    client=_ragas_async_client,
+    max_tokens=4096, 
+    timeout=300,
+    max_retries=2
+)
+
+
+faithfulness_scorer = Faithfulness(llm=_ragas_llm)
+
+async def compute_faithfulness(
+    question: str,
+    answer: str,
+    contexts: list[str],
+) -> float | None:
+    """
+    Compute RAGAS Faithfulness score for a single RAG result.
+    Returns a float in [0, 1] or None on error.
+    """
+    try:
+        result = await faithfulness_scorer.ascore(
+            user_input=question,
+            response=answer,
+            retrieved_contexts=contexts,
+        )
+        return round(result.value, 4)
+    except Exception as e:
+        print(f"Faithfulness error: {type(e).__name__}: {e}")
+        return None
 
 # ==============================================================================
 # DATASET
@@ -207,6 +264,18 @@ def load_dataset() -> Dataset:
         backend="local/csv",
         root_dir="evals",
     )
+
+    # samples = [
+    #     {
+    #         "question":        "obiettivi formativi ingegneria elettronica e informatica: Capacità di applicare conoscenza e comprensione per curriculum Ingegneria biomedica",
+    #         "grading_notes":   "deve includere il fatto che si fanno esercitazioni e laboratorio, gli strumenti didattici utilizzati",
+    #         "ground_truth":    "I laureati in Ingegneria Elettronica e Informatica, curriculum ingegneria biomedica, devono avere una conoscenza sufficientemente ampia da essere in grado di affrontare problemi che coinvolgono ambiti diversi dell'Ingegneria dell'Informazione, e in particolare l'ambito biomedica. "
+    #                            " Lo studio delle conoscenze di base e' quindi affiancato da esercitazioni scritte ed in laboratorio: per prendere confidenza con le nozioni trattate durante i corsi, infatti, gli esercizi scritti e le prove di laboratorio previste forzano l'allievo ad applicare le conoscenze ed i concetti acquisiti. "
+    #                            " Gli strumenti didattici utilizzati per conseguire i suddetti obiettivi sono lezioni ordinarie, lezioni integrative, seminari, esercitazioni. L'acquisizione delle conoscenze e' valutata mediante verifiche orali e/o scritte, nonche' tramite la prova finale.",
+    #     }
+    # ]
+
+
 
     samples = [
         {
@@ -287,45 +356,41 @@ def load_dataset() -> Dataset:
 
 _index = load_index(INDEX_DIR)  # loaded once at module level, reused for every row
 
-
 @experiment()
 async def run_experiment(row: dict) -> dict:
-    """
-    For each dataset row:
-      1. Query the RAG → answer + contexts + chunks
-      2. Score the answer with the judge LLM (manual call, no instructor)
-      3. Return the full result dict for CSV saving
-    """
-
     try:
         rag_result = query_rag(_index, row["question"])
 
-        score = judge_score(
-            response=rag_result["answer"],
-            grading_notes=row["grading_notes"],
-            ground_truth=row.get("ground_truth", ""),
+        # Run judge + faithfulness concurrently — they're independent
+        score, faithfulness = await asyncio.gather(
+            asyncio.to_thread(          # judge_score is sync → run in thread
+                judge_score,
+                rag_result["answer"],
+                row["grading_notes"],
+                row.get("ground_truth", ""),
+            ),
+            compute_faithfulness(
+                question=row["question"],
+                answer=rag_result["answer"],
+                contexts=rag_result["contexts"],
+            ),
         )
 
-
         return {
-            # dataset fields
-            "question":        row["question"],
-            "grading_notes":   row["grading_notes"],
-            "ground_truth": row.get("ground_truth", ""),
-            # RAG output
-            "answer":          rag_result["answer"],
-            # "contexts":        " | ".join(rag_result["contexts"]),
-            "contexts":        " | ".join(ctx[:30] + "..." for ctx in rag_result["contexts"]),
-            # evaluation
-            "score":           score,
-            # retrieval debug
-            "top_chunk_score": rag_result["chunks"][0]["score"]  if rag_result["chunks"] else None,
-            "top_chunk_src":   rag_result["chunks"][0]["source"] if rag_result["chunks"] else None,
+            "question":          row["question"],
+            "grading_notes":     row["grading_notes"],
+            "ground_truth":      row.get("ground_truth", ""),
+            "answer":            rag_result["answer"],
+            "contexts":          " | ".join(ctx[:30] + "..." for ctx in rag_result["contexts"]),
+            "score":             score,
+            "faithfulness_score": faithfulness,
+            "top_chunk_score":   rag_result["chunks"][0]["score"]  if rag_result["chunks"] else None,
+            "top_chunk_src":     rag_result["chunks"][0]["source"] if rag_result["chunks"] else None,
         }
     except Exception as e:
-        print(f"Judge error: {type(e).__name__}: {e}")
-        print(f"Raw response was: repr={repr(raw)}")
-        return "error"
+        print(f"Experiment error: {type(e).__name__}: {e}")
+        return {"question": row["question"], "score": "error", "faithfulness_score": None}
+
 
 # ==============================================================================
 # ENTRY POINT
