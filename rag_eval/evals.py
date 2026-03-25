@@ -13,9 +13,14 @@ from llama_index.core.postprocessor import SimilarityPostprocessor
 
 from ragas import Dataset, experiment
 
+# Faithfulness
 from openai import AsyncOpenAI
 from ragas.llms import llm_factory
 from ragas.metrics.collections import Faithfulness
+
+# Answer correctness
+from ragas.embeddings import LangchainEmbeddingsWrapper
+from ragas.metrics.collections import AnswerCorrectness
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
@@ -25,7 +30,7 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 INDEX_DIR        = "rag_index"
 SIMILARITY_TOP_K = 5
-SIMILARITY_CUTOFF = 0.3
+SIMILARITY_CUTOFF = 0.35
 SCORE_THRESHOLDS = {"high": 0.7, "medium": 0.6}
 CONTEXT_WINDOW   = 8192
 MAX_TOKENS       = 1024
@@ -108,8 +113,8 @@ def query_rag(index: VectorStoreIndex, question: str) -> dict:
     )
     response = query_engine.query(question)
 
-    filtered_chunks = [c for c in chunks if c["score"] >= SIMILARITY_CUTOFF]
-    print(f"[RETRIEVAL] '{question[:50]}' → {len(nodes)} retrieved, {len(filtered_chunks)} above threshold ({SIMILARITY_CUTOFF})")
+    filtered_chunks = [c for c in chunks if c["score"] < SIMILARITY_CUTOFF]
+    print(f"[RETRIEVAL] '{question[:50]}' → {len(nodes)} retrieved, {len(filtered_chunks)} under threshold ({SIMILARITY_CUTOFF})")
 
 
     return {
@@ -130,18 +135,6 @@ judge_client = OpenAI(
     api_key="anything",
     base_url="http://localhost:4000/v1",
 )
-
-# JUDGE_SYSTEM_PROMPT = (
-#     "You are a strict evaluator. "
-#     "You will receive a RAG response, grading notes (key points that MUST be covered), "
-#     "and a ground truth answer (for reference only). "
-#     "The grading notes are the PRIMARY evaluation criterion. "
-#     "If the response satisfies the grading notes, output pass — "
-#     "even if the wording differs from the ground truth. "
-#     "Think step by step, then on the LAST LINE output ONLY a JSON object "
-#     "with a single key 'result' whose value is 'pass' or 'fail'. "
-#     "Example last line: {\"result\": \"pass\"}"
-# )
 
 JUDGE_SYSTEM_PROMPT = (
     "You are a strict evaluator. Your ONLY task is to output a JSON object. "
@@ -247,6 +240,46 @@ async def compute_faithfulness(
         print(f"Faithfulness error: {type(e).__name__}: {e}")
         return None
 
+
+# ==============================================================================
+# answer_correctness
+# ==============================================================================
+from ragas.embeddings import HuggingFaceEmbeddings as RagasHFEmbeddings
+from ragas.metrics.collections import Faithfulness, AnswerCorrectness
+
+_ragas_embeddings = RagasHFEmbeddings(
+    model="BAAI/bge-m3",
+)
+
+answer_correctness_scorer = AnswerCorrectness(
+    llm=_ragas_llm,
+    embeddings=_ragas_embeddings,
+)
+
+
+async def compute_answer_correctness(
+    question: str,
+    answer: str,
+    reference: str,
+) -> float | None:
+    """
+    Compute RAGAS AnswerCorrectness score for a single RAG result.
+    Combines factual similarity (LLM-based) and semantic similarity (embeddings).
+    Returns a float in [0, 1] or None on error.
+    """
+    if not reference:
+        return None  # Cannot score without ground truth
+    try:
+        result = await answer_correctness_scorer.ascore(
+            user_input=question,
+            response=answer,
+            reference=reference,
+        )
+        return round(result.value, 4)
+    except Exception as e:
+        print(f"AnswerCorrectness error: {type(e).__name__}: {e}")
+        return None
+
 # ==============================================================================
 # DATASET
 # ==============================================================================
@@ -286,7 +319,7 @@ def load_dataset() -> Dataset:
         {
             "question":        "in quale edificio stampare all università",
             "grading_notes":   "deve menzionare dove è possibile stampare o chi contattare",
-            "ground_truth":    "Sì, è possibile stampare presso l'edificio H3",
+            "ground_truth":    "È possibile stampare presso l'edificio H3, quinto piano.",
         },
         {
             "question":        "obiettivi formativi ingegneria elettronica e informatica: Capacità di applicare conoscenza e comprensione per curriculum Ingegneria biomedica",
@@ -298,7 +331,7 @@ def load_dataset() -> Dataset:
         {
             "question":        "scadenza per immatricolazione",
             "grading_notes":   "deve includere la data di scaenda per immatricolarsi per per l a.a. 2025/26",
-            "ground_truth":    "Immatricolazioni dal 9 giugno al 6 ottobre 2025",
+            "ground_truth":    "Immatricolazioni dal 9 giugno al 6 ottobre 2025. Riapertura dal 14 gennaio 2026 al 6 marzo 2026.",
         },
         {
             "question":        "quali sono i vari curriculum del corso Scienze e Tecnologie per l'ambiente e la natura",
@@ -308,12 +341,12 @@ def load_dataset() -> Dataset:
         {
             "question":        "contatti per info tasse",
             "grading_notes":   "deve indicare un ufficio o contatto specifico per le tasse universitarie",
-            "ground_truth":    "Ufficio Applicativi per la carriera dello studente e i contributi universitari",
+            "ground_truth":    "Ufficio Applicativi per la carriera dello studente e i contributi universitari. Telefono: +39 040 558 3731, email: tasse.studenti@amm.units.it",
         },
         {
             "question":        "contatti dell ufficio tasse",
             "grading_notes":   "deve includere almeno un numero di telefono e una mail",
-            "ground_truth":    "Servizio telefonico: Martedì, Mercoledì, Venerdì: 12.00 - 13.00 Telefono: +39 040 558 3731 E-mail: tasse.studenti@amm.units.it",
+            "ground_truth":    "Telefono: +39 040 558 3731 (martedì, mercoledì, venerdì 12:00–13:00). Email: tasse.studenti@amm.units.itcontatti per info tasse",
         },
         {
             "question":        "parlami dell iniziativa Climbing for Climate (CFC)",
@@ -361,9 +394,9 @@ async def run_experiment(row: dict) -> dict:
     try:
         rag_result = query_rag(_index, row["question"])
 
-        # Run judge + faithfulness concurrently — they're independent
-        score, faithfulness = await asyncio.gather(
-            asyncio.to_thread(          # judge_score is sync → run in thread
+        # Run judge + faithfulness + answer_correctness concurrently — they're independent
+        score, faithfulness, answer_correctness = await asyncio.gather(
+            asyncio.to_thread(
                 judge_score,
                 rag_result["answer"],
                 row["grading_notes"],
@@ -374,22 +407,36 @@ async def run_experiment(row: dict) -> dict:
                 answer=rag_result["answer"],
                 contexts=rag_result["contexts"],
             ),
+            compute_answer_correctness(
+                question=row["question"],
+                answer=rag_result["answer"],
+                reference=row.get("ground_truth", ""),
+            ),
         )
 
+        for i, ctx in enumerate(rag_result["contexts"]):
+            print(f"CHINK {i}:\n {ctx[:50]}...\n\n")
+
         return {
-            "question":          row["question"],
-            "grading_notes":     row["grading_notes"],
-            "ground_truth":      row.get("ground_truth", ""),
-            "answer":            rag_result["answer"],
-            "contexts":          " | ".join(ctx[:30] + "..." for ctx in rag_result["contexts"]),
-            "score":             score,
-            "faithfulness_score": faithfulness,
-            "top_chunk_score":   rag_result["chunks"][0]["score"]  if rag_result["chunks"] else None,
-            "top_chunk_src":     rag_result["chunks"][0]["source"] if rag_result["chunks"] else None,
+            "question":               row["question"],
+            "grading_notes":          row["grading_notes"],
+            "ground_truth":           row.get("ground_truth", ""),
+            "answer":                 rag_result["answer"],
+            "contexts":               " | ".join(ctx[:30] + "..." for ctx in rag_result["contexts"]),
+            "score":                  score,
+            "faithfulness_score":     faithfulness,
+            "answer_correctness":     answer_correctness,
+            "top_chunk_score":        rag_result["chunks"][0]["score"]  if rag_result["chunks"] else None,
+            "top_chunk_src":          rag_result["chunks"][0]["source"] if rag_result["chunks"] else None,
         }
     except Exception as e:
         print(f"Experiment error: {type(e).__name__}: {e}")
-        return {"question": row["question"], "score": "error", "faithfulness_score": None}
+        return {
+            "question":           row["question"],
+            "score":              "error",
+            "faithfulness_score": None,
+            "answer_correctness": None,
+        }
 
 
 # ==============================================================================
