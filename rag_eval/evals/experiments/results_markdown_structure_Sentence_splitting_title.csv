@@ -1,0 +1,133 @@
+question,grading_notes,ground_truth,answer,contexts,score,faithfulness_score,answer_correctness,top_chunk_score,top_chunk_src
+sede dell'università di Trieste,deve menzionare Piazzale Europa e Trieste,"Piazzale Europa 1, 34127 Trieste, Italia","L’ateneo ha la sede principale a Trieste, situata in Piazzale Europa 1, su un’area sopraelevata rispetto al centro della città.","## 
+
+La sede principale dell’A... | #### **Link utili**
+
+Postazion... | ##### Sede
+
+La sede di svolgim... | #  Le nostre sedi... | ## Ateneo
+
+  * Chi siamo
+  * M...",pass,1.0,0.7621,0.5781,https://portale.units.it/it/ateneo/campus
+in quale edificio stampare all università,deve menzionare dove è possibile stampare o chi contattare,"È possibile stampare presso l'edificio H3, quinto piano.","Le stampanti sono disponibili nell’edificio H3, dove si trovano le aule informatiche.","## Credito stampa 
+
+L'uso dell... | ## 
+
+L'edificio H3, situato ne... | * Futuri studenti
+  * Studenti... | #  Aula informatica Edificio H... | ##### Sede
+
+La sede di svolgim...",pass,1.0,0.709,0.4667,https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica
+obiettivi formativi ingegneria elettronica e informatica: Capacità di applicare conoscenza e comprensione per curriculum Ingegneria biomedica,"deve includere il fatto che si fanno esercitazioni e laboratorio, gli strumenti didattici utilizzati","I laureati in Ingegneria Elettronica e Informatica, curriculum ingegneria biomedica, devono avere una conoscenza sufficientemente ampia da essere in grado di affrontare problemi che coinvolgono ambiti diversi dell'Ingegneria dell'Informazione, e in particolare l'ambito biomedica.  Lo studio delle conoscenze di base e' quindi affiancato da esercitazioni scritte ed in laboratorio: per prendere confidenza con le nozioni trattate durante i corsi, infatti, gli esercizi scritti e le prove di laboratorio previste forzano l'allievo ad applicare le conoscenze ed i concetti acquisiti.  Gli strumenti didattici utilizzati per conseguire i suddetti obiettivi sono lezioni ordinarie, lezioni integrative, seminari, esercitazioni. L'acquisizione delle conoscenze e' valutata mediante verifiche orali e/o scritte, nonche' tramite la prova finale.","Per il curriculum in Ingegneria Biomedica gli obiettivi formativi relativi alla capacità di applicare conoscenza e comprensione prevedono che il laureato:
+
+* Possieda una base di conoscenze sufficientemente ampia da poter affrontare problemi che coinvolgono diversi ambiti dell’ingegneria dell’informazione, con particolare riferimento al settore biomedico.  
+* Metta in pratica i concetti appresi attraverso esercizi scritti e attività di laboratorio, i quali richiedono l’applicazione concreta delle nozioni teoriche.  
+* Svolga attività didattiche integrate – lezioni frontali, lezioni integrative, seminari e esercitazioni – volte a consolidare la capacità di tradurre la teoria in soluzioni operative.  
+* Sia valutato mediante verifiche orali e/o scritte e, infine, mediante la prova finale, che certifica la capacità di utilizzare in modo autonomo le conoscenze acquisite.  
+
+In sintesi, il percorso formativo punta a formare un professionista capace di trasferire le proprie competenze teoriche in interventi pratici e multidisciplinari nel campo biomedico.","### Conoscenza e comprensione.... | ### Capacità di applicare cono... | ### Funzione in contesto di la... | ### Competenze associate alla ... | # Il corso
+
+  * ### Perché isc...",pass,,0.8978,0.5964,https://lauree.units.it/it/0320106200800001/il-corso
+scadenza per immatricolazione,deve includere la data di scaenda per immatricolarsi per per l a.a. 2025/26,Immatricolazioni dal 9 giugno al 6 ottobre 2025. Riapertura dal 14 gennaio 2026 al 6 marzo 2026.,"Le iscrizioni sono aperte in due periodi:
+
+- **Prima finestra:** dal 9 giugno 2025 al 6 ottobre 2025.  
+- **Riapertura:** dal 14 gennaio 2026 al 6 marzo 2026.  
+
+È necessario completare la procedura entro le date indicate per ciascuna finestra.","# Come iscriversi
+
+In questa p... | ### Immatricolazione
+
+ _Entro ... | Le scadenze di pagamento, **pe... | ### Corso propedeutico
+
+Il Dip... | #### Date TOLC-I UniTS
+
+Le **d...",pass,1.0,0.8389,0.4189,https://lauree.units.it/it/0320106200800001/come-iscriversi
+quali sono i vari curriculum del corso Scienze e Tecnologie per l'ambiente e la natura,deve indicare 3 diversi percorsi di studio/curriculm,"Curriculum Ambientale, Biologico e Didattico","Il corso prevede tre percorsi di studio distinti:
+
+1. **Curriculum Ambientale**  
+2. **Curriculum Biologico**  
+3. **Curriculum Didattico**.","####  Descrizione del Corso - ... | **A partire dall’anno accademi... | #### Il corso in breve
+
+Tipo d... | #### Avvisi del corso
+
+_Nessun... | # Laurea in Scienze e Tecnolog...",pass,1.0,0.8104,0.5677,https://www.biologia.units.it/index.php?/corsi/5/Laurea-in-Scienze-e-Tecnologie-per-lambiente-e-la-natura
+contatti per info tasse,deve indicare un ufficio o contatto specifico per le tasse universitarie,"Ufficio Applicativi per la carriera dello studente e i contributi universitari. Telefono: +39 040 558 3731, email: tasse.studenti@amm.units.it","**Ufficio Applicativi per la carriera dello studente e i contributi universitari**  
+Piazzale Europa, 1 – 34127 Trieste (Edificio Centrale A)  
+
+**Telefono:** +39 040 558 3731 (disponibile martedì, mercoledì e venerdì, dalle 12:00 alle 13:00)  
+
+**E‑mail:** tasse.studenti@amm.units.it  
+
+Per appuntamenti in presenza è necessario prenotare tramite il servizio EasyPlanning, scegliendo “Tasse”. La prenotazione deve essere confermata via e‑mail e presentata insieme a un documento di identità. In caso di impossibilità a recarsi personalmente, è possibile delegare un terzo munito di delega e copia del documento.","## Contatti 
+
+**Ufficio Applic... | ## 
+
+L’Università degli Studi ... | Le scadenze di pagamento, **pe... | * Futuri studenti
+  * Studenti... | #### **Avviso tasse e contribu...",pass,1.0,0.5667,0.4569,https://portale.units.it/it/studiare/contributi/lauree-magistrali-e-magistrali-ciclo-unico
+contatti dell ufficio tasse,deve includere almeno un numero di telefono e una mail,"Telefono: +39 040 558 3731 (martedì, mercoledì, venerdì 12:00–13:00). Email: tasse.studenti@amm.units.itcontatti per info tasse","**Ufficio Applicativi per la carriera dello studente e i contributi universitari**  
+Indirizzo: Piazzale Europa, 1 – 34127 Trieste (Edificio Centrale A)  
+
+Telefono (martedì, mercoledì e venerdì, 12:00‑13:00): +39 040 558 3731  
+
+E‑mail: tasse.studenti@amm.units.it","## Contatti 
+
+**Ufficio Applic... | ## 
+
+L'edificio H3, situato ne... | ## 
+
+L’Università degli Studi ... | * Futuri studenti
+  * Studenti... | Le scadenze di pagamento, **pe...",pass,1.0,0.7053,0.4285,https://portale.units.it/it/studiare/contributi/lauree-magistrali-e-magistrali-ciclo-unico
+parlami dell iniziativa Climbing for Climate (CFC),deve indicare un iniziativa organizzata dalla RUS,"è organizzata dalla RUS- Rete delle Università per lo Sviluppo Sostenibile in collaborazione con il CAI-Club alpino italiano. CFC è anche l acronimo dei CloroFluoroCarburi, composti chimici contenenti cloro, fluoro e carbonio, che, essendo in parte responsabili della riduzione dello strato di ozono presente nella stratosfera, ed avendo un elevato effetto serra sono stati banditi dalla produzione a seguito del protocollo di Montreal del 1987. ","Climbing for Climate (CFC) è un’iniziativa promossa dalla Rete delle Università per lo Sviluppo Sostenibile (RUS) in collaborazione con il Club Alpino Italiano (CAI). Il progetto prende il nome anche dall’acronimo dei clorofluorocarburi (CFC), sostanze chimiche contenenti cloro, fluoro e carbonio che, per il loro ruolo nella riduzione dello strato di ozono e per l’elevato potere di riscaldamento globale, sono state vietate dalla produzione con il Protocollo di Montreal del 1987 – la prima intesa internazionale volta a difendere il clima terrestre.
+
+L’obiettivo di Climbing for Climate è coinvolgere le istituzioni aderenti nella lotta al riscaldamento globale attraverso tre direttrici principali:
+
+1. **Formazione** – vengono organizzati percorsi formativi per gli studenti, con l’intento di creare una nuova generazione di professionisti consapevoli delle sfide ambientali.
+2. **Ricerca** – si promuovono progetti di ricerca mirati allo sviluppo sostenibile, incentivando soluzioni innovative per la mitigazione dei cambiamenti climatici.
+3. **Sensibilizzazione** – si svolgono attività di divulgazione rivolte ai cittadini, per aumentare la consapevolezza sui problemi climatici e sulle azioni concrete da intraprendere.
+
+L’Università degli Studi di Trieste partecipa annualmente all’iniziativa, co‑organizzando eventi a livello regionale che integrano le tematiche di sostenibilità, educazione ambientale e coinvolgimento della comunità. In questo modo l’ateneo contribuisce attivamente alla rete nazionale di istituzioni impegnate nella realizzazione degli obiettivi dell’Agenda 2030 delle Nazioni Unite.","UniTS offre all’interno della ... | La stazione di ricarica è alim... | ## 
+
+Referente di Ateneo: Ales... | ## Gruppi di lavoro della RUS–... | Destinatari delle attività nat...",pass,,0.5764,0.4351,https://portale.units.it/it/terza-missione/sostenibilita
+inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE,deve indicare giorno di inizio e giorno di fine per l anno scolastico 2025,dal 22 settembre 2025 al 19 dicembre 2025,"Il primo semestre delle lezioni di Scienze Internazionali e Diplomatiche inizia il 22 settembre 2025 e termina il 19 dicembre 2025.  
+(Per gli studenti del primo anno, l’inizio effettivo è il 1 ottobre 2025.)","### Calendario delle lezioni
+
+... | ##### Modalità di erogazione
+
+... | ### Importante
+
+Orario e luogo... | ### Calendario delle lezioni
+
+... | ##### Sede
+
+La sede di svolgim...",pass,0.6667,0.7263,0.5965,https://degree.units.it/it/0320106203600002/area-studenti/calendario-didattico
+inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE,deve indicare giorno di inizio e giorno di fine per l anno scolastico 2025,dal 29 settembre 2025 al 19 dicembre 2025,"Il primo semestre delle lezioni di Scienze e Tecniche Psicologiche si chiude il 19 dicembre 2025.  
+
+- Per gli studenti del I anno le lezioni iniziano il 29 settembre 2025.  
+- Per gli studenti del II e III anno le lezioni iniziano il 22 settembre 2025.","### Calendario delle lezioni
+
+... | ### Calendario delle lezioni
+
+... | # SCIENZE E TECNICHE PSICOLOGI... | ##### Modalità di erogazione
+
+... | ### Importante
+
+Orario e luogo...",pass,1.0,0.6258,0.544,https://degree.units.it/it/0320106202400001/area-studenti/calendario-didattico
+l aula T dell'edificio A è libera il giorno 20 marzo 2026?,"deve ammettere di non avere informazioni sufficienti, NON deve inventare un contenuto",Non ho informazioni su questo argomento,"Non dispongo di informazioni relative all’aula T dell’edificio A per il 20 marzo 2026, quindi non posso confermare la sua disponibilità in quella data.","## 
+
+L'edificio H3, situato ne... | ## Credito stampa 
+
+L'uso dell... | Le scadenze di pagamento, **pe... | ### Calendario delle lezioni
+
+... | ### Calendario delle lezioni
+
+...",pass,0.0,0.8959,0.3569,https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica
+dimmi i corsi disponibili del dipartimento di musicologia,"deve ammettere di non avere informazioni sufficienti, NON deve inventare un contenuto",Non ho informazioni su questo argomento,"Mi dispiace, non dispongo di informazioni sui corsi del dipartimento di musicologia.","##### Dipartimento
+
+Il corso è... | ##### Dipartimento
+
+Il corso è... | ### Importante
+
+Orario e luogo... | ### Calendario delle lezioni
+
+... | ##### Dipartimento
+
+Il corso è...",pass,0.0,0.9095,0.4085,https://degree.units.it/it/0320106202400001/area-studenti/calendario-didattico

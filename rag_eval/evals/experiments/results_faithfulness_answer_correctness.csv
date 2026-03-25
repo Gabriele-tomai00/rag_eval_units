@@ -1,43 +1,41 @@
 question,grading_notes,ground_truth,answer,contexts,score,faithfulness_score,answer_correctness,top_chunk_score,top_chunk_src
-sede dell'università di Trieste,deve menzionare Piazzale Europa e Trieste,"Piazzale Europa 1, 34127 Trieste, Italia","L’università di Trieste ha la sede principale in Piazzale Europa 1, Trieste.","## 
+sede dell'università di Trieste,deve menzionare Piazzale Europa e Trieste,"Piazzale Europa 1, 34127 Trieste, Italia","La sede principale dell’Università si trova a Trieste, in **Piazzale Europa 1**, su un’area sopraelevata rispetto al centro città. È il campus dove sono ospitati uffici, aule e laboratori della quasi totalità dei corsi di laurea.","## 
 
 La sede principale dell’A... | ##### Sede
 
-La sede di svolgim... | ## Info for
+La sede di svolgim... | ##### Sede
 
-https://www.insta... | ##### Sede
+La sede di svolgim... | ##### Sede
 
-La sede di svolgim... | ## Info for
-
-https://www.insta...",pass,1.0,0.9279,0.5741,https://portale.units.it/it/ateneo/campus
-in quale edificio stampare all università,deve menzionare dove è possibile stampare o chi contattare,"È possibile stampare presso l'edificio H3, quinto piano.","Le stampanti sono disponibili nell’edificio H3 del campus di Trieste, al quinto piano.","## Credito stampa 
+La sede di svolgim... | #  Aula informatica Edificio H...",pass,1.0,0.6631,0.5713,https://portale.units.it/it/ateneo/campus
+in quale edificio stampare all università,deve menzionare dove è possibile stampare o chi contattare,"È possibile stampare presso l'edificio H3, quinto piano.","Puoi stampare nell’edificio H3, nella aula informatica al quinto piano.","## Credito stampa 
 
 L'uso dell... | ## 
 
 L'edificio H3, situato ne... | ## 
 
-La sede principale dell’A... | ## Info for
+La sede principale dell’A... | #  Aula informatica Edificio H... | ##### Sede
 
-https://www.insta... | #  Aula informatica Edificio H...",pass,1.0,0.9642,0.4564,https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica
-obiettivi formativi ingegneria elettronica e informatica: Capacità di applicare conoscenza e comprensione per curriculum Ingegneria biomedica,"deve includere il fatto che si fanno esercitazioni e laboratorio, gli strumenti didattici utilizzati","I laureati in Ingegneria Elettronica e Informatica, curriculum ingegneria biomedica, devono avere una conoscenza sufficientemente ampia da essere in grado di affrontare problemi che coinvolgono ambiti diversi dell'Ingegneria dell'Informazione, e in particolare l'ambito biomedica.  Lo studio delle conoscenze di base e' quindi affiancato da esercitazioni scritte ed in laboratorio: per prendere confidenza con le nozioni trattate durante i corsi, infatti, gli esercizi scritti e le prove di laboratorio previste forzano l'allievo ad applicare le conoscenze ed i concetti acquisiti.  Gli strumenti didattici utilizzati per conseguire i suddetti obiettivi sono lezioni ordinarie, lezioni integrative, seminari, esercitazioni. L'acquisizione delle conoscenze e' valutata mediante verifiche orali e/o scritte, nonche' tramite la prova finale.","Per il curriculum in Ingegneria Biomedica, gli studenti devono sviluppare una conoscenza ampia e integrata dell’ingegneria dell’informazione, con particolare attenzione al settore biomedico, così da poter affrontare problemi che coinvolgono più ambiti disciplinari.  
+La sede di svolgim...",pass,0.5,0.6119,0.4552,https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica
+obiettivi formativi ingegneria elettronica e informatica: Capacità di applicare conoscenza e comprensione per curriculum Ingegneria biomedica,"deve includere il fatto che si fanno esercitazioni e laboratorio, gli strumenti didattici utilizzati","I laureati in Ingegneria Elettronica e Informatica, curriculum ingegneria biomedica, devono avere una conoscenza sufficientemente ampia da essere in grado di affrontare problemi che coinvolgono ambiti diversi dell'Ingegneria dell'Informazione, e in particolare l'ambito biomedica.  Lo studio delle conoscenze di base e' quindi affiancato da esercitazioni scritte ed in laboratorio: per prendere confidenza con le nozioni trattate durante i corsi, infatti, gli esercizi scritti e le prove di laboratorio previste forzano l'allievo ad applicare le conoscenze ed i concetti acquisiti.  Gli strumenti didattici utilizzati per conseguire i suddetti obiettivi sono lezioni ordinarie, lezioni integrative, seminari, esercitazioni. L'acquisizione delle conoscenze e' valutata mediante verifiche orali e/o scritte, nonche' tramite la prova finale.","Per il curriculum in Ingegneria Biomedica, gli obiettivi di capacità di applicare conoscenza e comprensione prevedono che il laureato possieda una preparazione sufficientemente ampia da poter affrontare problemi che coinvolgono diversi ambiti dell’ingegneria dell’informazione, con particolare riferimento al settore biomedico.  
 
-L’apprendimento teorico è affiancato da esercitazioni scritte e attività di laboratorio, le quali obbligano lo studente a mettere in pratica i concetti acquisiti.  
+A tal fine, lo studio delle conoscenze di base è integrato da esercitazioni scritte e attività di laboratorio. Queste attività pratiche costringono lo studente a mettere in pratica i concetti appresi, consolidando la capacità di utilizzare le nozioni teoriche in contesti concreti.  
 
-Le modalità didattiche previste includono lezioni frontali, lezioni integrative, seminari e sessioni di esercitazione.  
+Il percorso didattico comprende lezioni ordinarie, lezioni integrative, seminari ed esercitazioni, e la valutazione avviene mediante prove orali, scritte e la prova finale, garantendo così che lo studente dimostri effettivamente la capacità di applicare le proprie conoscenze nel campo biomedico.","### Conoscenza e comprensione.... | ### Capacità di applicare cono... | ### Funzione in contesto di la... | ### Competenze associate alla ... | # Il corso
 
-Il raggiungimento delle competenze viene verificato mediante prove orali e/o scritte e, infine, con la prova finale di laurea.","### Capacità di applicare cono... | ### Conoscenza e comprensione.... | ### Funzione in contesto di la... | ### Competenze associate alla ... | # Il corso
-
-  * ### Perché isc...",pass,0.9231,0.9407,0.6281,https://lauree.units.it/it/0320106200800001/il-corso
-scadenza per immatricolazione,deve includere la data di scaenda per immatricolarsi per per l a.a. 2025/26,Immatricolazioni dal 9 giugno al 6 ottobre 2025. Riapertura dal 14 gennaio 2026 al 6 marzo 2026.,"Le immatricolazioni per l’anno accademico 2025/2026 sono previste entro il 6 ottobre 2025. Se non riesci a completarle in quel periodo, la procedura è stata riaperta e potrai immatricolarti fino al 6 marzo 2026.","### Immatricolazione
+  * ### Perché isc...",pass,0.7778,0.9154,0.6063,https://lauree.units.it/it/0320106200800001/il-corso
+scadenza per immatricolazione,deve includere la data di scaenda per immatricolarsi per per l a.a. 2025/26,Immatricolazioni dal 9 giugno al 6 ottobre 2025. Riapertura dal 14 gennaio 2026 al 6 marzo 2026.,"Le immatricolazioni per l’anno accademico 2025/2026 sono aperte dal 9 giugno al 6 ottobre 2025. Dopo la chiusura, è prevista una riapertura dal 14 gennaio 2026 fino al 6 marzo 2026.","### Immatricolazione
 
  _Entro ... | # Come iscriversi
 
-In questa p... | ## Scadenze di pagamento per l... | #### Date TOLC-I UniTS
+In questa p... | #### Date TOLC-I UniTS
 
 Le **d... | ##### Sede
 
-La sede di svolgim...",fail,0.6667,0.7526,0.4133,https://lauree.units.it/it/0320106200800001/come-iscriversi
-quali sono i vari curriculum del corso Scienze e Tecnologie per l'ambiente e la natura,deve indicare 3 diversi percorsi di studio/curriculm,"Curriculum Ambientale, Biologico e Didattico","Il corso prevede tre percorsi curriculari distinti:
+La sede di svolgim... | ### Corso propedeutico
+
+Il Dip...",pass,1.0,0.9537,0.4133,https://lauree.units.it/it/0320106200800001/come-iscriversi
+quali sono i vari curriculum del corso Scienze e Tecnologie per l'ambiente e la natura,deve indicare 3 diversi percorsi di studio/curriculm,"Curriculum Ambientale, Biologico e Didattico","Il corso prevede tre percorsi di studio distinti:
 
 1. **Curriculum Ambientale**  
 2. **Curriculum Biologico**  
@@ -47,90 +45,86 @@ Tipo d... | #### Avvisi del corso
 
 _Nessun... | # Laurea in Scienze e Tecnolog... | #### Laurearsi 
 
-Vedi tutti...",pass,1.0,0.8137,0.5556,https://www.biologia.units.it/index.php?/corsi/5/Laurea-in-Scienze-e-Tecnologie-per-lambiente-e-la-natura
+Vedi tutti...",pass,1.0,0.8104,0.5556,https://www.biologia.units.it/index.php?/corsi/5/Laurea-in-Scienze-e-Tecnologie-per-lambiente-e-la-natura
 contatti per info tasse,deve indicare un ufficio o contatto specifico per le tasse universitarie,"Ufficio Applicativi per la carriera dello studente e i contributi universitari. Telefono: +39 040 558 3731, email: tasse.studenti@amm.units.it","**Ufficio Applicativi per la carriera dello studente e i contributi universitari**  
-Indirizzo: Piazzale Europa, 1 – 34127 Trieste (Edificio Centrale A)  
+Piazzale Europa, 1 – 34127 Trieste (Edificio Centrale A)  
 
-**Telefono:** +39 040 558 3731  
-- Orari di risposta telefonica: martedì, mercoledì e venerdì, dalle 12:00 alle 13:00  
+**Telefono:** +39 040 558 3731 (servizio telefonico disponibile martedì, mercoledì e venerdì, dalle 12:00 alle 13:00)  
 
-**E‑mail:** tasse.studenti@amm.units.it  
+**E‑mail:** tasse.studenti@amm.units.it  
 
-**Orari di sportello (su prenotazione):**  
-- Lunedì: 15:00 – 16:40  
-- Giovedì: 09:00 – 11:10  
+L’ufficio accetta prenotazioni per gli sportelli il lunedì, dalle 15:00 alle 16:40, e il giovedì, dalle 9:00 alle 11:10, tramite il servizio EasyPlanning (scegli “Tasse”).  
 
-Per fissare un appuntamento è necessario accedere al servizio **EasyPlanning**, scegliere la voce “Tasse” e confermare la prenotazione. All’arrivo allo sportello occorre presentare la ricevuta di prenotazione (inviata via e‑mail) e un documento di identità. In caso di impossibilità a presentarsi personalmente, è possibile delegare una terza persona munita di delega scritta e copia del documento d’identità.  
+Porta con te la ricevuta di prenotazione quando ti presenti.","## Contatti 
 
-Gli appuntamenti in presenza possono essere fissati fino al giorno precedente a quello scelto.  ","## Contatti 
+**Ufficio Applic... | ## 
 
-**Ufficio Applic... | ## Modalità di pagamento e rim... | ## 
+L’Università degli Studi ... | * Futuri studenti
+  * Studenti... | #### **Avviso tasse e contribu... | ## Credito stampa 
 
-L’Università degli Studi ... | ## Sistema di tassazione di Un... | Salta al contenuto principale ...",pass,1.0,0.4653,0.464,https://portale.units.it/it/studiare/contributi/lauree-magistrali-e-magistrali-ciclo-unico
+L'uso dell...",pass,1.0,0.4904,0.4654,https://portale.units.it/it/studiare/contributi/lauree-magistrali-e-magistrali-ciclo-unico
 contatti dell ufficio tasse,deve includere almeno un numero di telefono e una mail,"Telefono: +39 040 558 3731 (martedì, mercoledì, venerdì 12:00–13:00). Email: tasse.studenti@amm.units.itcontatti per info tasse","**Ufficio Applicativi per la carriera dello studente e i contributi universitari**  
-Piazzale Europa, 1 – 34127 Trieste (Edificio Centrale A)
+Piazzale Europa, 1 – 34127 Trieste (Edificio Centrale A)  
 
 **Telefono:** +39 040 558 3731  
 **E‑mail:** tasse.studenti@amm.units.it  
 
-**Orario del servizio telefonico:** martedì, mercoledì e venerdì, dalle 12:00 alle 13:00  
+**Orario di sportello telefonico:**  
+- Martedì, mercoledì e venerdì: 12:00 – 13:00  
 
-**Orari per le prenotazioni in presenza:**  
+**Orario di sportello in presenza (su prenotazione):**  
 - Lunedì: 15:00 – 16:40  
 - Giovedì: 09:00 – 11:10  
 
-Per fissare un appuntamento è necessario accedere al servizio **EasyPlanning**, scegliere la voce “Tasse” e confermare la prenotazione. All’arrivo allo sportello occorre presentare la ricevuta di prenotazione (inviata via e‑mail) e un documento di identità. In caso di impossibilità a presentarsi personalmente, è possibile delegare una terza persona munita di delega e copia del documento d’identità.  
+**Prenotazione appuntamento:** accedi al servizio **EasyPlanning**, scegli la voce “Tasse” e stampa la ricevuta di prenotazione, che dovrai esibire al momento dell’appuntamento.  
 
-È consentito fissare l’appuntamento in presenza fino al giorno precedente a quello scelto.","## Contatti 
+**Nota:** è possibile fissare l’appuntamento in presenza fino al giorno precedente a quello scelto.  ","## Contatti 
 
-**Ufficio Applic... | ## Modalità di pagamento e rim... | ## 
+**Ufficio Applic... | ## 
 
-L’Università degli Studi ... | ## Sistema di tassazione di Un... | ## 
+L’Università degli Studi ... | * Futuri studenti
+  * Studenti... | ## 
 
-L'edificio H3, situato ne...",pass,0.9091,0.5494,0.4525,https://portale.units.it/it/studiare/contributi/lauree-magistrali-e-magistrali-ciclo-unico
-parlami dell iniziativa Climbing for Climate (CFC),deve indicare un iniziativa organizzata dalla RUS,"è organizzata dalla RUS- Rete delle Università per lo Sviluppo Sostenibile in collaborazione con il CAI-Club alpino italiano. CFC è anche l acronimo dei CloroFluoroCarburi, composti chimici contenenti cloro, fluoro e carbonio, che, essendo in parte responsabili della riduzione dello strato di ozono presente nella stratosfera, ed avendo un elevato effetto serra sono stati banditi dalla produzione a seguito del protocollo di Montreal del 1987. ","Climbing for Climate (CFC) è un’iniziativa promossa dalla Rete delle Università per lo Sviluppo Sostenibile (RUS) in collaborazione con il Club Alpino Italiano (CAI). Il nome richiama anche i clorofluorocarburi, composti chimici responsabili del deterioramento dello strato di ozono e di un forte effetto serra, banditi dalla produzione con il protocollo di Montreal del 1987.  
+L'edificio H3, situato ne... | * Futuri studenti
+  * Studenti...",pass,0.9,0.5553,0.4539,https://portale.units.it/it/studiare/contributi/lauree-magistrali-e-magistrali-ciclo-unico
+parlami dell iniziativa Climbing for Climate (CFC),deve indicare un iniziativa organizzata dalla RUS,"è organizzata dalla RUS- Rete delle Università per lo Sviluppo Sostenibile in collaborazione con il CAI-Club alpino italiano. CFC è anche l acronimo dei CloroFluoroCarburi, composti chimici contenenti cloro, fluoro e carbonio, che, essendo in parte responsabili della riduzione dello strato di ozono presente nella stratosfera, ed avendo un elevato effetto serra sono stati banditi dalla produzione a seguito del protocollo di Montreal del 1987. ","Climbing for Climate (CFC) è un’iniziativa promossa dalla Rete delle Università per lo Sviluppo Sostenibile (RUS) in collaborazione con il Club Alpino Italiano (CAI). L’obiettivo principale è coinvolgere le istituzioni accademiche nella lotta contro il riscaldamento globale, attraverso la formazione di studenti, la promozione di ricerche orientate allo sviluppo sostenibile e la sensibilizzazione della cittadinanza.
 
-L’obiettivo di CFC è quello di mobilitare le istituzioni aderenti per contrastare il riscaldamento globale, formando studenti, incentivando ricerche orientate allo sviluppo sostenibile e sensibilizzando la cittadinanza. È stata la prima occasione in cui le nazioni si sono unite per difendere il clima terrestre.  
+Il progetto prende il nome anche dall’acronimo CFC, che indica i clorofluorocarburi, composti chimici contenenti cloro, fluoro e carbonio. Queste sostanze, responsabili della riduzione dello strato di ozono e dotate di un forte effetto serra, sono state bandite dalla produzione con il Protocollo di Montreal del 1987. L’iniziativa richiama quindi l’attenzione su un problema ambientale storico, collegandolo alle sfide attuali di mitigazione climatica.
 
-L’Università di Trieste partecipa ogni anno all’iniziativa, co‑organizzando un evento sul territorio regionale.","## Climbing for Climate 
+Ogni anno l’Università degli Studi di Trieste aderisce a Climbing for Climate, co‑organizzando un evento sul territorio regionale. L’attività combina momenti di formazione, workshop e attività pratiche di montagna, con l’intento di creare sinergie tra ricerca, didattica e impegno civico, contribuendo così a una maggiore consapevolezza e a azioni concrete per la protezione del clima.","## 
 
-Imag... | ##  Summer School on Energy Gi... | ## 
+Referente di Ateneo: Ales... | #  Sostenibilità... | ##... | ## Impegno sociale
 
-Referente di Ateneo: Ales... | #  Sostenibilità 
+  * Cultur... | #### **UniTS sostenibile**
 
-Ascolta
-
-Co... | ## 
-
-Image...",pass,1.0,0.4826,0.5883,https://portale.units.it/it/terza-missione/sostenibilita
-inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE,deve indicare giorno di inizio e giorno di fine per l anno scolastico 2025,dal 22 settembre 2025 al 19 dicembre 2025,"Il primo semestre delle lezioni di Scienze Internazionali e Diplomatiche inizia il **22 settembre 2025** e termina il **19 dicembre 2025**.  
-
-Per gli studenti del primo anno, l’inizio è posticipato al **1 ottobre 2025**, mentre la data di chiusura rimane invariata (19 dicembre 2025).","### Calendario delle lezioni
+Sc...",pass,,0.6353,0.3657,https://portale.units.it/it/terza-missione/sostenibilita
+inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE,deve indicare giorno di inizio e giorno di fine per l anno scolastico 2025,dal 22 settembre 2025 al 19 dicembre 2025,"Il primo semestre delle lezioni di Scienze Internazionali e Diplomatiche inizia il 22 settembre 2025 e termina il 19 dicembre 2025; per gli studenti del primo anno l’inizio è previsto per il 1 ottobre 2025, mentre la data di chiusura è la stessa per tutti.","### Calendario delle lezioni
 
 ... | ### Calendario delle lezioni
 
 ... | # SCIENZE INTERNAZIONALI E DIP... | ##### Classe di laurea ministe... | ### Importante
 
-Orario e luogo...",pass,0.75,0.6277,0.5713,https://degree.units.it/it/0320106203600002/area-studenti/calendario-didattico
-inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE,deve indicare giorno di inizio e giorno di fine per l anno scolastico 2025,dal 29 settembre 2025 al 19 dicembre 2025,"Il primo semestre termina il 19 dicembre 2025.  
-L’inizio è:
+Orario e luogo...",pass,0.75,0.6263,0.5713,https://degree.units.it/it/0320106203600002/area-studenti/calendario-didattico
+inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE,deve indicare giorno di inizio e giorno di fine per l anno scolastico 2025,dal 29 settembre 2025 al 19 dicembre 2025,"Le lezioni del primo semestre per il corso di **Scienze e Tecniche Psicologiche** hanno inizio a fine settembre 2025 e terminano a dicembre 2025:
 
-* **per gli studenti del I anno:** 29 settembre 2025  
-* **per gli studenti del II e III anno:** 22 settembre 2025.","### Calendario delle lezioni
+- **Secondo e terzo anno:** dal **22 settembre 2025** al **19 dicembre 2025**.  
+- **Primo anno:** dal **29 settembre 2025** al **19 dicembre 2025**.","### Calendario delle lezioni
 
 ... | ### Calendario delle lezioni
 
 ... | # SCIENZE E TECNICHE PSICOLOGI... | ##### Classe di laurea ministe... | #### Il corso in breve
 
-Tipo d...",pass,1.0,0.7474,0.4911,https://degree.units.it/it/0320106203600002/area-studenti/calendario-didattico
-l aula T dell'edificio A è libera il giorno 20 marzo 2026?,"deve ammettere di non avere informazioni sufficienti, NON deve inventare un contenuto",Non ho informazioni su questo argomento,"Non dispongo di informazioni relative all’aula T dell’edificio A, quindi non è possibile stabilire se sia libera il 20 marzo 2026.","## 
+Tipo d...",fail,1.0,0.7383,0.4911,https://degree.units.it/it/0320106203600002/area-studenti/calendario-didattico
+l aula T dell'edificio A è libera il giorno 20 marzo 2026?,"deve ammettere di non avere informazioni sufficienti, NON deve inventare un contenuto",Non ho informazioni su questo argomento,Non dispongo di informazioni sufficienti per confermare la disponibilità dell’aula T dell’edificio A il 20 marzo 2026.,"## 
 
 L'edificio H3, situato ne... | ### Calendario delle lezioni
 
-... | ## Scadenze di pagamento per l... | ### Calendario delle lezioni
+... | ### Calendario delle lezioni
 
-... | #  Aula informatica Edificio H...",pass,1.0,0.8928,0.3521,https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica
-dimmi i corsi disponibili del dipartimento di musicologia,"deve ammettere di non avere informazioni sufficienti, NON deve inventare un contenuto",Non ho informazioni su questo argomento,Non dispongo di informazioni sui corsi offerti dal dipartimento di musicologia.,"##### Dipartimento
+... | ## 
+
+L’Università degli Studi ... | #  Aula informatica Edificio H...",pass,1.0,0.8945,0.3521,https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica
+dimmi i corsi disponibili del dipartimento di musicologia,"deve ammettere di non avere informazioni sufficienti, NON deve inventare un contenuto",Non ho informazioni su questo argomento,Non ho a disposizione informazioni sui corsi offerti dal dipartimento di musicologia.,"##### Dipartimento
 
 Il corso è... | ##### Dipartimento
 
@@ -140,4 +134,4 @@ Il corso è... | ##### Dipartimento
 
 Il corso è... | ### Calendario delle lezioni
 
-...",pass,1.0,0.9156,0.4209,https://degree.units.it/it/0320106202400001/area-studenti/calendario-didattico
+...",pass,1.0,0.9158,0.4209,https://degree.units.it/it/0320106202400001/area-studenti/calendario-didattico
