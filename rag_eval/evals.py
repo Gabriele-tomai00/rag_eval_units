@@ -414,8 +414,8 @@ async def run_experiment(row: dict) -> dict:
             ),
         )
 
-        for i, ctx in enumerate(rag_result["contexts"]):
-            print(f"CHINK {i}:\n {ctx[:50]}...\n\n")
+        # for i, ctx in enumerate(rag_result["contexts"]):
+        #     print(f"CHUNK {i}:\n {ctx}\n\n")
 
         return {
             "question":               row["question"],
