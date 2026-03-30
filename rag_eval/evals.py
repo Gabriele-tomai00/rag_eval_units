@@ -220,19 +220,19 @@ def judge_score(response: str, grading_notes: str, ground_truth: str) -> str:
 
 _ragas_async_client = AsyncOpenAI(
     api_key="anything",
-    base_url="http://172.30.42.129:8080/v1",
+    base_url=os.getenv("LLM_API_BASE"),
     timeout=300,
 )
 
 _ragas_llm = llm_factory(
-    model="openai/ggml-org/gpt-oss-120b-GGUF",
+    model=os.getenv("MODEL"),
     client=_ragas_async_client,
-    max_tokens=4096,
+    max_tokens=os.getenv("MAX_TOKENS"),
     timeout=300,
     max_retries=2,
 )
 
-_ragas_embeddings = RagasHFEmbeddings(model="BAAI/bge-m3")
+_ragas_embeddings = RagasHFEmbeddings(model=os.getenv("EMBEDDING_MODEL"))
 
 # ==============================================================================
 # RAGAS METRIC SCORERS
