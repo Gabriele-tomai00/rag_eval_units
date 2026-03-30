@@ -8,3 +8,15 @@ datasets
 uv
 litellm
 litellm[proxy]
+
+
+lxml
+bs4
+html2text
+tqdm
+
+llama_index.core
+llama_index.vector_stores.chroma
+llama_index.embeddings.huggingface
+llama_index.llms.openai_like
+llama-index-embeddings-openai

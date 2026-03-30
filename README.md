@@ -1,3 +1,9 @@
+## ⚠️ Project Status Notice ⚠️
+This repository is **in high development** and is **not even in alpha**.  
+Please **do not consult or use this repository**, as the code is incomplete, unstable, and strictly for internal development purposes at this time.
+
+---
+
 # Rag evaluation with RAGAS
 1. Create a file `litellm_config.yaml`:
 ```

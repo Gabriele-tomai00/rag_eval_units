@@ -1,0 +1,75 @@
+question,grading_notes,ground_truth,answer,contexts,judge_result,answer_correctness,faithfulness,response_relevancy,context_precision,context_recall,top_chunk_score,top_chunk_src
+scadenza per immatricolazione,deve includere la data di scadenza per immatricolarsi per l'a.a. 2025/26,Immatricolazioni dal 9 giugno al 6 ottobre 2025. Riapertura dal 14 gennaio 2026 al 6 marzo 2026.,"Le scadenze per l’immatricolazione sono:
+
+- **Prima finestra:** dal 9 giugno 2025 al 6 ottobre 2025.  
+- **Riapertura:** dal 14 gennaio 2026 al 6 marzo 2026.  
+
+È necessario completare la procedura entro l’ultimo giorno di ciascuna di queste finestre.","# Come iscriversi
+
+In questa p... | ### Immatricolazione
+
+ _Entro ... | Le scadenze di pagamento, **pe... | ### Corso propedeutico
+
+Il Dip... | #### Date TOLC-I UniTS
+
+Le **d...",pass,0.807,0.6667,0.6788,1.0,1.0,0.4189,https://lauree.units.it/it/0320106200800001/come-iscriversi
+quali sono i vari curriculum del corso Scienze e Tecnologie per l'ambiente e la natura,deve indicare 3 diversi percorsi di studio/curriculum,"Curriculum Ambientale, Biologico e Didattico","Il corso prevede tre percorsi di studio distinti:
+
+1. **Curriculum Ambientale**  
+2. **Curriculum Biologico**  
+3. **Curriculum Didattico**  ","####  Descrizione del Corso - ... | **A partire dall’anno accademi... | #### Il corso in breve
+
+Tipo d... | #### Avvisi del corso
+
+_Nessun... | # Laurea in Scienze e Tecnolog...",pass,0.8098,1.0,0.5475,1.0,1.0,0.5677,https://www.biologia.units.it/index.php?/corsi/5/Laurea-in-Scienze-e-Tecnologie-per-lambiente-e-la-natura
+contatti e ufficio tasse,deve includere almeno un numero di telefono e una mail e il nome dell ufficio,"Telefono: +39 040 558 3731 (martedì, mercoledì, venerdì 12:00 13:00). Email: tasse.studenti@amm.units.it. Ufficio Applicativi per la carriera dello studente e i contributi universitari","**Ufficio Applicativi per la carriera dello studente e i contributi universitari**  
+Piazzale Europa, 1 – 34127 Trieste (Edificio Centrale A)  
+
+**Telefono:** +39 040 558 3731  
+**Orario telefonico:** martedì, mercoledì e venerdì, 12:00 – 13:00  
+
+**E‑mail:** tasse.studenti@amm.units.it  
+
+**Orari di sportello (solo su prenotazione):**  
+- Lunedì 15:00 – 16:40  
+- Giovedì 09:00 – 11:10  
+
+**Prenotazione:** accedi al servizio **EasyPlanning**, scegli la voce “Tasse” e fissa l’appuntamento. È necessario presentare la ricevuta di prenotazione (inviata via e‑mail) e un documento di identità. Se non puoi recarti di persona, puoi delegare una terza persona munita di delega scritta e copia del tuo documento di identità.  
+
+**Nota:** l’appuntamento in presenza può essere fissato fino al giorno precedente a quello scelto.  ","## Contatti 
+
+**Ufficio Applic... | ## 
+
+L’Università degli Studi ... | ## 
+
+L'edificio H3, situato ne... | * Futuri studenti
+  * Studenti... | ## Credito stampa 
+
+L'uso dell...",pass,0.6206,1.0,0.5542,1.0,1.0,0.4298,https://portale.units.it/it/studiare/contributi/lauree-magistrali-e-magistrali-ciclo-unico
+parlami dell iniziativa Climbing for Climate (CFC),deve indicare un iniziativa organizzata dalla RUS,"Climbing for Climate (CFC) è un iniziativa promossa dalla Rete delle Università per lo Sviluppo Sostenibile (RUS) in collaborazione con il Club Alpino Italiano (CAI). L obiettivo principale è coinvolgere le istituzioni accademiche nella lotta contro il riscaldamento globale, attraverso la formazione di studenti, la promozione di ricerche orientate allo sviluppo sostenibile e la sensibilizzazione della cittadinanza. Il progetto prende il nome anche dall acronimo CFC, che indica i clorofluorocarburi, composti chimici contenenti cloro, fluoro e carbonio. Queste sostanze, responsabili della riduzione dello strato di ozono e dotate di un forte effetto serra, sono state bandite dalla produzione con il Protocollo di Montreal del 1987.","Climbing for Climate (CFC) è un’iniziativa promossa dalla Rete delle Università per lo Sviluppo Sostenibile (RUS) in collaborazione con il Club Alpino Italiano (CAI). Il progetto si propone di contrastare il riscaldamento globale coinvolgendo le istituzioni aderenti in attività di formazione, ricerca e sensibilizzazione. Tra gli obiettivi principali vi sono la formazione degli studenti, lo sviluppo di ricerche orientate alla sostenibilità del pianeta e la diffusione di informazioni per aumentare la consapevolezza dei cittadini sui temi climatici.
+
+Il nome CFC ha anche un doppio significato: è l’acronimo dei clorofluorocarburi, composti chimici contenenti cloro, fluoro e carbonio. Queste sostanze, responsabili in parte del deterioramento dello strato di ozono e dotate di un forte effetto serra, sono state vietate dalla produzione a seguito del Protocollo di Montreal del 1987, che ha rappresentato la prima volta in cui le nazioni hanno concordato un impegno globale per la difesa del clima terrestre.
+
+L’Università di Trieste partecipa annualmente all’iniziativa, co‑organizzando eventi a livello regionale per promuovere le attività di CFC e contribuire al dibattito sulla mitigazione dei cambiamenti climatici.","UniTS offre all’interno della ... | La stazione di ricarica è alim... | ## 
+
+Referente di Ateneo: Ales... | ## Gruppi di lavoro della RUS–... | Destinatari delle attività nat...",pass,0.8269,0.8333,0.8327,1.0,1.0,0.4351,https://portale.units.it/it/terza-missione/sostenibilita
+inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE,deve indicare giorno di inizio e giorno di fine per l'anno scolastico 2025,dal 22 settembre 2025 al 19 dicembre 2025,Il primo semestre delle lezioni di Scienze Internazionali e Diplomatiche inizia il 22 settembre 2025 (per gli studenti del primo anno l’inizio è previsto per il 1 ottobre 2025) e termina il 19 dicembre 2025.,"### Calendario delle lezioni
+
+... | ##### Modalità di erogazione
+
+... | ### Importante
+
+Orario e luogo... | ### Calendario delle lezioni
+
+... | ##### Sede
+
+La sede di svolgim...",pass,0.7294,0.6667,0.8097,0.75,1.0,0.5965,https://degree.units.it/it/0320106203600002/area-studenti/calendario-didattico
+inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE,deve indicare giorno di inizio e giorno di fine per l'anno scolastico 2025,I anno: dal 29 settembre 2025 al 19 dicembre 2025. II e III anno: dal 22 settembre 2025 al 19 dicembre 2025,"Il primo semestre inizia il 29 settembre 2025 per gli studenti del I anno e il 22 settembre 2025 per gli studenti del II e III anno, e termina il 19 dicembre 2025 per tutti.","### Calendario delle lezioni
+
+... | ### Calendario delle lezioni
+
+... | # SCIENZE E TECNICHE PSICOLOGI... | ##### Modalità di erogazione
+
+... | ### Importante
+
+Orario e luogo...",pass,0.9434,1.0,0.6495,1.0,1.0,0.544,https://degree.units.it/it/0320106202400001/area-studenti/calendario-didattico

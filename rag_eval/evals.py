@@ -389,46 +389,46 @@ def load_dataset() -> Dataset:
         #         "tramite la prova finale."
         #     ),
         # },
-        # {
-        #     "question":      "scadenza per immatricolazione",
-        #     "grading_notes": "deve includere la data di scadenza per immatricolarsi per l'a.a. 2025/26",
-        #     "ground_truth":  "Immatricolazioni dal 9 giugno al 6 ottobre 2025. Riapertura dal 14 gennaio 2026 al 6 marzo 2026.",
-        # },
-        # {
-        #     "question":      "quali sono i vari curriculum del corso Scienze e Tecnologie per l'ambiente e la natura",
-        #     "grading_notes": "deve indicare 3 diversi percorsi di studio/curriculum",
-        #     "ground_truth":  "Curriculum Ambientale, Biologico e Didattico",
-        # },
+        {
+            "question":      "scadenza per immatricolazione",
+            "grading_notes": "deve includere la data di scadenza per immatricolarsi per l'a.a. 2025/26",
+            "ground_truth":  "Immatricolazioni dal 9 giugno al 6 ottobre 2025. Riapertura dal 14 gennaio 2026 al 6 marzo 2026.",
+        },
+        {
+            "question":      "quali sono i vari curriculum del corso Scienze e Tecnologie per l'ambiente e la natura",
+            "grading_notes": "deve indicare 3 diversi percorsi di studio/curriculum",
+            "ground_truth":  "Curriculum Ambientale, Biologico e Didattico",
+        },
         {
             "question":      "contatti e ufficio tasse",
             "grading_notes": "deve includere almeno un numero di telefono e una mail e il nome dell ufficio",
             "ground_truth":  ("Telefono: +39 040 558 3731 (martedì, mercoledì, venerdì 12:00 13:00). Email: tasse.studenti@amm.units.it. "
                               "Ufficio Applicativi per la carriera dello studente e i contributi universitari"),
         },
-        # {
-        #     "question":      "parlami dell iniziativa Climbing for Climate (CFC)",
-        #     "grading_notes": "deve indicare un iniziativa organizzata dalla RUS",
-        #     "ground_truth":  (
-        #         "Climbing for Climate (CFC) è un iniziativa promossa dalla Rete delle Università per lo Sviluppo Sostenibile (RUS) "
-        #         "in collaborazione con il Club Alpino Italiano (CAI). "
-        #         "L obiettivo principale è coinvolgere le istituzioni accademiche nella lotta contro il riscaldamento globale, attraverso "
-        #         "la formazione di studenti, la promozione di ricerche orientate allo sviluppo sostenibile e la sensibilizzazione della "
-        #         "cittadinanza. "
-        #         "Il progetto prende il nome anche dall acronimo CFC, che indica i clorofluorocarburi, composti chimici contenenti cloro, "
-        #         "fluoro e carbonio. Queste sostanze, responsabili della riduzione dello strato di ozono e dotate di un forte effetto serra, "
-        #         "sono state bandite dalla produzione con il Protocollo di Montreal del 1987."
-        #     ),
-        # },
-        # {
-        #     "question":      "inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE",
-        #     "grading_notes": "deve indicare giorno di inizio e giorno di fine per l'anno scolastico 2025",
-        #     "ground_truth":  "dal 22 settembre 2025 al 19 dicembre 2025",
-        # },
-        # {
-        #     "question":      "inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE",
-        #     "grading_notes": "deve indicare giorno di inizio e giorno di fine per l'anno scolastico 2025",
-        #     "ground_truth":  "I anno: dal 29 settembre 2025 al 19 dicembre 2025. II e III anno: dal 22 settembre 2025 al 19 dicembre 2025",
-        # },
+        {
+            "question":      "parlami dell iniziativa Climbing for Climate (CFC)",
+            "grading_notes": "deve indicare un iniziativa organizzata dalla RUS",
+            "ground_truth":  (
+                "Climbing for Climate (CFC) è un iniziativa promossa dalla Rete delle Università per lo Sviluppo Sostenibile (RUS) "
+                "in collaborazione con il Club Alpino Italiano (CAI). "
+                "L obiettivo principale è coinvolgere le istituzioni accademiche nella lotta contro il riscaldamento globale, attraverso "
+                "la formazione di studenti, la promozione di ricerche orientate allo sviluppo sostenibile e la sensibilizzazione della "
+                "cittadinanza. "
+                "Il progetto prende il nome anche dall acronimo CFC, che indica i clorofluorocarburi, composti chimici contenenti cloro, "
+                "fluoro e carbonio. Queste sostanze, responsabili della riduzione dello strato di ozono e dotate di un forte effetto serra, "
+                "sono state bandite dalla produzione con il Protocollo di Montreal del 1987."
+            ),
+        },
+        {
+            "question":      "inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE",
+            "grading_notes": "deve indicare giorno di inizio e giorno di fine per l'anno scolastico 2025",
+            "ground_truth":  "Il primo semestre delle lezioni di Scienze Internazionali e Diplomatiche inizia il 22 settembre 2025 (per gli studenti del primo anno l inizio è previsto per il 1 ottobre 2025) e termina il 19 dicembre 2025.",
+        },
+        {
+            "question":      "inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE",
+            "grading_notes": "deve indicare giorno di inizio e giorno di fine per l'anno scolastico 2025",
+            "ground_truth":  "Il primo semestre inizia il 29 settembre 2025 per gli studenti del I anno e il 22 settembre 2025 per gli studenti del II e III anno, e termina il 19 dicembre 2025 per tutti.",
+        },
         # # Expected failures — RAG should admit it doesn't know
         # {
         #     "question":      "l aula T dell'edificio A è libera il giorno 20 marzo 2026?",
