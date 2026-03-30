@@ -1,4 +1,2 @@
-question,grading_notes,expected_answer
-dove si trova la sede dell'università di Trieste?,deve menzionare Piazzale Europa e Trieste,"Piazzale Europa 1, 34127 Trieste, Italia"
-dove si può stampare all'università?,deve menzionare dove è possibile stampare o chi contattare,"Sì, è possibile stampare presso l'edificio H3"
-a chi devo rivolgermi per info e chiarimenti su tasse?,deve indicare un ufficio o contatto specifico per le tasse universitarie,Devi rivolgerti all'ufficio tasse o alla segreteria studenti
+question,grading_notes,ground_truth
+contatti e ufficio tasse,deve includere almeno un numero di telefono e una mail e il nome dell ufficio,"Telefono: +39 040 558 3731 (martedì, mercoledì, venerdì 12:00 13:00). Email: tasse.studenti@amm.units.it. Ufficio Applicativi per la carriera dello studente e i contributi universitari"
