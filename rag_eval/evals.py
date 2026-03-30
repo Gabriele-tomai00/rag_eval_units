@@ -43,8 +43,6 @@ INDEX_DIR         = "../rag/rag_index_markdown_structure_Sentence_splitting_titl
 SIMILARITY_TOP_K  = 5
 SIMILARITY_CUTOFF = 0.35
 SCORE_THRESHOLDS  = {"high": 0.7, "medium": 0.6}
-CONTEXT_WINDOW    =  os.getenv("CONTEXT_WINDOW"),
-MAX_TOKENS        =  os.getenv("MAX_TOKENS"),
 
 # Feature flags — disable expensive metrics during quick debug runs
 ENABLE_JUDGE                    = True
@@ -67,9 +65,9 @@ Settings.llm = OpenAILike(
     model=os.getenv("MODEL"),
     api_base=os.getenv("LLM_API_BASE"),
     api_key="not_necessary",
-    context_window=os.getenv("CONTEXT_WINDOW"),
-    max_tokens=os.getenv("MAX_TOKENS"),
-    temperature=os.getenv("TEMPERATURE"),
+    context_window=int(os.getenv("CONTEXT_WINDOW")),
+    max_tokens=int(os.getenv("MAX_TOKENS")),
+    temperature=float(os.getenv("TEMPERATURE")),
     is_chat_model=True,
 )
 
@@ -227,7 +225,7 @@ _ragas_async_client = AsyncOpenAI(
 _ragas_llm = llm_factory(
     model=os.getenv("MODEL"),
     client=_ragas_async_client,
-    max_tokens=os.getenv("MAX_TOKENS"),
+    max_tokens=int(os.getenv("MAX_TOKENS")),
     timeout=300,
     max_retries=2,
 )
