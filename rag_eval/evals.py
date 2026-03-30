@@ -317,9 +317,9 @@ def load_dataset() -> Dataset:
             "ground_truth":    "Piazzale Europa 1, 34127 Trieste, Italia",
         },
         {
-            "question":        "in quale edificio stampare all università",
-            "grading_notes":   "deve menzionare dove è possibile stampare o chi contattare",
-            "ground_truth":    "È possibile stampare presso l'edificio H3, quinto piano.",
+            "question":        "in quale edificio, piano e aula stampare all università",
+            "grading_notes":   "deve menzionare dove è possibile stampare (edificio, piano, aula) o chi contattare",
+            "ground_truth":    "È possibile stampare presso l'edificio H3, quinto piano, aula informatica.",
         },
         {
             "question":        "obiettivi formativi ingegneria elettronica e informatica: Capacità di applicare conoscenza e comprensione per curriculum Ingegneria biomedica",
@@ -339,19 +339,24 @@ def load_dataset() -> Dataset:
             "ground_truth":    "Curriculum Ambientale, Biologico e Didattico",
         },
         {
-            "question":        "contatti per info tasse",
+            "question":        "ufficio che si occupa di tasse",
             "grading_notes":   "deve indicare un ufficio o contatto specifico per le tasse universitarie",
-            "ground_truth":    "Ufficio Applicativi per la carriera dello studente e i contributi universitari. Telefono: +39 040 558 3731, email: tasse.studenti@amm.units.it",
+            "ground_truth":    "Ufficio Applicativi per la carriera dello studente e i contributi universitari",
         },
         {
             "question":        "contatti dell ufficio tasse",
             "grading_notes":   "deve includere almeno un numero di telefono e una mail",
-            "ground_truth":    "Telefono: +39 040 558 3731 (martedì, mercoledì, venerdì 12:00–13:00). Email: tasse.studenti@amm.units.itcontatti per info tasse",
+            "ground_truth":    "Telefono: +39 040 558 3731 (martedì, mercoledì, venerdì 12:00 13:00). Email: tasse.studenti@amm.units.itcontatti per info tasse",
         },
         {
             "question":        "parlami dell iniziativa Climbing for Climate (CFC)",
             "grading_notes":   "deve indicare un iniziativa organizzata dalla RUS",
-            "ground_truth":    "è organizzata dalla RUS- Rete delle Università per lo Sviluppo Sostenibile in collaborazione con il CAI-Club alpino italiano. CFC è anche l acronimo dei CloroFluoroCarburi, composti chimici contenenti cloro, fluoro e carbonio, che, essendo in parte responsabili della riduzione dello strato di ozono presente nella stratosfera, ed avendo un elevato effetto serra sono stati banditi dalla produzione a seguito del protocollo di Montreal del 1987. ",
+            "ground_truth":    "Climbing for Climate (CFC) è un iniziativa promossa dalla Rete delle Università per lo Sviluppo Sostenibile (RUS) in collaborazione con il Club Alpino Italiano (CAI). "
+                               "L obiettivo principale è coinvolgere le istituzioni accademiche nella lotta contro il riscaldamento globale, attraverso la formazione di studenti, "
+                               "la promozione di ricerche orientate allo sviluppo sostenibile e la sensibilizzazione della cittadinanza. "
+                               "Il progetto prende il nome anche dall acronimo CFC, che indica i clorofluorocarburi, composti chimici contenenti cloro, fluoro e carbonio. "
+                               "Queste sostanze, responsabili della riduzione dello strato di ozono e dotate di un forte effetto serra, sono state bandite dalla produzione "
+                               "con il Protocollo di Montreal del 1987. L iniziativa richiama quindi l attenzione su un problema ambientale storico, collegandolo alle sfide attuali di mitigazione climatica. "
         },
         {
             "question":        "inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE",
@@ -361,7 +366,7 @@ def load_dataset() -> Dataset:
         {
             "question":        "inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE",
             "grading_notes":   "deve indicare giorno di inizio e giorno di fine per l anno scolastico 2025",
-            "ground_truth":    "dal 29 settembre 2025 al 19 dicembre 2025",
+            "ground_truth":    "I anno: dal 29 settembre 2025 al 19 dicembre 2025. II e III anno: dal 22 settembre 2025 al 19 dicembre 2025",
         },
         # fail because document not present
         {
