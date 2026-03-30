@@ -16,11 +16,18 @@ from ragas import Dataset, experiment
 # Faithfulness
 from openai import AsyncOpenAI
 from ragas.llms import llm_factory
-from ragas.metrics.collections import Faithfulness
+from ragas.run_config import RunConfig
 
-# Answer correctness
-from ragas.embeddings import LangchainEmbeddingsWrapper
-from ragas.metrics.collections import AnswerCorrectness
+# RAGAS metrics
+from ragas.metrics.collections import (
+    Faithfulness,
+    AnswerCorrectness,
+    AnswerRelevancy,
+    ContextPrecisionWithReference,
+    ContextRecall,
+)
+
+from ragas.embeddings import HuggingFaceEmbeddings as RagasHFEmbeddings
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
@@ -28,12 +35,20 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 # CONFIGURATION
 # ==============================================================================
 
-INDEX_DIR        = "rag_index"
-SIMILARITY_TOP_K = 5
+INDEX_DIR         = "rag_index"
+SIMILARITY_TOP_K  = 5
 SIMILARITY_CUTOFF = 0.35
-SCORE_THRESHOLDS = {"high": 0.7, "medium": 0.6}
-CONTEXT_WINDOW   = 8192
-MAX_TOKENS       = 1024
+SCORE_THRESHOLDS  = {"high": 0.7, "medium": 0.6}
+CONTEXT_WINDOW    = 8192
+MAX_TOKENS        = 1024
+
+# Feature flags — disable expensive metrics during quick debug runs
+ENABLE_JUDGE                    = True
+ENABLE_FAITHFULNESS             = True
+ENABLE_ANSWER_CORRECTNESS       = True
+ENABLE_RESPONSE_RELEVANCY       = True
+ENABLE_CONTEXT_PRECISION        = True
+ENABLE_CONTEXT_RECALL           = True
 
 # ==============================================================================
 # RAG SETUP
@@ -50,7 +65,7 @@ Settings.llm = OpenAILike(
     api_key="not_necessary",
     context_window=CONTEXT_WINDOW,
     max_tokens=MAX_TOKENS,
-    temperature=0.2,
+    temperature=0,
     is_chat_model=True,
 )
 
@@ -76,7 +91,7 @@ def query_rag(index: VectorStoreIndex, question: str) -> dict:
     -------
     dict:
         answer   : str        — LLM-generated answer
-        contexts : list[str]  — raw chunk texts (required by future RAGAS metrics)
+        contexts : list[str]  — raw chunk texts
         chunks   : list[dict] — full debug info per chunk
     """
     retriever = index.as_retriever(similarity_top_k=SIMILARITY_TOP_K)
@@ -114,8 +129,10 @@ def query_rag(index: VectorStoreIndex, question: str) -> dict:
     response = query_engine.query(question)
 
     filtered_chunks = [c for c in chunks if c["score"] < SIMILARITY_CUTOFF]
-    print(f"[RETRIEVAL] '{question[:50]}' → {len(nodes)} retrieved, {len(filtered_chunks)} under threshold ({SIMILARITY_CUTOFF})")
-
+    print(
+        f"[RETRIEVAL] '{question[:50]}' → {len(nodes)} retrieved, "
+        f"{len(filtered_chunks)} under threshold ({SIMILARITY_CUTOFF})"
+    )
 
     return {
         "answer":   str(response.response),
@@ -124,11 +141,8 @@ def query_rag(index: VectorStoreIndex, question: str) -> dict:
     }
 
 
-
 # ==============================================================================
-# JUDGE LLM
-# Scores the RAG answer directly via OpenAI client with response_format
-# json_object — bypasses instructor/response_model which the model does not support.
+# JUDGE LLM (custom pass/fail grading)
 # ==============================================================================
 
 judge_client = OpenAI(
@@ -171,14 +185,14 @@ def judge_score(response: str, grading_notes: str, ground_truth: str) -> str:
                 {"role": "user",   "content": prompt},
             ],
             response_format={"type": "json_object"},
-            max_tokens=512,  # enough space for reasoning + final JSON line
+            max_tokens=512,
             temperature=0.0,
         )
 
         msg = completion.choices[0].message
         raw = msg.content or ""
 
-        # This model returns the answer in reasoning_content when content is empty
+        # Some models return the answer in reasoning_content when content is empty
         if not raw.strip():
             raw = getattr(msg, "reasoning_content", "") or ""
 
@@ -195,40 +209,53 @@ def judge_score(response: str, grading_notes: str, ground_truth: str) -> str:
         print(f"Judge error: {type(e).__name__}: {e}")
         return "error"
 
-# ==============================================================================
-# RAGAS METRICS SETUP
-# Uses the same LiteLLM proxy as the judge, but via AsyncOpenAI client
-# ==============================================================================
 
-from ragas.llms import llm_factory
-from ragas.run_config import RunConfig
+# ==============================================================================
+# RAGAS LLM + EMBEDDINGS (shared across all metrics)
+# ==============================================================================
 
 _ragas_async_client = AsyncOpenAI(
     api_key="anything",
     base_url="http://172.30.42.129:8080/v1",
-    timeout=300
+    timeout=300,
 )
 
 _ragas_llm = llm_factory(
     model="openai/ggml-org/gpt-oss-120b-GGUF",
     client=_ragas_async_client,
-    max_tokens=4096, 
+    max_tokens=4096,
     timeout=300,
-    max_retries=2
+    max_retries=2,
 )
 
+_ragas_embeddings = RagasHFEmbeddings(model="BAAI/bge-m3")
+
+# ==============================================================================
+# RAGAS METRIC SCORERS
+# ==============================================================================
 
 faithfulness_scorer = Faithfulness(llm=_ragas_llm)
 
-async def compute_faithfulness(
-    question: str,
-    answer: str,
-    contexts: list[str],
-) -> float | None:
-    """
-    Compute RAGAS Faithfulness score for a single RAG result.
-    Returns a float in [0, 1] or None on error.
-    """
+answer_correctness_scorer = AnswerCorrectness(
+    llm=_ragas_llm,
+    embeddings=_ragas_embeddings,
+)
+
+response_relevancy_scorer = AnswerRelevancy(
+    llm=_ragas_llm,
+    embeddings=_ragas_embeddings,
+)
+context_precision_scorer = ContextPrecisionWithReference(llm=_ragas_llm)
+context_recall_scorer = ContextRecall(llm=_ragas_llm)
+
+# ==============================================================================
+# ASYNC SCORING HELPERS
+# ==============================================================================
+
+async def compute_faithfulness(question: str, answer: str, contexts: list[str]) -> float | None:
+    """Grounding of the answer in retrieved context. No ground truth needed."""
+    if not ENABLE_FAITHFULNESS:
+        return None
     try:
         result = await faithfulness_scorer.ascore(
             user_input=question,
@@ -241,34 +268,13 @@ async def compute_faithfulness(
         return None
 
 
-# ==============================================================================
-# answer_correctness
-# ==============================================================================
-from ragas.embeddings import HuggingFaceEmbeddings as RagasHFEmbeddings
-from ragas.metrics.collections import Faithfulness, AnswerCorrectness
-
-_ragas_embeddings = RagasHFEmbeddings(
-    model="BAAI/bge-m3",
-)
-
-answer_correctness_scorer = AnswerCorrectness(
-    llm=_ragas_llm,
-    embeddings=_ragas_embeddings,
-)
-
-
-async def compute_answer_correctness(
-    question: str,
-    answer: str,
-    reference: str,
-) -> float | None:
+async def compute_answer_correctness(question: str, answer: str, reference: str) -> float | None:
     """
-    Compute RAGAS AnswerCorrectness score for a single RAG result.
-    Combines factual similarity (LLM-based) and semantic similarity (embeddings).
-    Returns a float in [0, 1] or None on error.
+    Factual + semantic similarity vs ground truth.
+    Combines statement-level F1 (TP/FP/FN) with embedding cosine similarity.
     """
-    if not reference:
-        return None  # Cannot score without ground truth
+    if not ENABLE_ANSWER_CORRECTNESS or not reference:
+        return None
     try:
         result = await answer_correctness_scorer.ascore(
             user_input=question,
@@ -280,6 +286,60 @@ async def compute_answer_correctness(
         print(f"AnswerCorrectness error: {type(e).__name__}: {e}")
         return None
 
+
+async def compute_response_relevancy(question: str, answer: str, contexts: list[str]) -> float | None:
+    if not ENABLE_RESPONSE_RELEVANCY:
+        return None
+    try:
+        result = await response_relevancy_scorer.ascore(
+            user_input=question,
+            response=answer,
+            # AnswerRelevancy does not take retrieved_contexts
+        )
+        return round(result.value, 4)
+    except Exception as e:
+        print(f"ResponseRelevancy error: {type(e).__name__}: {e}")
+        return None
+
+
+async def compute_context_precision(
+    question: str, answer: str, contexts: list[str], reference: str
+) -> float | None:
+    if not ENABLE_CONTEXT_PRECISION or not reference:
+        return None
+    try:
+        result = await context_precision_scorer.ascore(
+            user_input=question,
+            # ContextPrecisionWithReference does not take response
+            retrieved_contexts=contexts,
+            reference=reference,
+        )
+        return round(result.value, 4)
+    except Exception as e:
+        print(f"ContextPrecision error: {type(e).__name__}: {e}")
+        return None
+
+async def compute_context_recall(
+    question: str, contexts: list[str], reference: str
+) -> float | None:
+    """
+    Does the retrieved context cover all key facts in the ground truth?
+    Low recall = the retriever missed important information.
+    """
+    if not ENABLE_CONTEXT_RECALL or not reference:
+        return None
+    try:
+        result = await context_recall_scorer.ascore(
+            user_input=question,
+            retrieved_contexts=contexts,
+            reference=reference,
+        )
+        return round(result.value, 4)
+    except Exception as e:
+        print(f"ContextRecall error: {type(e).__name__}: {e}")
+        return None
+
+
 # ==============================================================================
 # DATASET
 # ==============================================================================
@@ -289,8 +349,8 @@ def load_dataset() -> Dataset:
     Define the evaluation dataset.
     Fields:
         question       — query sent to the RAG
-        grading_notes  — key points the answer must cover
-        ground_truth— ground truth (used by future Answer Correctness metric)
+        grading_notes  — key points the answer must cover (used by judge)
+        ground_truth   — reference answer (used by RAGAS metrics)
     """
     dataset = Dataset(
         name="test_dataset",
@@ -298,87 +358,83 @@ def load_dataset() -> Dataset:
         root_dir="evals",
     )
 
-    # samples = [
-    #     {
-    #         "question":        "obiettivi formativi ingegneria elettronica e informatica: Capacità di applicare conoscenza e comprensione per curriculum Ingegneria biomedica",
-    #         "grading_notes":   "deve includere il fatto che si fanno esercitazioni e laboratorio, gli strumenti didattici utilizzati",
-    #         "ground_truth":    "I laureati in Ingegneria Elettronica e Informatica, curriculum ingegneria biomedica, devono avere una conoscenza sufficientemente ampia da essere in grado di affrontare problemi che coinvolgono ambiti diversi dell'Ingegneria dell'Informazione, e in particolare l'ambito biomedica. "
-    #                            " Lo studio delle conoscenze di base e' quindi affiancato da esercitazioni scritte ed in laboratorio: per prendere confidenza con le nozioni trattate durante i corsi, infatti, gli esercizi scritti e le prove di laboratorio previste forzano l'allievo ad applicare le conoscenze ed i concetti acquisiti. "
-    #                            " Gli strumenti didattici utilizzati per conseguire i suddetti obiettivi sono lezioni ordinarie, lezioni integrative, seminari, esercitazioni. L'acquisizione delle conoscenze e' valutata mediante verifiche orali e/o scritte, nonche' tramite la prova finale.",
-    #     }
-    # ]
-
-
-
     samples = [
+        # {
+        #     "question":      "sede dell'università di Trieste",
+        #     "grading_notes": "deve menzionare Piazzale Europa e Trieste",
+        #     "ground_truth":  "La sede principale dell Università degli Studi di Trieste è a Trieste, in Piazzale Europa 1, su un area sopraelevata rispetto al centro della città.",
+        # },
+        # {
+        #     "question":      "in quale edificio, piano e aula stampare all università",
+        #     "grading_notes": "deve menzionare dove è possibile stampare (edificio, piano, aula) o chi contattare",
+        #     "ground_truth":  "È possibile stampare presso l'edificio H3, quinto piano, aula informatica.",
+        # },
+        # {
+        #     "question":      "obiettivi formativi ingegneria elettronica e informatica: Capacità di applicare conoscenza e comprensione per curriculum Ingegneria biomedica",
+        #     "grading_notes": "deve includere il fatto che si fanno esercitazioni e laboratorio, gli strumenti didattici utilizzati",
+        #     "ground_truth":  (
+        #         "I laureati in Ingegneria Elettronica e Informatica, curriculum ingegneria biomedica, devono avere una conoscenza "
+        #         "sufficientemente ampia da essere in grado di affrontare problemi che coinvolgono ambiti diversi dell'Ingegneria "
+        #         "dell'Informazione, e in particolare l'ambito biomedica. "
+        #         "Lo studio delle conoscenze di base e' quindi affiancato da esercitazioni scritte ed in laboratorio: per prendere "
+        #         "confidenza con le nozioni trattate durante i corsi, infatti, gli esercizi scritti e le prove di laboratorio previste "
+        #         "forzano l'allievo ad applicare le conoscenze ed i concetti acquisiti. "
+        #         "Gli strumenti didattici utilizzati per conseguire i suddetti obiettivi sono lezioni ordinarie, lezioni integrative, "
+        #         "seminari, esercitazioni. L'acquisizione delle conoscenze e' valutata mediante verifiche orali e/o scritte, nonche' "
+        #         "tramite la prova finale."
+        #     ),
+        # },
+        # {
+        #     "question":      "scadenza per immatricolazione",
+        #     "grading_notes": "deve includere la data di scadenza per immatricolarsi per l'a.a. 2025/26",
+        #     "ground_truth":  "Immatricolazioni dal 9 giugno al 6 ottobre 2025. Riapertura dal 14 gennaio 2026 al 6 marzo 2026.",
+        # },
+        # {
+        #     "question":      "quali sono i vari curriculum del corso Scienze e Tecnologie per l'ambiente e la natura",
+        #     "grading_notes": "deve indicare 3 diversi percorsi di studio/curriculum",
+        #     "ground_truth":  "Curriculum Ambientale, Biologico e Didattico",
+        # },
         {
-            "question":        "sede dell'università di Trieste",
-            "grading_notes":   "deve menzionare Piazzale Europa e Trieste",
-            "ground_truth":    "Piazzale Europa 1, 34127 Trieste, Italia",
+            "question":      "contatti e ufficio tasse",
+            "grading_notes": "deve includere almeno un numero di telefono e una mail e il nome dell ufficio",
+            "ground_truth":  ("Telefono: +39 040 558 3731 (martedì, mercoledì, venerdì 12:00 13:00). Email: tasse.studenti@amm.units.it. "
+                              "Ufficio Applicativi per la carriera dello studente e i contributi universitari"),
         },
-        {
-            "question":        "in quale edificio, piano e aula stampare all università",
-            "grading_notes":   "deve menzionare dove è possibile stampare (edificio, piano, aula) o chi contattare",
-            "ground_truth":    "È possibile stampare presso l'edificio H3, quinto piano, aula informatica.",
-        },
-        {
-            "question":        "obiettivi formativi ingegneria elettronica e informatica: Capacità di applicare conoscenza e comprensione per curriculum Ingegneria biomedica",
-            "grading_notes":   "deve includere il fatto che si fanno esercitazioni e laboratorio, gli strumenti didattici utilizzati",
-            "ground_truth":    "I laureati in Ingegneria Elettronica e Informatica, curriculum ingegneria biomedica, devono avere una conoscenza sufficientemente ampia da essere in grado di affrontare problemi che coinvolgono ambiti diversi dell'Ingegneria dell'Informazione, e in particolare l'ambito biomedica. "
-                               " Lo studio delle conoscenze di base e' quindi affiancato da esercitazioni scritte ed in laboratorio: per prendere confidenza con le nozioni trattate durante i corsi, infatti, gli esercizi scritti e le prove di laboratorio previste forzano l'allievo ad applicare le conoscenze ed i concetti acquisiti. "
-                               " Gli strumenti didattici utilizzati per conseguire i suddetti obiettivi sono lezioni ordinarie, lezioni integrative, seminari, esercitazioni. L'acquisizione delle conoscenze e' valutata mediante verifiche orali e/o scritte, nonche' tramite la prova finale.",
-        },
-        {
-            "question":        "scadenza per immatricolazione",
-            "grading_notes":   "deve includere la data di scaenda per immatricolarsi per per l a.a. 2025/26",
-            "ground_truth":    "Immatricolazioni dal 9 giugno al 6 ottobre 2025. Riapertura dal 14 gennaio 2026 al 6 marzo 2026.",
-        },
-        {
-            "question":        "quali sono i vari curriculum del corso Scienze e Tecnologie per l'ambiente e la natura",
-            "grading_notes":   "deve indicare 3 diversi percorsi di studio/curriculm",
-            "ground_truth":    "Curriculum Ambientale, Biologico e Didattico",
-        },
-        {
-            "question":        "ufficio che si occupa di tasse",
-            "grading_notes":   "deve indicare un ufficio o contatto specifico per le tasse universitarie",
-            "ground_truth":    "Ufficio Applicativi per la carriera dello studente e i contributi universitari",
-        },
-        {
-            "question":        "contatti dell ufficio tasse",
-            "grading_notes":   "deve includere almeno un numero di telefono e una mail",
-            "ground_truth":    "Telefono: +39 040 558 3731 (martedì, mercoledì, venerdì 12:00 13:00). Email: tasse.studenti@amm.units.itcontatti per info tasse",
-        },
-        {
-            "question":        "parlami dell iniziativa Climbing for Climate (CFC)",
-            "grading_notes":   "deve indicare un iniziativa organizzata dalla RUS",
-            "ground_truth":    "Climbing for Climate (CFC) è un iniziativa promossa dalla Rete delle Università per lo Sviluppo Sostenibile (RUS) in collaborazione con il Club Alpino Italiano (CAI). "
-                               "L obiettivo principale è coinvolgere le istituzioni accademiche nella lotta contro il riscaldamento globale, attraverso la formazione di studenti, "
-                               "la promozione di ricerche orientate allo sviluppo sostenibile e la sensibilizzazione della cittadinanza. "
-                               "Il progetto prende il nome anche dall acronimo CFC, che indica i clorofluorocarburi, composti chimici contenenti cloro, fluoro e carbonio. "
-                               "Queste sostanze, responsabili della riduzione dello strato di ozono e dotate di un forte effetto serra, sono state bandite dalla produzione "
-                               "con il Protocollo di Montreal del 1987. L iniziativa richiama quindi l attenzione su un problema ambientale storico, collegandolo alle sfide attuali di mitigazione climatica. "
-        },
-        {
-            "question":        "inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE",
-            "grading_notes":   "deve indicare giorno di inizio e giorno di fine per l anno scolastico 2025",
-            "ground_truth":    "dal 22 settembre 2025 al 19 dicembre 2025",
-        },
-        {
-            "question":        "inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE",
-            "grading_notes":   "deve indicare giorno di inizio e giorno di fine per l anno scolastico 2025",
-            "ground_truth":    "I anno: dal 29 settembre 2025 al 19 dicembre 2025. II e III anno: dal 22 settembre 2025 al 19 dicembre 2025",
-        },
-        # fail because document not present
-        {
-            "question":        "l aula T dell'edificio A è libera il giorno 20 marzo 2026?",
-            "grading_notes":   "deve ammettere di non avere informazioni sufficienti, NON deve inventare un contenuto",
-            "ground_truth":    "Non ho informazioni su questo argomento",
-        },
-        {
-            "question":        "dimmi i corsi disponibili del dipartimento di musicologia",
-            "grading_notes":   "deve ammettere di non avere informazioni sufficienti, NON deve inventare un contenuto",
-            "ground_truth":    "Non ho informazioni su questo argomento",
-        },
+        # {
+        #     "question":      "parlami dell iniziativa Climbing for Climate (CFC)",
+        #     "grading_notes": "deve indicare un iniziativa organizzata dalla RUS",
+        #     "ground_truth":  (
+        #         "Climbing for Climate (CFC) è un iniziativa promossa dalla Rete delle Università per lo Sviluppo Sostenibile (RUS) "
+        #         "in collaborazione con il Club Alpino Italiano (CAI). "
+        #         "L obiettivo principale è coinvolgere le istituzioni accademiche nella lotta contro il riscaldamento globale, attraverso "
+        #         "la formazione di studenti, la promozione di ricerche orientate allo sviluppo sostenibile e la sensibilizzazione della "
+        #         "cittadinanza. "
+        #         "Il progetto prende il nome anche dall acronimo CFC, che indica i clorofluorocarburi, composti chimici contenenti cloro, "
+        #         "fluoro e carbonio. Queste sostanze, responsabili della riduzione dello strato di ozono e dotate di un forte effetto serra, "
+        #         "sono state bandite dalla produzione con il Protocollo di Montreal del 1987."
+        #     ),
+        # },
+        # {
+        #     "question":      "inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE",
+        #     "grading_notes": "deve indicare giorno di inizio e giorno di fine per l'anno scolastico 2025",
+        #     "ground_truth":  "dal 22 settembre 2025 al 19 dicembre 2025",
+        # },
+        # {
+        #     "question":      "inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE",
+        #     "grading_notes": "deve indicare giorno di inizio e giorno di fine per l'anno scolastico 2025",
+        #     "ground_truth":  "I anno: dal 29 settembre 2025 al 19 dicembre 2025. II e III anno: dal 22 settembre 2025 al 19 dicembre 2025",
+        # },
+        # # Expected failures — RAG should admit it doesn't know
+        # {
+        #     "question":      "l aula T dell'edificio A è libera il giorno 20 marzo 2026?",
+        #     "grading_notes": "deve ammettere di non avere informazioni sufficienti, NON deve inventare un contenuto",
+        #     "ground_truth":  "Non ho informazioni su questo argomento",
+        # },
+        # {
+        #     "question":      "dimmi i corsi disponibili del dipartimento di musicologia",
+        #     "grading_notes": "deve ammettere di non avere informazioni sufficienti, NON deve inventare un contenuto",
+        #     "ground_truth":  "Non ho informazioni su questo argomento",
+        # },
     ]
 
     for sample in samples:
@@ -394,53 +450,67 @@ def load_dataset() -> Dataset:
 
 _index = load_index(INDEX_DIR)  # loaded once at module level, reused for every row
 
+
 @experiment()
 async def run_experiment(row: dict) -> dict:
     try:
         rag_result = query_rag(_index, row["question"])
+        answer     = rag_result["answer"]
+        contexts   = rag_result["contexts"]
+        reference  = row.get("ground_truth", "")
 
-        # Run judge + faithfulness + answer_correctness concurrently — they're independent
-        score, faithfulness, answer_correctness = await asyncio.gather(
+        # Run all scorers concurrently — they are fully independent
+        (
+            score,
+            faithfulness,
+            answer_correctness,
+            response_relevancy,
+            context_precision,
+            context_recall,
+        ) = await asyncio.gather(
             asyncio.to_thread(
                 judge_score,
-                rag_result["answer"],
+                answer,
                 row["grading_notes"],
-                row.get("ground_truth", ""),
+                reference,
             ),
-            compute_faithfulness(
-                question=row["question"],
-                answer=rag_result["answer"],
-                contexts=rag_result["contexts"],
-            ),
-            compute_answer_correctness(
-                question=row["question"],
-                answer=rag_result["answer"],
-                reference=row.get("ground_truth", ""),
-            ),
+            compute_faithfulness(row["question"], answer, contexts),
+            compute_answer_correctness(row["question"], answer, reference),
+            compute_response_relevancy(row["question"], answer, contexts),
+            compute_context_precision(row["question"], answer, contexts, reference),
+            compute_context_recall(row["question"], contexts, reference),
         )
 
-        # for i, ctx in enumerate(rag_result["contexts"]):
-        #     print(f"CHUNK {i}:\n {ctx}\n\n")
-
         return {
-            "question":               row["question"],
-            "grading_notes":          row["grading_notes"],
-            "ground_truth":           row.get("ground_truth", ""),
-            "answer":                 rag_result["answer"],
-            "contexts":               " | ".join(ctx[:30] + "..." for ctx in rag_result["contexts"]),
-            "score":                  score,
-            "faithfulness_score":     faithfulness,
-            "answer_correctness":     answer_correctness,
-            "top_chunk_score":        rag_result["chunks"][0]["score"]  if rag_result["chunks"] else None,
-            "top_chunk_src":          rag_result["chunks"][0]["source"] if rag_result["chunks"] else None,
+            "question":            row["question"],
+            "grading_notes":       row["grading_notes"],
+            "ground_truth":        reference,
+            "answer":              answer,
+            "contexts":            " | ".join(ctx[:30] + "..." for ctx in contexts),
+            # "contexts":            " | ".join(ctx + "\n ------------------------------------------------------ \n\n" for ctx in contexts),
+            "judge_result":               score,
+            "answer_correctness":  answer_correctness,
+            # RAGAS — answer quality
+            "faithfulness":        faithfulness,
+            "response_relevancy":  response_relevancy,
+            # RAGAS — retrieval quality
+            "context_precision":   context_precision,
+            "context_recall":      context_recall,
+            # Debug
+            "top_chunk_score":     rag_result["chunks"][0]["score"]  if rag_result["chunks"] else None,
+            "top_chunk_src":       rag_result["chunks"][0]["source"] if rag_result["chunks"] else None,
         }
+
     except Exception as e:
         print(f"Experiment error: {type(e).__name__}: {e}")
         return {
             "question":           row["question"],
-            "score":              "error",
-            "faithfulness_score": None,
+            "judge_result":       "error",
+            "faithfulness":       None,
             "answer_correctness": None,
+            "response_relevancy": None,
+            "context_precision":  None,
+            "context_recall":     None,
         }
 
 
@@ -459,7 +529,7 @@ async def main():
     questions_order = [s["question"] for s in dataset]
     experiment_results._data = sorted(
         experiment_results._data,
-        key=lambda r: questions_order.index(r["question"])
+        key=lambda r: questions_order.index(r["question"]),
     )
 
     experiment_results.save()
