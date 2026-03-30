@@ -31,8 +31,7 @@ from ragas.metrics.collections import (
 from ragas.embeddings import HuggingFaceEmbeddings as RagasHFEmbeddings
 os.environ["HF_HUB_OFFLINE"] = "1"
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
-
-import os
+os.environ["HUGGINGFACE_HUB_VERBOSITY"] = "error"
 
 load_dotenv()
 
@@ -40,12 +39,12 @@ load_dotenv()
 # CONFIGURATION
 # ==============================================================================
 
-INDEX_DIR         = "rag_index"
+INDEX_DIR         = "../rag/rag_index_markdown_structure_Sentence_splitting_title"
 SIMILARITY_TOP_K  = 5
 SIMILARITY_CUTOFF = 0.35
 SCORE_THRESHOLDS  = {"high": 0.7, "medium": 0.6}
-CONTEXT_WINDOW    = 8192
-MAX_TOKENS        = 1024
+CONTEXT_WINDOW    =  os.getenv("CONTEXT_WINDOW"),
+MAX_TOKENS        =  os.getenv("MAX_TOKENS"),
 
 # Feature flags — disable expensive metrics during quick debug runs
 ENABLE_JUDGE                    = True
@@ -60,7 +59,7 @@ ENABLE_CONTEXT_RECALL           = True
 # ==============================================================================
 
 Settings.embed_model = HuggingFaceEmbedding(
-    model_name="BAAI/bge-m3",
+    model_name=os.getenv("EMBEDDING_MODEL"),
     embed_batch_size=4,
 )
 
@@ -68,9 +67,9 @@ Settings.llm = OpenAILike(
     model=os.getenv("MODEL"),
     api_base=os.getenv("LLM_API_BASE"),
     api_key="not_necessary",
-    context_window=CONTEXT_WINDOW,
-    max_tokens=MAX_TOKENS,
-    temperature=0,
+    context_window=os.getenv("CONTEXT_WINDOW"),
+    max_tokens=os.getenv("MAX_TOKENS"),
+    temperature=os.getenv("TEMPERATURE"),
     is_chat_model=True,
 )
 
@@ -364,31 +363,31 @@ def load_dataset() -> Dataset:
     )
 
     samples = [
-        # {
-        #     "question":      "sede dell'università di Trieste",
-        #     "grading_notes": "deve menzionare Piazzale Europa e Trieste",
-        #     "ground_truth":  "La sede principale dell Università degli Studi di Trieste è a Trieste, in Piazzale Europa 1, su un area sopraelevata rispetto al centro della città.",
-        # },
-        # {
-        #     "question":      "in quale edificio, piano e aula stampare all università",
-        #     "grading_notes": "deve menzionare dove è possibile stampare (edificio, piano, aula) o chi contattare",
-        #     "ground_truth":  "È possibile stampare presso l'edificio H3, quinto piano, aula informatica.",
-        # },
-        # {
-        #     "question":      "obiettivi formativi ingegneria elettronica e informatica: Capacità di applicare conoscenza e comprensione per curriculum Ingegneria biomedica",
-        #     "grading_notes": "deve includere il fatto che si fanno esercitazioni e laboratorio, gli strumenti didattici utilizzati",
-        #     "ground_truth":  (
-        #         "I laureati in Ingegneria Elettronica e Informatica, curriculum ingegneria biomedica, devono avere una conoscenza "
-        #         "sufficientemente ampia da essere in grado di affrontare problemi che coinvolgono ambiti diversi dell'Ingegneria "
-        #         "dell'Informazione, e in particolare l'ambito biomedica. "
-        #         "Lo studio delle conoscenze di base e' quindi affiancato da esercitazioni scritte ed in laboratorio: per prendere "
-        #         "confidenza con le nozioni trattate durante i corsi, infatti, gli esercizi scritti e le prove di laboratorio previste "
-        #         "forzano l'allievo ad applicare le conoscenze ed i concetti acquisiti. "
-        #         "Gli strumenti didattici utilizzati per conseguire i suddetti obiettivi sono lezioni ordinarie, lezioni integrative, "
-        #         "seminari, esercitazioni. L'acquisizione delle conoscenze e' valutata mediante verifiche orali e/o scritte, nonche' "
-        #         "tramite la prova finale."
-        #     ),
-        # },
+        {
+            "question":      "sede dell'università di Trieste",
+            "grading_notes": "deve menzionare Piazzale Europa e Trieste",
+            "ground_truth":  "La sede principale dell Università degli Studi di Trieste è a Trieste, in Piazzale Europa 1, su un area sopraelevata rispetto al centro della città.",
+        },
+        {
+            "question":      "in quale edificio, piano e aula stampare all università",
+            "grading_notes": "deve menzionare dove è possibile stampare (edificio, piano, aula) o chi contattare",
+            "ground_truth":  "È possibile stampare presso l'edificio H3, quinto piano, aula informatica.",
+        },
+        {
+            "question":      "obiettivi formativi ingegneria elettronica e informatica: Capacità di applicare conoscenza e comprensione per curriculum Ingegneria biomedica",
+            "grading_notes": "deve includere il fatto che si fanno esercitazioni e laboratorio, gli strumenti didattici utilizzati",
+            "ground_truth":  (
+                "I laureati in Ingegneria Elettronica e Informatica, curriculum ingegneria biomedica, devono avere una conoscenza "
+                "sufficientemente ampia da essere in grado di affrontare problemi che coinvolgono ambiti diversi dell'Ingegneria "
+                "dell'Informazione, e in particolare l'ambito biomedica. "
+                "Lo studio delle conoscenze di base e' quindi affiancato da esercitazioni scritte ed in laboratorio: per prendere "
+                "confidenza con le nozioni trattate durante i corsi, infatti, gli esercizi scritti e le prove di laboratorio previste "
+                "forzano l'allievo ad applicare le conoscenze ed i concetti acquisiti. "
+                "Gli strumenti didattici utilizzati per conseguire i suddetti obiettivi sono lezioni ordinarie, lezioni integrative, "
+                "seminari, esercitazioni. L'acquisizione delle conoscenze e' valutata mediante verifiche orali e/o scritte, nonche' "
+                "tramite la prova finale."
+            ),
+        },
         {
             "question":      "scadenza per immatricolazione",
             "grading_notes": "deve includere la data di scadenza per immatricolarsi per l'a.a. 2025/26",
@@ -429,17 +428,17 @@ def load_dataset() -> Dataset:
             "grading_notes": "deve indicare giorno di inizio e giorno di fine per l'anno scolastico 2025",
             "ground_truth":  "Il primo semestre inizia il 29 settembre 2025 per gli studenti del I anno e il 22 settembre 2025 per gli studenti del II e III anno, e termina il 19 dicembre 2025 per tutti.",
         },
-        # # Expected failures — RAG should admit it doesn't know
-        # {
-        #     "question":      "l aula T dell'edificio A è libera il giorno 20 marzo 2026?",
-        #     "grading_notes": "deve ammettere di non avere informazioni sufficienti, NON deve inventare un contenuto",
-        #     "ground_truth":  "Non ho informazioni su questo argomento",
-        # },
-        # {
-        #     "question":      "dimmi i corsi disponibili del dipartimento di musicologia",
-        #     "grading_notes": "deve ammettere di non avere informazioni sufficienti, NON deve inventare un contenuto",
-        #     "ground_truth":  "Non ho informazioni su questo argomento",
-        # },
+        # Expected failures — RAG should admit it doesn't know
+        {
+            "question":      "l aula T dell'edificio A è libera il giorno 20 marzo 2026?",
+            "grading_notes": "deve ammettere di non avere informazioni sufficienti, NON deve inventare un contenuto",
+            "ground_truth":  "Non ho informazioni su questo argomento",
+        },
+        {
+            "question":      "dimmi i corsi disponibili del dipartimento di musicologia",
+            "grading_notes": "deve ammettere di non avere informazioni sufficienti, NON deve inventare un contenuto",
+            "ground_truth":  "Non ho informazioni su questo argomento",
+        },
     ]
 
     for sample in samples:

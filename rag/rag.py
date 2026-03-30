@@ -5,16 +5,19 @@ from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from utils_rag import *
 import asyncio
 from llama_index.llms.openai_like import OpenAILike
+from dotenv import load_dotenv
+
+load_dotenv()
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false" # avoid warning messages
 
 Settings.llm = OpenAILike(
-    model="ggml-org/gpt-oss-120b-GGUF",
-    api_base="http://172.30.42.129:8080/v1",
+    model=os.getenv("MODEL"),
+    api_base=os.getenv("LLM_API_BASE"),
     api_key="not_necessary",
-    context_window=65536,
-    max_tokens=2048,
-    temperature=0.2,
+    context_window=os.getenv("CONTEXT_WINDOW"),
+    max_tokens=os.getenv("MAX_TOKENS"),
+    temperature=os.getenv("TEMPERATURE"),
     is_chat_model=True, # for using the new /v1/chat/completions API: role: system (for pr)
     system_prompt=get_prompt_from_file("prompt_for_llm.txt"),
 )
@@ -117,19 +120,19 @@ async def main():
     # print(result)
     # print("\n\n\n\n\n")
 
-    print("QUESTION: Guardando i codici teams, puoi dirmi quali materie insegna Martino Trevisan?")
-    result = await search_documents(index, 
-        "Qual'è l'indirizzo email di Martino Trevisan?"
-    )
-    print("\nANSWER:")
-    print(result)
-    print("\n\n\n\n\n")   
+    # print("QUESTION: Guardando i codici teams, puoi dirmi quali materie insegna Martino Trevisan?")
+    # result = await search_documents(index, 
+    #     "Qual'è l'indirizzo email di Martino Trevisan?"
+    # )
+    # print("\nANSWER:")
+    # print(result)
+    # print("\n\n\n\n\n")   
 
 
-    print("QUESTION: Guardando i codici teams, puoi dirmi quali materie insegna il prof. Martino Trevisan?")
-    result = await search_documents(index, 
-        "Qual'è l'indirizzo email di Martino Trevisan?"
-    )
+    # print("QUESTION: Guardando i codici teams, puoi dirmi quali materie insegna il prof. Martino Trevisan?")
+    # result = await search_documents(index, 
+    #     "Qual'è l'indirizzo email di Martino Trevisan?"
+    # )
     print("\nANSWER:")
     print(result)
     print("\n\n\n\n\n")

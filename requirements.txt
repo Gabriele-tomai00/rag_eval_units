@@ -1,22 +1,27 @@
-chromadb
-ragas
+# Core RAG Framework
 llama-index
 llama-index-llms-openai-like
 llama-index-embeddings-huggingface
-sentence-transformers
+llama-index-embeddings-openai
+llama-index-vector-stores-chroma
+chromadb
+
+# Evaluation
+ragas
 datasets
-uv
+sentence-transformers
+
+# Utilities & Parsing
+python-dotenv
 litellm
+backoff
 litellm[proxy]
-
-
 lxml
-bs4
+beautifulsoup4
 html2text
 tqdm
+uv
 
-llama_index.core
-llama_index.vector_stores.chroma
-llama_index.embeddings.huggingface
-llama_index.llms.openai_like
-llama-index-embeddings-openai
+# Fix (Spark)
+py4j
+grpcio-status>=1.67.0

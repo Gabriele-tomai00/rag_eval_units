@@ -144,10 +144,10 @@ async def main():
     print(answer)
     print("\n\n\n")
 
-    # --- answer with full debug info ---------------------------------------
-    print("ANSWARE: dove si trova la sede dell'università di Trieste?\n")
-    result = await ask_debug(index, "a chi devo rivolgermi per info e chiarimenti su tasse")
-    print_debug_result(result)
+    # # --- answer with full debug info ---------------------------------------
+    # print("ANSWARE: dove si trova la sede dell'università di Trieste?\n")
+    # result = await ask_debug(index, "a chi devo rivolgermi per info e chiarimenti su tasse")
+    # print_debug_result(result)
 
 
 if __name__ == "__main__":

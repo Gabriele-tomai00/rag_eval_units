@@ -4,6 +4,7 @@ from pathlib import Path
 import chromadb
 import shutil
 import os
+from dotenv import load_dotenv
 
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.llms.openai_like import OpenAILike
@@ -19,12 +20,11 @@ from llama_index.core.node_parser import MarkdownNodeParser, SentenceSplitter
 INDEX_DIR = "rag_index"
 SIMILARITY_TOP_K = 7
 SCORE_THRESHOLDS = {"high": 0.7, "medium": 0.6}
-
-CONTEXT_WINDOW = 8192
-MAX_TOKENS = 1024
+load_dotenv()
 
 
-def _get_prompt_from_file(file_path: str) -> str:
+
+def get_prompt_from_file(file_path: str) -> str:
     with open(file_path, "r", encoding="utf-8") as f:
         return f.read()
 
@@ -35,14 +35,15 @@ Settings.embed_model = HuggingFaceEmbedding(
 )
 
 Settings.llm = OpenAILike(
-    model="ggml-org/gpt-oss-120b-GGUF",
-    api_base="http://172.30.42.129:8080/v1",
+    model=os.getenv("MODEL"),
+    api_base=os.getenv("LLM_API_BASE"),
     api_key="not_necessary",
-    context_window=CONTEXT_WINDOW,
-    max_tokens=MAX_TOKENS,
-    temperature=0.2,
-    is_chat_model=True,
-    system_prompt=_get_prompt_from_file("prompt_for_llm.txt"),
+    context_window=os.getenv("CONTEXT_WINDOW"),
+    max_tokens=os.getenv("MAX_TOKENS"),
+    temperature=os.getenv("TEMPERATURE"),
+    is_chat_model=True, # for using the new /v1/chat/completions API: role: system (for pr)
+    system_prompt=get_prompt_from_file("prompt_for_llm.txt"),
+
 )
 
 # ==============================================================================

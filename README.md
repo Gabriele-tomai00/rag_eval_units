@@ -21,9 +21,13 @@ MODEL=model_name
 ```
 3. Start the server:
 ```
-litellm --config litellm_config.yaml --port 4000
+litellm --config rag_eval/litellm_config.yaml --port 4000
 ```
 4. Start the program:
+```
+python evals.py
+```
+or
 ```
 uv run python evals.py
 ```
