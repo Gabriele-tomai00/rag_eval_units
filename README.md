@@ -8,12 +8,16 @@ model_list:
       api_base: ip
       api_key: key
 ```
-
-2. Start the server:
+2. Create a .env file like this one:
+```
+LLM_API_BASE=url
+MODEL=model_name
+```
+3. Start the server:
 ```
 litellm --config litellm_config.yaml --port 4000
 ```
-3. Start the program:
+4. Start the program:
 ```
 uv run python evals.py
 ```

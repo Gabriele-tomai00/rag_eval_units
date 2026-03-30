@@ -1,6 +1,7 @@
 import os
 import json
 import asyncio
+from dotenv import load_dotenv
 
 import chromadb
 from openai import OpenAI
@@ -28,8 +29,12 @@ from ragas.metrics.collections import (
 )
 
 from ragas.embeddings import HuggingFaceEmbeddings as RagasHFEmbeddings
-
+os.environ["HF_HUB_OFFLINE"] = "1"
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
+import os
+
+load_dotenv()
 
 # ==============================================================================
 # CONFIGURATION
@@ -60,8 +65,8 @@ Settings.embed_model = HuggingFaceEmbedding(
 )
 
 Settings.llm = OpenAILike(
-    model="ggml-org/gpt-oss-120b-GGUF",
-    api_base="http://172.30.42.129:8080/v1",
+    model=os.getenv("MODEL"),
+    api_base=os.getenv("LLM_API_BASE"),
     api_key="not_necessary",
     context_window=CONTEXT_WINDOW,
     max_tokens=MAX_TOKENS,
