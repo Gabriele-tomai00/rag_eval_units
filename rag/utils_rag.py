@@ -50,9 +50,9 @@ Settings.llm = OpenAILike(
 # INDEX MANAGEMENT
 # ==============================================================================
 
-def load_or_create_index() -> VectorStoreIndex:
+def load_or_create_index(index_dir: str) -> VectorStoreIndex:
     """Load an existing ChromaDB index or create a new empty one."""
-    db = chromadb.PersistentClient(path=INDEX_DIR)
+    db = chromadb.PersistentClient(path=index_dir)
     chroma_collection = db.get_or_create_collection("quickstart")
     vector_store = ChromaVectorStore(chroma_collection=chroma_collection)
     storage_context = StorageContext.from_defaults(vector_store=vector_store)
@@ -68,15 +68,12 @@ def get_index_size(index: VectorStoreIndex) -> int:
     return index.vector_store._collection.count()
 
 
-def add_to_index_md_files(index: VectorStoreIndex, jsonl_path: str) -> int:
-    """
-    Parse a JSONL file of markdown documents and insert them into the index.
-    Uses a chained approach: Markdown structure + Sentence splitting for long texts.
-    """
+def load_md_docs(jsonl_path: str) -> list[Document]:
+    """Load markdown documents from a JSONL file and return a list of Document objects."""
     path = Path(jsonl_path)
     if not path.exists():
         print(f"File not found: {jsonl_path}")
-        return 0
+        return []
 
     docs = []
     with path.open("r", encoding="utf-8") as f:
@@ -94,40 +91,60 @@ def add_to_index_md_files(index: VectorStoreIndex, jsonl_path: str) -> int:
                     "type": "markdown", 
                     "title": title
                 },
-                # Usiamo 'metadata_str' che è una chiave protetta di LlamaIndex, 
-                # così non avrai mai più KeyError.
                 text_template="INFO DOCUMENTO: {metadata_str}\n\nCONTENUTO:\n{content}",
-                # Definiamo cosa deve apparire in 'metadata_str'
                 metadata_template="TITOLO: {value}", 
-                # Escludiamo url e type così in 'metadata_str' resta solo il titolo
                 excluded_embed_metadata_keys=["url", "type"],
                 excluded_llm_metadata_keys=["url", "type"]
             ))
+    print(f"Loaded {len(docs)} documents from {jsonl_path}.")
+    return docs
 
+
+def add_to_index_md_files_sentence_splitter(index: VectorStoreIndex, docs: list[Document], chunk_size, chunk_overlap) -> int:
+    text_splitter = SentenceSplitter(
+        chunk_size=chunk_size,
+        chunk_overlap=chunk_overlap
+    )
+    nodes = text_splitter.get_nodes_from_documents(docs)
+    index.insert_nodes(nodes)
+
+    chunk_lengths = [len(node.get_content().split()) for node in nodes]
+    max_chunk_len = max(chunk_lengths) if chunk_lengths else 0
+    print(f"Inserted {len(nodes)} nodes from documents (after sentence splitting).")
+    print(f"Longest chunk: {max_chunk_len} tokens (approx.)")
+
+    
+def add_to_index_md_files_md_splitter(index: VectorStoreIndex, docs: list[Document]) -> int:
     md_parser = MarkdownNodeParser()
-    # Il SentenceSplitter serve a spezzare i nodi troppo lunghi.
-    # Con un LLM da 120B, 1024 è un buon compromesso tra contesto e precisione.
-    text_splitter = SentenceSplitter(chunk_size=1024, chunk_overlap=100)
+    nodes = md_parser.get_nodes_from_documents(docs)
+    print(f"Inserted {len(nodes)} nodes (after splitting according to markdown structure).")
 
-    # 2. Eseguiamo il parsing a cascata (Chaining)
-    # Prima dividiamo per struttura markdown
+    chunk_lengths = [len(node.get_content().split()) for node in nodes]
+    max_chunk_len = max(chunk_lengths) if chunk_lengths else 0
+    print(f"Longest chunk: {max_chunk_len} tokens (approx.)")
+
+
+def add_to_index_md_files_hybrid_md_and_text_splitter(index: VectorStoreIndex, docs: list[Document], chunk_size, chunk_overlap) -> int:
+    md_parser = MarkdownNodeParser()
     initial_nodes = md_parser.get_nodes_from_documents(docs)
-    
-    # Poi passiamo i nodi al text_splitter per gestire i testi troppo densi
+    text_splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
     final_nodes = text_splitter.get_nodes_from_documents(initial_nodes)
-
     index.insert_nodes(final_nodes)
-    
-    print(f"Inserted {len(final_nodes)} nodes from {jsonl_path} (after Markdown + Sentence splitting).")
-    return len(final_nodes)
+    print(f"Inserted {len(final_nodes)} nodes (after Markdown + Sentence splitting).")
+
+    chunk_lengths = [len(node.get_content().split()) for node in final_nodes]
+    max_chunk_len = max(chunk_lengths) if chunk_lengths else 0
+    print(f"Longest chunk: {max_chunk_len} tokens (approx.)")
 
 
-def remove_index():
-    if os.path.exists(INDEX_DIR):
-        shutil.rmtree(INDEX_DIR)
-        print(f"Deleted: {INDEX_DIR}")
+
+
+def remove_index(index_dir: str):
+    if os.path.exists(index_dir):
+        shutil.rmtree(index_dir)
+        print(f"Deleted: {index_dir}")
     else:
-        print(f"Directory not found: {INDEX_DIR}")
+        print(f"Directory not found: {index_dir}")
 
 
 # ==============================================================================

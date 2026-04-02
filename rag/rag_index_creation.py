@@ -114,17 +114,45 @@ def print_debug_result(result: dict) -> None:
 
 async def main():
 
-    remove_index()
-    
-    index = load_or_create_index()
+    INDEX_DIR_CHUNKING_SENTENCE = "rag_index_sentence_splitting"
+    INDEX_DIR_CHUNKING_MD = "rag_index_markdown_chunking"
+    INDEX_DIR_CHUNKING_MD_AND_SENTENCE = "rag_index_markdown_and_sentence_chunking"
+    chunk_size=1000
+    chunk_overlap=50   
+    docs = load_md_docs("../md_results/cleaned_pages.jsonl")
+
+    remove_index(INDEX_DIR_CHUNKING_SENTENCE)
+    remove_index(INDEX_DIR_CHUNKING_MD)
+    remove_index(INDEX_DIR_CHUNKING_MD_AND_SENTENCE)
+    print("\n\n\n")
+
+# INDEX_DIR_CHUNKING_SENTENCE
+    print(f"Creating index with sentence splitting...")
+    index = load_or_create_index(INDEX_DIR_CHUNKING_SENTENCE)
     if index is None:
         print("Failed to load or create the index.")
         return
-    print(f"Index loaded. Size: {get_index_size(index)} documents.")
+    add_to_index_md_files_sentence_splitter(index, docs, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
     print("\n\n\n")
 
 
-    add_to_index_md_files(index, "../md_results/cleaned_pages.jsonl")
+# INDEX_DIR_CHUNKING_MD
+    print(f"Creating index with markdown structure splitting...")
+    index = load_or_create_index(INDEX_DIR_CHUNKING_MD)
+    if index is None:
+        print("Failed to load or create the index.")
+        return
+    add_to_index_md_files_md_splitter(index, docs)
+    print("\n\n\n")
+
+# INDEX_DIR_CHUNKING_MD_AND_SENTENCE
+    print(f"Creating index with hybrid markdown + sentence splitting...")
+    index = load_or_create_index(INDEX_DIR_CHUNKING_MD_AND_SENTENCE)
+    if index is None:
+        print("Failed to load or create the index.")
+        return
+    add_to_index_md_files_hybrid_md_and_text_splitter(index, docs, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+    print("\n\n\n")
 
     
     # --- clean answer (no debug info) --------------------------------------
@@ -139,10 +167,10 @@ async def main():
     # print(answer)
     # print("\n\n\n")
 
-    print("ANSWARE: dove si trova la sede dell'università di Trieste?\n")
-    answer = ask(index, "dove si trova la sede dell'università di Trieste?")
-    print(answer)
-    print("\n\n\n")
+    # print("ANSWARE: dove si trova la sede dell'università di Trieste?\n")
+    # answer = ask(index, "dove si trova la sede dell'università di Trieste?")
+    # print(answer)
+    # print("\n\n\n")
 
     # # --- answer with full debug info ---------------------------------------
     # print("ANSWARE: dove si trova la sede dell'università di Trieste?\n")
