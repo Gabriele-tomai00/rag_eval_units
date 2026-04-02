@@ -8,7 +8,7 @@ env/
 .uv/
 
 # RAG index (ChromaDB, large binary files)
-rag_index/
+rag_index*/
 
 # Evaluation outputs (results vary per run, not source code)
 evals/experiments/
