@@ -15,7 +15,9 @@ URLS = [
     "https://portale.units.it/it/terza-missione/sostenibilita",
     "https://degree.units.it/it/0320106203600002/area-studenti/calendario-didattico",
     "https://degree.units.it/it/0320106202400001/area-studenti/calendario-didattico",
-    "https://portale.units.it/en/study/degree-courses"
+    "https://portale.units.it/en/study/degree-courses",
+    "https://degree.units.it/it/0320107303300001/area-studenti/insegnamenti/2025/120599/2025/2/10740/2025/13129",
+    "https://degree.units.it/en/0320107303300001/students-area/taught-courses/2025/120014/2025/2/10740/2025/13129"
 ]
 
 # the last page in incomplete so it requires a custom scraper
