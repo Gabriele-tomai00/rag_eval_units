@@ -39,7 +39,15 @@ load_dotenv()
 # CONFIGURATION
 # ==============================================================================
 
-INDEX_DIR         = "../rag/rag_index_markdown_structure_Sentence_splitting_title"
+INDEX_DIR         = "../rag/rag_index_sentence_splitting"
+OUTPUT_FILENAME   = "from_sentence_splitting_index_results"
+
+# INDEX_DIR         = "../rag/rag_index_markdown_chunking"
+# OUTPUT_FILENAME   = "from_rag_index_markdown_chunking_results"
+
+# INDEX_DIR         = "../rag/rag_index_markdown_and_sentence_chunking"
+# OUTPUT_FILENAME   = "from_rag_index_markdown_and_sentence_chunking_results"
+
 SIMILARITY_TOP_K  = 5
 SIMILARITY_CUTOFF = 0.35
 SCORE_THRESHOLDS  = {"high": 0.7, "medium": 0.6}
@@ -132,7 +140,7 @@ def query_rag(index: VectorStoreIndex, question: str) -> dict:
 
     filtered_chunks = [c for c in chunks if c["score"] < SIMILARITY_CUTOFF]
     print(
-        f"[RETRIEVAL] '{question[:50]}' → {len(nodes)} retrieved, "
+        f"[RETRIEVAL] '{question[:50]}...' → {len(nodes)} retrieved, "
         f"{len(filtered_chunks)} under threshold ({SIMILARITY_CUTOFF})"
     )
 
@@ -149,7 +157,7 @@ def query_rag(index: VectorStoreIndex, question: str) -> dict:
 
 judge_client = OpenAI(
     api_key="anything",
-    base_url="http://localhost:4000/v1",
+    base_url="http://172.30.42.129:8080/v1",
 )
 
 JUDGE_SYSTEM_PROMPT = (
@@ -398,9 +406,17 @@ def load_dataset() -> Dataset:
         },
         {
             "question":      "contatti e ufficio tasse",
-            "grading_notes": "deve includere almeno un numero di telefono e una mail e il nome dell ufficio",
-            "ground_truth":  ("Telefono: +39 040 558 3731 (martedì, mercoledì, venerdì 12:00 13:00). Email: tasse.studenti@amm.units.it. "
-                              "Ufficio Applicativi per la carriera dello studente e i contributi universitari"),
+            "grading_notes": "deve includere almeno un numero di telefono e una mail e il nome dell ufficio ",
+            "ground_truth":  (
+                "Ufficio Applicativi per la carriera dello studente e i contributi universitari "
+                "Piazzale Europa, 1  34127 Trieste (Edificio Centrale A) "
+                "Telefono:** +39 040 558 3731 "
+                "Orario telefonico:** martedì, mercoledì e venerdì, 12:00 - 13:00 "
+                "E mail:** tasse.studenti@amm.units.it "
+                " Orari di sportello (solo su prenotazione): "
+                " - Lunedì 15:00 - 16:40 "
+                " - Giovedì 09:00 - 11:10 "
+            ),
         },
         {
             "question":      "parlami dell iniziativa Climbing for Climate (CFC)",
@@ -425,6 +441,16 @@ def load_dataset() -> Dataset:
             "question":      "inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE",
             "grading_notes": "deve indicare giorno di inizio e giorno di fine per l'anno scolastico 2025",
             "ground_truth":  "Il primo semestre inizia il 29 settembre 2025 per gli studenti del I anno e il 22 settembre 2025 per gli studenti del II e III anno, e termina il 19 dicembre 2025 per tutti.",
+        },
+        {
+            "question":      "dove trovare il materiale didattico del corso di DIGITAL ELECTRONICS AND DEVICES",
+            "grading_notes": "deve indicare un sito web o piattaforma dove è possibile trovare il materiale didattico del corso di DIGITAL ELECTRONICS AND DEVICES",
+            "ground_truth":  "il materiale didattico per l'esame si trova sulle piattaforme Moodle / MS Teams o sul sito web del professore ",
+        },
+        {
+            "question":      "dove trovare il materiale didattico del corso di Cybersecurity",
+            "grading_notes": "deve indicare un sito web o piattaforma dove è possibile trovare il materiale didattico del corso di Cybersecurity",
+            "ground_truth":  "il materiale didattico per l'esame si trova sul sito del corso:  https://bartolialberto.github.io/CybersecurityCourse/ ",
         },
         # Expected failures — RAG should admit it doesn't know
         {
@@ -452,79 +478,69 @@ def load_dataset() -> Dataset:
 
 _index = load_index(INDEX_DIR)  # loaded once at module level, reused for every row
 
-
+limit_concurrency = asyncio.Semaphore(1)
 @experiment()
 async def run_experiment(row: dict) -> dict:
-    try:
-        rag_result = query_rag(_index, row["question"])
-        answer     = rag_result["answer"]
-        contexts   = rag_result["contexts"]
-        reference  = row.get("ground_truth", "")
+    async with limit_concurrency:
+        try:
+            rag_result = query_rag(_index, row["question"])
+            answer     = rag_result["answer"]
+            contexts   = rag_result["contexts"]
+            reference  = row.get("ground_truth", "")
+            
+            print(f" -> Valutazione Judge per: {row['question'][:30]}...")
+            score = await asyncio.to_thread(
+                judge_score, answer, row["grading_notes"], reference
+            )
 
-        # Run all scorers concurrently — they are fully independent
-        (
-            score,
-            faithfulness,
-            answer_correctness,
-            response_relevancy,
-            context_precision,
-            context_recall,
-        ) = await asyncio.gather(
-            asyncio.to_thread(
-                judge_score,
-                answer,
-                row["grading_notes"],
-                reference,
-            ),
-            compute_faithfulness(row["question"], answer, contexts),
-            compute_answer_correctness(row["question"], answer, reference),
-            compute_response_relevancy(row["question"], answer, contexts),
-            compute_context_precision(row["question"], answer, contexts, reference),
-            compute_context_recall(row["question"], contexts, reference),
-        )
+            faithfulness = await compute_faithfulness(row["question"], answer, contexts)
+            answer_correctness = await compute_answer_correctness(row["question"], answer, reference)
+            response_relevancy = await compute_response_relevancy(row["question"], answer, contexts)
+            context_precision = await compute_context_precision(row["question"], answer, contexts, reference)
+            context_recall = await compute_context_recall(row["question"], contexts, reference)
 
-        return {
-            "question":            row["question"],
-            "grading_notes":       row["grading_notes"],
-            "ground_truth":        reference,
-            "answer":              answer,
-            "contexts":            " | ".join(ctx[:30] + "..." for ctx in contexts),
-            # "contexts":            " | ".join(ctx + "\n ------------------------------------------------------ \n\n" for ctx in contexts),
-            "judge_result":               score,
-            "answer_correctness":  answer_correctness,
-            # RAGAS — answer quality
-            "faithfulness":        faithfulness,
-            "response_relevancy":  response_relevancy,
-            # RAGAS — retrieval quality
-            "context_precision":   context_precision,
-            "context_recall":      context_recall,
-            # Debug
-            "top_chunk_score":     rag_result["chunks"][0]["score"]  if rag_result["chunks"] else None,
-            "top_chunk_src":       rag_result["chunks"][0]["source"] if rag_result["chunks"] else None,
-        }
+            return {
+                "question":            row["question"],
+                "grading_notes":       row["grading_notes"],
+                "ground_truth":        reference,
+                "answer":              answer,
+                "contexts":            [f"{i+1}): {ctx[:30]}..." for i, ctx in enumerate(contexts)],
+                "judge_result":        score,
+                "answer_correctness":  answer_correctness,
+                "faithfulness":        faithfulness,
+                "response_relevancy":  response_relevancy,
+                "context_precision":   context_precision,
+                "context_recall":      context_recall,
+                "top_chunk_score":     rag_result["chunks"][0]["score"] if rag_result["chunks"] else None,
+                "top_chunk_src":       rag_result["chunks"][0]["source"] if rag_result["chunks"] else None,
+            }
 
-    except Exception as e:
-        print(f"Experiment error: {type(e).__name__}: {e}")
-        return {
-            "question":           row["question"],
-            "judge_result":       "error",
-            "faithfulness":       None,
-            "answer_correctness": None,
-            "response_relevancy": None,
-            "context_precision":  None,
-            "context_recall":     None,
-        }
+        except Exception as e:
+            print(f"Experiment error: {type(e).__name__}: {e}")
+            return {
+                "question": row["question"],
+                "judge_result": "error",
+                "faithfulness":       None,
+                "answer_correctness": None,
+                "response_relevancy": None,
+                "context_precision":  None,
+                "context_recall":     None,
+            }
 
 
 # ==============================================================================
 # ENTRY POINT
 # ==============================================================================
+import time
 
 async def main():
+
     dataset = load_dataset()
     print(f"Dataset loaded: {len(dataset)} samples")
+    start_time = time.time()
 
-    experiment_results = await run_experiment.arun(dataset)
+
+    experiment_results = await run_experiment.arun(dataset, name=OUTPUT_FILENAME)
     print("Experiment completed.")
 
     # Sort results to match original dataset order
@@ -536,7 +552,8 @@ async def main():
 
     experiment_results.save()
     print(f"Results saved to: evals/experiments/{experiment_results.name}.csv")
-
+    end_time = time.time()
+    print(f"Total execution time: {end_time - start_time:.2f} seconds")
 
 if __name__ == "__main__":
     asyncio.run(main())
