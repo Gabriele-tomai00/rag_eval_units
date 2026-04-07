@@ -181,3 +181,23 @@ def print_indexing_summary(
         print(line)
     with Path(log_file).open("a", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
+
+
+def zip_folder(folder_path: str) -> str:
+    folder = Path(folder_path).resolve()
+    
+    if not folder.is_dir():
+        raise ValueError(f"{folder} is not a valid directory")
+
+    # Output zip path (same name, same parent directory)
+    zip_path = folder.with_suffix('')
+
+    # Create zip archive
+    archive_path = shutil.make_archive(
+        base_name=str(zip_path),
+        format='zip',
+        root_dir=str(folder.parent),
+        base_dir=folder.name
+    )
+
+    return archive_path

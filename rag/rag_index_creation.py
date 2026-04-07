@@ -1,5 +1,6 @@
 import os
 import asyncio
+import argparse
 
 from llama_index.core import Settings
 from utils_rag import *
@@ -112,47 +113,35 @@ def print_debug_result(result: dict) -> None:
 # ENTRY POINT
 # ==============================================================================
 
-async def main():
+async def main(type: int, big: bool):
+    index_dirs = {
+        1: ("index_sentence", "index_sentence_big"),
+        2: ("index_markdown_chunking", "index_markdown_chunking_big"),
+        3: ("index_markdown_and_sentence", "index_markdown_and_sentence_big"),
+    }
 
-    INDEX_DIR_CHUNKING_SENTENCE = "rag_index_sentence_splitting"
-    INDEX_DIR_CHUNKING_MD = "rag_index_markdown_chunking"
-    INDEX_DIR_CHUNKING_MD_AND_SENTENCE = "rag_index_markdown_and_sentence_chunking"
-    chunk_size=1000
-    chunk_overlap=50   
+    chunk_size = 1000
+    chunk_overlap = 50
     docs = load_md_docs("../md_results/cleaned_pages.jsonl")
 
-    remove_index(INDEX_DIR_CHUNKING_SENTENCE)
-    remove_index(INDEX_DIR_CHUNKING_MD)
-    remove_index(INDEX_DIR_CHUNKING_MD_AND_SENTENCE)
+    # Select correct directory
+    index_dir = index_dirs[type][1 if big else 0]
+
+    remove_index(index_dir)
+
     print("\n\n\n")
 
-# INDEX_DIR_CHUNKING_SENTENCE
     print(f"Creating index with sentence splitting...")
-    index = load_or_create_index(INDEX_DIR_CHUNKING_SENTENCE)
+    index = load_or_create_index(index_dir)
     if index is None:
         print("Failed to load or create the index.")
         return
     add_to_index_md_files_sentence_splitter(index, docs, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+    zip_file = zip_folder(index_dir)
+    print(f"Index folder '{index_dir}' zipped to '{zip_file}'.")
     print("\n\n\n")
 
 
-# INDEX_DIR_CHUNKING_MD
-    print(f"Creating index with markdown structure splitting...")
-    index = load_or_create_index(INDEX_DIR_CHUNKING_MD)
-    if index is None:
-        print("Failed to load or create the index.")
-        return
-    add_to_index_md_files_md_splitter(index, docs)
-    print("\n\n\n")
-
-# INDEX_DIR_CHUNKING_MD_AND_SENTENCE
-    print(f"Creating index with hybrid markdown + sentence splitting...")
-    index = load_or_create_index(INDEX_DIR_CHUNKING_MD_AND_SENTENCE)
-    if index is None:
-        print("Failed to load or create the index.")
-        return
-    add_to_index_md_files_hybrid_md_and_text_splitter(index, docs, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
-    print("\n\n\n")
 
     
     # --- clean answer (no debug info) --------------------------------------
@@ -179,4 +168,19 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    parser = argparse.ArgumentParser(description="Program for the index creation phase")
+    parser.add_argument(
+        "--type", "-t",
+        type=int,
+        choices=[1, 2, 3],
+        required=True,
+        help="1 for sentence splitting, 2 for markdown structure splitting, 3 for hybrid markdown + sentence splitting",
+    )   
+    parser.add_argument(
+        "--big", "-b",
+        type=bool,
+        default=False,
+        help="1 if you want to use thousands of documents (will create a bigger index, but may be more effective), 0 to use only a few dozens of documents (faster to create and query, but less effective)",
+    )    
+    args = parser.parse_args()
+    asyncio.run(main(args.type, args.big))
