@@ -1,6 +1,7 @@
 import os
 import asyncio
 import argparse
+import time
 
 from llama_index.core import Settings
 from utils_rag import *
@@ -123,7 +124,7 @@ async def main(type: int, big: bool):
     chunk_size = 1000
     chunk_overlap = 50
 
-    docs = load_md_docs("../md_results/cleaned_pages_big.jsonl") if big else load_md_docs("../md_results/sample_cleaned_pages.jsonl")
+    docs = load_md_docs("../md_results/cleaned_pages_big.jsonl") if big else load_md_docs("../md_results/cleaned_pages.jsonl")
     index_dir = index_dirs[type][1 if big else 0]
 
     remove_index(index_dir)
@@ -166,6 +167,7 @@ async def main(type: int, big: bool):
 
 
 if __name__ == "__main__":
+    start_time = time.time()
     parser = argparse.ArgumentParser(description="Program for the index creation phase")
     parser.add_argument(
         "--type", "-t",
@@ -181,4 +183,6 @@ if __name__ == "__main__":
         help="1 if you want to use thousands of documents (will create a bigger index, but may be more effective), 0 to use only a few dozens of documents (faster to create and query, but less effective)",
     )    
     args = parser.parse_args()
+
     asyncio.run(main(args.type, args.big))
+    print(f"Time needed: {format_time(time.time() - start_time)}")
