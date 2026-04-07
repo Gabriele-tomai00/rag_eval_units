@@ -1,8 +1,9 @@
 import os
-import json
 import asyncio
 from dotenv import load_dotenv
 import re
+
+from questions_answares import samples
 
 import chromadb
 from openai import OpenAI
@@ -46,8 +47,8 @@ load_dotenv()
 # INDEX_DIR         = "../rag/rag_index_markdown_chunking"
 # OUTPUT_FILENAME   = "from_rag_index_markdown_chunking_results"
 
-INDEX_DIR         = "../rag/rag_index_markdown_and_sentence_chunking"
-OUTPUT_FILENAME   = "from_rag_index_markdown_and_sentence_chunking_results"
+INDEX_DIR         = "../rag/rag_index_markdown_and_sentence_chunking_big"
+OUTPUT_FILENAME   = "from_rag_index_markdown_and_sentence_chunking_big_results"
 
 SIMILARITY_TOP_K  = 7
 SIMILARITY_CUTOFF = 0.35
@@ -65,7 +66,7 @@ from ragas.run_config import RunConfig
 
 # Conservative config for a local/unstable vLLM service
 _run_config = RunConfig(
-    max_workers=4,
+    max_workers=8,
     timeout=600,
     max_retries=4,
 )
@@ -88,7 +89,7 @@ Settings.llm = OpenAILike(
     temperature=float(os.getenv("TEMPERATURE")),
     is_chat_model=True,
     system_prompt=(
-            "Rispondi sempre in italiano. "
+            "Rispondi SEMPRE in italiano, anche se i documenti forniti sono in una lingua diversa. "
             "Se non conosci la risposta, ammettilo chiaramente senza inventare informazioni. "
             "Usa solo le informazioni fornite nei contesti, non fare supposizioni o aggiunte. "
             "Devi essere conciso e preciso, non dilungarti in spiegazioni non richieste. "
@@ -111,59 +112,58 @@ def load_index(persist_dir: str = INDEX_DIR) -> VectorStoreIndex:
 
 def query_rag(index: VectorStoreIndex, question: str) -> dict:
     """
-    Run a full RAG query: retrieve chunks + generate answer.
-
-    Returns
-    -------
-    dict:
-        answer   : str        — LLM-generated answer
-        contexts : list[str]  — raw chunk texts
-        chunks   : list[dict] — full debug info per chunk
+    Esegue una query RAG completa: recupera i chunk, applica il filtro di similarità
+    e genera una risposta coerente.
     """
-    retriever = index.as_retriever(similarity_top_k=SIMILARITY_TOP_K)
-    nodes = retriever.retrieve(question)
-
-    contexts, chunks = [], []
-    for rank, node_with_score in enumerate(nodes, start=1):
-        score = node_with_score.score or 0.0
-        node  = node_with_score.node
-        text  = node.get_content()
-
-        if score >= SCORE_THRESHOLDS["high"]:
-            relevance = "HIGH"
-        elif score >= SCORE_THRESHOLDS["medium"]:
-            relevance = "MEDIUM"
-        else:
-            relevance = "LOW"
-
-        contexts.append(text)
-        chunks.append({
-            "rank":      rank,
-            "score":     round(score, 4),
-            "relevance": relevance,
-            "doc_type":  node.metadata.get("type", "unknown"),
-            "preview":   text[:200].replace("\n", " "),
-            "source":    node.metadata.get("url", "N/A"),
-        })
-
+    # 1. Configurazione del Query Engine con Post-Processor
     query_engine = index.as_query_engine(
         similarity_top_k=SIMILARITY_TOP_K,
         node_postprocessors=[
             SimilarityPostprocessor(similarity_cutoff=SIMILARITY_CUTOFF)
         ]
     )
+    
     response = query_engine.query(question)
+    
+    # for "Empty Response"
+    final_answer = str(response.response).strip()
+    
+    is_empty = (
+        not final_answer or 
+        final_answer.lower() == "none" or 
+        "empty response" in final_answer.lower() or
+        "i am sorry" in final_answer.lower() # Opzionale, dipende dal modello
+    )
 
-    filtered_chunks = [c for c in chunks if c["score"] < SIMILARITY_CUTOFF]
+    if is_empty:
+        final_answer = "Non ho informazioni sufficienti nei documenti per rispondere a questa domanda."
+
+    used_contexts = [node.get_content() for node in response.source_nodes]
+
+    chunks_debug = []
+    for rank, node_with_score in enumerate(response.source_nodes, start=1):
+        score = getattr(node_with_score, 'score', 0.0)
+        text = node_with_score.get_content()
+        
+        chunks_debug.append({
+            "rank":      rank,
+            "score":     round(score, 4) if score else "N/A",
+            "relevance": "FILTERED_PASS",
+            "doc_type":  node_with_score.metadata.get("type", "unknown"),
+            "preview":   text[:200].replace("\n", " "),
+            "source":    node_with_score.metadata.get("url", "N/A"),
+        })
+
+    # Log di debug in console
     print(
-        f"[RETRIEVAL] '{question[:50]}...' → {len(nodes)} retrieved, "
-        f"{len(filtered_chunks)} under threshold ({SIMILARITY_CUTOFF})"
+        f"[RETRIEVAL] '{question[:50]}...' → {len(used_contexts)} nodes passed filter "
+        f"(Cutoff: {SIMILARITY_CUTOFF})"
     )
 
     return {
-        "answer":   str(response.response),
-        "contexts": contexts,
-        "chunks":   chunks,
+        "answer":   final_answer,
+        "contexts": used_contexts, # Passati a Ragas per Faithfulness/Recall
+        "chunks":   chunks_debug,   # Usati per il salvataggio CSV/Debug
     }
 
 
@@ -381,105 +381,6 @@ def load_dataset() -> Dataset:
         root_dir="evals",
     )
 
-    samples = [
-            {
-                "question": "sede dell'università di Trieste",
-                "grading_notes": "deve menzionare Piazzale Europa e Trieste",
-                "ground_truth": (
-                    "La sede principale dell'Università degli Studi di Trieste si trova a Trieste, "
-                    "in Piazzale Europa 1, in un'area sopraelevata rispetto al centro della città."
-                ),
-            },
-            {
-                "question": "in quale edificio, piano e aula stampare all università",
-                "grading_notes": "edificio H3, 5 piano, aule informatiche",
-                "ground_truth": (
-                    "È possibile stampare presso l'edificio H3, situato nel polo di Piazzale Europa, "
-                    "al quinto piano all'interno delle aule informatiche."
-                ),
-            },
-            {
-                "question": "obiettivi formativi ingegneria elettronica e informatica: Capacità di applicare conoscenza e comprensione per curriculum Ingegneria biomedica",
-                "grading_notes": "esercitazioni, laboratori e strumenti didattici",
-                "ground_truth": (
-                    "L'obiettivo è formare laureati capaci di affrontare problemi dell'ingegneria dell'informazione e biomedica. "
-                    "Lo studio è affiancato da esercitazioni scritte e in laboratorio. Gli strumenti includono lezioni ordinarie, "
-                    "integrative, seminari ed esercitazioni, con valutazioni tramite verifiche scritte, orali e prova finale."
-                ),
-            },
-            {
-                "question": "titolo di studio richiesto per immatricolazione",
-                "grading_notes": "diploma superiore e nota sui titoli esteri",
-                "ground_truth": (
-                    "Il titolo richiesto è il diploma di scuola media superiore o titolo estero equipollente. "
-                    "Per i titoli esteri è necessario verificare la validità presso la sezione Studenti Internazionali."
-                ),
-            },
-            {
-                "question": "quali sono i vari curriculum del corso Scienze e Tecnologie per l'ambiente e la natura",
-                "grading_notes": "Ambientale, Biologico e Didattico",
-                "ground_truth": "I curriculum sono tre: Ambientale, Biologico e Didattico.",
-            },
-            {
-                "question": "contatti e ufficio tasse",
-                "grading_notes": "indirizzo, telefono, mail e orari sportello",
-                "ground_truth": (
-                    "Ufficio Applicativi per la carriera dello studente e i contributi universitari: Piazzale Europa 1, Edificio A. "
-                    "Tel: +39 040 558 3731 (mar, mer, ven 12-13). Email: tasse.studenti@amm.units.it. "
-                    "Sportello su prenotazione (EasyPlanning): Lunedì 15:00-16:40 e Giovedì 09:00-11:10."
-                ),
-            },
-            {
-                "question": "parlami dell iniziativa Climbing for Climate (CFC)",
-                "grading_notes": "RUS, CAI e sensibilizzazione riscaldamento globale",
-                "ground_truth": (
-                    "Iniziativa promossa da RUS e CAI per sensibilizzare sul riscaldamento globale. "
-                    "Il nome richiama i clorofluorocarburi (CFC), gas responsabili del buco nell'ozono banditi dal Protocollo di Montreal. "
-                    "L'ateneo partecipa organizzando eventi sul territorio."
-                ),
-            },
-            {
-                "question": "inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE",
-                "grading_notes": "22 settembre - 19 dicembre 2025 (1 ottobre per I anno)",
-                "ground_truth": (
-                    "Le lezioni iniziano il 22 settembre 2025 (il 1 ottobre per gli studenti del primo anno) "
-                    "e terminano il 19 dicembre 2025."
-                ),
-            },
-            {
-                "question": "inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE",
-                "grading_notes": "22/29 settembre - 19 dicembre 2025",
-                "ground_truth": (
-                    "Il primo semestre inizia il 29 settembre 2025 per il I anno e il 22 settembre per gli anni successivi, "
-                    "con termine il 19 dicembre 2025 per tutti."
-                ),
-            },
-            {
-                "question": "dove trovare il materiale didattico del corso di DIGITAL ELECTRONICS AND DEVICES",
-                "grading_notes": "Moodle, MS Teams e link docente",
-                "ground_truth": (
-                    "Il materiale (slide ed esercizi) è disponibile su Moodle e MS Teams o sul sito del docente: "
-                    "http://www2.units.it/carrato/didatt/DSE_web/index.html"
-                ),
-            },
-            {
-                "question": "dove trovare il materiale didattico del corso di Cybersecurity",
-                "grading_notes": "link bartolialberto.github.io",
-                "ground_truth": (
-                    "Il materiale del corso è disponibile sul sito: https://bartolialberto.github.io/CybersecurityCourse/"
-                ),
-            },
-            {
-                "question": "l aula T dell'edificio A è libera il giorno 20 marzo 2026?",
-                "grading_notes": "ammettere mancanza di info",
-                "ground_truth": "Non ho informazioni sulla disponibilità dell'aula T per quella data specifica.",
-            },
-            {
-                "question": "dimmi i corsi disponibili del dipartimento di musicologia",
-                "grading_notes": "ammettere mancanza di info",
-                "ground_truth": "Non dispongo di informazioni sui corsi del dipartimento di Musicologia.",
-            },
-        ]
 
     for sample in samples:
         dataset.append(sample)
@@ -494,10 +395,10 @@ def load_dataset() -> Dataset:
 
 _index = load_index(INDEX_DIR)  # loaded once at module level, reused for every row
 
-limit_concurrency = asyncio.Semaphore(1)
+# limit_concurrency = asyncio.Semaphore(1)
 @experiment()
 async def run_experiment(row: dict) -> dict:
-    async with limit_concurrency:
+    # async with limit_concurrency:
         try:
             rag_result = query_rag(_index, row["question"])
             answer     = rag_result["answer"]
@@ -520,7 +421,7 @@ async def run_experiment(row: dict) -> dict:
                 "grading_notes":       row["grading_notes"],
                 "ground_truth":        reference,
                 "answer":              answer,
-                "contexts":            "\n".join(f"{i+1}): (len: {len(ctx)}) {ctx[:30]}..." for i, ctx in enumerate(contexts)),
+                "contexts":            "\n".join(f"{i+1}): (len: {len(ctx)}) (score: {rag_result['chunks'][i]['score']:.4f}) {ctx[:30]}..." for i, ctx in enumerate(contexts)),
                 "judge_result":        score,
                 "answer_correctness":  answer_correctness,
                 "faithfulness":        faithfulness,
