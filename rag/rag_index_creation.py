@@ -178,6 +178,7 @@ if __name__ == "__main__":
     )   
     parser.add_argument(
         "--big", "-b",
+        action="store_true",
         type=bool,
         default=False,
         help="1 if you want to use thousands of documents (will create a bigger index, but may be more effective), 0 to use only a few dozens of documents (faster to create and query, but less effective)",
