@@ -117,6 +117,7 @@ def add_to_index_md_files_sentence_splitter(index: VectorStoreIndex, docs: list[
 def add_to_index_md_files_md_splitter(index: VectorStoreIndex, docs: list[Document]) -> int:
     md_parser = MarkdownNodeParser()
     nodes = md_parser.get_nodes_from_documents(docs)
+    index.insert_nodes(nodes)
     print(f"Inserted {len(nodes)} nodes (after splitting according to markdown structure).")
 
     chunk_lengths = [len(node.get_content().split()) for node in nodes]
