@@ -25,3 +25,9 @@ uv
 # Fix (Spark)
 py4j
 grpcio-status>=1.67.0
+
+# for notebook
+ipython
+pandas
+matplotlib
+seaborn
