@@ -2,6 +2,7 @@ import os
 import json
 import asyncio
 from dotenv import load_dotenv
+import re
 
 import chromadb
 from openai import OpenAI
@@ -39,14 +40,14 @@ load_dotenv()
 # CONFIGURATION
 # ==============================================================================
 
-INDEX_DIR         = "../rag/rag_index_sentence_splitting"
-OUTPUT_FILENAME   = "from_sentence_splitting_index_results"
+# INDEX_DIR         = "../rag/rag_index_sentence_splitting"
+# OUTPUT_FILENAME   = "from_sentence_splitting_index_results"
 
 # INDEX_DIR         = "../rag/rag_index_markdown_chunking"
 # OUTPUT_FILENAME   = "from_rag_index_markdown_chunking_results"
 
-# INDEX_DIR         = "../rag/rag_index_markdown_and_sentence_chunking"
-# OUTPUT_FILENAME   = "from_rag_index_markdown_and_sentence_chunking_results"
+INDEX_DIR         = "../rag/rag_index_markdown_and_sentence_chunking"
+OUTPUT_FILENAME   = "from_rag_index_markdown_and_sentence_chunking_results"
 
 SIMILARITY_TOP_K  = 5
 SIMILARITY_CUTOFF = 0.35
@@ -60,6 +61,15 @@ ENABLE_RESPONSE_RELEVANCY       = True
 ENABLE_CONTEXT_PRECISION        = True
 ENABLE_CONTEXT_RECALL           = True
 
+from ragas.run_config import RunConfig
+
+# Conservative config for a local/unstable vLLM service
+_run_config = RunConfig(
+    max_workers=1,
+    timeout=600,
+    max_retries=3,
+)
+
 # ==============================================================================
 # RAG SETUP
 # ==============================================================================
@@ -72,7 +82,7 @@ Settings.embed_model = HuggingFaceEmbedding(
 Settings.llm = OpenAILike(
     model=os.getenv("MODEL"),
     api_base=os.getenv("LLM_API_BASE"),
-    api_key="not_necessary",
+    api_key=os.getenv("API_KEY"),
     context_window=int(os.getenv("CONTEXT_WINDOW")),
     max_tokens=int(os.getenv("MAX_TOKENS")),
     temperature=float(os.getenv("TEMPERATURE")),
@@ -156,8 +166,8 @@ def query_rag(index: VectorStoreIndex, question: str) -> dict:
 # ==============================================================================
 
 judge_client = OpenAI(
-    api_key="anything",
-    base_url="http://172.30.42.129:8080/v1",
+    api_key=os.getenv("API_KEY"),
+    base_url=os.getenv("LLM_API_BASE"),
 )
 
 JUDGE_SYSTEM_PROMPT = (
@@ -180,7 +190,7 @@ JUDGE_USER_TEMPLATE = (
 def judge_score(response: str, grading_notes: str, ground_truth: str) -> str:
     """
     Call the judge LLM and return 'pass', 'fail', or 'error'.
-    Extracts the verdict from the last line, allowing the model to reason freely.
+    Searches for a JSON verdict anywhere in the response.
     """
     prompt = JUDGE_USER_TEMPLATE.format(
         response=response,
@@ -189,43 +199,41 @@ def judge_score(response: str, grading_notes: str, ground_truth: str) -> str:
     )
     try:
         completion = judge_client.chat.completions.create(
-            model="ggml-org/gpt-oss-120b-GGUF",
+            model=os.getenv("MODEL"),
             messages=[
                 {"role": "system", "content": JUDGE_SYSTEM_PROMPT},
                 {"role": "user",   "content": prompt},
             ],
-            response_format={"type": "json_object"},
-            max_tokens=512,
+            **({"response_format": {"type": "json_object"}} if os.getenv("USE_JSON_FORMAT", "false").lower() == "true" else {}),
+            max_tokens=2048,
             temperature=0.0,
         )
 
         msg = completion.choices[0].message
         raw = msg.content or ""
 
-        # Some models return the answer in reasoning_content when content is empty
         if not raw.strip():
             raw = getattr(msg, "reasoning_content", "") or ""
 
-        print(f"Judge raw response: repr={repr(raw)}")
+        print(f"Judge raw response: repr={repr(raw[:200])}...")
 
-        # Extract last non-empty line — where the JSON verdict should be
-        last_line = [l.strip() for l in raw.strip().splitlines() if l.strip()][-1]
-        parsed = json.loads(last_line)
+        match = re.search(r'\{\s*"result"\s*:\s*"(pass|fail)"\s*\}', raw, re.IGNORECASE)
+        if match:
+            return match.group(1).lower()
 
-        value = parsed.get("result", "").strip().lower()
-        return value if value in ("pass", "fail") else "error"
+        print("Judge: no valid verdict found in response")
+        return "error"
 
     except Exception as e:
         print(f"Judge error: {type(e).__name__}: {e}")
         return "error"
-
 
 # ==============================================================================
 # RAGAS LLM + EMBEDDINGS (shared across all metrics)
 # ==============================================================================
 
 _ragas_async_client = AsyncOpenAI(
-    api_key="anything",
+    api_key=os.getenv("API_KEY"),
     base_url=os.getenv("LLM_API_BASE"),
     timeout=300,
 )
@@ -234,8 +242,6 @@ _ragas_llm = llm_factory(
     model=os.getenv("MODEL"),
     client=_ragas_async_client,
     max_tokens=int(os.getenv("MAX_TOKENS")),
-    timeout=300,
-    max_retries=2,
 )
 
 _ragas_embeddings = RagasHFEmbeddings(model=os.getenv("EMBEDDING_MODEL"))
@@ -244,7 +250,7 @@ _ragas_embeddings = RagasHFEmbeddings(model=os.getenv("EMBEDDING_MODEL"))
 # RAGAS METRIC SCORERS
 # ==============================================================================
 
-faithfulness_scorer = Faithfulness(llm=_ragas_llm)
+faithfulness_scorer = Faithfulness(llm=_ragas_llm, run_config=_run_config)
 
 answer_correctness_scorer = AnswerCorrectness(
     llm=_ragas_llm,
@@ -254,9 +260,10 @@ answer_correctness_scorer = AnswerCorrectness(
 response_relevancy_scorer = AnswerRelevancy(
     llm=_ragas_llm,
     embeddings=_ragas_embeddings,
+    run_config=_run_config
 )
-context_precision_scorer = ContextPrecisionWithReference(llm=_ragas_llm)
-context_recall_scorer = ContextRecall(llm=_ragas_llm)
+context_precision_scorer = ContextPrecisionWithReference(llm=_ragas_llm, run_config=_run_config)
+context_recall_scorer = ContextRecall(llm=_ragas_llm, run_config=_run_config)
 
 # ==============================================================================
 # ASYNC SCORING HELPERS
@@ -395,9 +402,12 @@ def load_dataset() -> Dataset:
             ),
         },
         {
-            "question":      "scadenza per immatricolazione",
-            "grading_notes": "deve includere la data di scadenza per immatricolarsi per l'a.a. 2025/26",
-            "ground_truth":  "Immatricolazioni dal 9 giugno al 6 ottobre 2025. Riapertura dal 14 gennaio 2026 al 6 marzo 2026.",
+            "question":      "requisiti per immatricolazione",
+            "grading_notes": "deve includere il titolo di studio necessario per immatricolarsi",
+            "ground_truth":  (
+                            "Titolo di studio: devi essere in possesso di un diploma di scuola media superiore o di un titolo di studio equipollente conseguito all'estero. ",
+                            "Se hai un titolo estero, consulta le informazioni dedicate agli Studenti Internazionali per verificare la validità del tuo titolo e i requisiti specifici di accesso."
+                            )
         },
         {
             "question":      "quali sono i vari curriculum del corso Scienze e Tecnologie per l'ambiente e la natura",
@@ -450,7 +460,11 @@ def load_dataset() -> Dataset:
         {
             "question":      "dove trovare il materiale didattico del corso di Cybersecurity",
             "grading_notes": "deve indicare un sito web o piattaforma dove è possibile trovare il materiale didattico del corso di Cybersecurity",
-            "ground_truth":  "il materiale didattico per l'esame si trova sul sito del corso:  https://bartolialberto.github.io/CybersecurityCourse/ ",
+            "ground_truth":  (
+                            "Il materiale didattico per il corso di Cybersecurity, che include le slide preparate dal docente e un set curato ",
+                            " di riferimenti (esempi reali, analisi approfondite, manuali tecnici), "
+                            " è disponibile sul sito web del corso all'indirizzo: `https://bartolialberto.github.io/CybersecurityCourse/`."
+                            )
         },
         # Expected failures — RAG should admit it doesn't know
         {
@@ -504,7 +518,7 @@ async def run_experiment(row: dict) -> dict:
                 "grading_notes":       row["grading_notes"],
                 "ground_truth":        reference,
                 "answer":              answer,
-                "contexts":            [f"{i+1}): {ctx[:30]}..." for i, ctx in enumerate(contexts)],
+                "contexts":            "\n".join(f"{i+1}): {ctx[:30]}..." for i, ctx in enumerate(contexts)),
                 "judge_result":        score,
                 "answer_correctness":  answer_correctness,
                 "faithfulness":        faithfulness,
