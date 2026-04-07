@@ -49,7 +49,7 @@ load_dotenv()
 INDEX_DIR         = "../rag/rag_index_markdown_and_sentence_chunking"
 OUTPUT_FILENAME   = "from_rag_index_markdown_and_sentence_chunking_results"
 
-SIMILARITY_TOP_K  = 5
+SIMILARITY_TOP_K  = 7
 SIMILARITY_CUTOFF = 0.35
 SCORE_THRESHOLDS  = {"high": 0.7, "medium": 0.6}
 
@@ -65,9 +65,9 @@ from ragas.run_config import RunConfig
 
 # Conservative config for a local/unstable vLLM service
 _run_config = RunConfig(
-    max_workers=1,
+    max_workers=4,
     timeout=600,
-    max_retries=3,
+    max_retries=4,
 )
 
 # ==============================================================================
@@ -87,6 +87,12 @@ Settings.llm = OpenAILike(
     max_tokens=int(os.getenv("MAX_TOKENS")),
     temperature=float(os.getenv("TEMPERATURE")),
     is_chat_model=True,
+    system_prompt=(
+            "Rispondi sempre in italiano. "
+            "Se non conosci la risposta, ammettilo chiaramente senza inventare informazioni. "
+            "Usa solo le informazioni fornite nei contesti, non fare supposizioni o aggiunte. "
+            "Devi essere conciso e preciso, non dilungarti in spiegazioni non richieste. "
+        ),
 )
 
 
@@ -235,7 +241,7 @@ def judge_score(response: str, grading_notes: str, ground_truth: str) -> str:
 _ragas_async_client = AsyncOpenAI(
     api_key=os.getenv("API_KEY"),
     base_url=os.getenv("LLM_API_BASE"),
-    timeout=300,
+    timeout=600,
 )
 
 _ragas_llm = llm_factory(
@@ -376,108 +382,104 @@ def load_dataset() -> Dataset:
     )
 
     samples = [
-        {
-            "question":      "sede dell'università di Trieste",
-            "grading_notes": "deve menzionare Piazzale Europa e Trieste",
-            "ground_truth":  "La sede principale dell Università degli Studi di Trieste è a Trieste, in Piazzale Europa 1, su un area sopraelevata rispetto al centro della città.",
-        },
-        {
-            "question":      "in quale edificio, piano e aula stampare all università",
-            "grading_notes": "deve menzionare dove è possibile stampare (edificio, piano, aula) o chi contattare",
-            "ground_truth":  "È possibile stampare presso l'edificio H3, quinto piano, aula informatica.",
-        },
-        {
-            "question":      "obiettivi formativi ingegneria elettronica e informatica: Capacità di applicare conoscenza e comprensione per curriculum Ingegneria biomedica",
-            "grading_notes": "deve includere il fatto che si fanno esercitazioni e laboratorio, gli strumenti didattici utilizzati",
-            "ground_truth":  (
-                "I laureati in Ingegneria Elettronica e Informatica, curriculum ingegneria biomedica, devono avere una conoscenza "
-                "sufficientemente ampia da essere in grado di affrontare problemi che coinvolgono ambiti diversi dell'Ingegneria "
-                "dell'Informazione, e in particolare l'ambito biomedica. "
-                "Lo studio delle conoscenze di base e' quindi affiancato da esercitazioni scritte ed in laboratorio: per prendere "
-                "confidenza con le nozioni trattate durante i corsi, infatti, gli esercizi scritti e le prove di laboratorio previste "
-                "forzano l'allievo ad applicare le conoscenze ed i concetti acquisiti. "
-                "Gli strumenti didattici utilizzati per conseguire i suddetti obiettivi sono lezioni ordinarie, lezioni integrative, "
-                "seminari, esercitazioni. L'acquisizione delle conoscenze e' valutata mediante verifiche orali e/o scritte, nonche' "
-                "tramite la prova finale."
-            ),
-        },
-        {
-            "question":      "requisiti per immatricolazione",
-            "grading_notes": "deve includere il titolo di studio necessario per immatricolarsi",
-            "ground_truth":  (
-                            "Titolo di studio: devi essere in possesso di un diploma di scuola media superiore o di un titolo di studio equipollente conseguito all'estero. ",
-                            "Se hai un titolo estero, consulta le informazioni dedicate agli Studenti Internazionali per verificare la validità del tuo titolo e i requisiti specifici di accesso."
-                            )
-        },
-        {
-            "question":      "quali sono i vari curriculum del corso Scienze e Tecnologie per l'ambiente e la natura",
-            "grading_notes": "deve indicare 3 diversi percorsi di studio/curriculum",
-            "ground_truth":  "Curriculum Ambientale, Biologico e Didattico",
-        },
-        {
-            "question":      "contatti e ufficio tasse",
-            "grading_notes": "deve includere almeno un numero di telefono e una mail e il nome dell ufficio ",
-            "ground_truth":  (
-                "Ufficio Applicativi per la carriera dello studente e i contributi universitari "
-                "Piazzale Europa, 1  34127 Trieste (Edificio Centrale A) "
-                "Telefono:** +39 040 558 3731 "
-                "Orario telefonico:** martedì, mercoledì e venerdì, 12:00 - 13:00 "
-                "E mail:** tasse.studenti@amm.units.it "
-                " Orari di sportello (solo su prenotazione): "
-                " - Lunedì 15:00 - 16:40 "
-                " - Giovedì 09:00 - 11:10 "
-            ),
-        },
-        {
-            "question":      "parlami dell iniziativa Climbing for Climate (CFC)",
-            "grading_notes": "deve indicare un iniziativa organizzata dalla RUS",
-            "ground_truth":  (
-                "Climbing for Climate (CFC) è un iniziativa promossa dalla Rete delle Università per lo Sviluppo Sostenibile (RUS) "
-                "in collaborazione con il Club Alpino Italiano (CAI). "
-                "L obiettivo principale è coinvolgere le istituzioni accademiche nella lotta contro il riscaldamento globale, attraverso "
-                "la formazione di studenti, la promozione di ricerche orientate allo sviluppo sostenibile e la sensibilizzazione della "
-                "cittadinanza. "
-                "Il progetto prende il nome anche dall acronimo CFC, che indica i clorofluorocarburi, composti chimici contenenti cloro, "
-                "fluoro e carbonio. Queste sostanze, responsabili della riduzione dello strato di ozono e dotate di un forte effetto serra, "
-                "sono state bandite dalla produzione con il Protocollo di Montreal del 1987."
-            ),
-        },
-        {
-            "question":      "inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE",
-            "grading_notes": "deve indicare giorno di inizio e giorno di fine per l'anno scolastico 2025",
-            "ground_truth":  "Il primo semestre delle lezioni di Scienze Internazionali e Diplomatiche inizia il 22 settembre 2025 (per gli studenti del primo anno l inizio è previsto per il 1 ottobre 2025) e termina il 19 dicembre 2025.",
-        },
-        {
-            "question":      "inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE",
-            "grading_notes": "deve indicare giorno di inizio e giorno di fine per l'anno scolastico 2025",
-            "ground_truth":  "Il primo semestre inizia il 29 settembre 2025 per gli studenti del I anno e il 22 settembre 2025 per gli studenti del II e III anno, e termina il 19 dicembre 2025 per tutti.",
-        },
-        {
-            "question":      "dove trovare il materiale didattico del corso di DIGITAL ELECTRONICS AND DEVICES",
-            "grading_notes": "deve indicare un sito web o piattaforma dove è possibile trovare il materiale didattico del corso di DIGITAL ELECTRONICS AND DEVICES",
-            "ground_truth":  "il materiale didattico per l'esame si trova sulle piattaforme Moodle / MS Teams o sul sito web del professore ",
-        },
-        {
-            "question":      "dove trovare il materiale didattico del corso di Cybersecurity",
-            "grading_notes": "deve indicare un sito web o piattaforma dove è possibile trovare il materiale didattico del corso di Cybersecurity",
-            "ground_truth":  (
-                            "Il materiale didattico per il corso di Cybersecurity, che include le slide preparate dal docente e un set curato ",
-                            " di riferimenti (esempi reali, analisi approfondite, manuali tecnici), "
-                            " è disponibile sul sito web del corso all'indirizzo: `https://bartolialberto.github.io/CybersecurityCourse/`."
-                            )
-        },
-        # Expected failures — RAG should admit it doesn't know
-        {
-            "question":      "l aula T dell'edificio A è libera il giorno 20 marzo 2026?",
-            "grading_notes": "deve ammettere di non avere informazioni sufficienti, NON deve inventare un contenuto",
-            "ground_truth":  "Non ho informazioni su questo argomento",
-        },
-        {
-            "question":      "dimmi i corsi disponibili del dipartimento di musicologia",
-            "grading_notes": "deve ammettere di non avere informazioni sufficienti, NON deve inventare un contenuto",
-            "ground_truth":  "Non ho informazioni su questo argomento",
-        },
-    ]
+            {
+                "question": "sede dell'università di Trieste",
+                "grading_notes": "deve menzionare Piazzale Europa e Trieste",
+                "ground_truth": (
+                    "La sede principale dell'Università degli Studi di Trieste si trova a Trieste, "
+                    "in Piazzale Europa 1, in un'area sopraelevata rispetto al centro della città."
+                ),
+            },
+            {
+                "question": "in quale edificio, piano e aula stampare all università",
+                "grading_notes": "edificio H3, 5 piano, aule informatiche",
+                "ground_truth": (
+                    "È possibile stampare presso l'edificio H3, situato nel polo di Piazzale Europa, "
+                    "al quinto piano all'interno delle aule informatiche."
+                ),
+            },
+            {
+                "question": "obiettivi formativi ingegneria elettronica e informatica: Capacità di applicare conoscenza e comprensione per curriculum Ingegneria biomedica",
+                "grading_notes": "esercitazioni, laboratori e strumenti didattici",
+                "ground_truth": (
+                    "L'obiettivo è formare laureati capaci di affrontare problemi dell'ingegneria dell'informazione e biomedica. "
+                    "Lo studio è affiancato da esercitazioni scritte e in laboratorio. Gli strumenti includono lezioni ordinarie, "
+                    "integrative, seminari ed esercitazioni, con valutazioni tramite verifiche scritte, orali e prova finale."
+                ),
+            },
+            {
+                "question": "titolo di studio richiesto per immatricolazione",
+                "grading_notes": "diploma superiore e nota sui titoli esteri",
+                "ground_truth": (
+                    "Il titolo richiesto è il diploma di scuola media superiore o titolo estero equipollente. "
+                    "Per i titoli esteri è necessario verificare la validità presso la sezione Studenti Internazionali."
+                ),
+            },
+            {
+                "question": "quali sono i vari curriculum del corso Scienze e Tecnologie per l'ambiente e la natura",
+                "grading_notes": "Ambientale, Biologico e Didattico",
+                "ground_truth": "I curriculum sono tre: Ambientale, Biologico e Didattico.",
+            },
+            {
+                "question": "contatti e ufficio tasse",
+                "grading_notes": "indirizzo, telefono, mail e orari sportello",
+                "ground_truth": (
+                    "Ufficio Applicativi per la carriera dello studente e i contributi universitari: Piazzale Europa 1, Edificio A. "
+                    "Tel: +39 040 558 3731 (mar, mer, ven 12-13). Email: tasse.studenti@amm.units.it. "
+                    "Sportello su prenotazione (EasyPlanning): Lunedì 15:00-16:40 e Giovedì 09:00-11:10."
+                ),
+            },
+            {
+                "question": "parlami dell iniziativa Climbing for Climate (CFC)",
+                "grading_notes": "RUS, CAI e sensibilizzazione riscaldamento globale",
+                "ground_truth": (
+                    "Iniziativa promossa da RUS e CAI per sensibilizzare sul riscaldamento globale. "
+                    "Il nome richiama i clorofluorocarburi (CFC), gas responsabili del buco nell'ozono banditi dal Protocollo di Montreal. "
+                    "L'ateneo partecipa organizzando eventi sul territorio."
+                ),
+            },
+            {
+                "question": "inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE",
+                "grading_notes": "22 settembre - 19 dicembre 2025 (1 ottobre per I anno)",
+                "ground_truth": (
+                    "Le lezioni iniziano il 22 settembre 2025 (il 1 ottobre per gli studenti del primo anno) "
+                    "e terminano il 19 dicembre 2025."
+                ),
+            },
+            {
+                "question": "inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE",
+                "grading_notes": "22/29 settembre - 19 dicembre 2025",
+                "ground_truth": (
+                    "Il primo semestre inizia il 29 settembre 2025 per il I anno e il 22 settembre per gli anni successivi, "
+                    "con termine il 19 dicembre 2025 per tutti."
+                ),
+            },
+            {
+                "question": "dove trovare il materiale didattico del corso di DIGITAL ELECTRONICS AND DEVICES",
+                "grading_notes": "Moodle, MS Teams e link docente",
+                "ground_truth": (
+                    "Il materiale (slide ed esercizi) è disponibile su Moodle e MS Teams o sul sito del docente: "
+                    "http://www2.units.it/carrato/didatt/DSE_web/index.html"
+                ),
+            },
+            {
+                "question": "dove trovare il materiale didattico del corso di Cybersecurity",
+                "grading_notes": "link bartolialberto.github.io",
+                "ground_truth": (
+                    "Il materiale del corso è disponibile sul sito: https://bartolialberto.github.io/CybersecurityCourse/"
+                ),
+            },
+            {
+                "question": "l aula T dell'edificio A è libera il giorno 20 marzo 2026?",
+                "grading_notes": "ammettere mancanza di info",
+                "ground_truth": "Non ho informazioni sulla disponibilità dell'aula T per quella data specifica.",
+            },
+            {
+                "question": "dimmi i corsi disponibili del dipartimento di musicologia",
+                "grading_notes": "ammettere mancanza di info",
+                "ground_truth": "Non dispongo di informazioni sui corsi del dipartimento di Musicologia.",
+            },
+        ]
 
     for sample in samples:
         dataset.append(sample)
@@ -518,7 +520,7 @@ async def run_experiment(row: dict) -> dict:
                 "grading_notes":       row["grading_notes"],
                 "ground_truth":        reference,
                 "answer":              answer,
-                "contexts":            "\n".join(f"{i+1}): {ctx[:30]}..." for i, ctx in enumerate(contexts)),
+                "contexts":            "\n".join(f"{i+1}): (len: {len(ctx)}) {ctx[:30]}..." for i, ctx in enumerate(contexts)),
                 "judge_result":        score,
                 "answer_correctness":  answer_correctness,
                 "faithfulness":        faithfulness,
