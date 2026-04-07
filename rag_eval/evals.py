@@ -2,6 +2,7 @@ import os
 import asyncio
 from dotenv import load_dotenv
 import re
+import argparse
 
 from questions_answares import samples
 
@@ -15,6 +16,7 @@ from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.core.postprocessor import SimilarityPostprocessor
 
 from ragas import Dataset, experiment
+from ragas.run_config import RunConfig
 
 # Faithfulness
 from openai import AsyncOpenAI
@@ -31,38 +33,104 @@ from ragas.metrics.collections import (
 )
 
 from ragas.embeddings import HuggingFaceEmbeddings as RagasHFEmbeddings
-os.environ["HF_HUB_OFFLINE"] = "1"
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 os.environ["HUGGINGFACE_HUB_VERBOSITY"] = "error"
 
 load_dotenv()
 
+
+def format_time(seconds: float) -> str:
+    hours = int(seconds // 3600)
+    minutes = int((seconds % 3600) // 60)
+    secs = round(seconds % 60)
+    if hours > 0:
+        return f"{hours}h {minutes}m {secs}s"
+    elif minutes > 0:
+        return f"{minutes}m {secs}s"
+    else:
+        return f"{secs}s"
+
+# ==============================================================================
+# ARGUMENT PARSING
+# ==============================================================================
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="RAG evaluation script using RAGAS framework")
+    parser.add_argument(
+        "--type", "-t",
+        type=int,
+        choices=[1, 2, 3],
+        required=True,
+        help="1 for sentence splitting, 2 for markdown structure splitting, 3 for hybrid markdown + sentence splitting",
+    )
+    parser.add_argument(
+        "--big", "-b",
+        action="store_true",
+        default=False,
+        help="Use the larger index (thousands of documents). Omit for the smaller index (dozens of documents).",
+    )
+    parser.add_argument(
+        "--all", "-a",
+        action="store_true",
+        default=False,
+        help="Enable all metrics (may be slow).",
+    )
+    return parser.parse_args()
+
+
+def resolve_index_config(index_type: int, big: bool) -> tuple[str, str]:
+    """
+    Map CLI arguments to (INDEX_DIR, OUTPUT_FILENAME).
+
+    index_type:
+        1 → sentence splitting
+        2 → markdown chunking
+        3 → markdown + sentence (hybrid)
+    big:
+        False → standard index
+        True  → big index
+    """
+    suffix = "_big" if big else ""
+
+    mapping = {
+        1: ("index_sentence",              "from_index_sentence"),
+        2: ("index_markdown_chunking",     "from_index_markdown_chunking"),
+        3: ("index_markdown_and_sentence", "from_index_markdown_and_sentence"),
+    }
+
+    folder, name = mapping[index_type]
+    index_dir       = f"../rag/{folder}{suffix}"
+    output_filename = f"{name}{suffix}_results"
+
+    return index_dir, output_filename
+
 # ==============================================================================
 # CONFIGURATION
 # ==============================================================================
 
-# INDEX_DIR         = "../rag/rag_index_sentence_splitting"
-# OUTPUT_FILENAME   = "from_sentence_splitting_index_results"
-
-# INDEX_DIR         = "../rag/rag_index_markdown_chunking"
-# OUTPUT_FILENAME   = "from_rag_index_markdown_chunking_results"
-
-INDEX_DIR         = "../rag/rag_index_markdown_and_sentence_chunking_big"
-OUTPUT_FILENAME   = "from_rag_index_markdown_and_sentence_chunking_big_results"
+_args = parse_args()
+INDEX_DIR, OUTPUT_FILENAME = resolve_index_config(_args.type, _args.big)
 
 SIMILARITY_TOP_K  = 7
 SIMILARITY_CUTOFF = 0.35
 SCORE_THRESHOLDS  = {"high": 0.7, "medium": 0.6}
 
 # Feature flags — disable expensive metrics during quick debug runs
-ENABLE_JUDGE                    = True
-ENABLE_FAITHFULNESS             = True
-ENABLE_ANSWER_CORRECTNESS       = True
-ENABLE_RESPONSE_RELEVANCY       = True
-ENABLE_CONTEXT_PRECISION        = True
-ENABLE_CONTEXT_RECALL           = True
+if _args.all:
+    ENABLE_JUDGE                    = True
+    ENABLE_FAITHFULNESS             = False
+    ENABLE_ANSWER_CORRECTNESS       = True
+    ENABLE_RESPONSE_RELEVANCY       = False
+    ENABLE_CONTEXT_PRECISION        = False
+    ENABLE_CONTEXT_RECALL           = False
+else:
+    ENABLE_JUDGE                    = True
+    ENABLE_FAITHFULNESS             = True
+    ENABLE_ANSWER_CORRECTNESS       = True
+    ENABLE_RESPONSE_RELEVANCY       = True
+    ENABLE_CONTEXT_PRECISION        = True
+    ENABLE_CONTEXT_RECALL           = True
 
-from ragas.run_config import RunConfig
 
 # Conservative config for a local/unstable vLLM service
 _run_config = RunConfig(
@@ -468,9 +536,7 @@ async def main():
     )
 
     experiment_results.save()
-    print(f"Results saved to: evals/experiments/{experiment_results.name}.csv")
-    end_time = time.time()
-    print(f"Total execution time: {end_time - start_time:.2f} seconds")
-
+    print(f"Results saved to: evals/experiments/{experiment_results.name}.csv\n")
+    print(f"Time needed: {format_time(time.time() - start_time)}")
 if __name__ == "__main__":
     asyncio.run(main())
