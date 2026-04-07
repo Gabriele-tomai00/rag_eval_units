@@ -122,16 +122,14 @@ async def main(type: int, big: bool):
 
     chunk_size = 1000
     chunk_overlap = 50
-    docs = load_md_docs("../md_results/cleaned_pages.jsonl")
 
-    # Select correct directory
+    docs = load_md_docs("../md_results/cleaned_pages_big.jsonl") if big else load_md_docs("../md_results/sample_cleaned_pages.jsonl")
     index_dir = index_dirs[type][1 if big else 0]
 
     remove_index(index_dir)
 
     print("\n\n\n")
-
-    print(f"Creating index with sentence splitting...")
+    print(f"Creating index with {index_dir}...")
     index = load_or_create_index(index_dir)
     if index is None:
         print("Failed to load or create the index.")
