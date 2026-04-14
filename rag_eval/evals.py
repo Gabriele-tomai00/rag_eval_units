@@ -75,10 +75,16 @@ def parse_args():
         default=False,
         help="Enable all metrics (may be slow).",
     )
+    parser.add_argument(
+        "--top_k", "-k",
+        type=int,
+        default=5,
+        help="The number of top k chunks retireved",
+    )
     return parser.parse_args()
 
 
-def resolve_index_config(index_type: int, big: bool) -> tuple[str, str]:
+def resolve_index_config(args) -> tuple[str, str]:
     """
     Map CLI arguments to (INDEX_DIR, OUTPUT_FILENAME).
 
@@ -90,6 +96,10 @@ def resolve_index_config(index_type: int, big: bool) -> tuple[str, str]:
         False → standard index
         True  → big index
     """
+    big = args.big
+    index_type = args.type
+    top_k = args.top_k
+
     suffix = "_big" if big else ""
 
     mapping = {
@@ -100,7 +110,7 @@ def resolve_index_config(index_type: int, big: bool) -> tuple[str, str]:
 
     folder, name = mapping[index_type]
     index_dir       = f"../rag/{folder}{suffix}"
-    output_filename = f"{name}{suffix}_results"
+    output_filename = f"{name}{suffix}_k_{top_k}_results"
 
     return index_dir, output_filename
 
@@ -109,10 +119,11 @@ def resolve_index_config(index_type: int, big: bool) -> tuple[str, str]:
 # ==============================================================================
 
 _args = parse_args()
-INDEX_DIR, OUTPUT_FILENAME = resolve_index_config(_args.type, _args.big)
+INDEX_DIR, OUTPUT_FILENAME = resolve_index_config(_args)
 
-SIMILARITY_TOP_K  = 7
-SIMILARITY_CUTOFF = 0.35
+SIMILARITY_TOP_K  = _args.top_k
+print("SIMILARITY_TOP_K: ", SIMILARITY_TOP_K)
+# SIMILARITY_CUTOFF = 0.35
 SCORE_THRESHOLDS  = {"high": 0.7, "medium": 0.6}
 
 # Feature flags — disable expensive metrics during quick debug runs
@@ -134,7 +145,7 @@ else:
 
 # Conservative config for a local/unstable vLLM service
 _run_config = RunConfig(
-    max_workers=8,
+    max_workers=28,
     timeout=600,
     max_retries=4,
 )
@@ -186,9 +197,9 @@ def query_rag(index: VectorStoreIndex, question: str) -> dict:
     # 1. Configurazione del Query Engine con Post-Processor
     query_engine = index.as_query_engine(
         similarity_top_k=SIMILARITY_TOP_K,
-        node_postprocessors=[
-            SimilarityPostprocessor(similarity_cutoff=SIMILARITY_CUTOFF)
-        ]
+        # node_postprocessors=[
+        #     SimilarityPostprocessor(similarity_cutoff=SIMILARITY_CUTOFF)
+        # ]
     )
     
     response = query_engine.query(question)
@@ -225,7 +236,7 @@ def query_rag(index: VectorStoreIndex, question: str) -> dict:
     # Log di debug in console
     print(
         f"[RETRIEVAL] '{question[:50]}...' → {len(used_contexts)} nodes passed filter "
-        f"(Cutoff: {SIMILARITY_CUTOFF})"
+        # f"(Cutoff: {SIMILARITY_CUTOFF})"
     )
 
     return {
@@ -538,5 +549,7 @@ async def main():
     experiment_results.save()
     print(f"Results saved to: evals/experiments/{experiment_results.name}.csv\n")
     print(f"Time needed: {format_time(time.time() - start_time)}")
+
+
 if __name__ == "__main__":
     asyncio.run(main())

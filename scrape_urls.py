@@ -17,7 +17,14 @@ URLS = [
     "https://degree.units.it/it/0320106202400001/area-studenti/calendario-didattico",
     "https://portale.units.it/en/study/degree-courses",
     "https://degree.units.it/it/0320107303300001/area-studenti/insegnamenti/2025/120599/2025/2/10740/2025/13129",
-    "https://degree.units.it/en/0320107303300001/students-area/taught-courses/2025/120014/2025/2/10740/2025/13129"
+    "https://degree.units.it/en/0320107303300001/students-area/taught-courses/2025/120014/2025/2/10740/2025/13129",
+    "https://www.units.it/catalogo-della-didattica-a-distanza",
+    "https://amm.units.it/normativa/regolamenti/articolo-22178/art-31-corsi-studio",
+    "https://amm.units.it/normativa/regolamenti/articolo-22145/art-1-natura-e-fini",
+    "https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa",
+    "https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio",
+    "https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria",
+    "https://bartoli.inginf.units.it/didattica/fast-track"
 ]
 
 # the last page in incomplete so it requires a custom scraper

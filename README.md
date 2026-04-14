@@ -31,3 +31,7 @@ or
 ```
 uv run python evals.py
 ```
+## Other exemple
+```
+python evals.py -t 1 -b -k 4
+```
