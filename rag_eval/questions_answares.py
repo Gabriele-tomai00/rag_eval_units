@@ -1,6 +1,6 @@
 samples = [
         {
-            "question": "sede dell'università di Trieste",
+            "question": "sede principale università di Trieste",
             "grading_notes": "deve menzionare Piazzale Europa e Trieste",
             "ground_truth": (
                 "La sede principale dell'Università degli Studi di Trieste si trova a Trieste, "
@@ -8,7 +8,7 @@ samples = [
             ),
         },
         {
-            "question": "in quale edificio, piano e aula stampare all università",
+            "question": "edificio, piano e aula per stampare all università",
             "grading_notes": "edificio H3, 5 piano, aule informatiche",
             "ground_truth": (
                 "È possibile stampare presso l'edificio H3, situato nel polo di Piazzale Europa, "
@@ -38,7 +38,7 @@ samples = [
             "ground_truth": "I curriculum sono tre: Ambientale, Biologico e Didattico.",
         },
         {
-            "question": "contatti e ufficio tasse",
+            "question": "ufficio tasse",
             "grading_notes": "indirizzo, telefono, mail e orari sportello",
             "ground_truth": (
                 "Ufficio Applicativi per la carriera dello studente e i contributi universitari: Piazzale Europa 1, Edificio A. "
@@ -72,7 +72,7 @@ samples = [
             ),
         },
         {
-            "question": "dove trovare il materiale didattico del corso di DIGITAL ELECTRONICS AND DEVICES",
+            "question": "link materiale didattico del corso di DIGITAL ELECTRONICS AND DEVICES",
             "grading_notes": "Moodle, MS Teams e link docente",
             "ground_truth": (
                 "Il materiale (slide ed esercizi) è disponibile su Moodle e MS Teams o sul sito del docente: "
@@ -80,7 +80,7 @@ samples = [
             ),
         },
         {
-            "question": "dove trovare il materiale didattico del corso di Cybersecurity",
+            "question": "link materiale didattico corso Cybersecurity di Bartoli",
             "grading_notes": "link bartolialberto.github.io",
             "ground_truth": (
                 "Il materiale del corso è disponibile sul sito: https://bartolialberto.github.io/CybersecurityCourse/"
@@ -251,6 +251,58 @@ samples = [
                 "Il summary deve essere inviato per email con almeno una settimana di anticipo rispetto "
                 "all'ultima data utile per la registrazione del tirocinio, indicando nello stesso email "
                 "tale data, determinata contattando la segreteria studenti."
+            ),
+        },
+        {
+            "question": "Quante ore minime di tirocinio pratico-valutativo sono richieste come primo operatore in Odontoiatria?",
+            "grading_notes": "La risposta deve indicare il minimo di 600 ore come primo operatore nel TPV di Odontoiatria.",
+            "ground_truth": (
+                "Il tirocinio pratico-valutativo di Odontoiatria richiede un minimo di 600 ore di tirocinio "
+                "come primo operatore, certificate dal Coordinatore del Corso di Studio."
+            ),
+        },
+        {
+            "question": "In cosa consiste la prova pratica valutativa al termine del tirocinio di Odontoiatria?",
+            "grading_notes": "La risposta deve menzionare la discussione di 3 casi clinici multidisciplinari, la valutazione idoneo/non idoneo e che precede la tesi di laurea.",
+            "ground_truth": (
+                "La prova pratica valutativa consiste nella discussione di 3 casi clinici multidisciplinari "
+                "svolti dal candidato, con valutazione idoneo/non idoneo. Precede la discussione della tesi di laurea."
+            ),
+        },
+        {
+            "question": "Come si registra il tirocinio da 9 CFU in Fisica?",
+            "grading_notes": "La risposta deve menzionare il seminario pubblico di 20 minuti e il contatto con il Prof. Andrea Bressan, con appello ogni primo lunedì del mese.",
+            "ground_truth": (
+                "Per registrare il tirocinio da 9 CFU in Fisica, lo studente deve esporre l'attività svolta "
+                "e i risultati raggiunti in un seminario pubblico di 20 minuti. Bisogna contattare il Prof. "
+                "Andrea Bressan per l'iscrizione all'appello che si tiene ogni primo lunedì del mese."
+            ),
+        },
+        {
+            "question": "Quanti CFU prevede il tirocinio curriculare di Fisica e quante ore corrispondono?",
+            "grading_notes": "La risposta deve indicare 3 CFU per 75 ore, con l'alternativa da 9 CFU per 225 ore, e la restrizione ai soli 3 CFU per gli immatricolati dall'a.a. 2024/2025.",
+            "ground_truth": (
+                "Il tirocinio curriculare di Fisica prevede 3 CFU per un totale di 75 ore. In alternativa "
+                "è possibile optare per un tirocinio esteso da 9 CFU per 225 ore. Per gli immatricolati "
+                "al primo anno a partire dall'a.a. 2024/2025 è previsto solamente il tirocinio da 3 CFU."
+            ),
+        },
+        {
+            "question": "Entro quando deve arrivare la documentazione per avviare il tirocinio di Scienze e Tecnologie Biologiche?",
+            "grading_notes": "La risposta deve indicare entro il 15 del mese precedente l'inizio del tirocinio.",
+            "ground_truth": (
+                "La documentazione per avviare il tirocinio di Scienze e Tecnologie Biologiche deve arrivare "
+                "alla Segreteria Didattica entro il 15 del mese precedente l'inizio del tirocinio, per "
+                "permettere l'approvazione da parte del Consiglio di Corso di Studi."
+            ),
+        },
+        {
+            "question": "Quando è richiesto il test Mantoux per il tirocinio di Scienze e Tecnologie Biologiche?",
+            "grading_notes": "La risposta deve indicare che il test è richiesto quando il tirocinio prevede contatto con persone fragili (asili, ospedali, case di riposo ecc.) e che l'ateneo ha una convenzione con ASUGI per effettuarlo gratuitamente.",
+            "ground_truth": (
+                "Il test Mantoux è richiesto quando il tirocinio prevede il contatto con persone fragili, "
+                "come in strutture quali asili nidi, scuole dell'infanzia, ospedali, cliniche, case di riposo "
+                "o centri di accoglienza. L'ateneo ha una convenzione con ASUGI per effettuare il test gratuitamente."
             ),
         },
     ]

@@ -24,7 +24,11 @@ URLS = [
     "https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa",
     "https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio",
     "https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria",
-    "https://bartoli.inginf.units.it/didattica/fast-track"
+    "https://bartoli.inginf.units.it/didattica/fast-track",
+    "https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato",
+    "https://dia.units.it/it/didattica/node/650",
+    "https://lauree.units.it/it/0320106203000001/area-studenti/tirocinio-e-internato",
+    "https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato"
 ]
 
 # the last page in incomplete so it requires a custom scraper
