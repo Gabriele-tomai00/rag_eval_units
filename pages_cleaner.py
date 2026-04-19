@@ -68,7 +68,7 @@ def html_to_markdown(html_content: str) -> str:
 # Main processing
 # -------------------------------
 
-def process_jsonl(input_file: str, output_file: str):
+def process_jsonl(input_file: str, output_file: str, save_md: bool = False):
     saved = 0
     with open(input_file, "r", encoding="utf-8") as fin, \
          open(output_file, "w", encoding="utf-8") as fout:
@@ -89,9 +89,10 @@ def process_jsonl(input_file: str, output_file: str):
             md_text = html_to_markdown(cleaned_html)
             item["content"] = md_text
 
-            filename = sanitize_filename(url)
-            with open(os.path.join(MD_FOLDER, filename), "w", encoding="utf-8") as fmd:
-                fmd.write(md_text)
+            if save_md:
+                filename = sanitize_filename(url)
+                with open(os.path.join(MD_FOLDER, filename), "w", encoding="utf-8") as fmd:
+                    fmd.write(md_text)
 
             fout.write(json.dumps(item, ensure_ascii=False) + "\n")
             saved += 1
@@ -103,6 +104,7 @@ def process_jsonl(input_file: str, output_file: str):
 
 
 if __name__ == "__main__":
+    print("Start converting HTML documents to MARKDOWN")
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--input",
@@ -114,7 +116,14 @@ if __name__ == "__main__":
         default="md_results/cleaned_pages.jsonl",
         help="File JSONL di output (default: md_results/cleaned_pages.jsonl)"
     )
+    parser.add_argument(
+        "--all",
+        "-a",
+        default=0,
+        type=bool,
+        help="Save each page as a separate .md file (default: 0, set to 1 to enable)"
+    )
     args = parser.parse_args()
 
     os.makedirs(OUTPUT_FOLDER, exist_ok=True)
-    process_jsonl(args.input, args.output)
+    process_jsonl(args.input, args.output, save_md=args.all)
