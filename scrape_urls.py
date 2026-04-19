@@ -83,8 +83,8 @@ def main():
                 html = fetch_html(url)
                 title = extract_title(html)
                 record = {
-                    "url": url, 
                     "title": title,
+                    "url": url, 
                     "content": html
                     }
                 f.write(json.dumps(record, ensure_ascii=False) + "\n")
