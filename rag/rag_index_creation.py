@@ -135,7 +135,14 @@ async def main(type: int, big: bool):
     if index is None:
         print("Failed to load or create the index.")
         return
-    add_to_index_md_files_sentence_splitter(index, docs, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+
+    if type == 1:
+        add_to_index_md_files_sentence_splitter(index, docs, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+    elif type == 2:
+        add_to_index_md_files_md_splitter(index, docs)
+    elif type == 3:
+        add_to_index_md_files_hybrid_md_and_text_splitter(index, docs, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+        
     zip_file = zip_folder(index_dir)
     print(f"Index folder '{index_dir}' zipped to '{zip_file}'.")
     print("\n\n\n")
