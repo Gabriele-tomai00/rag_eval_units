@@ -31,7 +31,7 @@ def get_prompt_from_file(file_path: str) -> str:
 
 Settings.embed_model = HuggingFaceEmbedding(
     model_name="BAAI/bge-m3",
-    embed_batch_size=4,
+    embed_batch_size=32,
 )
 
 Settings.llm = OpenAILike(
