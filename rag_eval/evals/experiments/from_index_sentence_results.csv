@@ -1,0 +1,194 @@
+question,grading_notes,ground_truth,answer,contexts,judge_result,answer_correctness,faithfulness,response_relevancy,context_precision,context_recall,top_chunk_score,top_chunk_src
+sede dell'università di Trieste,deve menzionare Piazzale Europa e Trieste,"La sede principale dell'Università degli Studi di Trieste si trova a Trieste, in Piazzale Europa 1, in un'area sopraelevata rispetto al centro della città.","La sede principale dell'Università si trova a Trieste, in Piazzale Europa 1, in un'area sopraelevata rispetto alla città.","1): (len: 1641) (score: 0.5695) * Futuri studenti
+  * Studenti...
+2): (len: 1519) (score: 0.4634) * Futuri studenti
+  * Studenti...
+3): (len: 1558) (score: 0.4417) Per tutte le informazioni, con...
+4): (len: 2511) (score: 0.4325) * Prospective students
+  * Enr...
+5): (len: 2713) (score: 0.4120) * Futuri studenti
+  * Studenti...
+6): (len: 1645) (score: 0.4039) L’Università di Trieste aderis...
+7): (len: 3291) (score: 0.3990) * Futuri studenti
+  * Studenti...",pass,0.9818,1.0,0.5794,1.0,1.0,0.5695,https://portale.units.it/it/ateneo/campus
+"in quale edificio, piano e aula stampare all università","edificio H3, 5 piano, aule informatiche","È possibile stampare presso l'edificio H3, situato nel polo di Piazzale Europa, al quinto piano all'interno delle aule informatiche.","È possibile stampare nell'Aula informatica dell'Edificio H3, situata al 5° piano.","1): (len: 1519) (score: 0.4724) * Futuri studenti
+  * Studenti...",pass,0.8683,1.0,0.6484,1.0,1.0,0.4724,https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica
+obiettivi formativi ingegneria elettronica e informatica: Capacità di applicare conoscenza e comprensione per curriculum Ingegneria biomedica,"esercitazioni, laboratori e strumenti didattici","L'obiettivo è formare laureati capaci di affrontare problemi dell'ingegneria dell'informazione e biomedica. Lo studio è affiancato da esercitazioni scritte e in laboratorio. Gli strumenti includono lezioni ordinarie, integrative, seminari ed esercitazioni, con valutazioni tramite verifiche scritte, orali e prova finale.","I laureati del curriculum in Ingegneria Biomedica devono possedere una conoscenza sufficientemente ampia per affrontare problematiche che coinvolgono diversi settori dell'Ingegneria dell'Informazione, con un'enfasi particolare sull'ambito biomedico.
+
+Per sviluppare questa capacità, lo studio delle conoscenze fondamentali è integrato con esercitazioni scritte e attività di laboratorio. Queste prove pratiche sono concepite per permettere agli studenti di familiarizzare con le nozioni apprese durante i corsi e di applicare concretamente i concetti e le conoscenze acquisite.","1): (len: 3355) (score: 0.5707) L'elettronica, che e' comunque...
+2): (len: 3403) (score: 0.5290) Il corso di laurea è impostato...
+3): (len: 3065) (score: 0.5241) L'acquisizione delle conoscenz...
+4): (len: 1691) (score: 0.5084) ENG
+
+Area studenti
+
+  * Home
+ ...
+5): (len: 2993) (score: 0.4940) Ingegnere gestionale  
+L'ingeg...
+6): (len: 3410) (score: 0.4860) Ingegnere informatico  
+Le pri...
+7): (len: 3138) (score: 0.4435) ## 
+
+### Sbocchi occupazionali...",pass,0.7423,1.0,0.5384,0.8667,1.0,0.5707,https://lauree.units.it/it/0320106200800001/il-corso
+titolo di studio richiesto per immatricolazione,diploma superiore e nota sui titoli esteri,Il titolo richiesto è il diploma di scuola media superiore o titolo estero equipollente. Per i titoli esteri è necessario verificare la validità presso la sezione Studenti Internazionali.,Per l'immatricolazione è richiesto il possesso di un diploma di scuola media superiore o di un titolo di studio equipollente conseguito all'estero.,"1): (len: 2398) (score: 0.4490) Non hai ancora conseguito il t...
+2): (len: 2657) (score: 0.4399) ENG
+
+Area studenti
+
+  * Home
+ ...
+3): (len: 2581) (score: 0.4231) **Per ulteriori informazioni e...
+4): (len: 2713) (score: 0.3922) * Futuri studenti
+  * Studenti...
+5): (len: 1691) (score: 0.3865) ENG
+
+Area studenti
+
+  * Home
+ ...
+6): (len: 2254) (score: 0.3733) Le scadenze di pagamento, **pe...
+7): (len: 1558) (score: 0.3705) Per tutte le informazioni, con...",pass,0.7051,1.0,0.6954,1.0,1.0,0.449,https://lauree.units.it/it/0320106200800001/come-iscriversi
+quali sono i vari curriculum del corso Scienze e Tecnologie per l'ambiente e la natura,"Ambientale, Biologico e Didattico","I curriculum sono tre: Ambientale, Biologico e Didattico.","Il corso di laurea in Scienze e Tecnologie per l'ambiente e la natura offre tre curricula didattici:
+
+*   Curriculum Ambientale
+*   Curriculum Biologico
+*   Curriculum Didattico","1): (len: 3163) (score: 0.5589) # 
+
+# Laurea in Scienze e Tecn...
+2): (len: 2173) (score: 0.4760) **\---** gli studenti del **Cu...
+3): (len: 2511) (score: 0.3801) * Prospective students
+  * Enr...
+4): (len: 3291) (score: 0.3709) * Futuri studenti
+  * Studenti...
+5): (len: 2713) (score: 0.3677) Area studenti
+
+  * Home
+  * Il...
+6): (len: 3403) (score: 0.3626) Il corso di laurea è impostato...
+7): (len: 2957) (score: 0.3579) Student area
+
+  * Home
+  * The...",pass,0.9343,1.0,0.8556,0.5,1.0,0.5589,https://www.biologia.units.it/index.php?/corsi/5/Laurea-in-Scienze-e-Tecnologie-per-lambiente-e-la-natura
+contatti e ufficio tasse,"indirizzo, telefono, mail e orari sportello","Ufficio Applicativi per la carriera dello studente e i contributi universitari: Piazzale Europa 1, Edificio A. Tel: +39 040 558 3731 (mar, mer, ven 12-13). Email: tasse.studenti@amm.units.it. Sportello su prenotazione (EasyPlanning): Lunedì 15:00-16:40 e Giovedì 09:00-11:10.","L'ufficio competente per la carriera dello studente e i contributi universitari si trova in Piazzale Europa, 1 - 34127 - TRIESTE, nell'Edificio Centrale A.
+
+Per contatti telefonici, il servizio è disponibile il martedì, mercoledì e venerdì dalle 12:00 alle 13:00, al numero +39 040 558 3731. L'indirizzo e-mail è tasse.studenti@amm.units.it.
+
+L'ufficio riceve su prenotazione il lunedì dalle 15:00 alle 16:40 e il giovedì dalle 9:00 alle 11:10. Per prenotare un appuntamento, è necessario accedere al servizio EasyPlanning e selezionare il servizio ""Tasse"". Si ricorda che per accedere agli sportelli è richiesta l'esibizione della ricevuta di prenotazione inviata via mail e un documento di identità. È possibile delegare una terza persona, che dovrà essere munita di delega e copia del documento di identità del delegante. Gli appuntamenti in presenza possono essere fissati fino al giorno precedente a quello prescelto.","1): (len: 1558) (score: 0.4273) Per tutte le informazioni, con...
+2): (len: 1519) (score: 0.3674) * Futuri studenti
+  * Studenti...
+3): (len: 2713) (score: 0.3519) * Futuri studenti
+  * Studenti...",pass,0.7575,1.0,0.6062,1.0,1.0,0.4273,https://portale.units.it/it/studiare/contributi/lauree-magistrali-e-magistrali-ciclo-unico
+parlami dell iniziativa Climbing for Climate (CFC),"RUS, CAI e sensibilizzazione riscaldamento globale","Iniziativa promossa da RUS e CAI per sensibilizzare sul riscaldamento globale. Il nome richiama i clorofluorocarburi (CFC), gas responsabili del buco nell'ozono banditi dal Protocollo di Montreal. L'ateneo partecipa organizzando eventi sul territorio.","L'iniziativa Climbing for Climate (CFC) è organizzata dalla Rete delle Università per lo Sviluppo Sostenibile (RUS) in collaborazione con il Club Alpino Italiano (CAI). Il suo nome è anche un acronimo che richiama i CloroFluoroCarburi, composti chimici banditi dal protocollo di Montreal del 1987 per il loro ruolo nella riduzione dello strato di ozono e per l'elevato effetto serra.
+
+Questa iniziativa impegna le istituzioni aderenti a contrastare il riscaldamento globale attraverso la formazione degli studenti, la promozione di ricerche orientate allo sviluppo sostenibile del pianeta e la sensibilizzazione dei cittadini. L'Università di Trieste partecipa annualmente a questa iniziativa, anche co-organizzando un evento a livello regionale.","1): (len: 3389) (score: 0.4636) Dal 2012, sotto la guida dell’...",pass,0.8524,1.0,0.825,1.0,1.0,0.4636,https://portale.units.it/it/terza-missione/sostenibilita
+inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE,22 settembre - 19 dicembre 2025 (1 ottobre per I anno),Le lezioni iniziano il 22 settembre 2025 (il 1 ottobre per gli studenti del primo anno) e terminano il 19 dicembre 2025.,"Le lezioni del primo semestre per il corso di SCIENZE INTERNAZIONALI E DIPLOMATICHE si svolgono dal 22 settembre 2025 al 19 dicembre 2025.
+
+Tuttavia, gli studenti del 1° anno di questo corso iniziano il primo semestre il 1° ottobre 2025.","1): (len: 2908) (score: 0.5380) Area studenti
+
+  * Home
+  * Il...
+2): (len: 2713) (score: 0.4047) Area studenti
+
+  * Home
+  * Il...
+3): (len: 2511) (score: 0.3868) * Prospective students
+  * Enr...
+4): (len: 2398) (score: 0.3745) Non hai ancora conseguito il t...
+5): (len: 3570) (score: 0.3734) Area studenti
+
+  * Home
+  * Il...
+6): (len: 2937) (score: 0.3639) ## 
+
+The exam consists of the ...
+7): (len: 2957) (score: 0.3636) Student area
+
+  * Home
+  * The...",pass,0.9348,1.0,0.8487,1.0,1.0,0.538,https://degree.units.it/it/0320106203600002/area-studenti/calendario-didattico
+inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE,22/29 settembre - 19 dicembre 2025,"Il primo semestre inizia il 29 settembre 2025 per il I anno e il 22 settembre per gli anni successivi, con termine il 19 dicembre 2025 per tutti.","Per il corso di SCIENZE E TECNICHE PSICOLOGICHE, le lezioni del primo semestre si svolgono:
+
+*   **I anno:** dal 29 settembre 2025 al 19 dicembre 2025
+*   **II e III anno:** dal 22 settembre 2025 al 19 dicembre 2025","1): (len: 2713) (score: 0.5155) Area studenti
+
+  * Home
+  * Il...
+2): (len: 2908) (score: 0.4384) Area studenti
+
+  * Home
+  * Il...
+3): (len: 3570) (score: 0.3832) Area studenti
+
+  * Home
+  * Il...
+4): (len: 3163) (score: 0.3793) # 
+
+# Laurea in Scienze e Tecn...
+5): (len: 2957) (score: 0.3769) Student area
+
+  * Home
+  * The...
+6): (len: 2511) (score: 0.3738) * Prospective students
+  * Enr...
+7): (len: 2816) (score: 0.3639) Per verificare se rientri tra ...",pass,0.8282,1.0,0.8146,1.0,1.0,0.5155,https://degree.units.it/it/0320106202400001/area-studenti/calendario-didattico
+dove trovare il materiale didattico del corso di DIGITAL ELECTRONICS AND DEVICES,"Moodle, MS Teams e link docente",Il materiale (slide ed esercizi) è disponibile su Moodle e MS Teams o sul sito del docente: http://www2.units.it/carrato/didatt/DSE_web/index.html,"Il materiale didattico, inclusi esercizi e problemi, è reso disponibile agli studenti tramite le piattaforme Moodle / MS Teams e/o il sito web del docente. Ulteriori informazioni possono essere trovate sulla pagina web del docente all'indirizzo http://www2.units.it/carrato/didatt/DSE_web/index.html.","1): (len: 3570) (score: 0.4478) Area studenti
+
+  * Home
+  * Il...
+2): (len: 3832) (score: 0.4125) ## 
+
+This module is composed o...
+3): (len: 2957) (score: 0.3966) Student area
+
+  * Home
+  * The...
+4): (len: 1691) (score: 0.3827) ENG
+
+Area studenti
+
+  * Home
+ ...
+5): (len: 2398) (score: 0.3782) Non hai ancora conseguito il t...
+6): (len: 2937) (score: 0.3774) ## 
+
+The exam consists of the ...
+7): (len: 3065) (score: 0.3767) L'acquisizione delle conoscenz...",pass,0.6948,1.0,0.6215,1.0,1.0,0.4478,https://degree.units.it/it/0320107303300001/area-studenti/insegnamenti/2025/120599/2025/2/10740/2025/13129
+dove trovare il materiale didattico del corso di Cybersecurity,link bartolialberto.github.io,Il materiale del corso è disponibile sul sito: https://bartolialberto.github.io/CybersecurityCourse/,"Il materiale didattico per il corso di Cybersecurity, che include le slide fornite dal docente e una selezione di riferimenti, è disponibile sul sito web del corso all'indirizzo https://bartolialberto.github.io/CybersecurityCourse/.","1): (len: 2957) (score: 0.4418) Student area
+
+  * Home
+  * The...
+2): (len: 4009) (score: 0.3862) ## 
+
+Hacking Lab based on meta...
+3): (len: 3570) (score: 0.3861) Area studenti
+
+  * Home
+  * Il...
+4): (len: 2937) (score: 0.3729) ## 
+
+The exam consists of the ...
+5): (len: 2713) (score: 0.3724) Area studenti
+
+  * Home
+  * Il...
+6): (len: 3832) (score: 0.3628) ## 
+
+This module is composed o...
+7): (len: 2398) (score: 0.3607) Non hai ancora conseguito il t...",pass,0.7309,1.0,0.9384,1.0,1.0,0.4418,https://degree.units.it/en/0320107303300001/students-area/taught-courses/2025/120014/2025/2/10740/2025/13129
+l aula T dell'edificio A è libera il giorno 20 marzo 2026?,ammettere mancanza di info,Non ho informazioni sulla disponibilità dell'aula T per quella data specifica.,"Non è possibile determinare la disponibilità dell'aula T dell'edificio A per il 20 marzo 2026, poiché le informazioni fornite riguardano esclusivamente l'aula informatica dell'Edificio H3.","1): (len: 1519) (score: 0.3613) * Futuri studenti
+  * Studenti...",pass,0.6934,1.0,0.0,0.0,1.0,0.3613,https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica
+dimmi i corsi disponibili del dipartimento di musicologia,ammettere mancanza di info,Non dispongo di informazioni sui corsi del dipartimento di Musicologia.,Non ci sono informazioni disponibili sui corsi offerti dal Dipartimento di Musicologia.,"1): (len: 2713) (score: 0.3801) Area studenti
+
+  * Home
+  * Il...
+2): (len: 3570) (score: 0.3761) Area studenti
+
+  * Home
+  * Il...
+3): (len: 2908) (score: 0.3675) Area studenti
+
+  * Home
+  * Il...
+4): (len: 2511) (score: 0.3656) * Prospective students
+  * Enr...
+5): (len: 2173) (score: 0.3538) **\---** gli studenti del **Cu...",pass,0.9804,1.0,0.0,0.25,1.0,0.3801,https://degree.units.it/it/0320106202400001/area-studenti/calendario-didattico
