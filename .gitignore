@@ -10,6 +10,14 @@ env/
 # RAG index (ChromaDB, large binary files)
 rag_index*/
 index*/
+*.zip
+
+# scraper
+md_results/md_files/
+# scraper_results/html_contents.jsonl
+scraper_results/*
+
+
 
 # Evaluation outputs (results vary per run, not source code)
 evals/experiments/
