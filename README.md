@@ -31,6 +31,10 @@ or
 ```
 uv run python evals.py
 ```
+## Parameters
+`-t` 1 for sentence splitting, 2 for markdown structure splitting, 3 for hybrid markdown + sentence splitting
+`-b` embed the bigger corpus
+``
 ## Other exemple
 ```
 python evals.py -t 1 -b -k 4
