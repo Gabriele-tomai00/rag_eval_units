@@ -114,15 +114,21 @@ def print_debug_result(result: dict) -> None:
 # ENTRY POINT
 # ==============================================================================
 
-async def main(type: int, big: bool):
+async def main(type: int, big: bool, chunk_size: int) -> None:
     index_dirs = {
         1: ("index_sentence", "index_sentence_big"),
         2: ("index_markdown_chunking", "index_markdown_chunking_big"),
         3: ("index_markdown_and_sentence", "index_markdown_and_sentence_big"),
     }
 
-    chunk_size = 1000
-    chunk_overlap = 50
+    chunk_size_mapping = {
+        128: 10,
+        256: 20,
+        512: 50,
+        1024: 100,
+    }
+
+    chunk_overlap = chunk_size_mapping[chunk_size]
 
     docs = load_md_docs("../md_results/cleaned_pages_big.jsonl") if big else load_md_docs("../md_results/cleaned_pages.jsonl")
     index_dir = index_dirs[type][1 if big else 0]
@@ -184,6 +190,13 @@ if __name__ == "__main__":
         help="1 for sentence splitting, 2 for markdown structure splitting, 3 for hybrid markdown + sentence splitting",
     )   
     parser.add_argument(
+        "--chunk_size", "-c",
+        type=int,
+        default=512,
+        choices=[128, 256, 512, 1024],
+        help="Size of the chunks (128, 256, 512, 1024). Overlap is derived automatically.",
+    )   
+    parser.add_argument(
         "--big", "-b",
         action="store_true",
         default=False,
@@ -191,5 +204,5 @@ if __name__ == "__main__":
     )    
     args = parser.parse_args()
 
-    asyncio.run(main(args.type, args.big))
+    asyncio.run(main(args.type, args.big, args.chunk_size))
     print(f"Time needed: {format_time(time.time() - start_time)}")
