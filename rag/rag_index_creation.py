@@ -131,7 +131,7 @@ async def main(type: int, big: bool, chunk_size: int) -> None:
     chunk_overlap = chunk_size_mapping[chunk_size]
 
     docs = load_md_docs("../md_results/cleaned_pages_big.jsonl") if big else load_md_docs("../md_results/cleaned_pages.jsonl")
-    index_dir = index_dirs[type][1 if big else 0]
+    index_dir = f"{index_dirs[type][1 if big else 0]}_{chunk_size}"
 
     remove_index(index_dir)
 
