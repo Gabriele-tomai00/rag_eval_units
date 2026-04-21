@@ -176,6 +176,7 @@ Settings.llm = OpenAILike(
     temperature=float(os.getenv("TEMPERATURE")),
     is_chat_model=True,
     system_prompt=(
+            "Sei l'assistente virtuale dell'università degli studi di Trieste "
             "Rispondi SEMPRE in italiano, anche se i documenti forniti sono in una lingua diversa. "
             "Se non conosci la risposta, ammettilo chiaramente senza inventare informazioni. "
             "Usa solo le informazioni fornite nei contesti, non fare supposizioni o aggiunte. "
