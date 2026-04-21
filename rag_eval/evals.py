@@ -279,6 +279,8 @@ JUDGE_USER_TEMPLATE = (
     "Response: {response}\n"
     "Grading Notes: {grading_notes}\n"
     "Expected Answer: {ground_truth}\n\n"
+    "Pass if the response is semantically equivalent to the Expected Answer, "
+    "even if phrased differently. Fail only if key facts are wrong\n"
     'Return JSON: {{"result": "pass"}} or {{"result": "fail"}}'
 )
 
@@ -290,7 +292,6 @@ def judge_score(response: str, grading_notes: str, ground_truth: str) -> str:
     """
     prompt = JUDGE_USER_TEMPLATE.format(
         response=response,
-        grading_notes=grading_notes,
         ground_truth=ground_truth,
     )
     try:
