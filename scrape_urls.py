@@ -11,7 +11,6 @@ URLS = [
     "https://lauree.units.it/it/0320106200800001/come-iscriversi",
     "https://www.biologia.units.it/index.php?/corsi/5/Laurea-in-Scienze-e-Tecnologie-per-lambiente-e-la-natura",
     "https://portale.units.it/it/studiare/contributi/lauree-magistrali-e-magistrali-ciclo-unico",
-    "https://portale.units.it/it/studiare/contributi/lauree-magistrali-e-magistrali-ciclo-unico",
     "https://portale.units.it/it/terza-missione/sostenibilita",
     "https://degree.units.it/it/0320106203600002/area-studenti/calendario-didattico",
     "https://degree.units.it/it/0320106202400001/area-studenti/calendario-didattico",
