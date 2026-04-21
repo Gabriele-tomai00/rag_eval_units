@@ -513,33 +513,31 @@ async def run_experiment(row: dict) -> dict:
             context_precision = await compute_context_precision(row["question"], answer, contexts, reference, q)
             context_recall = await compute_context_recall(row["question"], contexts, reference, q)
 
-            return {
-                "question":            row["question"],
-                "grading_notes":       row["grading_notes"],
-                "ground_truth":        reference,
-                "answer":              answer,
-                "contexts":            "\n".join(f"{i+1}): (len: {len(ctx)}) (score: {rag_result['chunks'][i]['score']:.4f}) {ctx[:30]}..." for i, ctx in enumerate(contexts)),
-                "judge_result":        score,
-                "answer_correctness":  answer_correctness,
-                "faithfulness":        faithfulness,
-                "response_relevancy":  response_relevancy,
-                "context_precision":   context_precision,
-                "context_recall":      context_recall,
-                "top_chunk_score":     rag_result["chunks"][0]["score"] if rag_result["chunks"] else None,
-                "top_chunk_src":       rag_result["chunks"][0]["source"] if rag_result["chunks"] else None,
+            result = {
+                "question":        row["question"],
+                "grading_notes":   row["grading_notes"],
+                "ground_truth":    reference,
+                "answer":          answer,
+                "contexts":        "\n".join(f"{i+1}): (len: {len(ctx)}) (score: {rag_result['chunks'][i]['score']:.4f}) {ctx[:30]}..." for i, ctx in enumerate(contexts)),
+                "judge_result":    score,
+                "top_chunk_score": rag_result["chunks"][0]["score"] if rag_result["chunks"] else None,
+                "top_chunk_src":   rag_result["chunks"][0]["source"] if rag_result["chunks"] else None,
             }
+            if ENABLE_ANSWER_CORRECTNESS:
+                result["answer_correctness"] = answer_correctness
+            if ENABLE_FAITHFULNESS:
+                result["faithfulness"] = faithfulness
+            if ENABLE_RESPONSE_RELEVANCY:
+                result["response_relevancy"] = response_relevancy
+            if ENABLE_CONTEXT_PRECISION:
+                result["context_precision"] = context_precision
+            if ENABLE_CONTEXT_RECALL:
+                result["context_recall"] = context_recall
+            return result
 
         except Exception as e:
             print(f"Experiment error: {type(e).__name__}: {e}")
-            return {
-                "question": row["question"],
-                "judge_result": "error",
-                "faithfulness":       None,
-                "answer_correctness": None,
-                "response_relevancy": None,
-                "context_precision":  None,
-                "context_recall":     None,
-            }
+            return {"question": row["question"], "judge_result": "error"}
 
 
 # ==============================================================================
