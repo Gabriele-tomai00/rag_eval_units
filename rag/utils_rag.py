@@ -20,6 +20,7 @@ from llama_index.core.node_parser import MarkdownNodeParser, SentenceSplitter
 INDEX_DIR = "rag_index"
 SIMILARITY_TOP_K = 7
 SCORE_THRESHOLDS = {"high": 0.7, "medium": 0.6}
+INSERT_BATCH_SIZE = 1000  # nodes per ChromaDB commit (tunable independently from embed_batch_size)
 load_dotenv()
 
 
@@ -31,7 +32,7 @@ def get_prompt_from_file(file_path: str) -> str:
 
 Settings.embed_model = HuggingFaceEmbedding(
     model_name="BAAI/bge-m3",
-    embed_batch_size=48,
+    embed_batch_size=64,  # increased from 48 — saturates the 15GB GPU
 )
 
 Settings.llm = OpenAILike(
@@ -100,42 +101,62 @@ def load_md_docs(jsonl_path: str) -> list[Document]:
     return docs
 
 
-def add_to_index_md_files_sentence_splitter(index: VectorStoreIndex, docs: list[Document], chunk_size, chunk_overlap) -> int:
+def _insert_nodes_incremental(index: VectorStoreIndex, nodes: list, label: str) -> None:
+    """
+    Insert nodes into the index in batches of INSERT_BATCH_SIZE.
+    Each batch triggers a separate ChromaDB/SQLite commit, so progress
+    is saved incrementally and memory usage is bounded.
+
+    Parameters
+    ----------
+    index  : VectorStoreIndex
+    nodes  : list of BaseNode
+    label  : short string shown in progress output (e.g. "sentence", "markdown")
+    """
+    total = len(nodes)
+    for start in range(0, total, INSERT_BATCH_SIZE):
+        batch = nodes[start:start + INSERT_BATCH_SIZE]
+        index.insert_nodes(batch)
+        committed = min(start + INSERT_BATCH_SIZE, total)
+        print(f"  [{label}] committed {committed}/{total} nodes → SQLite flushed")
+
+
+def add_to_index_md_files_sentence_splitter(index: VectorStoreIndex, docs: list[Document], chunk_size, chunk_overlap) -> None:
     text_splitter = SentenceSplitter(
         chunk_size=chunk_size,
         chunk_overlap=chunk_overlap
     )
     nodes = text_splitter.get_nodes_from_documents(docs)
-    index.insert_nodes(nodes)
 
     chunk_lengths = [len(node.get_content().split()) for node in nodes]
     max_chunk_len = max(chunk_lengths) if chunk_lengths else 0
-    print(f"Inserted {len(nodes)} nodes from documents (after sentence splitting).")
-    print(f"Longest chunk: {max_chunk_len} tokens (approx.)")
+    print(f"Splitting done: {len(nodes)} nodes — longest chunk: {max_chunk_len} tokens (approx.)")
+
+    _insert_nodes_incremental(index, nodes, label="sentence")
 
     
-def add_to_index_md_files_md_splitter(index: VectorStoreIndex, docs: list[Document]) -> int:
+def add_to_index_md_files_md_splitter(index: VectorStoreIndex, docs: list[Document]) -> None:
     md_parser = MarkdownNodeParser()
     nodes = md_parser.get_nodes_from_documents(docs)
-    index.insert_nodes(nodes)
-    print(f"Inserted {len(nodes)} nodes (after splitting according to markdown structure).")
 
     chunk_lengths = [len(node.get_content().split()) for node in nodes]
     max_chunk_len = max(chunk_lengths) if chunk_lengths else 0
-    print(f"Longest chunk: {max_chunk_len} tokens (approx.)")
+    print(f"Splitting done: {len(nodes)} nodes — longest chunk: {max_chunk_len} tokens (approx.)")
+
+    _insert_nodes_incremental(index, nodes, label="markdown")
 
 
-def add_to_index_md_files_hybrid_md_and_text_splitter(index: VectorStoreIndex, docs: list[Document], chunk_size, chunk_overlap) -> int:
+def add_to_index_md_files_hybrid_md_and_text_splitter(index: VectorStoreIndex, docs: list[Document], chunk_size, chunk_overlap) -> None:
     md_parser = MarkdownNodeParser()
     initial_nodes = md_parser.get_nodes_from_documents(docs)
     text_splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
     final_nodes = text_splitter.get_nodes_from_documents(initial_nodes)
-    index.insert_nodes(final_nodes)
-    print(f"Inserted {len(final_nodes)} nodes (after Markdown + Sentence splitting).")
 
     chunk_lengths = [len(node.get_content().split()) for node in final_nodes]
     max_chunk_len = max(chunk_lengths) if chunk_lengths else 0
-    print(f"Longest chunk: {max_chunk_len} tokens (approx.)")
+    print(f"Splitting done: {len(final_nodes)} nodes — longest chunk: {max_chunk_len} tokens (approx.)")
+
+    _insert_nodes_incremental(index, final_nodes, label="hybrid")
 
 
 
