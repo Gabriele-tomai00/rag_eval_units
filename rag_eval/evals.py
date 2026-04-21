@@ -137,18 +137,18 @@ SCORE_THRESHOLDS  = {"high": 0.7, "medium": 0.6}
 # Feature flags — disable expensive metrics during quick debug runs
 if _args.all:
     ENABLE_JUDGE                    = True
-    ENABLE_FAITHFULNESS             = False
-    ENABLE_ANSWER_CORRECTNESS       = True
-    ENABLE_RESPONSE_RELEVANCY       = False
-    ENABLE_CONTEXT_PRECISION        = False
-    ENABLE_CONTEXT_RECALL           = False
-else:
-    ENABLE_JUDGE                    = True
     ENABLE_FAITHFULNESS             = True
     ENABLE_ANSWER_CORRECTNESS       = True
     ENABLE_RESPONSE_RELEVANCY       = True
     ENABLE_CONTEXT_PRECISION        = True
     ENABLE_CONTEXT_RECALL           = True
+else:
+    ENABLE_JUDGE                    = True
+    ENABLE_FAITHFULNESS             = False
+    ENABLE_ANSWER_CORRECTNESS       = True
+    ENABLE_RESPONSE_RELEVANCY       = False
+    ENABLE_CONTEXT_PRECISION        = False
+    ENABLE_CONTEXT_RECALL           = False
 
 
 # Conservative config for a local/unstable vLLM service
@@ -365,11 +365,12 @@ context_recall_scorer = ContextRecall(llm=_ragas_llm, run_config=_run_config)
 # ASYNC SCORING HELPERS
 # ==============================================================================
 
-async def compute_faithfulness(question: str, answer: str, contexts: list[str]) -> float | None:
+async def compute_faithfulness(question: str, answer: str, contexts: list[str], q: int = 0) -> float | None:
     """Grounding of the answer in retrieved context. No ground truth needed."""
     if not ENABLE_FAITHFULNESS:
         return None
     try:
+        print(f"[{q}/{_total_questions}] faithfulness: '{question[:50]}'")
         result = await faithfulness_scorer.ascore(
             user_input=question,
             response=answer,
@@ -381,7 +382,7 @@ async def compute_faithfulness(question: str, answer: str, contexts: list[str]) 
         return None
 
 
-async def compute_answer_correctness(question: str, answer: str, reference: str) -> float | None:
+async def compute_answer_correctness(question: str, answer: str, reference: str, q: int = 0) -> float | None:
     """
     Factual + semantic similarity vs ground truth.
     Combines statement-level F1 (TP/FP/FN) with embedding cosine similarity.
@@ -389,6 +390,7 @@ async def compute_answer_correctness(question: str, answer: str, reference: str)
     if not ENABLE_ANSWER_CORRECTNESS or not reference:
         return None
     try:
+        print(f"[{q}/{_total_questions}] answer_correctness: '{question[:50]}'")
         result = await answer_correctness_scorer.ascore(
             user_input=question,
             response=answer,
@@ -400,10 +402,11 @@ async def compute_answer_correctness(question: str, answer: str, reference: str)
         return None
 
 
-async def compute_response_relevancy(question: str, answer: str, contexts: list[str]) -> float | None:
+async def compute_response_relevancy(question: str, answer: str, contexts: list[str], q: int = 0) -> float | None:
     if not ENABLE_RESPONSE_RELEVANCY:
         return None
     try:
+        print(f"[{q}/{_total_questions}] response_relevancy: '{question[:50]}'")
         result = await response_relevancy_scorer.ascore(
             user_input=question,
             response=answer,
@@ -416,11 +419,12 @@ async def compute_response_relevancy(question: str, answer: str, contexts: list[
 
 
 async def compute_context_precision(
-    question: str, answer: str, contexts: list[str], reference: str
+    question: str, answer: str, contexts: list[str], reference: str, q: int = 0
 ) -> float | None:
     if not ENABLE_CONTEXT_PRECISION or not reference:
         return None
     try:
+        print(f"[{q}/{_total_questions}] context_precision: '{question[:50]}'")
         result = await context_precision_scorer.ascore(
             user_input=question,
             # ContextPrecisionWithReference does not take response
@@ -433,7 +437,7 @@ async def compute_context_precision(
         return None
 
 async def compute_context_recall(
-    question: str, contexts: list[str], reference: str
+    question: str, contexts: list[str], reference: str, q: int = 0
 ) -> float | None:
     """
     Does the retrieved context cover all key facts in the ground truth?
@@ -442,6 +446,7 @@ async def compute_context_recall(
     if not ENABLE_CONTEXT_RECALL or not reference:
         return None
     try:
+        print(f"[{q}/{_total_questions}] context_recall: '{question[:50]}'")
         result = await context_recall_scorer.ascore(
             user_input=question,
             retrieved_contexts=contexts,
@@ -493,20 +498,20 @@ async def run_experiment(row: dict) -> dict:
     # async with limit_concurrency:
         try:
             rag_result = query_rag(_index, row["question"])
+            q = _query_counter  # snapshot before parallel scoring shifts the counter
             answer     = rag_result["answer"]
             contexts   = rag_result["contexts"]
             reference  = row.get("ground_truth", "")
-            
-            print(f" -> Valutazione Judge per: {row['question'][:30]}...")
+
+            print(f" -> Judge's Rating for: {row['question'][:30]}...")
             score = await asyncio.to_thread(
                 judge_score, answer, row["grading_notes"], reference
             )
-
-            faithfulness = await compute_faithfulness(row["question"], answer, contexts)
-            answer_correctness = await compute_answer_correctness(row["question"], answer, reference)
-            response_relevancy = await compute_response_relevancy(row["question"], answer, contexts)
-            context_precision = await compute_context_precision(row["question"], answer, contexts, reference)
-            context_recall = await compute_context_recall(row["question"], contexts, reference)
+            faithfulness = await compute_faithfulness(row["question"], answer, contexts, q)
+            answer_correctness = await compute_answer_correctness(row["question"], answer, reference, q)
+            response_relevancy = await compute_response_relevancy(row["question"], answer, contexts, q)
+            context_precision = await compute_context_precision(row["question"], answer, contexts, reference, q)
+            context_recall = await compute_context_recall(row["question"], contexts, reference, q)
 
             return {
                 "question":            row["question"],
