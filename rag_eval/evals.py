@@ -515,7 +515,7 @@ async def run_experiment(row: dict) -> dict:
 
             result = {
                 "question":        row["question"],
-                "grading_notes":   row["grading_notes"],
+                # "grading_notes":   row["grading_notes"],
                 "ground_truth":    reference,
                 "answer":          answer,
                 "contexts":        "\n".join(f"{i+1}): (len: {len(ctx)}) (score: {rag_result['chunks'][i]['score']:.4f}) {ctx[:30]}..." for i, ctx in enumerate(contexts)),
