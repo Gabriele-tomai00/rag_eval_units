@@ -1,33 +1,34 @@
 import json
 import os
 import re
-from urllib.parse import urlparse, unquote
 import hashlib
+from urllib.parse import urlparse
 from lxml import html as lxml_html
 import html2text
 import argparse
 
 # -------------------------------
-# filters
+# Filters
 # -------------------------------
 
 REMOVE_IDS = ["footer", "navbar-main", "readspeaker_button"]
 REMOVE_CLASSES = ["sidebar", "breadcrumb", "menu", "language-link", "visually-hidden-focusable", "visually-hidden"]
 REMOVE_TAGS = [
-    "footer", "style", "script", "noscript", 
+    "footer", "style", "script", "noscript",
     "button", "svg", "form", "input", "label"
 ]
-# Cartelle di output
+
+# Output folders
 OUTPUT_FOLDER = "md_results"
 MD_FOLDER = os.path.join(OUTPUT_FOLDER, "md_files")
 os.makedirs(MD_FOLDER, exist_ok=True)
 
 # -------------------------------
-# helper functions
+# Helper functions
 # -------------------------------
 
 def sanitize_filename(url: str) -> str:
-    """Trasforma l'URL in un filename sicuro."""
+    """Transform URL into a safe filename."""
     parsed = urlparse(url)
     name = parsed.netloc + parsed.path
     name = re.sub(r"[\\/?:*\"<>|]", "_", name).strip("_")
@@ -40,7 +41,7 @@ def clean_html(html_content: str) -> str:
     try:
         tree = lxml_html.fromstring(html_content)
     except Exception:
-        return html_content  # fallback: ritorna raw HTML
+        return html_content  # fallback: return raw HTML
 
     for id_val in REMOVE_IDS:
         for el in tree.xpath(f'//*[@id="{id_val}"]'):
@@ -70,6 +71,9 @@ def html_to_markdown(html_content: str) -> str:
 
 def process_jsonl(input_file: str, output_file: str, save_md: bool = False):
     saved = 0
+    skipped_duplicates = 0
+    seen_content_hashes = set()
+
     with open(input_file, "r", encoding="utf-8") as fin, \
          open(output_file, "w", encoding="utf-8") as fout:
 
@@ -87,6 +91,14 @@ def process_jsonl(input_file: str, output_file: str, save_md: bool = False):
             item["title"] = item.get("title", "")
             cleaned_html = clean_html(html_content)
             md_text = html_to_markdown(cleaned_html)
+
+            # --- Deduplication: skip pages with identical content (exact MD5 match) ---
+            content_hash = hashlib.md5(md_text.encode()).hexdigest()
+            if content_hash in seen_content_hashes:
+                skipped_duplicates += 1
+                continue
+            seen_content_hashes.add(content_hash)
+
             item["content"] = md_text
 
             if save_md:
@@ -97,24 +109,26 @@ def process_jsonl(input_file: str, output_file: str, save_md: bool = False):
             fout.write(json.dumps(item, ensure_ascii=False) + "\n")
             saved += 1
 
-    print(f"Process completed: {saved} saved pages.")
-    print(f"JSONL output: {output_file}")
-    print(f"Markdown files: {MD_FOLDER}")
-
+    print(f"Process completed.")
+    print(f"  Saved pages        : {saved}")
+    print(f"  Skipped duplicates : {skipped_duplicates}")
+    print(f"  JSONL output       : {output_file}")
+    if save_md:
+        print(f"  Markdown files     : {MD_FOLDER}")
 
 
 if __name__ == "__main__":
     print("Start converting HTML documents to MARKDOWN")
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--input",
+        "--input", "-i",
         default="scraper_results/html_contents.jsonl",
-        help="File JSONL di input (default: scraper_results/html_contents.jsonl)"
+        help="Input JSONL file (default: scraper_results/html_contents.jsonl)"
     )
     parser.add_argument(
-        "--output",
+        "--output", "-o",
         default="md_results/cleaned_pages.jsonl",
-        help="File JSONL di output (default: md_results/cleaned_pages.jsonl)"
+        help="Output JSONL file (default: md_results/cleaned_pages.jsonl)"
     )
     parser.add_argument(
         "--all",
