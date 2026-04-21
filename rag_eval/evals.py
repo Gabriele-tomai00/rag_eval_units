@@ -13,7 +13,6 @@ from llama_index.core import VectorStoreIndex, Settings, StorageContext
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.llms.openai_like import OpenAILike
 from llama_index.vector_stores.chroma import ChromaVectorStore
-from llama_index.core.postprocessor import SimilarityPostprocessor
 
 from ragas import Dataset, experiment
 from ragas.run_config import RunConfig
@@ -81,6 +80,13 @@ def parse_args():
         default=5,
         help="The number of top k chunks retireved",
     )
+    parser.add_argument(
+        "--chunk_size", "-c",
+        type=int,
+        choices=[128, 256, 512, 1024],
+        default=512,
+        help="Chunk size used when building the index (128, 256, 512, 1024). Default: 512.",
+    )
     return parser.parse_args()
 
 
@@ -99,6 +105,7 @@ def resolve_index_config(args) -> tuple[str, str]:
     big = args.big
     index_type = args.type
     top_k = args.top_k
+    chunk_size = args.chunk_size
 
     suffix = "_big" if big else ""
 
@@ -109,8 +116,9 @@ def resolve_index_config(args) -> tuple[str, str]:
     }
 
     folder, name = mapping[index_type]
-    index_dir       = f"../rag/{folder}{suffix}"
-    output_filename = f"{name}{suffix}_k_{top_k}_results"
+    chunk_suffix = "" if index_type == 2 else f"_{chunk_size}"
+    index_dir       = f"../rag/{folder}{suffix}{chunk_suffix}"
+    output_filename = f"{name}{suffix}{chunk_suffix}_k_{top_k}_results"
 
     return index_dir, output_filename
 
@@ -234,8 +242,10 @@ def query_rag(index: VectorStoreIndex, question: str) -> dict:
         })
 
     # Log di debug in console
+    global _query_counter
+    _query_counter += 1
     print(
-        f"[RETRIEVAL] '{question[:50]}...' → {len(used_contexts)} nodes passed filter "
+        f"{_query_counter}/{_total_questions} [RETRIEVAL] '{question[:50]}...' → {len(used_contexts)} nodes passed filter "
         # f"(Cutoff: {SIMILARITY_CUTOFF})"
     )
 
@@ -291,7 +301,7 @@ def judge_score(response: str, grading_notes: str, ground_truth: str) -> str:
             ],
             **({"response_format": {"type": "json_object"}} if os.getenv("USE_JSON_FORMAT", "false").lower() == "true" else {}),
             max_tokens=2048,
-            temperature=0.0,
+            temperature=0.2,
         )
 
         msg = completion.choices[0].message
@@ -473,6 +483,8 @@ def load_dataset() -> Dataset:
 # ==============================================================================
 
 _index = load_index(INDEX_DIR)  # loaded once at module level, reused for every row
+_query_counter = 0
+_total_questions = 0
 
 # limit_concurrency = asyncio.Semaphore(1)
 @experiment()
@@ -531,8 +543,11 @@ import time
 
 async def main():
 
+    global _total_questions, _query_counter
     dataset = load_dataset()
-    print(f"Dataset loaded: {len(dataset)} samples")
+    _total_questions = len(dataset)
+    _query_counter = 0
+    print(f"Dataset loaded: {_total_questions} samples")
     start_time = time.time()
 
 

@@ -32,10 +32,17 @@ or
 uv run python evals.py
 ```
 ## Parameters
-`-t` 1 for sentence splitting, 2 for markdown structure splitting, 3 for hybrid markdown + sentence splitting
-`-b` embed the bigger corpus
-``
-## Other exemple
+| Flag | Long form | Default | Description |
+|------|-----------|---------|-------------|
+| `-t` | `--type` | *(required)* | `1` sentence splitting, `2` markdown structure splitting, `3` hybrid markdown + sentence |
+| `-b` | `--big` | false | Use the larger corpus index |
+| `-k` | `--top_k` | `5` | Number of top-k chunks retrieved |
+| `-c` | `--chunk_size` | `512` | Chunk size of the index: `128`, `256`, `512`, `1024` (ignored for `-t 2`) |
+| `-a` | `--all` | false | Enable all RAGAS metrics (slower) |
+
+## Examples
 ```
-python evals.py -t 1 -b -k 4
+python evals.py -t 1 -b -k 4 -c 256
+python evals.py -t 2 -k 10
+python evals.py -t 3 -b -c 1024 -a
 ```
