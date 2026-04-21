@@ -6,24 +6,28 @@ samples = [
                 "La sede principale dell'Università degli Studi di Trieste si trova a Trieste, "
                 "in Piazzale Europa 1, in un'area sopraelevata rispetto al centro della città."
             ),
+            "source": "https://portale.units.it/it/ateneo/campus",
+            
         },
         {
-            "question": "edificio, piano e aula per stampare all università",
+            "question": "dove si trovano le stampanti all'università di Trieste? edificio e numero piano",
             "grading_notes": "edificio H3, 5 piano, aule informatiche",
             "ground_truth": (
                 "È possibile stampare presso l'edificio H3, situato nel polo di Piazzale Europa, "
                 "al quinto piano all'interno delle aule informatiche."
             ),
+            "source": "https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica",
         },
-        {
-            "question": "obiettivi formativi ingegneria elettronica e informatica: Capacità di applicare conoscenza e comprensione per curriculum Ingegneria biomedica",
-            "grading_notes": "esercitazioni, laboratori e strumenti didattici",
-            "ground_truth": (
-                "L'obiettivo è formare laureati capaci di affrontare problemi dell'ingegneria dell'informazione e biomedica. "
-                "Lo studio è affiancato da esercitazioni scritte e in laboratorio. Gli strumenti includono lezioni ordinarie, "
-                "integrative, seminari ed esercitazioni, con valutazioni tramite verifiche scritte, orali e prova finale."
-            ),
-        },
+        # {
+        #     "question": "obiettivi formativi ingegneria elettronica e informatica: Capacità di applicare conoscenza e comprensione per curriculum Ingegneria biomedica",
+        #     "grading_notes": "esercitazioni, laboratori e strumenti didattici",
+        #     "ground_truth": (
+        #         "L'obiettivo è formare laureati capaci di affrontare problemi dell'ingegneria dell'informazione e biomedica. "
+        #         "Lo studio è affiancato da esercitazioni scritte e in laboratorio. Gli strumenti includono lezioni ordinarie, "
+        #         "integrative, seminari ed esercitazioni, con valutazioni tramite verifiche scritte, orali e prova finale."
+        #     ),
+        #     "source": "",
+        # },
         {
             "question": "titolo di studio richiesto per immatricolazione",
             "grading_notes": "diploma superiore e nota sui titoli esteri",
@@ -31,29 +35,33 @@ samples = [
                 "Il titolo richiesto è il diploma di scuola media superiore o titolo estero equipollente. "
                 "Per i titoli esteri è necessario verificare la validità presso la sezione Studenti Internazionali."
             ),
+            "source": "https://lauree.units.it/it/0320106200800001/come-iscriversi",
         },
         {
-            "question": "quali sono i vari curriculum del corso Scienze e Tecnologie per l'ambiente e la natura",
+            "question": "i curriculum del corso Scienze e Tecnologie per l'ambiente e la natura",
             "grading_notes": "Ambientale, Biologico e Didattico",
             "ground_truth": "I curriculum sono tre: Ambientale, Biologico e Didattico.",
+            "source": "https://www.biologia.units.it/index.php?/corsi/5/Laurea-in-Scienze-e-Tecnologie-per-lambiente-e-la-natura"
         },
         {
-            "question": "ufficio tasse",
+            "question": "contatti orari e indirizzo ufficio tasse studenti università di Trieste",
             "grading_notes": "indirizzo, telefono, mail e orari sportello",
             "ground_truth": (
                 "Ufficio Applicativi per la carriera dello studente e i contributi universitari: Piazzale Europa 1, Edificio A. "
                 "Tel: +39 040 558 3731 (mar, mer, ven 12-13). Email: tasse.studenti@amm.units.it. "
                 "Sportello su prenotazione (EasyPlanning): Lunedì 15:00-16:40 e Giovedì 09:00-11:10."
             ),
+            "source": "https://portale.units.it/it/studiare/contributi/lauree-magistrali-e-magistrali-ciclo-unico"
         },
         {
-            "question": "parlami dell iniziativa Climbing for Climate (CFC)",
+            "question": "iniziativa Climbing for Climate (CFC)",
             "grading_notes": "RUS, CAI e sensibilizzazione riscaldamento globale",
             "ground_truth": (
                 "Iniziativa promossa da RUS e CAI per sensibilizzare sul riscaldamento globale. "
                 "Il nome richiama i clorofluorocarburi (CFC), gas responsabili del buco nell'ozono banditi dal Protocollo di Montreal. "
                 "L'ateneo partecipa organizzando eventi sul territorio."
             ),
+            "source": "https://portale.units.it/it/terza-missione/sostenibilita"
         },
         {
             "question": "inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE",
@@ -62,6 +70,7 @@ samples = [
                 "Le lezioni iniziano il 22 settembre 2025 (il 1 ottobre per gli studenti del primo anno) "
                 "e terminano il 19 dicembre 2025."
             ),
+            "source": "https://degree.units.it/it/0320106203600002/area-studenti/calendario-didattico"
         },
         {
             "question": "inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE",
@@ -70,14 +79,15 @@ samples = [
                 "Il primo semestre inizia il 29 settembre 2025 per il I anno e il 22 settembre per gli anni successivi, "
                 "con termine il 19 dicembre 2025 per tutti."
             ),
+            "source": "https://degree.units.it/it/0320106202400001/area-studenti/calendario-didattico"
         },
         {
             "question": "link materiale didattico del corso di DIGITAL ELECTRONICS AND DEVICES",
             "grading_notes": "Moodle, MS Teams e link docente",
             "ground_truth": (
-                "Il materiale (slide ed esercizi) è disponibile su Moodle e MS Teams o sul sito del docente: "
-                "http://www2.units.it/carrato/didatt/DSE_web/index.html"
+                "Il materiale (slide ed esercizi) è disponibile su Moodle e MS Teams o sul sito del docente"
             ),
+            "source": "https://degree.units.it/it/0320107303300001/area-studenti/insegnamenti/2025/120599/2025/2/10740/2025/13129"
         },
         {
             "question": "link materiale didattico corso Cybersecurity di Bartoli",
@@ -85,6 +95,7 @@ samples = [
             "ground_truth": (
                 "Il materiale del corso è disponibile sul sito: https://bartolialberto.github.io/CybersecurityCourse/"
             ),
+            "source": "https://degree.units.it/en/0320107303300001/students-area/taught-courses/2025/120014/2025/2/10740/2025"
         },
         {
             "question": "l aula T dell'edificio A è libera il giorno 20 marzo 2026?",
@@ -97,7 +108,7 @@ samples = [
             "ground_truth": "Non dispongo di informazioni sui corsi del dipartimento di Musicologia.",
         },
         {
-            "question": "sono uno studente, come accedo a teams per vedere videolezioni",
+            "question": "per uno studente, come accedere a teams per vedere videolezioni",
             "grading_notes": "deve spiegare come usare le credenziali",
             "ground_truth": (
                 "Per accedere utilizza le credenziali di Ateneo nel seguente formato: userid@ds.units.it "
@@ -105,25 +116,28 @@ samples = [
                 "s123456@ds.units.it seguita dalla password utilizzata per la posta elettronica ed i servizi online di Esse3. "
                 "È possibile digitare anche solo una parte del nome e si possono usare più filtri assieme"
             ),
+            "source": "https://www.units.it/catalogo-della-didattica-a-distanza"
         },
         {
-            "question": "Chi amministra le risorse di un corso interdipartimentale?",
+            "question": "Chi amministra le risorse di un corso interdipartimentale",
             "grading_notes": "deve citare il dipartimento di gestione",
             "ground_truth": (
                 "Il dipartimento di gestione, individuato dal Consiglio di Amministrazione "
                 "al momento dell'attivazione del corso (comma 6). "
             ),
+            "source": "https://amm.units.it/normativa/regolamenti/articolo-22178/art-31-corsi-studio"
         },
         {
-            "question": "Come vengono elette le rappresentanze studentesche nei corsi interdipartimentali?",
+            "question": "Regolmaneto in cui sono definite le modalità di elezione delle rappresentanze studentesche nei corsi interdipartimentali?",
             "grading_notes": "deve citare il dipartimento di gestione",
             "ground_truth": (
                 "Le modalità di elezione delle rappresentanze studentesche nei consigli di dipartimento "
                 "sono definite dal regolamento degli studenti (comma 7)."
             ),
+            "source": "https://amm.units.it/normativa/regolamenti/articolo-22178/art-31-corsi-studio"
         },
         {
-            "question": "Quali attività promuove l'Università per facilitare l'inserimento nel mondo del lavoro?",
+            "question": "Quali attività cura l'Università per facilitare l'inserimento nel mondo del lavoro?",
             "grading_notes": "La risposta deve menzionare orientamento, tutorato e associazioni di ex-alunni.",
             "ground_truth": (
                 "L'Università cura le attività di orientamento e tutorato e attiva servizi intesi ad agevolare "
@@ -131,6 +145,7 @@ samples = [
                 "di associazioni di ex-alunni, finalizzate al mantenimento di relazioni con l'Ateneo e al "
                 "sostegno delle sue attività istituzionali."
             ),
+            "source": "https://amm.units.it/normativa/regolamenti/articolo-22145/art-1-natura-e-fini"
         },
         {
             "question": "Cosa gestisce il sistema bibliotecario e museale di Ateneo?",
@@ -141,6 +156,7 @@ samples = [
                 "valorizzazione e gestione del patrimonio bibliografico, documentario e archivistico, "
                 "delle raccolte e dei musei dell'Università."
             ),
+            "source": "non trovo"
         },
         {
             "question": "Quali forme di sostegno economico eroga l'Università agli studenti?",
@@ -150,6 +166,7 @@ samples = [
                 "di studio per studenti capaci e meritevoli. Eroga inoltre contributi e agevolazioni per studenti "
                 "che collaborino nelle attività di servizio."
             ),
+            "source": "https://amm.units.it/normativa/regolamenti/articolo-22145/art-1-natura-e-fini"
         },
         {
             "question": "Chi può proporre il conferimento del titolo di Dottore di Ricerca honoris causa?",
@@ -193,7 +210,7 @@ samples = [
             ),
         },
         {
-            "question": "Chi ha già usufruito di una borsa di dottorato nel sistema universitario italiano può ottenerne un'altra?",
+            "question": "regole e limitazioni per ottenere una seconda borsa di dottorato nell'università italiana",
             "grading_notes": "La risposta deve indicare chiaramente che non è possibile usufruire di una seconda borsa di dottorato, anche se la prima è stata fruita solo parzialmente.",
             "ground_truth": (
                 "Chi ha già usufruito di una borsa di dottorato nell'ambito del sistema universitario italiano, "
@@ -201,7 +218,7 @@ samples = [
             ),
         },
         {
-            "question": "Cosa succede alla borsa di dottorato in caso di rinuncia da parte del dottorando?",
+            "question": "Cosa succede alla borsa di dottorato in caso di rinuncia, di mancato rinnovo o di rinuncia agli studi?",
             "grading_notes": "La risposta deve menzionare la possibilità di assegnare la borsa a un dottorando privo di borsa dello stesso ciclo e corso, e il reinvestimento dell'importo non utilizzato.",
             "ground_truth": (
                 "In caso di rinuncia alla borsa, di mancato rinnovo o di rinuncia agli studi, la borsa può essere "
@@ -245,7 +262,7 @@ samples = [
             ),
         },
         {
-            "question": "Con quanto anticipo minimo deve essere inviato il summary al professore per la fast track?",
+            "question": "anticipo minimo invio summary al professore per fast track registrazione tirocinio laurea",
             "grading_notes": "La risposta deve indicare almeno una settimana prima dell'ultima data utile per la registrazione del tirocinio.",
             "ground_truth": (
                 "Il summary deve essere inviato per email con almeno una settimana di anticipo rispetto "
