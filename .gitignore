@@ -13,7 +13,8 @@ index*/
 *.zip
 
 # scraper
-md_results/md_files/
+# md_results/md_files/
+md_results/*
 # scraper_results/html_contents.jsonl
 scraper_results/*
 
