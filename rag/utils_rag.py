@@ -21,7 +21,7 @@ from llama_index.core.node_parser import MarkdownNodeParser, SentenceSplitter
 INDEX_DIR = "rag_index"
 SIMILARITY_TOP_K = 7
 SCORE_THRESHOLDS = {"high": 0.7, "medium": 0.6}
-INSERT_BATCH_SIZE = 300  # nodes per ChromaDB commit (tunable independently from embed_batch_size)
+INSERT_BATCH_SIZE = 500  # nodes per ChromaDB commit (tunable independently from embed_batch_size)
 load_dotenv()
 
 
@@ -101,13 +101,10 @@ def load_md_docs(jsonl_path: str) -> list[Document]:
 
 
 def _make_deterministic_ids(nodes: list) -> None:
-    """
-    Assign a stable, content-based ID to each node.
-    Includes the node position to handle duplicate content across chunks.
-    """
     for i, node in enumerate(nodes):
+        url = node.metadata.get("url", "")
         content_hash = hashlib.sha256(
-            f"{i}:{node.get_content()}".encode()
+            f"{i}:{url}:{node.get_content()}".encode()
         ).hexdigest()[:32]
         node.id_ = content_hash
 
