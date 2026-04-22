@@ -32,7 +32,7 @@ def get_prompt_from_file(file_path: str) -> str:
 
 Settings.embed_model = HuggingFaceEmbedding(
     model_name="BAAI/bge-m3",
-    embed_batch_size=64,  # increased from 48 — saturates the 15GB GPU
+    embed_batch_size=96,  # safe upper limit for 512-token chunks on 15GB GPU
 )
 
 Settings.llm = OpenAILike(
@@ -88,12 +88,12 @@ def load_md_docs(jsonl_path: str) -> list[Document]:
             docs.append(Document(
                 text=content,
                 metadata={
-                    "url": url, 
-                    "type": "markdown", 
+                    "url": url,
+                    "type": "markdown",
                     "title": title
                 },
                 text_template="INFO DOCUMENTO: {metadata_str}\n\nCONTENUTO:\n{content}",
-                metadata_template="TITOLO: {value}", 
+                metadata_template="TITOLO: {value}",
                 excluded_embed_metadata_keys=["url", "type"],
                 excluded_llm_metadata_keys=["url", "type"]
             ))
@@ -101,27 +101,44 @@ def load_md_docs(jsonl_path: str) -> list[Document]:
     return docs
 
 
-def _insert_nodes_incremental(index: VectorStoreIndex, nodes: list, label: str) -> None:
+def _insert_nodes_incremental(index: VectorStoreIndex, nodes: list, label: str, resume: bool) -> None:
     """
     Insert nodes into the index in batches of INSERT_BATCH_SIZE.
-    Each batch triggers a separate ChromaDB/SQLite commit, so progress
-    is saved incrementally and memory usage is bounded.
+
+    If resume=True, fetches existing node IDs from ChromaDB (no embeddings loaded,
+    just string IDs from SQLite) and skips nodes that are already present.
+    This makes the function safe to call after a crash without re-embedding
+    or duplicating already-committed nodes.
 
     Parameters
     ----------
     index  : VectorStoreIndex
     nodes  : list of BaseNode
-    label  : short string shown in progress output (e.g. "sentence", "markdown")
+    label  : short string shown in progress output (e.g. "sentence", "hybrid")
+    resume : if True, skip nodes whose ID is already in ChromaDB
     """
-    total = len(nodes)
+    if resume:
+        # Retrieve only IDs from SQLite — zero GPU/embedding work involved
+        existing_ids = set(index.vector_store._collection.get(include=[])["ids"])
+        nodes_to_insert = [n for n in nodes if n.node_id not in existing_ids]
+        print(f"  [{label}] resume mode: {len(existing_ids)} already committed, "
+              f"{len(nodes_to_insert)} remaining")
+    else:
+        nodes_to_insert = nodes
+
+    if not nodes_to_insert:
+        print(f"  [{label}] nothing to insert, index is already complete")
+        return
+
+    total = len(nodes_to_insert)
     for start in range(0, total, INSERT_BATCH_SIZE):
-        batch = nodes[start:start + INSERT_BATCH_SIZE]
+        batch = nodes_to_insert[start:start + INSERT_BATCH_SIZE]
         index.insert_nodes(batch)
         committed = min(start + INSERT_BATCH_SIZE, total)
         print(f"  [{label}] committed {committed}/{total} nodes → SQLite flushed")
 
 
-def add_to_index_md_files_sentence_splitter(index: VectorStoreIndex, docs: list[Document], chunk_size, chunk_overlap) -> None:
+def add_to_index_md_files_sentence_splitter(index: VectorStoreIndex, docs: list[Document], chunk_size, chunk_overlap, resume: bool = False) -> None:
     text_splitter = SentenceSplitter(
         chunk_size=chunk_size,
         chunk_overlap=chunk_overlap
@@ -132,10 +149,10 @@ def add_to_index_md_files_sentence_splitter(index: VectorStoreIndex, docs: list[
     max_chunk_len = max(chunk_lengths) if chunk_lengths else 0
     print(f"Splitting done: {len(nodes)} nodes — longest chunk: {max_chunk_len} tokens (approx.)")
 
-    _insert_nodes_incremental(index, nodes, label="sentence")
+    _insert_nodes_incremental(index, nodes, label="sentence", resume=resume)
 
-    
-def add_to_index_md_files_md_splitter(index: VectorStoreIndex, docs: list[Document]) -> None:
+
+def add_to_index_md_files_md_splitter(index: VectorStoreIndex, docs: list[Document], resume: bool = False) -> None:
     md_parser = MarkdownNodeParser()
     nodes = md_parser.get_nodes_from_documents(docs)
 
@@ -143,10 +160,10 @@ def add_to_index_md_files_md_splitter(index: VectorStoreIndex, docs: list[Docume
     max_chunk_len = max(chunk_lengths) if chunk_lengths else 0
     print(f"Splitting done: {len(nodes)} nodes — longest chunk: {max_chunk_len} tokens (approx.)")
 
-    _insert_nodes_incremental(index, nodes, label="markdown")
+    _insert_nodes_incremental(index, nodes, label="markdown", resume=resume)
 
 
-def add_to_index_md_files_hybrid_md_and_text_splitter(index: VectorStoreIndex, docs: list[Document], chunk_size, chunk_overlap) -> None:
+def add_to_index_md_files_hybrid_md_and_text_splitter(index: VectorStoreIndex, docs: list[Document], chunk_size, chunk_overlap, resume: bool = False) -> None:
     md_parser = MarkdownNodeParser()
     initial_nodes = md_parser.get_nodes_from_documents(docs)
     text_splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
@@ -156,7 +173,7 @@ def add_to_index_md_files_hybrid_md_and_text_splitter(index: VectorStoreIndex, d
     max_chunk_len = max(chunk_lengths) if chunk_lengths else 0
     print(f"Splitting done: {len(final_nodes)} nodes — longest chunk: {max_chunk_len} tokens (approx.)")
 
-    _insert_nodes_incremental(index, final_nodes, label="hybrid")
+    _insert_nodes_incremental(index, final_nodes, label="hybrid", resume=resume)
 
 
 
@@ -206,11 +223,10 @@ def print_indexing_summary(
 
 def zip_folder(folder_path: str) -> str:
     folder = Path(folder_path).resolve()
-    
+
     if not folder.is_dir():
         raise ValueError(f"{folder} is not a valid directory")
 
-    # Output zip path (same name, same parent directory)
     zip_path = folder.with_suffix('')
 
     # Create zip archive

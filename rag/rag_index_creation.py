@@ -47,7 +47,6 @@ async def ask_debug(index, question: str) -> dict:
         question : str        — the original question
         chunks   : list[dict] — retrieved nodes with score/relevance/preview/metadata
     """
-    # --- retrieval ---------------------------------------------------------
     retriever = index.as_retriever(similarity_top_k=SIMILARITY_TOP_K)
     nodes = await retriever.aretrieve(question)
 
@@ -72,7 +71,6 @@ async def ask_debug(index, question: str) -> dict:
             "metadata": node.metadata,
         })
 
-    # --- generation --------------------------------------------------------
     query_engine = index.as_query_engine(similarity_top_k=SIMILARITY_TOP_K)
     response = query_engine.query(question)
 
@@ -114,7 +112,7 @@ def print_debug_result(result: dict) -> None:
 # ENTRY POINT
 # ==============================================================================
 
-async def main(type: int, big: bool, chunk_size: int) -> None:
+async def main(type: int, big: bool, chunk_size: int, resume: bool) -> None:
     index_dirs = {
         1: ("index_sentence", "index_sentence_big"),
         2: ("index_markdown_chunking", "index_markdown_chunking_big"),
@@ -135,8 +133,11 @@ async def main(type: int, big: bool, chunk_size: int) -> None:
         index_dir = f"{index_dirs[type][1 if big else 0]}_{chunk_size}"
     else:
         index_dir = index_dirs[type][1 if big else 0]
-        
-    remove_index(index_dir)
+
+    if resume:
+        print(f"Resume mode — keeping existing index at '{index_dir}'")
+    else:
+        remove_index(index_dir)
 
     print("\n\n\n")
     print(f"Creating index with {index_dir}...")
@@ -146,11 +147,11 @@ async def main(type: int, big: bool, chunk_size: int) -> None:
         return
 
     if type == 1:
-        add_to_index_md_files_sentence_splitter(index, docs, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+        add_to_index_md_files_sentence_splitter(index, docs, chunk_size=chunk_size, chunk_overlap=chunk_overlap, resume=resume)
     elif type == 2:
-        add_to_index_md_files_md_splitter(index, docs)
+        add_to_index_md_files_md_splitter(index, docs, resume=resume)
     elif type == 3:
-        add_to_index_md_files_hybrid_md_and_text_splitter(index, docs, chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+        add_to_index_md_files_hybrid_md_and_text_splitter(index, docs, chunk_size=chunk_size, chunk_overlap=chunk_overlap, resume=resume)
         
     zip_file = zip_folder(index_dir)
     print(f"Index folder '{index_dir}' zipped to '{zip_file}'.")
@@ -191,21 +192,27 @@ if __name__ == "__main__":
         choices=[1, 2, 3],
         required=True,
         help="1 for sentence splitting, 2 for markdown structure splitting, 3 for hybrid markdown + sentence splitting",
-    )   
+    )
     parser.add_argument(
         "--chunk_size", "-c",
         type=int,
         default=512,
         choices=[128, 256, 512, 1024],
         help="Size of the chunks (128, 256, 512, 1024). Overlap is derived automatically.",
-    )   
+    )
     parser.add_argument(
         "--big", "-b",
         action="store_true",
         default=False,
         help="1 if you want to use thousands of documents (will create a bigger index, but may be more effective), 0 to use only a few dozens of documents (faster to create and query, but less effective)",
-    )    
+    )
+    parser.add_argument(
+        "--resume", "-r",
+        action="store_true",
+        default=False,
+        help="Resume a previously interrupted indexing run — keeps the existing index folder and skips already-committed nodes",
+    )
     args = parser.parse_args()
 
-    asyncio.run(main(args.type, args.big, args.chunk_size))
+    asyncio.run(main(args.type, args.big, args.chunk_size, args.resume))
     print(f"Time needed: {format_time(time.time() - start_time)}")
