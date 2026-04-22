@@ -2,6 +2,7 @@ import os
 import asyncio
 import argparse
 import time
+from datetime import datetime as _dt
 
 from llama_index.core import Settings
 from utils_rag import *
@@ -185,6 +186,7 @@ async def main(type: int, big: bool, chunk_size: int, resume: bool) -> None:
 
 if __name__ == "__main__":
     start_time = time.time()
+    print(f"Program started at {_dt.now().strftime('%H:%M:%S')}")
     parser = argparse.ArgumentParser(description="Program for the index creation phase")
     parser.add_argument(
         "--type", "-t",
