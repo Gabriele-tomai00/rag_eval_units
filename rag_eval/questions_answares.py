@@ -7,7 +7,6 @@ samples = [
                 "in Piazzale Europa 1, in un'area sopraelevata rispetto al centro della città."
             ),
             "source": "https://portale.units.it/it/ateneo/campus",
-            
         },
         {
             "question": "edificio, piano e aula stampare all università",
@@ -91,11 +90,13 @@ samples = [
             "question": "l aula T dell'edificio A è libera il giorno 20 marzo 2026?",
             "grading_notes": "ammettere mancanza di info",
             "ground_truth": "Non ho informazioni sulla disponibilità dell'aula T per quella data specifica.",
+            "source": "absent for choice"
         },
         {
             "question": "dimmi i corsi disponibili del dipartimento di musicologia",
             "grading_notes": "ammettere mancanza di info",
             "ground_truth": "Non dispongo di informazioni sui corsi del dipartimento di Musicologia.",
+            "source": "absent for choice"
         },
         {
             "question": "per uno studente, come accedere a teams per vedere videolezioni",
@@ -165,6 +166,7 @@ samples = [
                 "Il conferimento può essere proposto dal Rettore o dal Collegio dei docenti del Dottorato di "
                 "riferimento, previa deliberazione assunta con la maggioranza dei due terzi dei componenti."
             ),
+            "source": "https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa"
         },
         {
             "question": "Quanti dottorati honoris causa può conferire l'Ateneo per ogni anno accademico?",
@@ -173,6 +175,7 @@ samples = [
                 "L'Ateneo può conferire al massimo un solo Dottorato honoris causa per ogni anno accademico, "
                 "e comunque nei limiti stabiliti dal Ministero."
             ),
+            "source": "https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa"
         },
         {
             "question": "Quali diritti attribuisce il diploma di Dottorato honoris causa?",
@@ -181,6 +184,7 @@ samples = [
                 "Il diploma di Dottorato honoris causa attribuisce tutti i diritti del Dottorato ordinario, "
                 "in quanto è equiparato ex lege al titolo normalmente conseguito."
             ),
+            "source": "https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa"
         },
         {
             "question": "In quali casi una proposta di dottorato honoris causa non viene presa in considerazione?",
@@ -189,6 +193,7 @@ samples = [
                 "Non vengono prese in considerazione le proposte inerenti a persone già in possesso di un "
                 "diploma di Dottorato di Ricerca ordinario o honoris causa della stessa tipologia."
             ),
+            "source": "https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa"
         },
         {
             "question": "Per quanto tempo può essere incrementata la borsa di dottorato per soggiorno all'estero?",
@@ -198,6 +203,7 @@ samples = [
                 "all'estero complessivo non superiore a 12 mesi. Il periodo può essere esteso fino a un massimo "
                 "complessivo di 18 mesi per i dottorati in convenzione o per i dottorandi in co-tutela con soggetti esteri."
             ),
+            "source": "https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio"
         },
         {
             "question": "regole e limitazioni per ottenere una seconda borsa di dottorato nell'università italiana",
@@ -206,6 +212,7 @@ samples = [
                 "Chi ha già usufruito di una borsa di dottorato nell'ambito del sistema universitario italiano, "
                 "anche parzialmente, non può usufruirne una seconda volta."
             ),
+            "source": "https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio"
         },
         {
             "question": "Cosa succede alla borsa di dottorato in caso di rinuncia, di mancato rinnovo o di rinuncia agli studi?",
@@ -216,6 +223,7 @@ samples = [
                 "privo di borsa dello stesso ciclo e dello stesso Corso. In ogni caso l'importo non utilizzato è "
                 "reinvestito dal soggetto che ha attivato il Corso per il finanziamento di dottorati di ricerca."
             ),
+            "source": "https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio"
         },
         {
             "question": "Quali conseguenze può avere il rifiuto del dottorando di dedicarsi al tema di ricerca assegnato?",
@@ -225,6 +233,7 @@ samples = [
                 "la revoca della borsa e l'attribuzione al dottorando di un nuovo tema di ricerca e di un nuovo "
                 "supervisore, senza prolungamento della durata di 36 mesi del dottorato."
             ),
+            "source": "https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio"
         },
         {
             "question": "Quali sono gli insegnamenti previsti nel semestre aperto per l'accesso a Medicina e Odontoiatria?",
@@ -233,6 +242,7 @@ samples = [
                 "Il semestre aperto prevede la frequenza e il superamento di tre insegnamenti da 6 CFU ciascuno: "
                 "Chimica e propedeutica biochimica, Fisica e Biologia."
             ),
+            "source": "https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria"
         },
         {
             "question": "Qual è il contributo economico richiesto per l'iscrizione al semestre aperto di Medicina?",
@@ -242,14 +252,16 @@ samples = [
                 "di 250 euro. L'importo verrà ricalcolato in un secondo momento in base all'ISEE Universitario "
                 "e agli altri casi di esonero totale o parziale previsti dalla normativa vigente."
             ),
+            "source": "https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria"
         },
         {
-            "question": "Cosa succede a chi non risulta in posizione utile in graduatoria dopo il semestre aperto?",
+            "question": "Cosa succede a chi non risulta in posizione utile in graduatoria dopo il semestre aperto di Medicina??",
             "grading_notes": "La risposta deve menzionare la possibilità di accedere a un corso affine scelto in fase di iscrizione, in base alla posizione raggiunta e ai posti disponibili.",
             "ground_truth": (
                 "Chi non risulta in posizione utile in graduatoria può accedere, sulla base della posizione "
                 "raggiunta e dei posti disponibili, al corso affine scelto in fase di iscrizione."
             ),
+            "source": "https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria"
         },
         {
             "question": "anticipo minimo invio summary al professore per fast track registrazione tirocinio laurea",
@@ -267,6 +279,7 @@ samples = [
                 "Il tirocinio pratico-valutativo di Odontoiatria richiede un minimo di 600 ore di tirocinio "
                 "come primo operatore, certificate dal Coordinatore del Corso di Studio."
             ),
+            "source": "https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato"
         },
         {
             "question": "In cosa consiste la prova pratica valutativa al termine del tirocinio di Odontoiatria?",
@@ -275,6 +288,7 @@ samples = [
                 "La prova pratica valutativa consiste nella discussione di 3 casi clinici multidisciplinari "
                 "svolti dal candidato, con valutazione idoneo/non idoneo. Precede la discussione della tesi di laurea."
             ),
+            "source": "https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato"
         },
         {
             "question": "Come si registra il tirocinio da 9 CFU in Fisica?",
@@ -284,6 +298,7 @@ samples = [
                 "e i risultati raggiunti in un seminario pubblico di 20 minuti. Bisogna contattare il Prof. "
                 "Andrea Bressan per l'iscrizione all'appello che si tiene ogni primo lunedì del mese."
             ),
+            "source": "https://lauree.units.it/it/0320106203000001/area-studenti/tirocinio-e-internato"
         },
         {
             "question": "Quanti CFU prevede il tirocinio curriculare di Fisica e quante ore corrispondono?",
@@ -293,6 +308,7 @@ samples = [
                 "è possibile optare per un tirocinio esteso da 9 CFU per 225 ore. Per gli immatricolati "
                 "al primo anno a partire dall'a.a. 2024/2025 è previsto solamente il tirocinio da 3 CFU."
             ),
+            "source": "https://lauree.units.it/it/0320106203000001/area-studenti/tirocinio-e-internato"
         },
         {
             "question": "Entro quando deve arrivare la documentazione per avviare il tirocinio di Scienze e Tecnologie Biologiche?",
@@ -302,6 +318,7 @@ samples = [
                 "alla Segreteria Didattica entro il 15 del mese precedente l'inizio del tirocinio, per "
                 "permettere l'approvazione da parte del Consiglio di Corso di Studi."
             ),
+            "source": "https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato"
         },
         {
             "question": "Quando è richiesto il test Mantoux per il tirocinio di Scienze e Tecnologie Biologiche?",
@@ -311,5 +328,6 @@ samples = [
                 "come in strutture quali asili nidi, scuole dell'infanzia, ospedali, cliniche, case di riposo "
                 "o centri di accoglienza. L'ateneo ha una convenzione con ASUGI per effettuare il test gratuitamente."
             ),
+            "source": "https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato"
         },
     ]
