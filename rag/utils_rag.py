@@ -2,6 +2,9 @@ import json
 import hashlib
 from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
+
+_IT_TZ = ZoneInfo("Europe/Rome")
 import chromadb
 import shutil
 import os
@@ -141,7 +144,7 @@ def _insert_nodes_incremental(index: VectorStoreIndex, nodes: list, label: str, 
         batch = nodes_to_insert[start:start + INSERT_BATCH_SIZE]
         index.insert_nodes(batch)
         committed = min(start + INSERT_BATCH_SIZE, total)
-        print(f"  [{label}] committed {committed}/{total} nodes → SQLite flushed  [{datetime.now().strftime('%H:%M:%S')}]")
+        print(f"  [{label}] committed {committed}/{total} nodes → SQLite flushed  [{datetime.now(_IT_TZ).strftime('%H:%M:%S')}]")
 
 
 def add_to_index_md_files_sentence_splitter(index: VectorStoreIndex, docs: list[Document], chunk_size, chunk_overlap, resume: bool = False) -> None:
@@ -215,13 +218,13 @@ def print_indexing_summary(
     num_docs: int,
     log_file: str = "indexing_summary.log",
 ) -> None:
-    elapsed = (datetime.now() - start_time).total_seconds()
+    elapsed = (datetime.now(_IT_TZ) - start_time).total_seconds()
     lines = [
         f"\n====== INDEX CREATION SESSION {start_time.strftime('%d-%m-%Y %H:%M')} ======",
         f"Time taken      : {_format_time(elapsed)}",
         f"Persist dir     : {persist_dir}",
         f"Documents added : {num_docs}",
-        f"End time        : {datetime.now().strftime('%H:%M:%S')}",
+        f"End time        : {datetime.now(_IT_TZ).strftime('%H:%M:%S')}",
         "=" * 55,
     ]
     for line in lines:
