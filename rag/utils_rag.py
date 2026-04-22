@@ -101,7 +101,7 @@ def load_md_docs(jsonl_path: str) -> list[Document]:
 
 
 def _make_deterministic_ids(nodes: list) -> None:
-    for node in enumerate(nodes):
+    for node in nodes:
         url = node.metadata.get("url", "")
         content_hash = hashlib.sha256(
             f"{url}:{node.get_content()}".encode()
