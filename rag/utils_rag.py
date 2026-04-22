@@ -103,11 +103,12 @@ def load_md_docs(jsonl_path: str) -> list[Document]:
 def _make_deterministic_ids(nodes: list) -> None:
     """
     Assign a stable, content-based ID to each node.
-    Uses sha256 of the node content so that the same documents always
-    produce the same IDs across different runs — required for resume to work.
+    Includes the node position to handle duplicate content across chunks.
     """
-    for node in nodes:
-        content_hash = hashlib.sha256(node.get_content().encode()).hexdigest()[:32]
+    for i, node in enumerate(nodes):
+        content_hash = hashlib.sha256(
+            f"{i}:{node.get_content()}".encode()
+        ).hexdigest()[:32]
         node.id_ = content_hash
 
 
