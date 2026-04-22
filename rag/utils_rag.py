@@ -101,13 +101,12 @@ def load_md_docs(jsonl_path: str) -> list[Document]:
 
 
 def _make_deterministic_ids(nodes: list) -> None:
-    for node in nodes:
+    for i, node in enumerate(nodes):
         url = node.metadata.get("url", "")
         content_hash = hashlib.sha256(
-            f"{url}:{node.get_content()}".encode()
+            f"{url}:{i}:{node.get_content()}".encode()  # i prevents collisions on duplicate content
         ).hexdigest()[:32]
         node.id_ = content_hash
-
 
 def _insert_nodes_incremental(index: VectorStoreIndex, nodes: list, label: str, resume: bool) -> None:
     """
