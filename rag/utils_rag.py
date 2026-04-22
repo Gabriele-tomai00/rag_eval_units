@@ -1,4 +1,5 @@
 import json
+import hashlib
 from datetime import datetime
 from pathlib import Path
 import chromadb
@@ -20,9 +21,8 @@ from llama_index.core.node_parser import MarkdownNodeParser, SentenceSplitter
 INDEX_DIR = "rag_index"
 SIMILARITY_TOP_K = 7
 SCORE_THRESHOLDS = {"high": 0.7, "medium": 0.6}
-INSERT_BATCH_SIZE = 1000  # nodes per ChromaDB commit (tunable independently from embed_batch_size)
+INSERT_BATCH_SIZE = 300  # nodes per ChromaDB commit (tunable independently from embed_batch_size)
 load_dotenv()
-
 
 
 def get_prompt_from_file(file_path: str) -> str:
@@ -42,9 +42,8 @@ Settings.llm = OpenAILike(
     context_window=os.getenv("CONTEXT_WINDOW"),
     max_tokens=os.getenv("MAX_TOKENS"),
     temperature=os.getenv("TEMPERATURE"),
-    is_chat_model=True, # for using the new /v1/chat/completions API: role: system (for pr)
+    is_chat_model=True,
     system_prompt=get_prompt_from_file("prompt_for_llm.txt"),
-
 )
 
 # ==============================================================================
@@ -101,14 +100,24 @@ def load_md_docs(jsonl_path: str) -> list[Document]:
     return docs
 
 
+def _make_deterministic_ids(nodes: list) -> None:
+    """
+    Assign a stable, content-based ID to each node.
+    Uses sha256 of the node content so that the same documents always
+    produce the same IDs across different runs — required for resume to work.
+    """
+    for node in nodes:
+        content_hash = hashlib.sha256(node.get_content().encode()).hexdigest()[:32]
+        node.id_ = content_hash
+
+
 def _insert_nodes_incremental(index: VectorStoreIndex, nodes: list, label: str, resume: bool) -> None:
     """
     Insert nodes into the index in batches of INSERT_BATCH_SIZE.
 
     If resume=True, fetches existing node IDs from ChromaDB (no embeddings loaded,
     just string IDs from SQLite) and skips nodes that are already present.
-    This makes the function safe to call after a crash without re-embedding
-    or duplicating already-committed nodes.
+    Node IDs must be deterministic (set via _make_deterministic_ids) for this to work.
 
     Parameters
     ----------
@@ -144,6 +153,7 @@ def add_to_index_md_files_sentence_splitter(index: VectorStoreIndex, docs: list[
         chunk_overlap=chunk_overlap
     )
     nodes = text_splitter.get_nodes_from_documents(docs)
+    _make_deterministic_ids(nodes)
 
     chunk_lengths = [len(node.get_content().split()) for node in nodes]
     max_chunk_len = max(chunk_lengths) if chunk_lengths else 0
@@ -155,6 +165,7 @@ def add_to_index_md_files_sentence_splitter(index: VectorStoreIndex, docs: list[
 def add_to_index_md_files_md_splitter(index: VectorStoreIndex, docs: list[Document], resume: bool = False) -> None:
     md_parser = MarkdownNodeParser()
     nodes = md_parser.get_nodes_from_documents(docs)
+    _make_deterministic_ids(nodes)
 
     chunk_lengths = [len(node.get_content().split()) for node in nodes]
     max_chunk_len = max(chunk_lengths) if chunk_lengths else 0
@@ -168,6 +179,7 @@ def add_to_index_md_files_hybrid_md_and_text_splitter(index: VectorStoreIndex, d
     initial_nodes = md_parser.get_nodes_from_documents(docs)
     text_splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
     final_nodes = text_splitter.get_nodes_from_documents(initial_nodes)
+    _make_deterministic_ids(final_nodes)
 
     chunk_lengths = [len(node.get_content().split()) for node in final_nodes]
     max_chunk_len = max(chunk_lengths) if chunk_lengths else 0
