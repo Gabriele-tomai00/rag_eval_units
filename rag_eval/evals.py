@@ -568,6 +568,12 @@ async def main():
 
     experiment_results.save()
     print(f"Results saved to: evals/experiments/{experiment_results.name}.csv\n")
+
+    results_data = experiment_results._data
+    total = len(results_data)
+    passed = sum(1 for r in results_data if r.get("judge_result") == "pass")
+    print(f"Judge: {passed}/{total} passed")
+    print(f"Percentage: {passed/total*100:.2f}%")
     print(f"Time needed: {format_time(time.time() - start_time)}")
 
 
