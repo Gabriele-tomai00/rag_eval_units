@@ -94,6 +94,12 @@ def parse_args():
         default=512,
         help="Chunk size used when building the index (128, 256, 512, 1024). Default: 512.",
     )
+    parser.add_argument(
+        "--name_file_output", "-n",
+        type=str,
+        default=None,
+        help="Name of the output file (without extension). Default: results.",
+    )
     return parser.parse_args()
 
 
@@ -125,7 +131,11 @@ def resolve_index_config(args) -> tuple[str, str]:
     folder, name = mapping[index_type]
     chunk_suffix = "" if index_type == 2 else f"_{chunk_size}"
     index_dir       = f"../rag/{folder}{suffix}{chunk_suffix}"
-    output_filename = f"{name}{suffix}{chunk_suffix}_k_{top_k}_results"
+
+    if args.name_file_output:
+        output_filename = f"{args.name_file_output}{suffix}{chunk_suffix}_k_{top_k}_results"
+    else:
+        output_filename = f"{name}{suffix}{chunk_suffix}_k_{top_k}_results"
 
     return index_dir, output_filename
 
