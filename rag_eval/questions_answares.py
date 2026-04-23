@@ -1,6 +1,6 @@
 samples = [
         {
-            "question": "sede principale università di Trieste",
+            "question": "dove si trova la sede principale dell'ateneo",
             "grading_notes": "deve menzionare Piazzale Europa e Trieste",
             "ground_truth": (
                 "La sede principale dell'Università degli Studi di Trieste si trova a Trieste, "
@@ -18,7 +18,7 @@ samples = [
             "source": "https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica",
         },
         {
-            "question": "titolo di studio richiesto per immatricolazione",
+            "question": "requisiti: titolo di studio richiesto per immatricolazione a ingegneria elettronica e informatica",
             "grading_notes": "diploma superiore e nota sui titoli esteri",
             "ground_truth": (
                 "Il titolo richiesto è il diploma di scuola media superiore o titolo estero equipollente. "
@@ -27,13 +27,19 @@ samples = [
             "source": "https://lauree.units.it/it/0320106200800001/come-iscriversi",
         },
         {
-            "question": "i curriculum del corso Scienze e Tecnologie per l'ambiente e la natura",
+            "question": "i curricula del corso Scienze e Tecnologie per l'ambiente e la natura",
             "grading_notes": "Ambientale, Biologico e Didattico",
             "ground_truth": "I curriculum sono tre: Ambientale, Biologico e Didattico.",
             "source": "https://www.biologia.units.it/index.php?/corsi/5/Laurea-in-Scienze-e-Tecnologie-per-lambiente-e-la-natura"
         },
         {
-            "question": "contatti orari e indirizzo ufficio tasse studenti università di Trieste",
+            "question": "i 3 docenti tutor dei 3 curricula del corso Scienze e Tecnologie per l'ambiente e la natura",
+            "grading_notes": "Deve indicare almeno il nome del professore, relativo a ogni curricula",
+            "ground_truth": "Curriculum Biologico: Prof. Stanislao Bevilacqua. Curriculum Ambientale: Prof. Pieluigi Barbieri.",
+            "source": "https://www.biologia.units.it/index.php?/corsi/5/Laurea-in-Scienze-e-Tecnologie-per-lambiente-e-la-natura"
+        },
+        {
+            "question": "contatti orari e indirizzo Ufficio Applicativi per la carriera dello studente e i contributi universitari",
             "grading_notes": "indirizzo, telefono, mail e orari sportello",
             "ground_truth": (
                 "Ufficio Applicativi per la carriera dello studente e i contributi universitari: Piazzale Europa 1, Edificio A. "
@@ -71,52 +77,12 @@ samples = [
             "source": "https://degree.units.it/it/0320106202400001/area-studenti/calendario-didattico"
         },
         {
-            "question": "link materiale didattico del corso di DIGITAL ELECTRONICS AND DEVICES",
-            "grading_notes": "Moodle, MS Teams e link docente",
+            "question": "dove si trova il materiale didattico corso Cybersecurity di Bartoli",
+            "grading_notes": "deve indicare che si trova sul sito del corso e su Microsoft Teams",
             "ground_truth": (
-                "Il materiale (slide ed esercizi) è disponibile su Moodle e MS Teams o sul sito del docente"
-            ),
-            "source": "https://degree.units.it/it/0320107303300001/area-studenti/insegnamenti/2025/120599/2025/2/10740/2025/13129"
-        },
-        {
-            "question": "link materiale didattico corso Cybersecurity di Bartoli",
-            "grading_notes": "link bartolialberto.github.io",
-            "ground_truth": (
-                "Il materiale del corso è disponibile sul sito: https://bartolialberto.github.io/CybersecurityCourse/"
+                "Il materiale didattico per il corso di Cybersecurity è disponibile sul sito del corso, dove si trova il programma dettagliato e molto altro materiale aggiuntivo. Le slide sono caricate su Microsoft Teams, e l'iscrizione al team è automatica."
             ),
             "source": "https://degree.units.it/en/0320107303300001/students-area/taught-courses/2025/120014/2025/2/10740/2025"
-        },
-        {
-            "question": "l aula T dell'edificio A è libera il giorno 20 marzo 2026?",
-            "grading_notes": "ammettere mancanza di info",
-            "ground_truth": "Non ho informazioni sulla disponibilità dell'aula T per quella data specifica.",
-            "source": "absent for choice"
-        },
-        {
-            "question": "dimmi i corsi disponibili del dipartimento di musicologia",
-            "grading_notes": "ammettere mancanza di info",
-            "ground_truth": "Non dispongo di informazioni sui corsi del dipartimento di Musicologia.",
-            "source": "absent for choice"
-        },
-        {
-            "question": "per uno studente, come accedere a teams per vedere videolezioni",
-            "grading_notes": "deve spiegare come usare le credenziali",
-            "ground_truth": (
-                "Per accedere utilizza le credenziali di Ateneo nel seguente formato: userid@ds.units.it "
-                "Esempio:"
-                "s123456@ds.units.it seguita dalla password utilizzata per la posta elettronica ed i servizi online di Esse3. "
-                "È possibile digitare anche solo una parte del nome e si possono usare più filtri assieme"
-            ),
-            "source": "https://www.units.it/catalogo-della-didattica-a-distanza"
-        },
-        {
-            "question": "Chi amministra le risorse di un corso interdipartimentale",
-            "grading_notes": "deve citare il dipartimento di gestione",
-            "ground_truth": (
-                "Il dipartimento di gestione, individuato dal Consiglio di Amministrazione "
-                "al momento dell'attivazione del corso (comma 6). "
-            ),
-            "source": "https://amm.units.it/normativa/regolamenti/articolo-22178/art-31-corsi-studio"
         },
         {
             "question": "Regolmaneto in cui sono definite le modalità di elezione delle rappresentanze studentesche nei corsi interdipartimentali?",
@@ -139,23 +105,18 @@ samples = [
             "source": "https://amm.units.it/normativa/regolamenti/articolo-22145/art-1-natura-e-fini"
         },
         {
-            "question": "Cosa gestisce il sistema bibliotecario e museale di Ateneo?",
-            "grading_notes": "La risposta deve menzionare l'accesso alle risorse informative online e il trasferimento delle conoscenze.",
-            "ground_truth": (
-                "Il sistema bibliotecario e museale di Ateneo favorisce l'accesso alle risorse informative online "
-                "e assicura il trasferimento delle conoscenze, nell'ambito della conservazione, sviluppo, "
-                "valorizzazione e gestione del patrimonio bibliografico, documentario e archivistico, "
-                "delle raccolte e dei musei dell'Università."
-            ),
-            "source": "non trovo"
-        },
-        {
             "question": "Quali forme di sostegno economico eroga l'Università agli studenti?",
-            "grading_notes": "La risposta deve menzionare borse di studio, premi di studio, contributi e agevolazioni.",
+            "grading_notes": "La risposta deve menzionare almeno una forma di sostegno economico, come borse di studio, esenzioni o riduzioni delle tasse universitarie.",
             "ground_truth": (
-                "L'Università promuove, anche con il sostegno di soggetti esterni, l'istituzione di borse e premi "
-                "di studio per studenti capaci e meritevoli. Eroga inoltre contributi e agevolazioni per studenti "
-                "che collaborino nelle attività di servizio."
+                "L'Università eroga diverse forme di sostegno economico agli studenti. Offre borse di studio proprie, "
+                "destinate a incentivare la frequenza universitaria e a supportare gli studenti in situazioni economiche "
+                "difficili, promuovendo l'inclusione e valorizzando il talento. "
+                "Inoltre, mette a disposizione moduli e documenti per richiedere esenzioni e riduzioni delle tasse universitarie, basate su specifiche situazioni personali, come ad esempio: "
+                "*   Riduzioni per borsisti del Governo Italiano o studenti provenienti da Paesi in via di sviluppo. "
+                "*   Riduzioni per familiari contemporaneamente iscritti. "
+                "*   Esenzioni per figli di beneficiari di pensione di inabilità. "
+                "*   Riduzioni per studenti genitori. "
+                "*   Esenzioni/riduzioni per permessi di soggiorno per asilo politico o tutele speciali per studenti internazionali."
             ),
             "source": "https://amm.units.it/normativa/regolamenti/articolo-22145/art-1-natura-e-fini"
         },
@@ -187,7 +148,7 @@ samples = [
             "source": "https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa"
         },
         {
-            "question": "In quali casi una proposta di dottorato honoris causa non viene presa in considerazione?",
+            "question": "Secondo il regolamento, in quali casi una proposta di dottorato honoris causa non viene presa in considerazione?",
             "grading_notes": "La risposta deve indicare che la proposta è esclusa se il candidato è già in possesso di un dottorato ordinario o honoris causa della stessa tipologia.",
             "ground_truth": (
                 "Non vengono prese in considerazione le proposte inerenti a persone già in possesso di un "
@@ -197,11 +158,13 @@ samples = [
         },
         {
             "question": "Per quanto tempo può essere incrementata la borsa di dottorato per soggiorno all'estero?",
-            "grading_notes": "La risposta deve menzionare l'incremento del 50%, il limite di 12 mesi ordinario e il limite esteso di 18 mesi per dottorati in convenzione o co-tutela.",
+            "grading_notes": "La risposta deve menzionare l'incremento del 50%, il limite di 12 mesi ordinario e il limite esteso di 18 mesi per dottorati in convenzione o co-tutela",
             "ground_truth": (
-                "L'importo della borsa è incrementato nella misura massima del 50% per un periodo di soggiorno "
-                "all'estero complessivo non superiore a 12 mesi. Il periodo può essere esteso fino a un massimo "
-                "complessivo di 18 mesi per i dottorati in convenzione o per i dottorandi in co-tutela con soggetti esteri."
+                "L'importo della borsa di dottorato può essere incrementato del 50% per un periodo di soggiorno "
+                "all'estero complessivo non superiore a 12 mesi per attività di ricerca. Questo periodo può essere "
+                "esteso fino a un massimo complessivo di 18 mesi per i dottorati in convenzione o per i dottorandi "
+                "in co-tutela con soggetti esteri. L'incremento è applicabile per periodi di soggiorno continuativi "
+                "e non inferiori a 30 giorni."
             ),
             "source": "https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio"
         },
@@ -246,7 +209,7 @@ samples = [
         },
         {
             "question": "Qual è il contributo economico richiesto per l'iscrizione al semestre aperto di Medicina?",
-            "grading_notes": "La risposta deve indicare il contributo forfettario di 250 euro e la possibilità di ricalcolo in base all'ISEE universitario.",
+            "grading_notes": "La risposta deve indicare almeno il contributo forfettario di 250 euro. se c'è altro va bene",
             "ground_truth": (
                 "Per l'iscrizione al semestre aperto è previsto un contributo forfettario unico a livello nazionale "
                 "di 250 euro. L'importo verrà ricalcolato in un secondo momento in base all'ISEE Universitario "
@@ -255,23 +218,26 @@ samples = [
             "source": "https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria"
         },
         {
-            "question": "Cosa succede a chi non risulta in posizione utile in graduatoria dopo il semestre aperto di Medicina??",
-            "grading_notes": "La risposta deve menzionare la possibilità di accedere a un corso affine scelto in fase di iscrizione, in base alla posizione raggiunta e ai posti disponibili.",
+            "question": "Cosa succede a chi non risulta in posizione utile in graduatoria dopo il semestre aperto di Medicina?",
+            "grading_notes": (
+                "La risposta deve menzionare la possibilità di accedere a un corso affine "
+                "scelto in fase di iscrizione, in base alla posizione raggiunta e ai posti disponibili."
+            ),            
             "ground_truth": (
                 "Chi non risulta in posizione utile in graduatoria può accedere, sulla base della posizione "
                 "raggiunta e dei posti disponibili, al corso affine scelto in fase di iscrizione."
             ),
             "source": "https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria"
         },
-        {
-            "question": "anticipo minimo invio summary al professore per fast track registrazione tirocinio laurea",
-            "grading_notes": "La risposta deve indicare almeno una settimana prima dell'ultima data utile per la registrazione del tirocinio.",
-            "ground_truth": (
-                "Il summary deve essere inviato per email con almeno una settimana di anticipo rispetto "
-                "all'ultima data utile per la registrazione del tirocinio, indicando nello stesso email "
-                "tale data, determinata contattando la segreteria studenti."
-            ),
-        },
+                                    # {
+                                    #     "question": "anticipo minimo invio summary al professore per fast track registrazione tirocinio laurea",
+                                    #     "grading_notes": "La risposta deve indicare almeno una settimana prima dell'ultima data utile per la registrazione del tirocinio.",
+                                    #     "ground_truth": (
+                                    #         "Il summary deve essere inviato per email con almeno una settimana di anticipo rispetto "
+                                    #         "all'ultima data utile per la registrazione del tirocinio, indicando nello stesso email "
+                                    #         "tale data, determinata contattando la segreteria studenti."
+                                    #     ),
+                                    # },
         {
             "question": "Quante ore minime di tirocinio pratico-valutativo sono richieste come primo operatore in Odontoiatria?",
             "grading_notes": "La risposta deve indicare il minimo di 600 ore come primo operatore",
@@ -302,7 +268,7 @@ samples = [
         },
         {
             "question": "Quanti CFU prevede il tirocinio curriculare di Fisica e quante ore corrispondono?",
-            "grading_notes": "La risposta deve indicare 3 CFU per 75 ore, con l'alternativa da 9 CFU per 225 ore, e la restrizione ai soli 3 CFU per gli immatricolati dall'a.a. 2024/2025.",
+            "grading_notes": "La risposta deve indicare almeno il dato dei 3 CFU per 75 ore, in aggiunta può anche dire che c'è l'alternativa da 9 CFU per 225 ore, e la restrizione ai soli 3 CFU per gli immatricolati dall'a.a. 2024/2025.",
             "ground_truth": (
                 "Il tirocinio curriculare di Fisica prevede 3 CFU per un totale di 75 ore. In alternativa "
                 "è possibile optare per un tirocinio esteso da 9 CFU per 225 ore. Per gli immatricolati "
@@ -329,5 +295,17 @@ samples = [
                 "o centri di accoglienza. L'ateneo ha una convenzione con ASUGI per effettuare il test gratuitamente."
             ),
             "source": "https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato"
+        },
+        {
+            "question": "l aula T dell'edificio A è libera il giorno 20 marzo 2026?",
+            "grading_notes": "ammettere mancanza di info",
+            "ground_truth": "Non ho informazioni sulla disponibilità dell'aula T per quella data specifica.",
+            "source": "absent for choice"
+        },
+        {
+            "question": "dimmi i corsi disponibili del dipartimento di musicologia",
+            "grading_notes": "ammettere mancanza di info",
+            "ground_truth": "Non dispongo di informazioni sui corsi del dipartimento di Musicologia.",
+            "source": "absent for choice"
         },
     ]
