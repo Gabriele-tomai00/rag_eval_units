@@ -123,9 +123,9 @@ def resolve_index_config(args) -> tuple[str, str]:
     suffix = "_big" if big else ""
 
     mapping = {
-        1: ("index_sentence",              "from_index_sentence"),
-        2: ("index_markdown_chunking",     "from_index_markdown_chunking"),
-        3: ("index_markdown_and_sentence", "from_index_markdown_and_sentence"),
+        1: ("index_sentence",               "from_index_sentence"),
+        2: ("index_markdown",               "from_index_markdown"),
+        3: ("index_markdown_and_sentence",  "from_index_markdown_and_sentence"),
     }
 
     folder, name = mapping[index_type]
