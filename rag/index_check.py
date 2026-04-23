@@ -5,24 +5,24 @@ from pathlib import Path
 JSONL_FILE = "../md_results/cleaned_pages_big.jsonl"
 CHROMA_PATHS = [
     "index_markdown_and_sentence_big_512",
-    "index_sentence_big_512",
-    "index_markdown_big_512",
+    "index_markdown_big",
+    "index_sentence_big_512"
 ]
 
 
 def audit_index(chroma_path: str, expected_urls: set) -> None:
     if not Path(chroma_path).exists():
-        print(f"⏭️  {chroma_path} — cartella non trovata, salto.\n")
+        print(f"{chroma_path} — folder not found, skipping.\n")
         return
 
-    print(f"📡 Connessione a ChromaDB in: {chroma_path}...")
+    print(f"Connecting to ChromaDB at: {chroma_path}...")
     client = chromadb.PersistentClient(path=chroma_path)
     collection = client.get_collection("quickstart")
 
     all_ids = collection.get(include=[])["ids"]
     found_urls = set()
 
-    print(f"Counting... (Nodi totali trovati: {len(all_ids)})")
+    print(f"Counting... (Total nodes found: {len(all_ids)})")
 
     batch_size = 5000
     for i in range(0, len(all_ids), batch_size):
@@ -31,19 +31,19 @@ def audit_index(chroma_path: str, expected_urls: set) -> None:
         for m in metas:
             if m and "url" in m:
                 found_urls.add(m["url"])
-        print(f"   Analizzati {min(i + batch_size, len(all_ids))}/{len(all_ids)} nodi...", end="\r")
+        print(f"   Analyzed {min(i + batch_size, len(all_ids))}/{len(all_ids)} nodes...", end="\r")
 
     missing_urls = expected_urls - found_urls
 
-    print(f"\n\n📊 RISULTATO — {chroma_path}:")
+    print(f"\n\nRESULT — {chroma_path}:")
     print("─" * 50)
-    print(f"URL totali nel JSONL: {len(expected_urls)}")
-    print(f"URL trovati nell'indice: {len(found_urls)}")
-    print(f"URL MANCANTI: {len(missing_urls)}")
+    print(f"Total URLs in JSONL: {len(expected_urls)}")
+    print(f"URLs found in index: {len(found_urls)}")
+    print(f"MISSING URLs: {len(missing_urls)}")
 
     if missing_urls:
         log_file = f"missing_docs_{Path(chroma_path).name}.txt"
-        print(f"\n📝 Primi 10 URL mancanti (scritti in {log_file}):")
+        print(f"\nFirst 10 missing URLs (written to {log_file}):")
         with open(log_file, "w") as f:
             for url in sorted(missing_urls):
                 f.write(url + "\n")
@@ -53,7 +53,7 @@ def audit_index(chroma_path: str, expected_urls: set) -> None:
 
 
 def final_audit():
-    print(f"📖 Lettura file sorgente: {JSONL_FILE}...")
+    print(f"Reading source file: {JSONL_FILE}...")
     expected_urls = set()
     with open(JSONL_FILE, "r", encoding="utf-8") as f:
         for line in f:
@@ -61,7 +61,7 @@ def final_audit():
             if obj.get("url"):
                 expected_urls.add(obj["url"])
 
-    print(f"✅ URL attesi dal file: {len(expected_urls)}\n")
+    print(f"Expected URLs from file: {len(expected_urls)}\n")
 
     for path in CHROMA_PATHS:
         audit_index(path, expected_urls)
