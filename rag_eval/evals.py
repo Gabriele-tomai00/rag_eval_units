@@ -3,6 +3,12 @@ import asyncio
 from dotenv import load_dotenv
 import re
 import argparse
+import tiktoken
+
+_tokenizer = tiktoken.get_encoding("cl100k_base")
+
+def _count_tokens(text: str) -> int:
+    return len(_tokenizer.encode(text))
 
 from questions_answares import samples
 
@@ -146,7 +152,7 @@ if _args.all:
 else:
     ENABLE_JUDGE                    = True
     ENABLE_FAITHFULNESS             = False
-    ENABLE_ANSWER_CORRECTNESS       = True
+    ENABLE_ANSWER_CORRECTNESS       = False
     ENABLE_RESPONSE_RELEVANCY       = False
     ENABLE_CONTEXT_PRECISION        = False
     ENABLE_CONTEXT_RECALL           = False
@@ -154,7 +160,7 @@ else:
 
 # Conservative config for a local/unstable vLLM service
 _run_config = RunConfig(
-    max_workers=28,
+    max_workers=10,
     timeout=600,
     max_retries=4,
 )
@@ -165,7 +171,7 @@ _run_config = RunConfig(
 
 Settings.embed_model = HuggingFaceEmbedding(
     model_name=os.getenv("EMBEDDING_MODEL"),
-    embed_batch_size=4,
+    embed_batch_size=1,
 )
 
 Settings.llm = OpenAILike(
@@ -286,13 +292,14 @@ JUDGE_USER_TEMPLATE = (
 )
 
 
-def judge_score(response: str, grading_notes: str, ground_truth: str) -> str:
+def judge_score(response: str, question: str, ground_truth: str) -> str:
     """
     Call the judge LLM and return 'pass', 'fail', or 'error'.
     Searches for a JSON verdict anywhere in the response.
     """
     prompt = JUDGE_USER_TEMPLATE.format(
         response=response,
+        question=question,
         ground_truth=ground_truth,
     )
     try:
@@ -520,7 +527,8 @@ async def run_experiment(row: dict) -> dict:
                 # "grading_notes":   row["grading_notes"],
                 "ground_truth":    reference,
                 "answer":          answer,
-                "contexts":        "\n".join(f"{i+1}): (len: {len(ctx)}) (score: {rag_result['chunks'][i]['score']:.4f}) {ctx[:30]}..." for i, ctx in enumerate(contexts)),
+                "answer_source":          row.get("source", ""),
+                "contexts":        "\n".join(f"{i+1}): (tokens: {_count_tokens(ctx)}) (url: {rag_result['chunks'][i]['source']}) (score: {rag_result['chunks'][i]['score']:.4f}) {ctx[:35]}..." for i, ctx in enumerate(contexts)),
                 "judge_result":    score,
                 "top_chunk_score": rag_result["chunks"][0]["score"] if rag_result["chunks"] else None,
                 "top_chunk_src":   rag_result["chunks"][0]["source"] if rag_result["chunks"] else None,
