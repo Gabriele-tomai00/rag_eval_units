@@ -229,8 +229,6 @@ def query_rag(index: VectorStoreIndex, question: str) -> dict:
             SimilarityPostprocessor(similarity_cutoff=SIMILARITY_CUTOFF)
         ]
     )
-    print("Embed model in use:", Settings.embed_model)
-    print("Model name:", Settings.embed_model.model_name)
 
     augmented_question = f"[Rispondi esclusivamente in italiano] {question}"
     response = query_engine.query(augmented_question)
