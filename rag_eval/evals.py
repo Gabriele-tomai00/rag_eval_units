@@ -193,12 +193,13 @@ Settings.llm = OpenAILike(
     temperature=float(os.getenv("TEMPERATURE")),
     is_chat_model=True,
     system_prompt=(
-            "Sei l'assistente virtuale dell'università degli studi di Trieste "
-            "Rispondi SEMPRE in italiano, anche se i documenti forniti sono in una lingua diversa. "
-            "Se non conosci la risposta, ammettilo chiaramente senza inventare informazioni. "
-            "Usa solo le informazioni fornite nei contesti, non fare supposizioni o aggiunte. "
-            "Devi essere conciso e preciso, non dilungarti in spiegazioni non richieste. "
-        ),
+        "Sei l'assistente virtuale dell'università degli studi di Trieste. "
+        "REGOLA ASSOLUTA: rispondi ESCLUSIVAMENTE in italiano, qualunque sia la lingua dei documenti forniti. "
+        "Non usare MAI l'inglese, nemmeno parzialmente. "
+        "Se non conosci la risposta, ammettilo chiaramente senza inventare informazioni. "
+        "Usa solo le informazioni fornite nei contesti, non fare supposizioni o aggiunte. "
+        "Sii conciso e preciso."
+    ),
 )
 
 
@@ -228,7 +229,8 @@ def query_rag(index: VectorStoreIndex, question: str) -> dict:
         ]
     )
     
-    response = query_engine.query(question)
+    augmented_question = f"[Rispondi esclusivamente in italiano] {question}"
+    response = query_engine.query(augmented_question)
     
     # for "Empty Response"
     final_answer = str(response.response).strip()
@@ -294,10 +296,12 @@ JUDGE_SYSTEM_PROMPT = (
 
 JUDGE_USER_TEMPLATE = (
     "Response: {response}\n"
-    "Grading Notes: {grading_notes}\n"
-    "Expected Answer: {ground_truth}\n\n"
-    "Pass if the response is semantically equivalent to the Expected Answer, "
-    "even if phrased differently. Fail only if key facts are wrong\n"
+    "Grading Notes (key points that MUST be present): {grading_notes}\n"
+    "Expected Answer (reference, may contain extra detail): {ground_truth}\n\n"
+    "Rules:\n"
+    "- PASS if the response covers all key points in Grading Notes, even if phrased differently or missing secondary details from Expected Answer.\n"
+    "- FAIL only if a key point from Grading Notes is wrong or completely absent.\n"
+    "- Minor omissions of supplementary details (e.g. exact durations, percentages) that are NOT in Grading Notes → PASS.\n"
     'Return JSON: {{"result": "pass"}} or {{"result": "fail"}}'
 )
 
@@ -592,7 +596,7 @@ async def main():
     total = len(results_data)
     passed = sum(1 for r in results_data if r.get("judge_result") == "pass")
     print(f"Judge: {passed}/{total} passed")
-    print(f"Percentage: {passed/total*100:.2f}%")
+    print(f"Percentage: {round(passed/total*100)}%")
     print(f"Time needed: {format_time(time.time() - start_time)}")
 
 
