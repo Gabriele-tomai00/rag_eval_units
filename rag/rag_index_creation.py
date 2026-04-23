@@ -119,7 +119,7 @@ def print_debug_result(result: dict) -> None:
 async def main(type: int, big: bool, chunk_size: int, resume: bool) -> None:
     index_dirs = {
         1: ("index_sentence", "index_sentence_big"),
-        2: ("index_markdown_chunking", "index_markdown_chunking_big"),
+        2: ("index_markdown", "index_markdown_big"),
         3: ("index_markdown_and_sentence", "index_markdown_and_sentence_big"),
     }
 
