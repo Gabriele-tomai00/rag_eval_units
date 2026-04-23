@@ -1,0 +1,298 @@
+question,ground_truth,answer,answer_source,contexts,judge_result,top_chunk_score,top_chunk_src,answer_correctness,faithfulness,response_relevancy,context_precision,context_recall
+dove si trova la sede principale dell'ateneo,"La sede principale dell'Università degli Studi di Trieste si trova a Trieste, in Piazzale Europa 1, in un'area sopraelevata rispetto al centro della città.","La sede principale dell'Ateneo si trova a Trieste, in Piazzale Europa 1.",https://portale.units.it/it/ateneo/campus,"1): (tokens: 493) (url: https://portale.units.it/it/ateneo/campus) (score: 0.4341) * Futuri studenti
+  * Studenti iscr...
+2): (tokens: 152) (url: https://www.units.it/strutture/index.php/area/ateneo/strutture/000133?pf=stampa) (score: 0.3954) |   
+Vendramini Riccardo |  Rappr. ...
+3): (tokens: 169) (url: https://www.units.it/strutture/index.php/area/ateneo/menu/organigramma/strutture/028696?pf=stampa) (score: 0.3939) * * *
+
+# Unita' Clinica Operativa d...",pass,0.4341,https://portale.units.it/it/ateneo/campus,0.7144,1.0,0.8265,1.0,1.0
+"edificio, piano e aula stampare all università","È possibile stampare presso l'edificio H3, situato nel polo di Piazzale Europa, al quinto piano all'interno delle aule informatiche.","Le postazioni per la stampa si trovano nell'edificio H3, al 5° piano, all'interno delle diverse aule informatiche.",https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica,"1): (tokens: 483) (url: https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica) (score: 0.4563) * Futuri studenti
+  * Studenti iscr...
+2): (tokens: 407) (url: https://amm.units.it/normativa/regolamenti/articolo-52947/art-12-modalita-gestione-attrezzature-e-dispositivi-aula) (score: 0.4173) * Futuri studenti
+  * Studenti iscr...
+3): (tokens: 339) (url: https://amm.units.it/normativa/regolamenti/articolo-52939/art-4-tipologia-spazi) (score: 0.4172) Regolamento per la gestione degli s...",pass,0.4563,https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica,0.8507,1.0,0.5433,1.0,1.0
+requisiti: titolo di studio richiesto per immatricolazione a ingegneria elettronica e informatica,Il titolo richiesto è il diploma di scuola media superiore o titolo estero equipollente. Per i titoli esteri è necessario verificare la validità presso la sezione Studenti Internazionali.,"Per immatricolarsi al corso di Ingegneria Elettronica e Informatica è necessario essere in possesso di un diploma di scuola media superiore o di un titolo di studio equipollente conseguito all'estero. Per i titoli esteri, è consigliabile consultare le informazioni dedicate agli Studenti Internazionali per verificarne la validità e i requisiti specifici di accesso.",https://lauree.units.it/it/0320106200800001/come-iscriversi,"1): (tokens: 446) (url: https://lauree.units.it/it/0320106200800001/come-iscriversi) (score: 0.5710) ENG
+
+Area studenti
+
+  * Home
+  * Il...
+2): (tokens: 421) (url: https://lauree.units.it/it/0320106200800001) (score: 0.5300) * richiedenti visto
+
+
+
+Vedi info am...
+3): (tokens: 402) (url: https://lauree.units.it/it/0320106200800001/il-corso) (score: 0.5296) Laurea 
+
+# INGEGNERIA ELETTRONICA E...",pass,0.571,https://lauree.units.it/it/0320106200800001/come-iscriversi,0.8548,1.0,0.8511,1.0,1.0
+i curricula del corso Scienze e Tecnologie per l'ambiente e la natura,"I curriculum sono tre: Ambientale, Biologico e Didattico.","I curricula disponibili per il corso di laurea in Scienze e Tecnologie per l'ambiente e la natura sono:
+
+*   AMBIENTALE
+*   DIDATTICO",https://www.biologia.units.it/index.php?/corsi/5/Laurea-in-Scienze-e-Tecnologie-per-lambiente-e-la-natura,"1): (tokens: 477) (url: https://lauree.units.it/it/0320106203200001/piano-di-studi) (score: 0.5720) Area studenti
+
+  * Home
+  * Il cors...
+2): (tokens: 351) (url: https://lauree.units.it/it/0320106203200001/area-studenti/insegnamenti/2027/116559-1/2025/3/10794/2025/13316) (score: 0.5576) Area studenti
+
+  * Home
+  * Il cors...
+3): (tokens: 352) (url: https://lauree.units.it/it/0320106203200001/area-studenti/insegnamenti/2027/116559-2/2025/3/10794/2025/13316) (score: 0.5536) Area studenti
+
+  * Home
+  * Il cors...",fail,0.572,https://lauree.units.it/it/0320106203200001/piano-di-studi,0.7225,1.0,0.8969,0.0,0.5
+i 3 docenti tutor dei 3 curricula del corso Scienze e Tecnologie per l'ambiente e la natura,Curriculum Biologico: Prof. Stanislao Bevilacqua. Curriculum Ambientale: Prof. Pieluigi Barbieri.,"I tre docenti tutor per i curricula del corso di Scienze e Tecnologie per l'Ambiente e la Natura sono:
+
+*   **Curriculum Biologico**: Prof. Stanislao Bevilacqua
+*   **Curriculum Ambientale**: Prof. Pierluigi Barbieri
+*   **Curriculum Didattico**: Prof. Michele Stoppa",https://www.biologia.units.it/index.php?/corsi/5/Laurea-in-Scienze-e-Tecnologie-per-lambiente-e-la-natura,"1): (tokens: 375) (url: https://www.biologia.units.it/index.php?/corsi/5/Laurea-in-Scienze-e-Tecnologie-per-lambiente-e-la-natura) (score: 0.5816) \---
+
+**Docenti Tutor Curriculari**...
+2): (tokens: 379) (url: https://lauree.units.it/it/0320106203200001/area-studenti/tutorato) (score: 0.5567) Area studenti
+
+  * Home
+  * Il cors...
+3): (tokens: 475) (url: https://lauree.units.it/it/0320106203200001/area-studenti/tutorato) (score: 0.5558) #### Perché sono efficaci?
+
+Essendo...",pass,0.5816,https://www.biologia.units.it/index.php?/corsi/5/Laurea-in-Scienze-e-Tecnologie-per-lambiente-e-la-natura,0.6954,1.0,0.8969,0.8333,1.0
+contatti orari e indirizzo Ufficio Applicativi per la carriera dello studente e i contributi universitari,"Ufficio Applicativi per la carriera dello studente e i contributi universitari: Piazzale Europa 1, Edificio A. Tel: +39 040 558 3731 (mar, mer, ven 12-13). Email: tasse.studenti@amm.units.it. Sportello su prenotazione (EasyPlanning): Lunedì 15:00-16:40 e Giovedì 09:00-11:10.","L'Ufficio Applicativi per la carriera dello studente e i contributi universitari si trova in Piazzale Europa 1, 34127 Trieste.
+
+La Capo Ufficio è la Dott.ssa Donatella Fabbro. Un'altra figura menzionata come Responsabile Ufficio per i contatti della carriera studenti è Erika Federici.
+
+Il numero di telefono generale dell'università è +39 040 558 7111. L'indirizzo PEC generale è ateneo@pec.units.it.
+
+Gli orari di contatto sono i seguenti:
+
+**Sportello telefonico (dal 9 febbraio al 16 aprile):**
+*   Lunedì, martedì, mercoledì e venerdì: dalle 12:00 alle 13:00
+*   Giovedì: dalle 15:00 alle 16:00
+
+**Apertura sportello con prenotazione (dal 9 febbraio al 16 aprile):**
+*   Lunedì: dalle 15:00 alle 16:30
+*   Giovedì: dalle 9:00 alle 11:00
+
+Per effettuare la prenotazione, è necessario accedere al servizio EasyPlanning e scegliere il servizio ""Sportello carriere"". La prenotazione può essere fatta fino al giorno antecedente l'appuntamento. Per accedere agli sportelli è richiesto un documento di identità; in caso di delega a terzi, è necessaria una delega e una copia del documento di identità dello studente.
+
+**Dal 17 aprile in poi**, l'attività di ricevimento al pubblico si svolge su appuntamento da concordare direttamente con l'Ufficio.",https://portale.units.it/it/studiare/contributi/lauree-magistrali-e-magistrali-ciclo-unico,"1): (tokens: 214) (url: https://www.units.it/strutture/index.php/from/organigramma/area/ateneo/menu/organigramma/strutture/028718?pf=stampa) (score: 0.5855) * * *
+
+# Ufficio Applicativi per la...
+2): (tokens: 495) (url: https://portale.units.it:443/it/studiare/contatti/carriera-studenti) (score: 0.5332) * Futuri studenti
+  * Studenti iscr...
+3): (tokens: 437) (url: https://portale.units.it:443/it/studiare/contatti/carriera-studenti) (score: 0.5311) ## 
+
+Utilizza l'**email universitar...",pass,0.5855,https://www.units.it/strutture/index.php/from/organigramma/area/ateneo/menu/organigramma/strutture/028718?pf=stampa,,1.0,0.896,0.0,0.0
+iniziativa Climbing for Climate (CFC),"Iniziativa promossa da RUS e CAI per sensibilizzare sul riscaldamento globale. Il nome richiama i clorofluorocarburi (CFC), gas responsabili del buco nell'ozono banditi dal Protocollo di Montreal. L'ateneo partecipa organizzando eventi sul territorio.",Le informazioni fornite non contengono dettagli sull'iniziativa Climbing for Climate (CFC).,https://portale.units.it/it/terza-missione/sostenibilita,"1): (tokens: 198) (url: https://dia.units.it/en/department/people/teaching-staff?q=en/node/2175) (score: 0.3714) | Active  
+Sustainable Urban areas ...
+2): (tokens: 367) (url: https://lauree.units.it/it/0320107300700004/assicurazione-qualita/rilevazione-opinione-studenti) (score: 0.3681) Area studenti
+
+  * Home
+  * Il cors...
+3): (tokens: 457) (url: https://lauree.units.it/it/0320107300700004/area-studenti/insegnamenti/2025/119364/2025/9999/10824/2025/13311) (score: 0.3630) ## 
+
+Students are expected to have ...",fail,0.3714,https://dia.units.it/en/department/people/teaching-staff?q=en/node/2175,0.1274,1.0,0.0,0.0,0.0
+inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE,Le lezioni iniziano il 22 settembre 2025 (il 1 ottobre per gli studenti del primo anno) e terminano il 19 dicembre 2025.,"Il primo semestre per il corso di Scienze Internazionali e Diplomatiche si svolge dal 22 settembre 2025 al 19 dicembre 2025.
+
+Si segnala che gli studenti del 1° anno di Scienze Internazionali e Diplomatiche iniziano il primo semestre il 1° ottobre 2025.",https://degree.units.it/it/0320106203600002/area-studenti/calendario-didattico,"1): (tokens: 378) (url: https://degree.units.it/it/0320106203600002/area-studenti/calendario-didattico) (score: 0.5831) > ***NOTA:**  
+>  Gli **studenti de...
+2): (tokens: 378) (url: https://lauree.units.it/it/0320106203600002/area-studenti/calendario-didattico) (score: 0.5831) > ***NOTA:**  
+>  Gli **studenti de...
+3): (tokens: 349) (url: https://lauree.units.it/it/0320106203600002/area-studenti/calendario-didattico) (score: 0.5376) Area studenti
+
+  * Home
+  * Il cors...",pass,0.5831,https://degree.units.it/it/0320106203600002/area-studenti/calendario-didattico,0.9205,1.0,0.7817,0.3333,1.0
+inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE,"Il primo semestre inizia il 29 settembre 2025 per il I anno e il 22 settembre per gli anni successivi, con termine il 19 dicembre 2025 per tutti.","Per il corso di SCIENZE E TECNICHE PSICOLOGICHE, le lezioni del primo semestre si svolgono:
+
+*   Per il I anno: dal 29 settembre 2025 al 19 dicembre 2025.
+*   Per il II e III anno: dal 22 settembre 2025 al 19 dicembre 2025.",https://degree.units.it/it/0320106202400001/area-studenti/calendario-didattico,"1): (tokens: 306) (url: https://degree.units.it/it/0320106202400001/area-studenti/calendario-didattico) (score: 0.5209) Area studenti
+
+  * Home
+  * Il cors...
+2): (tokens: 234) (url: https://lauree.units.it/it/0320106202400001/area-studenti/insegnamenti/2025/115285/2018/9999/10247) (score: 0.4992) Area studenti
+
+  * Home
+  * Il cors...
+3): (tokens: 243) (url: https://lauree.units.it/it/0320106202400001/area-studenti/insegnamenti/2025/118501/2016/9999/10249) (score: 0.4870) Area studenti
+
+  * Home
+  * Il cors...",pass,0.5209,https://degree.units.it/it/0320106202400001/area-studenti/calendario-didattico,0.9362,1.0,0.7886,1.0,1.0
+dove si trova il materiale didattico corso Cybersecurity di Bartoli,"Il materiale didattico per il corso di Cybersecurity è disponibile sul sito del corso, dove si trova il programma dettagliato e molto altro materiale aggiuntivo. Le slide sono caricate su Microsoft Teams, e l'iscrizione al team è automatica.","Il materiale didattico per il corso di Cybersecurity si trova sul sito del corso, dove è disponibile il programma dettagliato e altro materiale aggiuntivo. Le slide sono inoltre disponibili su Microsoft Teams.",https://degree.units.it/en/0320107303300001/students-area/taught-courses/2025/120014/2025/2/10740/2025,"1): (tokens: 378) (url: https://bartoli.inginf.units.it/didattica/cybersecurity) (score: 0.5031) Search this site
+
+Embedded Files
+
+A...
+2): (tokens: 318) (url: https://bartoli.inginf.units.it/) (score: 0.4631) Search this site
+
+Embedded Files
+
+A...
+3): (tokens: 423) (url: https://bartoli.inginf.units.it/didattica/reti-di-calcolatori) (score: 0.4489) Search this site
+
+Embedded Files
+
+A...",pass,0.5031,https://bartoli.inginf.units.it/didattica/cybersecurity,0.9078,1.0,0.8013,1.0,1.0
+Regolmaneto in cui sono definite le modalità di elezione delle rappresentanze studentesche nei corsi interdipartimentali?,Le modalità di elezione delle rappresentanze studentesche nei consigli di dipartimento sono definite dal regolamento degli studenti (comma 7).,"Le modalità di elezione delle rappresentanze studentesche nei consigli di dipartimento, in rapporto ai corsi interdipartimentali, sono definite dal regolamento degli studenti.",https://amm.units.it/normativa/regolamenti/articolo-22178/art-31-corsi-studio,"1): (tokens: 124) (url: https://amm.units.it/normativa/regolamenti/articolo-22178/art-31-corsi-studio) (score: 0.5754) In rapporto ai corsi interdipartime...
+2): (tokens: 413) (url: https://amm.units.it/normativa/regolamenti/articolo-22182/art-35-consiglio-scuola-interdipartimentale) (score: 0.5027) * Futuri studenti
+  * Studenti iscr...
+3): (tokens: 472) (url: https://amm.units.it/normativa/regolamenti/articolo-22175/art-28-consiglio-dipartimento) (score: 0.4796) Il mandato dei rappresentanti degli...",pass,0.5754,https://amm.units.it/normativa/regolamenti/articolo-22178/art-31-corsi-studio,0.7243,1.0,0.7573,1.0,0.0
+Quali attività cura l'Università per facilitare l'inserimento nel mondo del lavoro?,"L'Università cura le attività di orientamento e tutorato e attiva servizi intesi ad agevolare l'inserimento nel mondo del lavoro di studenti e laureati. Favorisce inoltre la costituzione di associazioni di ex-alunni, finalizzate al mantenimento di relazioni con l'Ateneo e al sostegno delle sue attività istituzionali.","L'Università degli Studi di Trieste, tramite il suo Career Service, cura diverse attività per facilitare l'inserimento nel mondo del lavoro di studenti, laureati e dottorandi. Queste includono:
+
+*   **Orientamento al lavoro:** Vengono organizzati laboratori di orientamento al lavoro e attività con gli Alumni, come interviste, ""Focus sulle professioni"", ""Homecoming - Aperitivo con gli Alumni"" e il programma di mentoring annuale ""Mentors4UniTS"" per studenti magistrali. Viene anche offerto supporto per la scrittura del CV e la preparazione ai colloqui tramite Jobiri, un consulente di carriera digitale.
+*   **Offerte di tirocinio e lavoro:** Il servizio raccoglie e pubblica annunci di tirocinio (curriculare ed extracurriculare) e offerte di lavoro dedicate sulla bacheca AlmaLaurea.
+*   **Attivazione tirocini:** Si occupa della stipula di convenzioni di Ateneo per tirocini curriculari e dell'attivazione di tirocini extracurriculari, inclusi quelli post-lauream.
+*   **Incontri con le aziende:** Vengono organizzati incontri con le aziende, ""Recruiting day"" per posizioni di lavoro o tirocinio, e il ""Career day job@uniTS"".",https://amm.units.it/normativa/regolamenti/articolo-22145/art-1-natura-e-fini,"1): (tokens: 318) (url: https://amm.units.it/placement) (score: 0.4772) * Futuri studenti
+  * Studenti iscr...
+2): (tokens: 439) (url: https://amm.units.it/placement/studenti) (score: 0.4748) * Futuri studenti
+  * Studenti iscr...
+3): (tokens: 396) (url: https://amm.units.it/en/placement/about-us) (score: 0.4729) * Prospective students
+  * Enrolled...",pass,0.4772,https://amm.units.it/placement,,1.0,0.6571,1.0,0.5
+Quali forme di sostegno economico eroga l'Università agli studenti?,"L'Università eroga diverse forme di sostegno economico agli studenti. Offre borse di studio proprie, destinate a incentivare la frequenza universitaria e a supportare gli studenti in situazioni economiche difficili, promuovendo l'inclusione e valorizzando il talento. Inoltre, mette a disposizione moduli e documenti per richiedere esenzioni e riduzioni delle tasse universitarie, basate su specifiche situazioni personali, come ad esempio: *   Riduzioni per borsisti del Governo Italiano o studenti provenienti da Paesi in via di sviluppo. *   Riduzioni per familiari contemporaneamente iscritti. *   Esenzioni per figli di beneficiari di pensione di inabilità. *   Riduzioni per studenti genitori. *   Esenzioni/riduzioni per permessi di soggiorno per asilo politico o tutele speciali per studenti internazionali.",L'Università eroga borse di studio destinate a incentivare la frequenza universitaria e a sostenere gli studenti che si trovano in situazioni economiche difficili. Queste opportunità mirano a promuovere l'inclusione e a valorizzare il talento.,https://amm.units.it/normativa/regolamenti/articolo-22145/art-1-natura-e-fini,"1): (tokens: 357) (url: https://lauree.units.it/it/0320107305200001/borse-di-studio) (score: 0.4931) Le borse di studio dell’Ateneo sono...
+2): (tokens: 466) (url: https://degree.units.it/en/0320106204700003/university-fees) (score: 0.4925) A **contributions simulator** is av...
+3): (tokens: 363) (url: https://lauree.units.it/it/0320107308800001/borse-di-studio) (score: 0.4902) Le borse di studio dell’Ateneo sono...",pass,0.4931,https://lauree.units.it/it/0320107305200001/borse-di-studio,0.5682,1.0,0.7832,0.5,1.0
+Chi può proporre il conferimento del titolo di Dottore di Ricerca honoris causa?,"Il conferimento può essere proposto dal Rettore o dal Collegio dei docenti del Dottorato di riferimento, previa deliberazione assunta con la maggioranza dei due terzi dei componenti.","Il conferimento del titolo di Dottore di Ricerca honoris causa può essere proposto dal Rettore o dal Collegio dei docenti del Dottorato di riferimento, a condizione che la deliberazione sia assunta con la maggioranza dei due terzi dei componenti.",https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa,"1): (tokens: 230) (url: https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa) (score: 0.5638) 6\. Il Rettore trasmette al Ministe...
+2): (tokens: 454) (url: https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa) (score: 0.5446) * Futuri studenti
+  * Studenti iscr...
+3): (tokens: 361) (url: https://amm.units.it/normativa/regolamenti/articolo-22654/art-2-destinatari-assegni-ricerca) (score: 0.4829) 4\. Il possesso del titolo di dotto...",pass,0.5638,https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa,0.8069,1.0,0.8503,0.5,1.0
+Quanti dottorati honoris causa può conferire l'Ateneo per ogni anno accademico?,"L'Ateneo può conferire al massimo un solo Dottorato honoris causa per ogni anno accademico, e comunque nei limiti stabiliti dal Ministero.","L'Ateneo può conferire al massimo un solo Dottorato honoris causa per ogni anno accademico, e comunque nei limiti stabiliti dal Ministero.",https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa,"1): (tokens: 230) (url: https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa) (score: 0.5211) 6\. Il Rettore trasmette al Ministe...
+2): (tokens: 454) (url: https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa) (score: 0.4421) * Futuri studenti
+  * Studenti iscr...
+3): (tokens: 316) (url: https://phd.units.it/it/dot1333709/dottorandi) (score: 0.4357) ENG
+
+Area dottorandi
+
+  * Home
+  * ...",pass,0.5211,https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa,1.0,1.0,0.9865,1.0,1.0
+Quali diritti attribuisce il diploma di Dottorato honoris causa?,"Il diploma di Dottorato honoris causa attribuisce tutti i diritti del Dottorato ordinario, in quanto è equiparato ex lege al titolo normalmente conseguito.","Il diploma di Dottorato *honoris causa* attribuisce tutti i diritti del Dottorato ordinario, essendo equiparato per legge al titolo normalmente conseguito.",https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa,"1): (tokens: 230) (url: https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa) (score: 0.5530) 6\. Il Rettore trasmette al Ministe...
+2): (tokens: 454) (url: https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa) (score: 0.4983) * Futuri studenti
+  * Studenti iscr...
+3): (tokens: 423) (url: https://amm.units.it/normativa/regolamenti/articolo-44582/art-27-diritti-e-doveri-dottorandi) (score: 0.4708) * Futuri studenti
+  * Studenti iscr...",pass,0.553,https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa,0.9921,1.0,0.9564,1.0,1.0
+"Secondo il regolamento, in quali casi una proposta di dottorato honoris causa non viene presa in considerazione?",Non vengono prese in considerazione le proposte inerenti a persone già in possesso di un diploma di Dottorato di Ricerca ordinario o honoris causa della stessa tipologia.,Le informazioni fornite non contengono dettagli sui regolamenti relativi alle proposte di dottorato honoris causa o sui casi in cui tali proposte non vengono prese in considerazione.,https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa,"1): (tokens: 134) (url: https://degree.units.it/en/0320106204600001/teaching-regulations) (score: 0.3984) ##### Inter-university
+
+This course...
+2): (tokens: 127) (url: https://degree.units.it/en/0320107300700001/students-area/regulations-and-documents) (score: 0.3968) ##### Inter-university
+
+This course...
+3): (tokens: 127) (url: https://lauree.units.it/en/0320107300700001/scholarship) (score: 0.3955) ##### Inter-university
+
+This course...",fail,0.3984,https://degree.units.it/en/0320106204600001/teaching-regulations,0.2009,1.0,0.0,0.0,0.0
+Per quanto tempo può essere incrementata la borsa di dottorato per soggiorno all'estero?,L'importo della borsa di dottorato può essere incrementato del 50% per un periodo di soggiorno all'estero complessivo non superiore a 12 mesi per attività di ricerca. Questo periodo può essere esteso fino a un massimo complessivo di 18 mesi per i dottorati in convenzione o per i dottorandi in co-tutela con soggetti esteri. L'incremento è applicabile per periodi di soggiorno continuativi e non inferiori a 30 giorni.,L'importo della borsa di dottorato può essere incrementato per un periodo di soggiorno all'estero complessivo non superiore a 12 mesi per attività di ricerca. Questo periodo può essere esteso fino a un massimo complessivo di 18 mesi per i dottorati in convenzione o per i dottorandi in co-tutela con soggetti esteri. L'incremento è dovuto per periodi di soggiorno continuativi e non inferiori a 30 giorni.,https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio,"1): (tokens: 472) (url: https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio) (score: 0.6306) * Futuri studenti
+  * Studenti iscr...
+2): (tokens: 426) (url: https://amm.units.it/normativa/regolamenti/articolo-44578/art-23-proroga-della-consegna-della-tesi-o-della-frequenza) (score: 0.5861) La borsa può essere corrisposta, fi...
+3): (tokens: 476) (url: https://phd.units.it/it/dot1333171/borsa-di-dottorato) (score: 0.5309) ENG
+
+Area dottorandi
+
+  * Home
+  * ...",fail,0.6306,https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio,0.9607,1.0,0.8962,1.0,1.0
+regole e limitazioni per ottenere una seconda borsa di dottorato nell'università italiana,"Chi ha già usufruito di una borsa di dottorato nell'ambito del sistema universitario italiano, anche parzialmente, non può usufruirne una seconda volta.","Chi ha già beneficiato di una borsa di dottorato all'interno del sistema universitario italiano, anche solo in parte, non può usufruirne una seconda volta.",https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio,"1): (tokens: 408) (url: https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio) (score: 0.5148) 5\. Chi ha già usufruito di una bor...
+2): (tokens: 400) (url: https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio) (score: 0.4830) Il finanziamento può essere riutili...
+3): (tokens: 472) (url: https://amm.units.it/normativa/regolamenti/articolo-44572/art-18-ammissione-ai-corsi) (score: 0.4813) 5\. Il bando può altresì prevedere ...",pass,0.5148,https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio,0.9955,1.0,0.7826,1.0,1.0
+"Cosa succede alla borsa di dottorato in caso di rinuncia, di mancato rinnovo o di rinuncia agli studi?","In caso di rinuncia alla borsa, di mancato rinnovo o di rinuncia agli studi, la borsa può essere assegnata, nella sua quota totale o residua, su proposta del Collegio dei docenti, a un dottorando privo di borsa dello stesso ciclo e dello stesso Corso. In ogni caso l'importo non utilizzato è reinvestito dal soggetto che ha attivato il Corso per il finanziamento di dottorati di ricerca.","In caso di rinuncia alla borsa, di mancato rinnovo della stessa o di rinuncia agli studi, la borsa può essere assegnata, nella sua quota totale o residua, a un dottorando privo di borsa dello stesso ciclo e dello stesso Corso, su proposta del Collegio dei docenti e seguendo la relativa graduatoria, tenendo conto di eventuali idoneità per borse a tema vincolato.
+
+L'importo della borsa non utilizzato viene reinvestito dal soggetto che ha attivato il Corso per il finanziamento di dottorati di ricerca. Tale finanziamento può essere riutilizzato previo accordo tra le parti o se le condizioni del finanziamento stesso lo prevedono.",https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio,"1): (tokens: 408) (url: https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio) (score: 0.5891) 5\. Chi ha già usufruito di una bor...
+2): (tokens: 400) (url: https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio) (score: 0.5354) Il finanziamento può essere riutili...
+3): (tokens: 461) (url: https://phd.units.it/it/dot1333709/borsa-di-dottorato) (score: 0.5120) ENG
+
+Area dottorandi
+
+  * Home
+  * ...",pass,0.5891,https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio,0.8662,1.0,0.874,1.0,1.0
+Quali conseguenze può avere il rifiuto del dottorando di dedicarsi al tema di ricerca assegnato?,"Il Collegio dei docenti, sentito il dottorando, può disporre la decadenza dal dottorato oppure la revoca della borsa e l'attribuzione al dottorando di un nuovo tema di ricerca e di un nuovo supervisore, senza prolungamento della durata di 36 mesi del dottorato.","Il rifiuto del dottorando di dedicarsi al tema di ricerca assegnato può comportare un giudizio negativo del Collegio dei docenti sull'attività svolta. Tale giudizio negativo può portare all'esclusione dal Corso di dottorato.
+
+L'esclusione, a sua volta, comporta l'interruzione immediata della borsa di studio o di qualsiasi altra forma di sostegno economico equivalente erogata dall'Università e collegata alla frequenza del dottorato.",https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio,"1): (tokens: 466) (url: https://amm.units.it/normativa/regolamenti/articolo-44579/art-24-decadenza-esclusione-e-rinuncia-agli-studi) (score: 0.4756) Regolamento in materia di Dottorato...
+2): (tokens: 319) (url: https://amm.units.it/normativa/regolamenti/articolo-44577/art-22-sospensione-studi) (score: 0.4365) 3\. Il Collegio dei docenti può inf...
+3): (tokens: 408) (url: https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio) (score: 0.4273) 5\. Chi ha già usufruito di una bor...",fail,0.4756,https://amm.units.it/normativa/regolamenti/articolo-44579/art-24-decadenza-esclusione-e-rinuncia-agli-studi,0.3897,0.8889,0.9376,0.0,0.25
+Quali sono gli insegnamenti previsti nel semestre aperto per l'accesso a Medicina e Odontoiatria?,"Il semestre aperto prevede la frequenza e il superamento di tre insegnamenti da 6 CFU ciascuno: Chimica e propedeutica biochimica, Fisica e Biologia.","Gli insegnamenti previsti nel semestre aperto per l'accesso a Medicina e Odontoiatria sono:
+
+*   Chimica e propedeutica biochimica
+*   Fisica
+*   Biologia",https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria,"1): (tokens: 445) (url: https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria) (score: 0.5989) * Futuri studenti
+  * Studenti iscr...
+2): (tokens: 227) (url: https://lauree.units.it/it/0320107304700001/semestre-aperto/lezioni) (score: 0.5853) ENG
+
+Area studenti
+
+  * Home
+  * Il...
+3): (tokens: 218) (url: https://lauree.units.it/it/0320107304700001/semestre-aperto) (score: 0.5685) ENG
+
+Area studenti
+
+  * Home
+  * Il...",fail,0.5989,https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria,0.6841,1.0,1.0,1.0,1.0
+Qual è il contributo economico richiesto per l'iscrizione al semestre aperto di Medicina?,Per l'iscrizione al semestre aperto è previsto un contributo forfettario unico a livello nazionale di 250 euro. L'importo verrà ricalcolato in un secondo momento in base all'ISEE Universitario e agli altri casi di esonero totale o parziale previsti dalla normativa vigente.,"Il contributo economico richiesto per l'iscrizione al semestre aperto è di 250 Euro. Il pagamento deve essere effettuato entro il 25 luglio 2025 alle ore 17.00, esclusivamente tramite la piattaforma PagoPA.",https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria,"1): (tokens: 213) (url: https://lauree.units.it/it/0320107304200001/semestre-aperto) (score: 0.5410) ENG
+
+Area studenti
+
+  * Home
+  * Il...
+2): (tokens: 414) (url: https://lauree.units.it/it/0320107304200001/semestre-aperto/come-iscriversi) (score: 0.5383) Iscrizione in UniTS
+    
+
+ _Per pro...
+3): (tokens: 432) (url: https://lauree.units.it/it/0320107304200001/semestre-aperto/lezioni) (score: 0.5221) Obbligo e modalità di frequenza
+   ...",pass,0.541,https://lauree.units.it/it/0320107304200001/semestre-aperto,0.3648,1.0,0.8981,0.5,0.5
+Cosa succede a chi non risulta in posizione utile in graduatoria dopo il semestre aperto di Medicina?,"Chi non risulta in posizione utile in graduatoria può accedere, sulla base della posizione raggiunta e dei posti disponibili, al corso affine scelto in fase di iscrizione.","Gli studenti che hanno ottenuto almeno 18/30 in tutti e tre gli esami, ma non rientrano in posizione utile nella graduatoria per il corso di Medicina prescelto, possono immatricolarsi al secondo semestre di un corso affine. Questa possibilità è offerta nei limiti del 20% di posti aggiuntivi riservati ai corsi a numero programmato. I crediti formativi universitari (CFU) conseguiti nel semestre aperto verranno riconosciuti integralmente.",https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria,"1): (tokens: 478) (url: https://lauree.units.it/it/0320107304200001/come-iscriversi) (score: 0.4652) **Requisito minimo di accesso**  
+P...
+2): (tokens: 420) (url: https://degree.units.it/en/0320107304700001/how-apply) (score: 0.4463) may enrol in the second semester of...
+3): (tokens: 232) (url: https://lauree.units.it/it/0320107304200001/semestre-aperto/lezioni) (score: 0.4395) Valutazione della didattica
+    
+
+A...",fail,0.4652,https://lauree.units.it/it/0320107304200001/come-iscriversi,0.3512,0.6,0.7259,1.0,0.0
+Quante ore minime di tirocinio pratico-valutativo sono richieste come primo operatore in Odontoiatria?,"Il tirocinio pratico-valutativo di Odontoiatria richiede un minimo di 600 ore di tirocinio come primo operatore, certificate dal Coordinatore del Corso di Studio.",Sono richieste almeno 600 ore di tirocinio pratico-valutativo come primo operatore.,https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato,"1): (tokens: 132) (url: https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato) (score: 0.5713) Procedure
+    
+
+Le attività̀ del TP...
+2): (tokens: 472) (url: https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato) (score: 0.5006) Le competenze cliniche acquisite ve...
+3): (tokens: 456) (url: https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato) (score: 0.4937) ENG
+
+Area studenti
+
+  * Home
+  * Il...",pass,0.5713,https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato,0.701,1.0,0.8602,1.0,1.0
+In cosa consiste la prova pratica valutativa al termine del tirocinio di Odontoiatria?,"La prova pratica valutativa consiste nella discussione di 3 casi clinici multidisciplinari svolti dal candidato, con valutazione idoneo/non idoneo. Precede la discussione della tesi di laurea.","Al termine del tirocinio pratico-valutativo è prevista una prova pratica valutativa (PPV) che precede la discussione della tesi di laurea. Questa prova consiste nella discussione di tre casi clinici multidisciplinari svolti dal candidato, al fine di valutare le competenze professionali acquisite. La valutazione è espressa come ""idoneo"" o ""non idoneo"".",https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato,"1): (tokens: 393) (url: https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato) (score: 0.5795) Prova pratica valutativa PPV
+    
+
+...
+2): (tokens: 472) (url: https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato) (score: 0.5291) Le competenze cliniche acquisite ve...
+3): (tokens: 425) (url: https://lauree.units.it/it/0320107304700001/il-corso) (score: 0.5219) L'apprendimento viene valutato attr...",pass,0.5795,https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato,0.8386,1.0,0.6558,1.0,1.0
+Come si registra il tirocinio da 9 CFU in Fisica?,"Per registrare il tirocinio da 9 CFU in Fisica, lo studente deve esporre l'attività svolta e i risultati raggiunti in un seminario pubblico di 20 minuti. Bisogna contattare il Prof. Andrea Bressan per l'iscrizione all'appello che si tiene ogni primo lunedì del mese.","Per registrare il tirocinio da 9 CFU, è necessario esporre l'attività svolta e i risultati raggiunti in un seminario pubblico della durata di 20 minuti. Per l'iscrizione online all'appello, che si tiene ogni primo lunedì del mese, si deve contattare il Prof. Andrea Bressan all'indirizzo ANDREA.BRESSAN@units.it.",https://lauree.units.it/it/0320106203000001/area-studenti/tirocinio-e-internato,"1): (tokens: 478) (url: https://lauree.units.it/it/0320106203000001/area-studenti/tirocinio-e-internato) (score: 0.4827) Se la struttura ospitante ti richie...
+2): (tokens: 486) (url: https://lauree.units.it/it/0320107301800010/area-studenti/tirocinio-e-internato) (score: 0.4770) ENG
+
+Area studenti
+
+  * Home
+  * Il...
+3): (tokens: 381) (url: https://lauree.units.it/it/0320106202700001/area-studenti/tirocinio-e-internato) (score: 0.4671) **Conclusione e riconoscimento CFU*...",pass,0.4827,https://lauree.units.it/it/0320106203000001/area-studenti/tirocinio-e-internato,0.9242,1.0,0.8083,1.0,1.0
+Quanti CFU prevede il tirocinio curriculare di Fisica e quante ore corrispondono?,Il tirocinio curriculare di Fisica prevede 3 CFU per un totale di 75 ore. In alternativa è possibile optare per un tirocinio esteso da 9 CFU per 225 ore. Per gli immatricolati al primo anno a partire dall'a.a. 2024/2025 è previsto solamente il tirocinio da 3 CFU.,"Il tirocinio curriculare di Fisica prevede 3 CFU, corrispondenti a un totale di 75 ore.",https://lauree.units.it/it/0320106203000001/area-studenti/tirocinio-e-internato,"1): (tokens: 478) (url: https://lauree.units.it/it/0320106203000001/area-studenti/tirocinio-e-internato) (score: 0.6222) Se la struttura ospitante ti richie...
+2): (tokens: 289) (url: https://lauree.units.it/it/0320106203900001/area-studenti/tirocinio-e-internato) (score: 0.5836) Il numero di CFU richiesti è defini...
+3): (tokens: 443) (url: https://lauree.units.it/it/0320106202700001/area-studenti/tirocinio-e-internato) (score: 0.5694) ENG
+
+Area studenti
+
+  * Home
+  * Il...",pass,0.6222,https://lauree.units.it/it/0320106203000001/area-studenti/tirocinio-e-internato,0.6064,0.0,0.9884,1.0,0.6667
+Entro quando deve arrivare la documentazione per avviare il tirocinio di Scienze e Tecnologie Biologiche?,"La documentazione per avviare il tirocinio di Scienze e Tecnologie Biologiche deve arrivare alla Segreteria Didattica entro il 15 del mese precedente l'inizio del tirocinio, per permettere l'approvazione da parte del Consiglio di Corso di Studi.",La documentazione per avviare il tirocinio di Scienze e Tecnologie Biologiche deve arrivare alla Segreteria Didattica entro il 15 del mese precedente l’inizio del tirocinio.,https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato,"1): (tokens: 412) (url: https://lauree.units.it/it/0320107301400001/area-studenti/tirocinio-e-internato) (score: 0.5480) Procedura e documentazione
+    
+
+De...
+2): (tokens: 411) (url: https://lauree.units.it/it/0320107308800001/area-studenti/tirocinio-e-internato) (score: 0.5459) I documenti devono essere inviati *...
+3): (tokens: 274) (url: https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato) (score: 0.5449) Le altre aziende sanitarie ASUFC e ...",pass,0.548,https://lauree.units.it/it/0320107301400001/area-studenti/tirocinio-e-internato,0.7451,1.0,0.8094,0.3333,1.0
+Quando è richiesto il test Mantoux per il tirocinio di Scienze e Tecnologie Biologiche?,"Il test Mantoux è richiesto quando il tirocinio prevede il contatto con persone fragili, come in strutture quali asili nidi, scuole dell'infanzia, ospedali, cliniche, case di riposo o centri di accoglienza. L'ateneo ha una convenzione con ASUGI per effettuare il test gratuitamente.","Il test Mantoux è richiesto nel caso in cui l'attività di tirocinio o internato preveda il contatto con persone fragili. Questo include contesti come asili nido, scuole dell'infanzia e primarie, ospedali, cliniche, case di riposo e centri di accoglienza.",https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato,"1): (tokens: 404) (url: https://lauree.units.it/it/0320106202400001/area-studenti/tirocinio-e-internato) (score: 0.5792) Nel caso in cui l'attività di Tiroc...
+2): (tokens: 393) (url: https://lauree.units.it/it/0320106203200001/area-studenti/tirocinio-e-internato) (score: 0.5642) ** L'ateneo ha una convenzione con ...
+3): (tokens: 471) (url: https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato) (score: 0.5562) **Invia il modulo compilato** alla ...",fail,0.5792,https://lauree.units.it/it/0320106202400001/area-studenti/tirocinio-e-internato,0.7863,1.0,0.8191,0.8333,1.0
+l aula T dell'edificio A è libera il giorno 20 marzo 2026?,Non ho informazioni sulla disponibilità dell'aula T per quella data specifica.,Le informazioni fornite non contengono dettagli sull'aula T dell'edificio A o sulla sua disponibilità per il giorno 20 marzo 2026.,absent for choice,"1): (tokens: 407) (url: https://degree.units.it/en/0320106204700003/students-area/graduation/graduation-specific-information) (score: 0.3967) Extraordinary session
+    
+
+Submiss...
+2): (tokens: 377) (url: https://degree.units.it/it/0320106204700003/area-studenti/laurea/laurea-info-specifiche) (score: 0.3883) Sessione straordinaria
+    
+
+Invio ...
+3): (tokens: 483) (url: https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica) (score: 0.3873) * Futuri studenti
+  * Studenti iscr...",pass,0.3967,https://degree.units.it/en/0320106204700003/students-area/graduation/graduation-specific-information,0.7077,1.0,0.0,0.0,1.0
+dimmi i corsi disponibili del dipartimento di musicologia,Non dispongo di informazioni sui corsi del dipartimento di Musicologia.,Le informazioni fornite non contengono dettagli sui corsi disponibili offerti da un dipartimento di musicologia.,absent for choice,"1): (tokens: 294) (url: https://lauree.units.it/it/0320107301000001/area-studenti/scelta-piano-di-studi/descrizione-piano-di-studi) (score: 0.4311) Ogni anno, gli insegnamenti a scelt...
+2): (tokens: 222) (url: https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154) (score: 0.4267) Area studenti
+
+  * Home
+  * Il cors...
+3): (tokens: 405) (url: https://degree.units.it/it/0320106204700003/area-studenti/scelta-piano-di-studi/descrizione-piano-di-studi) (score: 0.4259) > **Gli insegnamenti obbligatori so...",pass,0.4311,https://lauree.units.it/it/0320107301000001/area-studenti/scelta-piano-di-studi/descrizione-piano-di-studi,0.9778,1.0,0.0,0.0,1.0
