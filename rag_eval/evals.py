@@ -13,6 +13,7 @@ from llama_index.core import VectorStoreIndex, Settings, StorageContext
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.llms.openai_like import OpenAILike
 from llama_index.vector_stores.chroma import ChromaVectorStore
+from llama_index.core.postprocessor import SimilarityPostprocessor
 
 from ragas import Dataset, experiment
 from ragas.run_config import RunConfig
@@ -131,7 +132,7 @@ INDEX_DIR, OUTPUT_FILENAME = resolve_index_config(_args)
 
 SIMILARITY_TOP_K  = _args.top_k
 print("SIMILARITY_TOP_K: ", SIMILARITY_TOP_K)
-# SIMILARITY_CUTOFF = 0.35
+SIMILARITY_CUTOFF = 0.3
 SCORE_THRESHOLDS  = {"high": 0.7, "medium": 0.6}
 
 # Feature flags — disable expensive metrics during quick debug runs
@@ -206,9 +207,9 @@ def query_rag(index: VectorStoreIndex, question: str) -> dict:
     # 1. Configurazione del Query Engine con Post-Processor
     query_engine = index.as_query_engine(
         similarity_top_k=SIMILARITY_TOP_K,
-        # node_postprocessors=[
-        #     SimilarityPostprocessor(similarity_cutoff=SIMILARITY_CUTOFF)
-        # ]
+        node_postprocessors=[
+            SimilarityPostprocessor(similarity_cutoff=SIMILARITY_CUTOFF)
+        ]
     )
     
     response = query_engine.query(question)
@@ -247,7 +248,7 @@ def query_rag(index: VectorStoreIndex, question: str) -> dict:
     _query_counter += 1
     print(
         f"{_query_counter}/{_total_questions} [RETRIEVAL] '{question[:50]}...' → {len(used_contexts)} nodes passed filter "
-        # f"(Cutoff: {SIMILARITY_CUTOFF})"
+        f"(Cutoff: {SIMILARITY_CUTOFF})"
     )
 
     return {
