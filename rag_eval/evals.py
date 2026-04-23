@@ -292,14 +292,14 @@ JUDGE_USER_TEMPLATE = (
 )
 
 
-def judge_score(response: str, question: str, ground_truth: str) -> str:
+def judge_score(response: str, grading_notes: str, ground_truth: str) -> str:
     """
     Call the judge LLM and return 'pass', 'fail', or 'error'.
     Searches for a JSON verdict anywhere in the response.
     """
     prompt = JUDGE_USER_TEMPLATE.format(
         response=response,
-        question=question,
+        grading_notes=grading_notes,
         ground_truth=ground_truth,
     )
     try:
