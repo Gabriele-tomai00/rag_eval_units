@@ -80,6 +80,31 @@ llm = llm_factory("gemini-1.5-pro", provider="google")
 # Use local Ollama
 llm = llm_factory("mistral", provider="ollama", base_url="http://localhost:11434")
 ```
+### Evals
+```
+python evals.py
+```
+or
+```
+uv run python evals.py
+```
+## Parameters
+| Flag | Long form | Default | Description |
+|------|-----------|---------|-------------|
+| `-t` | `--type` | *(required)* | `1` sentence splitting, `2` markdown structure splitting, `3` hybrid markdown + sentence |
+| `-n` | `--no_answare` | false | Use questions without expected answer |
+| `-k` | `--top_k` | `5` | Number of top-k chunks retrieved |
+| `-c` | `--chunk_size` | `512` | Chunk size of the index: `128`, `256`, `512`, `1024` (ignored for `-t 2`) |
+| `-a` | `--all` | false | Enable all RAGAS metrics (slower) |
+| `-o` | `--name_file_output` | *(auto)* | Output file name without extension |
+
+## Examples
+```
+python evals.py -t 1 -k 4 -c 256
+python evals.py -t 2 -k 10
+python evals.py -t 3 -c 1024 -a
+python evals.py -t 1 -n -k 5
+```
 
 ### Customize Test Cases
 

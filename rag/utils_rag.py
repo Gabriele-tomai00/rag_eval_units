@@ -22,7 +22,7 @@ from llama_index.core.node_parser import MarkdownNodeParser, SentenceSplitter
 # ==============================================================================
 
 INDEX_DIR = "rag_index"
-SIMILARITY_TOP_K = 7
+SIMILARITY_TOP_K = 6
 SCORE_THRESHOLDS = {"high": 0.7, "medium": 0.6}
 INSERT_BATCH_SIZE = 1000  # nodes per ChromaDB commit (tunable independently from embed_batch_size)
 load_dotenv()

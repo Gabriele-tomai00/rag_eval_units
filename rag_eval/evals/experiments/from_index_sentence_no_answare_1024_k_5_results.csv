@@ -1,0 +1,29 @@
+question,ground_truth,answer,answer_source,contexts,judge_result,top_chunk_score,top_chunk_src,answer_correctness,faithfulness,response_relevancy,context_precision,context_recall
+l aula T dell'edificio A è libera il giorno 20 marzo 2026?,Non ho informazioni sulla disponibilità dell'aula T per quella data specifica.,Le informazioni fornite non specificano la disponibilità dell'aula T dell'edificio A per il giorno 20 marzo 2026.,absent for choice,"1): (tokens: 663) (url: https://portale.units.it/it/studiare/post-lauream/formazione-insegnanti/60cfu) (score: 0.4125) L'immatricolazione sarà attiva **da...
+2): (tokens: 986) (url: https://portale.units.it/it/studiare/post-lauream/formazione-insegnanti/60cfu) (score: 0.4046) Il certificato va inviato alla mail...
+3): (tokens: 931) (url: https://portale.units.it/it/studiare/post-lauream/formazione-insegnanti/60cfu) (score: 0.4007) In allegato la lista delle scuole a...
+4): (tokens: 407) (url: https://degree.units.it/en/0320106204700003/students-area/graduation/graduation-specific-information) (score: 0.3967) Extraordinary session
+    
+
+Submiss...
+5): (tokens: 483) (url: https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica) (score: 0.3873) * Futuri studenti
+  * Studenti iscr...",pass,0.4125,https://portale.units.it/it/studiare/post-lauream/formazione-insegnanti/60cfu,0.9569,1.0,0.0,0.5833,1.0
+dimmi i corsi disponibili del dipartimento di musicologia,Non dispongo di informazioni sui corsi del dipartimento di Musicologia.,"Le informazioni fornite non menzionano un Dipartimento di Musicologia. Tuttavia, il corso ""FILOSOFIE DELLA MUSICA"" (codice 117LM) è disponibile per l'anno accademico 2025/2026 ed è offerto dal Dipartimento di Studi Umanistici - DiSU.",absent for choice,"1): (tokens: 1003) (url: https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154) (score: 0.4325) ## 
+
+1). R. Martinelli, I filosofi ...
+2): (tokens: 970) (url: https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154) (score: 0.4297) Area studenti
+
+  * Home
+  * Il cors...
+3): (tokens: 891) (url: https://lauree.units.it/it/0320107304200001/piano-di-studi) (score: 0.4139) ENG
+
+Area studenti
+
+  * Home
+  * Il...
+4): (tokens: 174) (url: https://dsm.units.it/it/servizi-strumenti/strumenti/Modulistica) (score: 0.4080) *   * 
+
+
+  * Contatti
+  * Links Uti...
+5): (tokens: 584) (url: https://lauree.units.it/it/0320106204800001-1/area-studenti/scelta-piano-di-studi/descrizione-piano-di-studi) (score: 0.4076) > **Gli insegnamenti obbligatori so...",pass,0.4325,https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154,0.5387,1.0,0.6751,0.0,1.0

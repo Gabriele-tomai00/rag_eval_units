@@ -10,7 +10,8 @@ _tokenizer = tiktoken.get_encoding("cl100k_base")
 def _count_tokens(text: str) -> int:
     return len(_tokenizer.encode(text))
 
-from questions_answares import samples
+from questions_answares import samples_with_answare
+from questions_answares import samples_without_answare
 
 import chromadb
 from openai import OpenAI
@@ -70,10 +71,10 @@ def parse_args():
         help="1 for sentence splitting, 2 for markdown structure splitting, 3 for hybrid markdown + sentence splitting",
     )
     parser.add_argument(
-        "--big", "-b",
+        "--no_answare", "-n",
         action="store_true",
         default=False,
-        help="Use the larger index (thousands of documents). Omit for the smaller index (dozens of documents).",
+        help="Test the questions without an answare",
     )
     parser.add_argument(
         "--all", "-a",
@@ -95,7 +96,7 @@ def parse_args():
         help="Chunk size used when building the index (128, 256, 512, 1024). Default: 512.",
     )
     parser.add_argument(
-        "--name_file_output", "-n",
+        "--name_file_output", "-o",
         type=str,
         default=None,
         help="Name of the output file (without extension). Default: results.",
@@ -115,12 +116,15 @@ def resolve_index_config(args) -> tuple[str, str]:
         False → standard index
         True  → big index
     """
-    big = args.big
+    no_answare = args.no_answare
     index_type = args.type
     top_k = args.top_k
     chunk_size = args.chunk_size
 
-    suffix = "_big" if big else ""
+    if no_answare:
+        suffix = "_no_answare"
+    else:
+        suffix = ""
 
     mapping = {
         1: ("index_sentence",               "from_index_sentence"),
@@ -130,13 +134,14 @@ def resolve_index_config(args) -> tuple[str, str]:
 
     folder, name = mapping[index_type]
     chunk_suffix = "" if index_type == 2 else f"_{chunk_size}"
-    index_dir       = f"../rag/{folder}{suffix}{chunk_suffix}"
+    index_dir       = f"../rag/{folder}{chunk_suffix}"
     print(f"Using index directory: {index_dir}")
 
     if args.name_file_output:
         output_filename = f"{args.name_file_output}{suffix}{chunk_suffix}_k_{top_k}_results"
     else:
         output_filename = f"{name}{suffix}{chunk_suffix}_k_{top_k}_results"
+    print(f"Output filename: {output_filename}.csv")
 
     return index_dir, output_filename
 
@@ -146,6 +151,7 @@ def resolve_index_config(args) -> tuple[str, str]:
 
 _args = parse_args()
 INDEX_DIR, OUTPUT_FILENAME = resolve_index_config(_args)
+samples = samples_without_answare if _args.no_answare else samples_with_answare
 
 SIMILARITY_TOP_K  = _args.top_k
 print("SIMILARITY_TOP_K: ", SIMILARITY_TOP_K)
@@ -225,9 +231,9 @@ def query_rag(index: VectorStoreIndex, question: str) -> dict:
     # 1. Configurazione del Query Engine con Post-Processor
     query_engine = index.as_query_engine(
         similarity_top_k=SIMILARITY_TOP_K,
-        node_postprocessors=[
-            SimilarityPostprocessor(similarity_cutoff=SIMILARITY_CUTOFF)
-        ]
+        # node_postprocessors=[
+        #     SimilarityPostprocessor(similarity_cutoff=SIMILARITY_CUTOFF)
+        # ]
     )
 
     augmented_question = f"[Rispondi esclusivamente in italiano] {question}"
