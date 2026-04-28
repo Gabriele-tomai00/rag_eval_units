@@ -260,19 +260,3 @@ Quando è richiesto il test Mantoux per il tirocinio di Scienze e Tecnologie Bio
 3): (tokens: 485) (url: https://lauree.units.it/it/0320106203200001/area-studenti/insegnamenti/2025/112584/2025/3/10794/2025/13316) (score: 0.4211) ## 
 
 • L'insegnamento si avvale del...",fail,0.4544,https://lauree.units.it/it/0320107304200001/semestre-aperto/immatricolazione,0.173,1.0,0.0,0.0,0.0
-l aula T dell'edificio A è libera il giorno 20 marzo 2026?,Non ho informazioni sulla disponibilità dell'aula T per quella data specifica.,Non ci sono informazioni disponibili riguardo all'occupazione dell'aula T dell'edificio A per il giorno 20 marzo 2026.,absent for choice,"1): (tokens: 928) (url: https://portale.units.it/it/studiare/post-lauream/formazione-insegnanti/60cfu) (score: 0.4139) ## BACHECA AVVISI a.a. 2025/2026 
-
-...
-2): (tokens: 265) (url: https://degree.units.it/en/0320106204800001/students-area/exams) (score: 0.3968) # Exams: general info
-
-Academic Yea...
-3): (tokens: 87) (url: https://portale.units.it/it/internazionale/progetti/erasmus-ka-171/studenti-entrata) (score: 0.3964) ## WELCOME DAY 19th February 2026, ...",pass,0.4139,https://portale.units.it/it/studiare/post-lauream/formazione-insegnanti/60cfu,0.9498,1.0,0.0,1.0,1.0
-dimmi i corsi disponibili del dipartimento di musicologia,Non dispongo di informazioni sui corsi del dipartimento di Musicologia.,"Non è possibile fornire informazioni sui corsi disponibili del dipartimento di musicologia, in quanto il contesto fornito non contiene dettagli su tale dipartimento. I corsi menzionati sono offerti dal Dipartimento Universitario Clinico di Scienze mediche, chirurgiche e della salute - DSM.",absent for choice,"1): (tokens: 35) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120807-1/2022/9999/10505/2025) (score: 0.4670) ##### Dipartimento
-
-Il corso è offe...
-2): (tokens: 35) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120683/2022/9999/10505/2023) (score: 0.4665) ##### Dipartimento
-
-Il corso è offe...
-3): (tokens: 35) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120683/2022/9999/10505/2025/13231) (score: 0.4665) ##### Dipartimento
-
-Il corso è offe...",pass,0.467,https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120807-1/2022/9999/10505/2025,0.6968,1.0,0.0,0.0,1.0

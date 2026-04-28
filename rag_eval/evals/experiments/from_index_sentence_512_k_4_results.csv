@@ -356,28 +356,3 @@ Quando è richiesto il test Mantoux per il tirocinio di Scienze e Tecnologie Bio
 2): (tokens: 393) (url: https://lauree.units.it/it/0320106203200001/area-studenti/tirocinio-e-internato) (score: 0.5642) ** L'ateneo ha una convenzione con ...
 3): (tokens: 471) (url: https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato) (score: 0.5562) **Invia il modulo compilato** alla ...
 4): (tokens: 347) (url: https://degree.units.it/it/0320107335200001/area-studenti/tirocinio-e-internato) (score: 0.5448) Il tirocinio deve essere supervisio...",fail,0.5792,https://lauree.units.it/it/0320106202400001/area-studenti/tirocinio-e-internato,0.8348,1.0,0.8191,0.8056,1.0
-l aula T dell'edificio A è libera il giorno 20 marzo 2026?,Non ho informazioni sulla disponibilità dell'aula T per quella data specifica.,Le informazioni fornite non contengono dettagli sulla disponibilità dell'aula T dell'edificio A per il giorno 20 marzo 2026.,absent for choice,"1): (tokens: 407) (url: https://degree.units.it/en/0320106204700003/students-area/graduation/graduation-specific-information) (score: 0.3967) Extraordinary session
-    
-
-Submiss...
-2): (tokens: 377) (url: https://degree.units.it/it/0320106204700003/area-studenti/laurea/laurea-info-specifiche) (score: 0.3883) Sessione straordinaria
-    
-
-Invio ...
-3): (tokens: 483) (url: https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica) (score: 0.3873) * Futuri studenti
-  * Studenti iscr...
-4): (tokens: 455) (url: https://degree.units.it/en/0320106204700003/students-area/exams) (score: 0.3864) ITA
-
-Student area
-
-  * Home
-  * The...",pass,0.3967,https://degree.units.it/en/0320106204700003/students-area/graduation/graduation-specific-information,0.9572,1.0,0.0,0.25,1.0
-dimmi i corsi disponibili del dipartimento di musicologia,Non dispongo di informazioni sui corsi del dipartimento di Musicologia.,Le informazioni sui corsi disponibili del dipartimento di musicologia non sono presenti nel contesto fornito.,absent for choice,"1): (tokens: 294) (url: https://lauree.units.it/it/0320107301000001/area-studenti/scelta-piano-di-studi/descrizione-piano-di-studi) (score: 0.4311) Ogni anno, gli insegnamenti a scelt...
-2): (tokens: 222) (url: https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154) (score: 0.4267) Area studenti
-
-  * Home
-  * Il cors...
-3): (tokens: 405) (url: https://degree.units.it/it/0320106204700003/area-studenti/scelta-piano-di-studi/descrizione-piano-di-studi) (score: 0.4259) > **Gli insegnamenti obbligatori so...
-4): (tokens: 423) (url: https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154) (score: 0.4225) Curricula:  FILOSOFIA
-
-     MARTINE...",pass,0.4311,https://lauree.units.it/it/0320107301000001/area-studenti/scelta-piano-di-studi/descrizione-piano-di-studi,0.9719,1.0,0.0,0.5,1.0

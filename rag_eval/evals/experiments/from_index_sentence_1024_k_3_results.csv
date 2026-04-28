@@ -306,19 +306,3 @@ Quando è richiesto il test Mantoux per il tirocinio di Scienze e Tecnologie Bio
 2): (tokens: 725) (url: https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato) (score: 0.5264) **Invia il modulo compilato** alla ...
 3): (tokens: 959) (url: https://lauree.units.it/it/0320107301000001/area-studenti/tirocinio-e-internato) (score: 0.5096) **Presentazione della domanda**
    ...",fail,0.5734,https://lauree.units.it/it/0320106202400001/area-studenti/tirocinio-e-internato,0.8174,1.0,0.8191,1.0,1.0
-l aula T dell'edificio A è libera il giorno 20 marzo 2026?,Non ho informazioni sulla disponibilità dell'aula T per quella data specifica.,Le informazioni disponibili non specificano la disponibilità dell'aula T dell'edificio A per il giorno 20 marzo 2026.,absent for choice,"1): (tokens: 663) (url: https://portale.units.it/it/studiare/post-lauream/formazione-insegnanti/60cfu) (score: 0.4125) L'immatricolazione sarà attiva **da...
-2): (tokens: 986) (url: https://portale.units.it/it/studiare/post-lauream/formazione-insegnanti/60cfu) (score: 0.4046) Il certificato va inviato alla mail...
-3): (tokens: 931) (url: https://portale.units.it/it/studiare/post-lauream/formazione-insegnanti/60cfu) (score: 0.4007) In allegato la lista delle scuole a...",pass,0.4125,https://portale.units.it/it/studiare/post-lauream/formazione-insegnanti/60cfu,0.9593,1.0,0.0,0.5833,1.0
-dimmi i corsi disponibili del dipartimento di musicologia,Non dispongo di informazioni sui corsi del dipartimento di Musicologia.,"Le informazioni fornite non contengono dettagli sui corsi disponibili offerti da un dipartimento di musicologia. Il corso ""FILOSOFIE DELLA MUSICA"" è offerto dal Dipartimento di Studi Umanistici - DiSU e fa parte della Laurea Magistrale in Filosofia.",absent for choice,"1): (tokens: 1003) (url: https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154) (score: 0.4325) ## 
-
-1). R. Martinelli, I filosofi ...
-2): (tokens: 970) (url: https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154) (score: 0.4297) Area studenti
-
-  * Home
-  * Il cors...
-3): (tokens: 891) (url: https://lauree.units.it/it/0320107304200001/piano-di-studi) (score: 0.4139) ENG
-
-Area studenti
-
-  * Home
-  * Il...",pass,0.4325,https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154,0.6683,0.75,0.7639,0.5,1.0
