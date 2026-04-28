@@ -1,0 +1,203 @@
+question,ground_truth,answer,answer_source,contexts,judge_result,top_chunk_score,top_chunk_src,answer_correctness,faithfulness,response_relevancy,context_precision,context_recall
+dove si trova la sede principale dell'ateneo,"La sede principale dell'Università degli Studi di Trieste si trova a Trieste, in Piazzale Europa 1, in un'area sopraelevata rispetto al centro della città.","Le informazioni fornite non specificano la sede principale dell'ateneo. Vengono indicate le sedi di svolgimento delle lezioni per specifici corsi, che sono la Sede di Trieste e il Polo Universitario Goriziano.",https://portale.units.it/it/ateneo/campus,"1): (tokens: 23) (url: https://lauree.units.it/it/0320106201000001) (score: 0.4477) ##### Sede
+
+La sede di svolgimento ...
+2): (tokens: 26) (url: https://lauree.units.it/it/0320107311900002) (score: 0.4465) ##### Sede
+
+La sede di svolgimento ...
+3): (tokens: 23) (url: https://lauree.units.it/it/0320106204700003) (score: 0.4420) ##### Sede
+
+La sede di svolgimento ...",fail,0.4477,https://lauree.units.it/it/0320106201000001,0.171,1.0,0.0,0.8333,0.0
+"edificio, piano e aula stampare all università","È possibile stampare presso l'edificio H3, situato nel polo di Piazzale Europa, al quinto piano all'interno delle aule informatiche.","Le informazioni fornite non contengono dettagli sull'edificio, il piano o l'aula per la stampa all'università. Le informazioni disponibili riguardano esclusivamente la modalità di insegnamento delle lezioni, che si svolgono principalmente in aula.",https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica,"1): (tokens: 17) (url: https://degree.units.it/en/0320106204800001/students-area/taught-courses/2025/115467/2017/9999/10333/2023/) (score: 0.3971) ##### Teaching modality
+
+The lectur...
+2): (tokens: 17) (url: https://degree.units.it/en/0320106204800001/students-area/study-plan-selection/study-plan-submission) (score: 0.3934) ##### Teaching modality
+
+The lectur...
+3): (tokens: 17) (url: https://degree.units.it/en/0320106204800001/study-plan) (score: 0.3919) ##### Teaching modality
+
+The lectur...",fail,0.3971,https://degree.units.it/en/0320106204800001/students-area/taught-courses/2025/115467/2017/9999/10333/2023/,0.1395,1.0,0.0,0.0,0.0
+requisiti: titolo di studio richiesto per immatricolazione a ingegneria elettronica e informatica,Il titolo richiesto è il diploma di scuola media superiore o titolo estero equipollente. Per i titoli esteri è necessario verificare la validità presso la sezione Studenti Internazionali.,Per l'immatricolazione al corso di Ingegneria Elettronica e Informatica è richiesto il possesso di un diploma di scuola media superiore o di un titolo di studio equipollente conseguito all'estero.,https://lauree.units.it/it/0320106200800001/come-iscriversi,"1): (tokens: 27) (url: https://lauree.units.it/it/0320106200800001) (score: 0.5565) ### Studenti Internazionali - Degre...
+2): (tokens: 52) (url: https://lauree.units.it/it/0320106200800001) (score: 0.5453) ##### Ammissione
+
+**Accesso libero ...
+3): (tokens: 396) (url: https://lauree.units.it/it/0320106200800001/come-iscriversi) (score: 0.5365) # Come iscriversi
+
+In questa pagina...",pass,0.5565,https://lauree.units.it/it/0320106200800001,0.6879,1.0,0.7889,0.8333,1.0
+i curricula del corso Scienze e Tecnologie per l'ambiente e la natura,"I curriculum sono tre: Ambientale, Biologico e Didattico.",Il corso di Scienze e Tecnologie per l'ambiente e la natura include una sezione dedicata al Piano di Studi.,https://www.biologia.units.it/index.php?/corsi/5/Laurea-in-Scienze-e-Tecnologie-per-lambiente-e-la-natura,"1): (tokens: 31) (url: https://lauree.units.it/it/0320106203200001/il-corso) (score: 0.5982) # SCIENZE E TECNOLOGIE PER L'AMBIEN...
+2): (tokens: 31) (url: https://lauree.units.it/it/0320106203200001/regolamento-didattico) (score: 0.5731) # SCIENZE E TECNOLOGIE PER L'AMBIEN...
+3): (tokens: 31) (url: https://lauree.units.it/it/0320106203200001/area-studenti/insegnamenti/2025/119327/2023/3/10166/2023/13282) (score: 0.5725) # SCIENZE E TECNOLOGIE PER L'AMBIEN...",fail,0.5982,https://lauree.units.it/it/0320106203200001/il-corso,0.1429,1.0,0.7203,0.0,0.0
+i 3 docenti tutor dei 3 curricula del corso Scienze e Tecnologie per l'ambiente e la natura,Curriculum Biologico: Prof. Stanislao Bevilacqua. Curriculum Ambientale: Prof. Pieluigi Barbieri.,"I tre docenti tutor per i curricula del corso di Scienze e Tecnologie per l'Ambiente e la Natura sono:
+
+*   **Curriculum Biologico**: Prof. Stanislao Bevilacqua
+*   **Curriculum Ambientale**: Prof. Pierluigi Barbieri
+*   **Curriculum Didattico**: Prof. Michele Stoppa",https://www.biologia.units.it/index.php?/corsi/5/Laurea-in-Scienze-e-Tecnologie-per-lambiente-e-la-natura,"1): (tokens: 364) (url: https://www.biologia.units.it/index.php?/corsi/5/Laurea-in-Scienze-e-Tecnologie-per-lambiente-e-la-natura) (score: 0.5869) **A partire dall’anno accademico 20...
+2): (tokens: 76) (url: https://lauree.units.it/it/0320106203200001/area-studenti/tutorato) (score: 0.5662) ### Tutor disciplinari
+
+Il Consigli...
+3): (tokens: 82) (url: https://lauree.units.it/it/0320106203200001/area-studenti/tutorato) (score: 0.5429) #### Contatti
+
+**Curriculum Biologi...",pass,0.5869,https://www.biologia.units.it/index.php?/corsi/5/Laurea-in-Scienze-e-Tecnologie-per-lambiente-e-la-natura,0.6954,1.0,0.8969,0.8333,1.0
+contatti orari e indirizzo Ufficio Applicativi per la carriera dello studente e i contributi universitari,"Ufficio Applicativi per la carriera dello studente e i contributi universitari: Piazzale Europa 1, Edificio A. Tel: +39 040 558 3731 (mar, mer, ven 12-13). Email: tasse.studenti@amm.units.it. Sportello su prenotazione (EasyPlanning): Lunedì 15:00-16:40 e Giovedì 09:00-11:10.","Ecco i dettagli di contatto, gli orari e l'indirizzo dell'Ufficio Applicativi per la carriera dello studente e i contributi universitari:
+
+**Indirizzo:**
+Piazzale Europa, 1 - 34127 - TRIESTE
+Edificio Centrale A
+
+**Contatti:**
+*   **Servizio telefonico:** +39 040 558 3731
+*   **E-mail:** tasse.studenti@amm.units.it
+
+**Orari del servizio telefonico:**
+*   Martedì: 12.00 - 13.00
+*   Mercoledì: 12.00 - 13.00
+*   Venerdì: 12.00 - 13.00
+
+**Orari di ricevimento in presenza (su prenotazione):**
+*   Lunedì: dalle ore 15.00 alle ore 16.40
+*   Giovedì: dalle ore 9.00 alle ore 11.10
+
+Per prenotare un appuntamento, è necessario accedere al servizio EasyPlanning e scegliere il servizio ""Tasse"". Per l'accesso agli sportelli è richiesta l'esibizione della ricevuta di prenotazione e di un documento di identità. È possibile delegare una terza persona, che dovrà essere munita di delega e copia del documento di identità del delegante. Gli appuntamenti in presenza possono essere fissati fino al giorno antecedente a quello prescelto.",https://portale.units.it/it/studiare/contributi/lauree-magistrali-e-magistrali-ciclo-unico,"1): (tokens: 315) (url: https://portale.units.it:443/it/studiare/contributi/lauree-magistrali-e-magistrali-ciclo-unico) (score: 0.5991) ## Contatti 
+
+**Ufficio Applicativi...
+2): (tokens: 38) (url: https://www.units.it/strutture/index.php/from/organigramma/area/ateneo/menu/organigramma/strutture/028718?pf=stampa) (score: 0.5804) ### Piazzale Europa 1 - TRIESTE - 3...
+3): (tokens: 56) (url: https://www.units.it/strutture/index.php/from/organigramma/area/ateneo/menu/organigramma/strutture/028718?pf=stampa) (score: 0.5727) #### Organigramma
+
+Direzione Genera...",pass,0.5991,https://portale.units.it:443/it/studiare/contributi/lauree-magistrali-e-magistrali-ciclo-unico,0.8,1.0,0.9491,1.0,1.0
+iniziativa Climbing for Climate (CFC),"Iniziativa promossa da RUS e CAI per sensibilizzare sul riscaldamento globale. Il nome richiama i clorofluorocarburi (CFC), gas responsabili del buco nell'ozono banditi dal Protocollo di Montreal. L'ateneo partecipa organizzando eventi sul territorio.",Le informazioni relative all'iniziativa Climbing for Climate (CFC) non sono disponibili.,https://portale.units.it/it/terza-missione/sostenibilita,"1): (tokens: 349) (url: https://lauree.units.it/it/0320107300700004/area-studenti/appelli-esame) (score: 0.3750) ### Per sostenere un esame devi:
+
+ ...
+2): (tokens: 11) (url: https://lauree.units.it/it/0320107300700004/area-studenti) (score: 0.3713) ### Le app UniTS
+
+La tua carriera...
+3): (tokens: 46) (url: https://lauree.units.it/it/0320107300700004/area-studenti/appelli-esame) (score: 0.3690) ##### Ammissione
+
+**Accesso libero ...",fail,0.375,https://lauree.units.it/it/0320107300700004/area-studenti/appelli-esame,0.1277,1.0,0.0,0.0,0.0
+inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE,Le lezioni iniziano il 22 settembre 2025 (il 1 ottobre per gli studenti del primo anno) e terminano il 19 dicembre 2025.,Le informazioni relative all'inizio e alla fine delle lezioni del primo semestre per SCIENZE INTERNAZIONALI E DIPLOMATICHE non sono disponibili.,https://degree.units.it/it/0320106203600002/area-studenti/calendario-didattico,"1): (tokens: 22) (url: https://degree.units.it/it/0320106204800001/area-studenti/insegnamenti/2025/115467/2017/9999/10333/2025/13205) (score: 0.4933) ##### Modalità di erogazione
+
+Le le...
+2): (tokens: 22) (url: https://degree.units.it/it/0320106204800001/area-studenti/insegnamenti/2025/115467/2017/9999/10333/2023/) (score: 0.4895) ##### Modalità di erogazione
+
+Le le...
+3): (tokens: 22) (url: https://degree.units.it/it/0320106204800001/area-studenti/insegnamenti/2025/121256/2025/9999/10792/2025/13237) (score: 0.4867) ##### Modalità di erogazione
+
+Le le...",fail,0.4933,https://degree.units.it/it/0320106204800001/area-studenti/insegnamenti/2025/115467/2017/9999/10333/2025/13205,0.1451,1.0,0.0,0.0,0.0
+inizio e fine lezioni primo semestre SCIENZE E TECNICHE PSICOLOGICHE,"Il primo semestre inizia il 29 settembre 2025 per il I anno e il 22 settembre per gli anni successivi, con termine il 19 dicembre 2025 per tutti.",Le informazioni relative all'inizio e alla fine delle lezioni per il primo semestre del corso di SCIENZE E TECNICHE PSICOLOGICHE non sono disponibili nelle informazioni fornite.,https://degree.units.it/it/0320106202400001/area-studenti/calendario-didattico,"1): (tokens: 170) (url: https://degree.units.it/it/0320106204700001/area-studenti/insegnamenti/2025/120651/2024/9999/10329/2024/) (score: 0.4966) ##  Primo Semestre 
+
+Frequenza Obbl...
+2): (tokens: 131) (url: https://degree.units.it/en/0320106204700003/students-area/taught-courses/2025/117415-3/2022/9999/10505/2025/13231) (score: 0.4905) ##  1° Year of course - First semes...
+3): (tokens: 149) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/117415-3/2022/9999/10505/2025/13231) (score: 0.4894) ##  1° Anno - Primo Semestre 
+
+Freq...",fail,0.4966,https://degree.units.it/it/0320106204700001/area-studenti/insegnamenti/2025/120651/2024/9999/10329/2024/,0.1429,1.0,0.0,0.0,0.0
+dove si trova il materiale didattico corso Cybersecurity di Bartoli,"Il materiale didattico per il corso di Cybersecurity è disponibile sul sito del corso, dove si trova il programma dettagliato e molto altro materiale aggiuntivo. Le slide sono caricate su Microsoft Teams, e l'iscrizione al team è automatica.",Il materiale didattico del corso Cybersecurity di Bartoli si trova sul sito web del corso per quanto riguarda il programma dettagliato e altro materiale aggiuntivo. Le slide sono disponibili su Microsoft Teams.,https://degree.units.it/en/0320107303300001/students-area/taught-courses/2025/120014/2025/2/10740/2025,"1): (tokens: 8) (url: https://bartoli.inginf.units.it/) (score: 0.5245) ## 
+
+Cybersecurity
+
+Master Course...
+2): (tokens: 13) (url: https://bartoli.inginf.units.it/didattica/cybersecurity) (score: 0.5184) #  Cybersecurity
+
+2026 - Course Pre...
+3): (tokens: 65) (url: https://bartoli.inginf.units.it/didattica/cybersecurity) (score: 0.5180) # 
+
+COURSE
+
+  * Detailed program (a...",pass,0.5245,https://bartoli.inginf.units.it/,0.8889,0.0,0.9102,0.3333,1.0
+Regolmaneto in cui sono definite le modalità di elezione delle rappresentanze studentesche nei corsi interdipartimentali?,Le modalità di elezione delle rappresentanze studentesche nei consigli di dipartimento sono definite dal regolamento degli studenti (comma 7).,"Le modalità di composizione e di funzionamento del consiglio della scuola interdipartimentale, incluse quelle relative all'elezione delle rappresentanze studentesche, sono stabilite da un regolamento specifico. Il contesto fornito non ne specifica il titolo.",https://amm.units.it/normativa/regolamenti/articolo-22178/art-31-corsi-studio,"1): (tokens: 285) (url: https://amm.units.it/normativa/regolamenti/articolo-22182/art-35-consiglio-scuola-interdipartimentale) (score: 0.4941) # Art. 35 - Consiglio di scuola int...
+2): (tokens: 560) (url: https://lauree.units.it/it/0320106201200002/area-studenti/regolamenti-e-documenti) (score: 0.4787) # Regolamenti e documenti
+
+**Regola...
+3): (tokens: 544) (url: https://lauree.units.it/it/0320106201200003/area-studenti/regolamenti-e-documenti) (score: 0.4728) # Regolamenti e documenti
+
+**Regola...",fail,0.4941,https://amm.units.it/normativa/regolamenti/articolo-22182/art-35-consiglio-scuola-interdipartimentale,0.4065,1.0,0.7127,0.0,0.0
+Quali attività cura l'Università per facilitare l'inserimento nel mondo del lavoro?,"L'Università cura le attività di orientamento e tutorato e attiva servizi intesi ad agevolare l'inserimento nel mondo del lavoro di studenti e laureati. Favorisce inoltre la costituzione di associazioni di ex-alunni, finalizzate al mantenimento di relazioni con l'Ateneo e al sostegno delle sue attività istituzionali.","L'Università cura diverse attività per facilitare l'inserimento nel mondo del lavoro:
+
+*   Svolge attività di placement e orientamento al lavoro per studenti, laureati e dottorandi.
+*   Raccoglie annunci di tirocinio e lavoro.
+*   Organizza incontri dedicati al mondo del lavoro, inclusi incontri con le aziende, laboratori di orientamento al lavoro e incontri con gli Alumni.
+*   Stipula convenzioni di Ateneo per tirocini curriculari.
+*   Attiva tirocini extracurriculari in Italia e tirocini extracurriculari post lauream.
+*   Pubblica annunci di tirocinio curriculare ed extracurriculare e offerte di lavoro dedicate sulla bacheca AlmaLaurea.
+*   Organizza Recruiting day con le aziende per posizioni di lavoro o tirocinio.
+*   Organizza il Career day job@uniTS.
+*   Prevede la creazione di un elenco di aziende convenzionate per tirocini curriculari.",https://amm.units.it/normativa/regolamenti/articolo-22145/art-1-natura-e-fini,"1): (tokens: 198) (url: https://amm.units.it/placement) (score: 0.4803) # Career Service
+
+  *   * 
+
+
+Il Car...
+2): (tokens: 115) (url: https://amm.units.it/placement/studenti) (score: 0.4619) ##### Entra nel mondo del lavoro
+
+ ...
+3): (tokens: 144) (url: https://amm.units.it/placement/studenti) (score: 0.4607) # Studenti
+
+  *   * 
+
+
+**“Cosa farò...",fail,0.4803,https://amm.units.it/placement,0.3703,1.0,0.9861,0.8333,0.5
+Quali forme di sostegno economico eroga l'Università agli studenti?,"L'Università eroga diverse forme di sostegno economico agli studenti. Offre borse di studio proprie, destinate a incentivare la frequenza universitaria e a supportare gli studenti in situazioni economiche difficili, promuovendo l'inclusione e valorizzando il talento. Inoltre, mette a disposizione moduli e documenti per richiedere esenzioni e riduzioni delle tasse universitarie, basate su specifiche situazioni personali, come ad esempio: *   Riduzioni per borsisti del Governo Italiano o studenti provenienti da Paesi in via di sviluppo. *   Riduzioni per familiari contemporaneamente iscritti. *   Esenzioni per figli di beneficiari di pensione di inabilità. *   Riduzioni per studenti genitori. *   Esenzioni/riduzioni per permessi di soggiorno per asilo politico o tutele speciali per studenti internazionali.","L'Università eroga diverse forme di sostegno economico agli studenti, tra cui:
+
+*   **Borse di studio**: Assegnate per attività di studio e ricerca future.
+*   **Premi di laurea**: Concessi in base a risultati accademici e lavori completati, come tesi di laurea o di dottorato.
+*   **Contributi aggiuntivi**: Ad esempio, per l'alloggio degli studenti fuori sede o per i corsi STEM, basati su finanziamenti ministeriali.
+*   **Esenzioni e riduzioni sulle tasse universitarie**:
+    *   Per i vincitori di borse di studio ARDiS.
+    *   Per studenti con certificazione di disabilità o DSA.
+    *   Esenzioni e riduzioni speciali dettagliate nell'Avviso Tasse e Concessioni.
+    *   Calcolo delle tasse a tariffa fissa e ridotta per i residenti all'estero.
+    *   Calcolo delle tasse basato sull'ISEE universitario per i residenti in Italia che ne fanno richiesta entro i termini stabiliti.
+    *   Pre-esenzione temporanea per i residenti all'estero in attesa di visto per l'ingresso in Italia.",https://amm.units.it/normativa/regolamenti/articolo-22145/art-1-natura-e-fini,"1): (tokens: 836) (url: https://degree.units.it/en/0320106204700001/university-fees) (score: 0.4938) ### Deadlines
+
+All dealines are out...
+2): (tokens: 326) (url: https://degree.units.it/en/0320106204700001/scholarship) (score: 0.4902) # Scholarship
+
+To contribute to mak...
+3): (tokens: 836) (url: https://degree.units.it/en/0320106204800001/university-fees) (score: 0.4869) ### Deadlines
+
+All dealines are out...",pass,0.4938,https://degree.units.it/en/0320106204700001/university-fees,0.3391,1.0,0.961,0.8333,1.0
+Chi può proporre il conferimento del titolo di Dottore di Ricerca honoris causa?,"Il conferimento può essere proposto dal Rettore o dal Collegio dei docenti del Dottorato di riferimento, previa deliberazione assunta con la maggioranza dei due terzi dei componenti.",Le informazioni fornite non contengono dettagli su chi possa proporre il conferimento del titolo di Dottore di Ricerca honoris causa.,https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa,"1): (tokens: 31) (url: https://lauree.units.it/en/0320107300700001/scholarship) (score: 0.4073) ##### Visa applicants
+
+Visa applica...
+2): (tokens: 31) (url: https://degree.units.it/en/0320107300700003/scholarship) (score: 0.4061) ##### Visa applicants
+
+Visa applica...
+3): (tokens: 21) (url: https://degree.units.it/en/0320107300700001) (score: 0.4046) ### International Students - Degree...",fail,0.4073,https://lauree.units.it/en/0320107300700001/scholarship,0.1406,1.0,0.0,0.0,0.0
+Quanti dottorati honoris causa può conferire l'Ateneo per ogni anno accademico?,"L'Ateneo può conferire al massimo un solo Dottorato honoris causa per ogni anno accademico, e comunque nei limiti stabiliti dal Ministero.","L'Ateneo può conferire al massimo un solo Dottorato honoris causa per ogni anno accademico, e comunque nei limiti stabiliti dal Ministero.",https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa,"1): (tokens: 523) (url: https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa) (score: 0.4663) # Art. 37 – Dottore di ricerca hono...
+2): (tokens: 928) (url: https://amm.units.it/normativa/regolamenti/articolo-44582/art-27-diritti-e-doveri-dottorandi) (score: 0.4196) # Art. 27 - Diritti e doveri dei do...
+3): (tokens: 945) (url: https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio) (score: 0.4134) # Art. 29 - Borse di studio
+
+1\. Le...",pass,0.4663,https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa,1.0,1.0,0.9843,1.0,1.0
+Quali diritti attribuisce il diploma di Dottorato honoris causa?,"Il diploma di Dottorato honoris causa attribuisce tutti i diritti del Dottorato ordinario, in quanto è equiparato ex lege al titolo normalmente conseguito.",Le informazioni fornite non contengono dettagli sui diritti attribuiti da un diploma di Dottorato honoris causa.,https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa,"1): (tokens: 31) (url: https://degree.units.it/en/0320107300700001/students-area/graduation/graduation-general-information) (score: 0.4177) ##### Visa applicants
+
+Visa applica...
+2): (tokens: 31) (url: https://degree.units.it/en/0320106204800001/students-area/graduation/graduation-general-information) (score: 0.4157) ##### Visa applicants
+
+Visa applica...
+3): (tokens: 31) (url: https://degree.units.it/en/0320106204800001/students-area/taught-courses/2025/116182/2017/9999/10333/2025/13205) (score: 0.4153) ##### Visa applicants
+
+Visa applica...",fail,0.4177,https://degree.units.it/en/0320107300700001/students-area/graduation/graduation-general-information,0.1687,1.0,0.0,0.0,0.0
+"Secondo il regolamento, in quali casi una proposta di dottorato honoris causa non viene presa in considerazione?",Non vengono prese in considerazione le proposte inerenti a persone già in possesso di un diploma di Dottorato di Ricerca ordinario o honoris causa della stessa tipologia.,Le informazioni fornite non contengono dettagli riguardo ai casi in cui una proposta di dottorato honoris causa non viene presa in considerazione. Le informazioni disponibili riguardano esclusivamente l'iscrizione di richiedenti visto a corsi di laurea con quote di ammissione fisse.,https://amm.units.it/normativa/regolamenti/articolo-53336/art-37-dottore-ricerca-honoris-causa,"1): (tokens: 31) (url: https://lauree.units.it/en/0320107300700001/scholarship) (score: 0.4286) ##### Visa applicants
+
+Visa applica...
+2): (tokens: 31) (url: https://lauree.units.it/en/0320106204600001/students-area/taught-courses/2025/119491/2021/9999/10336/2025/) (score: 0.4283) ##### Visa applicants
+
+Visa applica...
+3): (tokens: 31) (url: https://degree.units.it/en/0320107300700003/scholarship) (score: 0.4270) ##### Visa applicants
+
+Visa applica...",fail,0.4286,https://lauree.units.it/en/0320107300700001/scholarship,0.195,0.5,0.0,0.0,0.0
+Per quanto tempo può essere incrementata la borsa di dottorato per soggiorno all'estero?,L'importo della borsa di dottorato può essere incrementato del 50% per un periodo di soggiorno all'estero complessivo non superiore a 12 mesi per attività di ricerca. Questo periodo può essere esteso fino a un massimo complessivo di 18 mesi per i dottorati in convenzione o per i dottorandi in co-tutela con soggetti esteri. L'incremento è applicabile per periodi di soggiorno continuativi e non inferiori a 30 giorni.,Le informazioni fornite non contengono dettagli riguardanti l'incremento delle borse di dottorato per soggiorni all'estero.,https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio,"1): (tokens: 118) (url: https://degree.units.it/en/0320106204700001/students-area/study-plan-selection/study-plan-submission) (score: 0.4232) ### Submitting your study programme...
+2): (tokens: 31) (url: https://degree.units.it/en/0320106204700003/students-area/taught-courses/2026/120817/2022/9999/10505/2025/13231) (score: 0.4132) ##### Visa applicants
+
+Visa applica...
+3): (tokens: 31) (url: https://degree.units.it/en/0320107304100001/students-area/taught-courses/2026/118761/2025/1/10801/2025/13028) (score: 0.4089) ##### Visa applicants
+
+Visa applica...",fail,0.4232,https://degree.units.it/en/0320106204700001/students-area/study-plan-selection/study-plan-submission,0.1549,1.0,0.0,0.0,0.0
+regole e limitazioni per ottenere una seconda borsa di dottorato nell'università italiana,"Chi ha già usufruito di una borsa di dottorato nell'ambito del sistema universitario italiano, anche parzialmente, non può usufruirne una seconda volta.",Le informazioni relative alle regole e limitazioni per ottenere una seconda borsa di dottorato in un'università italiana non sono disponibili.,https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio,"1): (tokens: 31) (url: https://degree.units.it/en/0320107339100001/students-area/taught-courses/2025/120533/2024/9999/10737/2024/) (score: 0.4713) ##### Visa applicants
+
+Visa applica...
+2): (tokens: 31) (url: https://degree.units.it/en/0320106204700003/students-area/taught-courses/2025/117978/2022/9999/10505/2025/) (score: 0.4689) ##### Visa applicants
+
+Visa applica...
+3): (tokens: 31) (url: https://degree.units.it/en/0320106204700003/students-area/taught-courses/2025/117821/2022/9999/10505/2025/) (score: 0.4685) ##### Visa applicants
+
+Visa applica...",fail,0.4713,https://degree.units.it/en/0320107339100001/students-area/taught-courses/2025/120533/2024/9999/10737/2024/,0.1906,1.0,0.0,0.0,0.0
+
