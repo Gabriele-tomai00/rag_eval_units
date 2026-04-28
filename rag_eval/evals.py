@@ -22,6 +22,7 @@ from llama_index.llms.openai_like import OpenAILike
 from llama_index.vector_stores.chroma import ChromaVectorStore
 from llama_index.core.postprocessor import SimilarityPostprocessor
 
+import csv
 from ragas import Dataset, experiment
 from ragas.run_config import RunConfig
 
@@ -101,6 +102,12 @@ def parse_args():
         default=None,
         help="Name of the output file (without extension). Default: results.",
     )
+    parser.add_argument(
+        "--parallel", "-p",
+        action="store_true",
+        default=False,
+        help="Run experiments in parallel using the RAGAS @experiment decorator (faster but less rate-limit-friendly).",
+    )
     return parser.parse_args()
 
 
@@ -141,7 +148,11 @@ def resolve_index_config(args) -> tuple[str, str]:
         output_filename = f"{args.name_file_output}{suffix}{chunk_suffix}_k_{top_k}_results"
     else:
         output_filename = f"{name}{suffix}{chunk_suffix}_k_{top_k}_results"
-    print(f"Output filename: {output_filename}.csv")
+
+    if args.no_answare:
+        print(f"Output filename: /no_answare/{output_filename}.csv")
+    else:
+        print(f"Output filename: {output_filename}.csv")
 
     return index_dir, output_filename
 
@@ -168,17 +179,21 @@ if _args.all:
     ENABLE_CONTEXT_RECALL           = True
 else:
     ENABLE_JUDGE                    = True
-    ENABLE_FAITHFULNESS             = False
+    ENABLE_FAITHFULNESS             = True
     ENABLE_ANSWER_CORRECTNESS       = False
     ENABLE_RESPONSE_RELEVANCY       = False
     ENABLE_CONTEXT_PRECISION        = False
     ENABLE_CONTEXT_RECALL           = False
 
+if _args.no_answare:
+    ENABLE_RESPONSE_RELEVANCY       = False
+    ENABLE_ANSWER_CORRECTNESS       = False
 
 # Conservative config for a local/unstable vLLM service
+_timeout = float(os.getenv("TIMEOUT", "600"))
 _run_config = RunConfig(
     max_workers=10,
-    timeout=600,
+    timeout=_timeout,
     max_retries=4,
 )
 
@@ -198,6 +213,7 @@ Settings.llm = OpenAILike(
     context_window=int(os.getenv("CONTEXT_WINDOW")),
     max_tokens=int(os.getenv("MAX_TOKENS")),
     temperature=float(os.getenv("TEMPERATURE")),
+    timeout=_timeout,
     is_chat_model=True,
     system_prompt=(
         "Sei l'assistente virtuale dell'università degli studi di Trieste. "
@@ -361,13 +377,13 @@ def judge_score(response: str, grading_notes: str, ground_truth: str) -> str:
 _ragas_async_client = AsyncOpenAI(
     api_key=os.getenv("API_KEY"),
     base_url=os.getenv("LLM_API_BASE"),
-    timeout=600,
+    timeout=_timeout,
 )
 
 _ragas_llm = llm_factory(
     model=os.getenv("MODEL"),
     client=_ragas_async_client,
-    max_tokens=int(os.getenv("MAX_TOKENS")),
+    max_tokens=int(os.getenv("RAGAS_MAX_TOKENS", os.getenv("MAX_TOKENS"))),
 )
 
 _ragas_embeddings = RagasHFEmbeddings(model=os.getenv("EMBEDDING_MODEL"))
@@ -522,53 +538,63 @@ _index = load_index(INDEX_DIR)  # loaded once at module level, reused for every 
 _query_counter = 0
 _total_questions = 0
 
-# limit_concurrency = asyncio.Semaphore(1)
+async def _run_single(row: dict, sequential: bool = True) -> dict:
+    try:
+        rag_result = query_rag(_index, row["question"])
+        q = _query_counter  # snapshot before parallel scoring shifts the counter
+        answer     = rag_result["answer"]
+        contexts   = rag_result["contexts"]
+        reference  = row.get("ground_truth", "")
+
+        print(f" -> Judge's Rating for: {row['question'][:30]}...")
+        if sequential:
+            await asyncio.sleep(2)
+            score = judge_score(answer, row["grading_notes"], reference)
+            await asyncio.sleep(2)
+        else:
+            score = await asyncio.to_thread(judge_score, answer, row["grading_notes"], reference)
+
+        faithfulness = await compute_faithfulness(row["question"], answer, contexts, q)
+        if sequential: await asyncio.sleep(2)
+        answer_correctness = await compute_answer_correctness(row["question"], answer, reference, q)
+        if sequential: await asyncio.sleep(2)
+        response_relevancy = await compute_response_relevancy(row["question"], answer, contexts, q)
+        if sequential: await asyncio.sleep(2)
+        context_precision = await compute_context_precision(row["question"], answer, contexts, reference, q)
+        if sequential: await asyncio.sleep(2)
+        context_recall = await compute_context_recall(row["question"], contexts, reference, q)
+
+        result = {
+            "question":        row["question"],
+            # "grading_notes":   row["grading_notes"],
+            "ground_truth":    reference,
+            "answer":          answer,
+            "answer_source":          row.get("source", ""),
+            "contexts":        "\n".join(f"{i+1}): (tokens: {_count_tokens(ctx)}) (url: {rag_result['chunks'][i]['source']}) (score: {rag_result['chunks'][i]['score']:.4f}) {ctx[:35]}..." for i, ctx in enumerate(contexts)),
+            "judge_result":    score,
+            "top_chunk_score": rag_result["chunks"][0]["score"] if rag_result["chunks"] else None,
+            "top_chunk_src":   rag_result["chunks"][0]["source"] if rag_result["chunks"] else None,
+        }
+        if ENABLE_ANSWER_CORRECTNESS:
+            result["answer_correctness"] = answer_correctness
+        if ENABLE_FAITHFULNESS:
+            result["faithfulness"] = faithfulness
+        if ENABLE_RESPONSE_RELEVANCY:
+            result["response_relevancy"] = response_relevancy
+        if ENABLE_CONTEXT_PRECISION:
+            result["context_precision"] = context_precision
+        if ENABLE_CONTEXT_RECALL:
+            result["context_recall"] = context_recall
+        return result
+
+    except Exception as e:
+        print(f"Experiment error: {type(e).__name__}: {e}")
+        return {"question": row["question"], "judge_result": "error"}
+
+
 @experiment()
 async def run_experiment(row: dict) -> dict:
-    # async with limit_concurrency:
-        try:
-            rag_result = query_rag(_index, row["question"])
-            q = _query_counter  # snapshot before parallel scoring shifts the counter
-            answer     = rag_result["answer"]
-            contexts   = rag_result["contexts"]
-            reference  = row.get("ground_truth", "")
-
-            print(f" -> Judge's Rating for: {row['question'][:30]}...")
-            score = await asyncio.to_thread(
-                judge_score, answer, row["grading_notes"], reference
-            )
-            faithfulness = await compute_faithfulness(row["question"], answer, contexts, q)
-            answer_correctness = await compute_answer_correctness(row["question"], answer, reference, q)
-            response_relevancy = await compute_response_relevancy(row["question"], answer, contexts, q)
-            context_precision = await compute_context_precision(row["question"], answer, contexts, reference, q)
-            context_recall = await compute_context_recall(row["question"], contexts, reference, q)
-
-            result = {
-                "question":        row["question"],
-                # "grading_notes":   row["grading_notes"],
-                "ground_truth":    reference,
-                "answer":          answer,
-                "answer_source":          row.get("source", ""),
-                "contexts":        "\n".join(f"{i+1}): (tokens: {_count_tokens(ctx)}) (url: {rag_result['chunks'][i]['source']}) (score: {rag_result['chunks'][i]['score']:.4f}) {ctx[:35]}..." for i, ctx in enumerate(contexts)),
-                "judge_result":    score,
-                "top_chunk_score": rag_result["chunks"][0]["score"] if rag_result["chunks"] else None,
-                "top_chunk_src":   rag_result["chunks"][0]["source"] if rag_result["chunks"] else None,
-            }
-            if ENABLE_ANSWER_CORRECTNESS:
-                result["answer_correctness"] = answer_correctness
-            if ENABLE_FAITHFULNESS:
-                result["faithfulness"] = faithfulness
-            if ENABLE_RESPONSE_RELEVANCY:
-                result["response_relevancy"] = response_relevancy
-            if ENABLE_CONTEXT_PRECISION:
-                result["context_precision"] = context_precision
-            if ENABLE_CONTEXT_RECALL:
-                result["context_recall"] = context_recall
-            return result
-
-        except Exception as e:
-            print(f"Experiment error: {type(e).__name__}: {e}")
-            return {"question": row["question"], "judge_result": "error"}
+    return await _run_single(row, sequential=False)
 
 
 # ==============================================================================
@@ -577,7 +603,6 @@ async def run_experiment(row: dict) -> dict:
 import time
 
 async def main():
-
     global _total_questions, _query_counter
     dataset = load_dataset()
     _total_questions = len(dataset)
@@ -585,26 +610,57 @@ async def main():
     print(f"Dataset loaded: {_total_questions} samples")
     start_time = time.time()
 
+    if _args.parallel:
+        print("Running in parallel mode...")
+        experiment_results = await run_experiment.arun(dataset, name=OUTPUT_FILENAME)
+        print("Experiment completed.")
+        questions_order = [s["question"] for s in dataset]
+        experiment_results._data = sorted(
+            experiment_results._data,
+            key=lambda r: questions_order.index(r["question"]),
+        )
+        experiment_results.save()
+        if _args.no_answare:
+            src = f"evals/experiments/{experiment_results.name}.csv"
+            dst_dir = "evals/experiments/no_answare"
+            os.makedirs(dst_dir, exist_ok=True)
+            dst = f"{dst_dir}/{experiment_results.name}.csv"
+            os.rename(src, dst)
+            print(f"Results saved to: {dst}\n")
+        else:
+            print(f"Results saved to: evals/experiments/{experiment_results.name}.csv\n")
+        results_data = experiment_results._data
+    else:
+        print("Running in sequential mode...")
+        results_data = []
+        for row in dataset:
+            result = await _run_single(row, sequential=True)
+            results_data.append(result)
+        print("Experiment completed.")
+        if _args.no_answare:
+            os.makedirs("evals/experiments/no_answare", exist_ok=True)
+            print("Saving results without answare...")
+            output_path = f"evals/experiments/no_answare/{OUTPUT_FILENAME}.csv"
+        else:
+            os.makedirs("evals/experiments", exist_ok=True)
+            output_path = f"evals/experiments/{OUTPUT_FILENAME}.csv"
+        if results_data:
+            fieldnames = list(dict.fromkeys(k for r in results_data for k in r.keys()))
+            with open(output_path, "w", newline="", encoding="utf-8") as f:
+                writer = csv.DictWriter(f, fieldnames=fieldnames, restval="", extrasaction="ignore")
+                writer.writeheader()
+                writer.writerows(results_data)
+        print(f"Results saved to: {output_path}\n")
 
-    experiment_results = await run_experiment.arun(dataset, name=OUTPUT_FILENAME)
-    print("Experiment completed.")
-
-    # Sort results to match original dataset order
-    questions_order = [s["question"] for s in dataset]
-    experiment_results._data = sorted(
-        experiment_results._data,
-        key=lambda r: questions_order.index(r["question"]),
-    )
-
-    experiment_results.save()
-    print(f"Results saved to: evals/experiments/{experiment_results.name}.csv\n")
-
-    results_data = experiment_results._data
     total = len(results_data)
     passed = sum(1 for r in results_data if r.get("judge_result") == "pass")
     print(f"Judge: {passed}/{total} passed")
     print(f"Percentage: {round(passed/total*100)}%")
-    print(f"Time needed: {format_time(time.time() - start_time)}")
+    elapsed = format_time(time.time() - start_time)
+    print(f"Time needed: {elapsed}")
+
+    os.system(f'osascript -e \'display notification "Passed: {passed}/{total} ({round(passed/total*100)}%) — {elapsed}" with title "RAG Eval completata" sound name "Glass"\'')
+
 
 
 if __name__ == "__main__":
