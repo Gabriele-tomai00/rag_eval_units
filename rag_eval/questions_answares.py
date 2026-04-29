@@ -215,154 +215,164 @@ samples_with_answare = [
             "Inoltre, il limite di reddito imponibile personale annuo lordo per poter fruire della borsa è fissato a 16.243,00 euro dal 1 luglio 2022."
         ),
     },
-    {
-        "question": "Cosa succede alla borsa di dottorato in caso di rinuncia, di mancato rinnovo o di rinuncia agli studi?",
-        "grading_notes": "La risposta deve menzionare la possibilità di assegnare la borsa a un dottorando privo di borsa dello stesso ciclo e corso, e il reinvestimento dell'importo non utilizzato.",
-        "ground_truth": (
-            "In caso di rinuncia alla borsa, di mancato rinnovo o di rinuncia agli studi, la borsa può essere "
-            "assegnata, nella sua quota totale o residua, su proposta del Collegio dei docenti, a un dottorando "
-            "privo di borsa dello stesso ciclo e dello stesso Corso. In ogni caso l'importo non utilizzato è "
-            "reinvestito dal soggetto che ha attivato il Corso per il finanziamento di dottorati di ricerca."
-        ),
-        "source": "https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio",
-        "perplexity_answer": (
-            "In caso di rinuncia alla borsa, di mancato rinnovo della borsa o di rinuncia agli studi, la borsa può essere assegnata, per la quota totale o residua, "
-            "a un dottorando privo di borsa dello stesso ciclo e dello stesso corso, su proposta del Collegio dei docenti e secondo la graduatoria. "
-            "Inoltre, la rinuncia agli studi è definitiva e comporta l’interruzione immediata della borsa o della forma di sostegno economico equivalente."
-        )
-    },
-    {
-        "question": "Quali conseguenze può avere il rifiuto del dottorando di dedicarsi al tema di ricerca assegnato?",
-        "grading_notes": "La risposta deve menzionare la possibilità di decadenza dal dottorato oppure la revoca della borsa con attribuzione di un nuovo tema e supervisore, senza prolungamento della durata.",
-        "ground_truth": (
-            "Il Collegio dei docenti, sentito il dottorando, può disporre la decadenza dal dottorato oppure "
-            "la revoca della borsa e l'attribuzione al dottorando di un nuovo tema di ricerca e di un nuovo "
-            "supervisore, senza prolungamento della durata di 36 mesi del dottorato."
-        ),
-        "source": "https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio",
-        "perplexity_answer": "Il rifiuto del dottorando di dedicarsi al tema di ricerca assegnato può comportare conseguenze sul proseguimento del corso, fino a un possibile provvedimento dell’università nei casi previsti dal regolamento",
-    },
-    {
-        "question": "Quali sono gli insegnamenti previsti nel semestre aperto per l'accesso a Medicina e Odontoiatria?",
-        "grading_notes": "La risposta deve elencare i tre insegnamenti: Chimica e propedeutica biochimica, Fisica e Biologia, ciascuno da 6 CFU.",
-        "ground_truth": (
-            "Il semestre aperto prevede la frequenza e il superamento di tre insegnamenti da 6 CFU ciascuno: "
-            "Chimica e propedeutica biochimica, Fisica e Biologia."
-        ),
-        "source": "https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria",
-        "perplexity_answer": "Nel semestre aperto per l’accesso a Medicina e Odontoiatria sono previsti tre insegnamenti da 6 CFU ciascuno: Chimica e propedeutica biochimica, Fisica e Biologia.",
-    },
-    {
-        "question": "Qual è il contributo economico richiesto per l'iscrizione al semestre aperto di Medicina?",
-        "grading_notes": "La risposta deve indicare almeno il contributo forfettario di 250 euro. se c'è altro va bene",
-        "ground_truth": (
-            "Per l'iscrizione al semestre aperto è previsto un contributo forfettario unico a livello nazionale "
-            "di 250 euro. L'importo verrà ricalcolato in un secondo momento in base all'ISEE Universitario "
-            "e agli altri casi di esonero totale o parziale previsti dalla normativa vigente."
-        ),
-        "source": "https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria",
-        "perplexity_answer": "250 euro.",
-    },
-    {
-        "question": "Cosa succede a chi non risulta in posizione utile in graduatoria dopo il semestre aperto di Medicina?",
-        "grading_notes": (
-            "La risposta deve menzionare la possibilità di accedere a un corso affine "
-            "scelto in fase di iscrizione, in base alla posizione raggiunta e ai posti disponibili."
-        ),
-        "ground_truth": (
-            "Chi non risulta in posizione utile in graduatoria può accedere, sulla base della posizione "
-            "raggiunta e dei posti disponibili, al corso affine scelto in fase di iscrizione."
-        ),
-        "source": "https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria",
-        "perplexity_answer": (
-            "Chi non risulta in posizione utile in graduatoria può accedere, in base alla posizione, al corso affine previsto dal semestre aperto; "
-            "se non entra nella graduatoria, può iscriversi a un altro corso di studio, secondo le regole e i posti disponibili dell’ateneo."
-        ),
-    },
-    {
-        "question": "Quante ore minime di tirocinio pratico-valutativo sono richieste come primo operatore in Odontoiatria?",
-        "grading_notes": "La risposta deve indicare il minimo di 600 ore come primo operatore",
-        "ground_truth": (
-            "Il tirocinio pratico-valutativo di Odontoiatria richiede un minimo di 600 ore di tirocinio "
-            "come primo operatore, certificate dal Coordinatore del Corso di Studio."
-        ),
-        "source": "https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato",
-        "perplexity_answer": "Sono richieste **almeno 20 ore per ogni CFU** di TPV svolte come primo operatore; inoltre, il TPV complessivo prevede **30 CFU**, quindi le ore minime totali risultano 600 ore",
-    },
-    {
-        "question": "In cosa consiste la prova pratica valutativa al termine del tirocinio di Odontoiatria?",
-        "grading_notes": "La risposta deve menzionare la discussione di 3 casi clinici multidisciplinari, la valutazione idoneo/non idoneo e che precede la tesi di laurea.",
-        "ground_truth": (
-            "La prova pratica valutativa consiste nella discussione di 3 casi clinici multidisciplinari "
-            "svolti dal candidato, con valutazione idoneo/non idoneo. Precede la discussione della tesi di laurea."
-        ),
-        "source": "https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato",
-        "perplexity_answer": (
-            "La prova pratica valutativa consiste nella verifica delle competenze professionali acquisite tramite il tirocinio pratico-valutativo. "
-            "Nell’ateneo di Trieste è prevista come parte dell’esame finale che abilita all’esercizio della professione di odontoiatra."
-        ),
-    },
-    {
-        "question": "Come si registra il tirocinio da 9 CFU in Fisica?",
-        "grading_notes": "La risposta deve menzionare il seminario pubblico di 20 minuti e il contatto con il Prof. Andrea Bressan, con appello ogni primo lunedì del mese.",
-        "ground_truth": (
-            "Per registrare il tirocinio da 9 CFU in Fisica, lo studente deve esporre l'attività svolta "
-            "e i risultati raggiunti in un seminario pubblico di 20 minuti. Bisogna contattare il Prof. "
-            "Andrea Bressan per l'iscrizione all'appello che si tiene ogni primo lunedì del mese."
-        ),
-        "source": "https://lauree.units.it/it/0320106203000001/area-studenti/tirocinio-e-internato",
-        "perplexity_answer": (
-            "Per registrare il tirocinio da 9 CFU in Fisica, devi esporre l’attività svolta e i risultati ottenuti; la registrazione avviene secondo "
-            "le modalità indicate nella pagina del corso di laurea in Fisica dell’Università di Trieste"
-        ),
-    },
-    {
-        "question": "Quanti CFU prevede il tirocinio curriculare di Fisica e quante ore corrispondono?",
-        "grading_notes": "La risposta deve indicare almeno il dato dei 3 CFU per 75 ore, in aggiunta può anche dire che c'è l'alternativa da 9 CFU per 225 ore, e la restrizione ai soli 3 CFU per gli immatricolati dall'a.a. 2024/2025.",
-        "ground_truth": (
-            "Il tirocinio curriculare di Fisica prevede 3 CFU per un totale di 75 ore. In alternativa "
-            "è possibile optare per un tirocinio esteso da 9 CFU per 225 ore. Per gli immatricolati "
-            "al primo anno a partire dall'a.a. 2024/2025 è previsto solamente il tirocinio da 3 CFU."
-        ),
-        "source": "https://lauree.units.it/it/0320106203000001/area-studenti/tirocinio-e-internato",
-        "perplexity_answer": "Il tirocinio curriculare di Fisica prevede 3 CFU e corrisponde a 75 ore",
-    },
-    {
-        "question": "Entro quando deve arrivare la documentazione per avviare il tirocinio di Scienze e Tecnologie Biologiche?",
-        "grading_notes": "La risposta deve indicare entro il 15 del mese precedente l'inizio del tirocinio.",
-        "ground_truth": (
-            "La documentazione per avviare il tirocinio di Scienze e Tecnologie Biologiche deve arrivare "
-            "alla Segreteria Didattica entro il 15 del mese precedente l'inizio del tirocinio, per "
-            "permettere l'approvazione da parte del Consiglio di Corso di Studi."
-        ),
-        "source": "https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato",
-        "perplexity_answer": "La documentazione per avviare il tirocinio di Scienze e Tecnologie Biologiche va inviata entro il 15 di ogni mese",
-    },
-    {
-        "question": "Quando è richiesto il test Mantoux per il tirocinio di Scienze e Tecnologie Biologiche?",
-        "grading_notes": "La risposta deve indicare che il test è richiesto quando il tirocinio prevede contatto con persone fragili (asili, ospedali, case di riposo ecc.) e che l'ateneo ha una convenzione con ASUGI per effettuarlo gratuitamente.",
-        "ground_truth": (
-            "Il test Mantoux è richiesto quando il tirocinio prevede il contatto con persone fragili, "
-            "come in strutture quali asili nidi, scuole dell'infanzia, ospedali, cliniche, case di riposo "
-            "o centri di accoglienza. L'ateneo ha una convenzione con ASUGI per effettuare il test gratuitamente."
-        ),
-        "source": "https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato",
-        "perplexity_answer": (
-            "Il test Mantoux è richiesto prima di iniziare il tirocinio quando il tirocinio si svolge in strutture sanitarie "
-            "o di laboratorio in cui è previsto per la sorveglianza sanitaria, secondo le indicazioni del corso di Scienze e Tecnologie Biologiche."
-        ),
-    },
-    {
-        "question": "Quanti esami di chimica ci sono nel corso di Computer engineering?",
-        "grading_notes": "La risposta deve indicare che il test è richiesto quando il tirocinio prevede contatto con persone fragili (asili, ospedali, case di riposo ecc.) e che l'ateneo ha una convenzione con ASUGI per effettuarlo gratuitamente.",
-        "ground_truth": (
-            "Nel piano di studi del corso di Laurea Magistrale in Computer Engineering non compaiono esami di Chimica: le materie elencate riguardano Cybersecurity, "
-            "Digital Electronics and Devices e altre discipline informatiche ed elettroniche,. "
-        ),
-        "source": "https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato",
-        "perplexity_answer": "Non posso determinarlo con certezza dalle informazioni disponibili qui."
-    }
+    # {
+    #     "question": "Cosa succede alla borsa di dottorato in caso di rinuncia, di mancato rinnovo o di rinuncia agli studi?",
+    #     "grading_notes": "La risposta deve menzionare la possibilità di assegnare la borsa a un dottorando privo di borsa dello stesso ciclo e corso, e il reinvestimento dell'importo non utilizzato.",
+    #     "ground_truth": (
+    #         "In caso di rinuncia alla borsa, di mancato rinnovo o di rinuncia agli studi, la borsa può essere "
+    #         "assegnata, nella sua quota totale o residua, su proposta del Collegio dei docenti, a un dottorando "
+    #         "privo di borsa dello stesso ciclo e dello stesso Corso. In ogni caso l'importo non utilizzato è "
+    #         "reinvestito dal soggetto che ha attivato il Corso per il finanziamento di dottorati di ricerca."
+    #     ),
+    #     "source": "https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio",
+    #     "perplexity_answer": (
+    #         "In caso di rinuncia alla borsa, di mancato rinnovo della borsa o di rinuncia agli studi, la borsa può essere assegnata, per la quota totale o residua, "
+    #         "a un dottorando privo di borsa dello stesso ciclo e dello stesso corso, su proposta del Collegio dei docenti e secondo la graduatoria. "
+    #         "Inoltre, la rinuncia agli studi è definitiva e comporta l’interruzione immediata della borsa o della forma di sostegno economico equivalente."
+    #     )
+    # },
+    # {
+    #     "question": "Quali conseguenze può avere il rifiuto del dottorando di dedicarsi al tema di ricerca assegnato?",
+    #     "grading_notes": "La risposta deve menzionare la possibilità di decadenza dal dottorato oppure la revoca della borsa con attribuzione di un nuovo tema e supervisore, senza prolungamento della durata.",
+    #     "ground_truth": (
+    #         "Il Collegio dei docenti, sentito il dottorando, può disporre la decadenza dal dottorato oppure "
+    #         "la revoca della borsa e l'attribuzione al dottorando di un nuovo tema di ricerca e di un nuovo "
+    #         "supervisore, senza prolungamento della durata di 36 mesi del dottorato."
+    #     ),
+    #     "source": "https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio",
+    #     "perplexity_answer": "Il rifiuto del dottorando di dedicarsi al tema di ricerca assegnato può comportare conseguenze sul proseguimento del corso, fino a un possibile provvedimento dell’università nei casi previsti dal regolamento",
+    # },
+    # {
+    #     "question": "Quali sono gli insegnamenti previsti nel semestre aperto per l'accesso a Medicina e Odontoiatria?",
+    #     "grading_notes": "La risposta deve elencare i tre insegnamenti: Chimica e propedeutica biochimica, Fisica e Biologia, ciascuno da 6 CFU.",
+    #     "ground_truth": (
+    #         "Il semestre aperto prevede la frequenza e il superamento di tre insegnamenti da 6 CFU ciascuno: "
+    #         "Chimica e propedeutica biochimica, Fisica e Biologia."
+    #     ),
+    #     "source": "https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria",
+    #     "perplexity_answer": "Nel semestre aperto per l’accesso a Medicina e Odontoiatria sono previsti tre insegnamenti da 6 CFU ciascuno: Chimica e propedeutica biochimica, Fisica e Biologia.",
+    # },
+    # {
+    #     "question": "Qual è il contributo economico richiesto per l'iscrizione al semestre aperto di Medicina?",
+    #     "grading_notes": "La risposta deve indicare almeno il contributo forfettario di 250 euro. se c'è altro va bene",
+    #     "ground_truth": (
+    #         "Per l'iscrizione al semestre aperto è previsto un contributo forfettario unico a livello nazionale "
+    #         "di 250 euro. L'importo verrà ricalcolato in un secondo momento in base all'ISEE Universitario "
+    #         "e agli altri casi di esonero totale o parziale previsti dalla normativa vigente."
+    #     ),
+    #     "source": "https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria",
+    #     "perplexity_answer": "250 euro.",
+    # },
+    # {
+    #     "question": "Cosa succede a chi non risulta in posizione utile in graduatoria dopo il semestre aperto di Medicina?",
+    #     "grading_notes": (
+    #         "La risposta deve menzionare la possibilità di accedere a un corso affine "
+    #         "scelto in fase di iscrizione, in base alla posizione raggiunta e ai posti disponibili."
+    #     ),
+    #     "ground_truth": (
+    #         "Chi non risulta in posizione utile in graduatoria può accedere, sulla base della posizione "
+    #         "raggiunta e dei posti disponibili, al corso affine scelto in fase di iscrizione."
+    #     ),
+    #     "source": "https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria",
+    #     "perplexity_answer": (
+    #         "Chi non risulta in posizione utile in graduatoria può accedere, in base alla posizione, al corso affine previsto dal semestre aperto; "
+    #         "se non entra nella graduatoria, può iscriversi a un altro corso di studio, secondo le regole e i posti disponibili dell’ateneo."
+    #     ),
+    # },
+    # {
+    #     "question": "Quante ore minime di tirocinio pratico-valutativo sono richieste come primo operatore in Odontoiatria?",
+    #     "grading_notes": "La risposta deve indicare il minimo di 600 ore come primo operatore",
+    #     "ground_truth": (
+    #         "Il tirocinio pratico-valutativo di Odontoiatria richiede un minimo di 600 ore di tirocinio "
+    #         "come primo operatore, certificate dal Coordinatore del Corso di Studio."
+    #     ),
+    #     "source": "https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato",
+    #     "perplexity_answer": "Sono richieste **almeno 20 ore per ogni CFU** di TPV svolte come primo operatore; inoltre, il TPV complessivo prevede **30 CFU**, quindi le ore minime totali risultano 600 ore",
+    # },
+    # {
+    #     "question": "In cosa consiste la prova pratica valutativa al termine del tirocinio di Odontoiatria?",
+    #     "grading_notes": "La risposta deve menzionare la discussione di 3 casi clinici multidisciplinari, la valutazione idoneo/non idoneo e che precede la tesi di laurea.",
+    #     "ground_truth": (
+    #         "La prova pratica valutativa consiste nella discussione di 3 casi clinici multidisciplinari "
+    #         "svolti dal candidato, con valutazione idoneo/non idoneo. Precede la discussione della tesi di laurea."
+    #     ),
+    #     "source": "https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato",
+    #     "perplexity_answer": (
+    #         "La prova pratica valutativa consiste nella verifica delle competenze professionali acquisite tramite il tirocinio pratico-valutativo. "
+    #         "Nell’ateneo di Trieste è prevista come parte dell’esame finale che abilita all’esercizio della professione di odontoiatra."
+    #     ),
+    # },
+    # {
+    #     "question": "Come si registra il tirocinio da 9 CFU in Fisica?",
+    #     "grading_notes": "La risposta deve menzionare il seminario pubblico di 20 minuti e il contatto con il Prof. Andrea Bressan, con appello ogni primo lunedì del mese.",
+    #     "ground_truth": (
+    #         "Per registrare il tirocinio da 9 CFU in Fisica, lo studente deve esporre l'attività svolta "
+    #         "e i risultati raggiunti in un seminario pubblico di 20 minuti. Bisogna contattare il Prof. "
+    #         "Andrea Bressan per l'iscrizione all'appello che si tiene ogni primo lunedì del mese."
+    #     ),
+    #     "source": "https://lauree.units.it/it/0320106203000001/area-studenti/tirocinio-e-internato",
+    #     "perplexity_answer": (
+    #         "Per registrare il tirocinio da 9 CFU in Fisica, devi esporre l’attività svolta e i risultati ottenuti; la registrazione avviene secondo "
+    #         "le modalità indicate nella pagina del corso di laurea in Fisica dell’Università di Trieste"
+    #     ),
+    # },
+    # {
+    #     "question": "Quanti CFU prevede il tirocinio curriculare di Fisica e quante ore corrispondono?",
+    #     "grading_notes": "La risposta deve indicare almeno il dato dei 3 CFU per 75 ore, in aggiunta può anche dire che c'è l'alternativa da 9 CFU per 225 ore, e la restrizione ai soli 3 CFU per gli immatricolati dall'a.a. 2024/2025.",
+    #     "ground_truth": (
+    #         "Il tirocinio curriculare di Fisica prevede 3 CFU per un totale di 75 ore. In alternativa "
+    #         "è possibile optare per un tirocinio esteso da 9 CFU per 225 ore. Per gli immatricolati "
+    #         "al primo anno a partire dall'a.a. 2024/2025 è previsto solamente il tirocinio da 3 CFU."
+    #     ),
+    #     "source": "https://lauree.units.it/it/0320106203000001/area-studenti/tirocinio-e-internato",
+    #     "perplexity_answer": "Il tirocinio curriculare di Fisica prevede 3 CFU e corrisponde a 75 ore",
+    # },
+    # {
+    #     "question": "Entro quando deve arrivare la documentazione per avviare il tirocinio di Scienze e Tecnologie Biologiche?",
+    #     "grading_notes": "La risposta deve indicare entro il 15 del mese precedente l'inizio del tirocinio.",
+    #     "ground_truth": (
+    #         "La documentazione per avviare il tirocinio di Scienze e Tecnologie Biologiche deve arrivare "
+    #         "alla Segreteria Didattica entro il 15 del mese precedente l'inizio del tirocinio, per "
+    #         "permettere l'approvazione da parte del Consiglio di Corso di Studi."
+    #     ),
+    #     "source": "https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato",
+    #     "perplexity_answer": "La documentazione per avviare il tirocinio di Scienze e Tecnologie Biologiche va inviata entro il 15 di ogni mese",
+    # },
+    # {
+    #     "question": "Quando è richiesto il test Mantoux per il tirocinio di Scienze e Tecnologie Biologiche?",
+    #     "grading_notes": "La risposta deve indicare che il test è richiesto quando il tirocinio prevede contatto con persone fragili (asili, ospedali, case di riposo ecc.) e che l'ateneo ha una convenzione con ASUGI per effettuarlo gratuitamente.",
+    #     "ground_truth": (
+    #         "Il test Mantoux è richiesto quando il tirocinio prevede il contatto con persone fragili, "
+    #         "come in strutture quali asili nidi, scuole dell'infanzia, ospedali, cliniche, case di riposo "
+    #         "o centri di accoglienza. L'ateneo ha una convenzione con ASUGI per effettuare il test gratuitamente."
+    #     ),
+    #     "source": "https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato",
+    #     "perplexity_answer": (
+    #         "Il test Mantoux è richiesto prima di iniziare il tirocinio quando il tirocinio si svolge in strutture sanitarie "
+    #         "o di laboratorio in cui è previsto per la sorveglianza sanitaria, secondo le indicazioni del corso di Scienze e Tecnologie Biologiche."
+    #     ),
+    # },
+    # {
+    #     "question": "Quanti esami di chimica ci sono nel corso di Computer engineering?",
+    #     "grading_notes": "La risposta deve indicare che il test è richiesto quando il tirocinio prevede contatto con persone fragili (asili, ospedali, case di riposo ecc.) e che l'ateneo ha una convenzione con ASUGI per effettuarlo gratuitamente.",
+    #     "ground_truth": (
+    #         "Nel piano di studi del corso di Laurea Magistrale in Computer Engineering non compaiono esami di Chimica: le materie elencate riguardano Cybersecurity, "
+    #         "Digital Electronics and Devices e altre discipline informatiche ed elettroniche,. "
+    #     ),
+    #     "source": "https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato",
+    #     "perplexity_answer": "Non posso determinarlo con certezza dalle informazioni disponibili qui."
+    # }
 ]
+
+
+
+
+
+
+
+
+
+
 
 samples_without_answare = [
     {
