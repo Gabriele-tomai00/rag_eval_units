@@ -200,4 +200,89 @@ Visa applica...
 3): (tokens: 31) (url: https://degree.units.it/en/0320106204700003/students-area/taught-courses/2025/117821/2022/9999/10505/2025/) (score: 0.4685) ##### Visa applicants
 
 Visa applica...",fail,0.4713,https://degree.units.it/en/0320107339100001/students-area/taught-courses/2025/120533/2024/9999/10737/2024/,0.1906,1.0,0.0,0.0,0.0
+"Cosa succede alla borsa di dottorato in caso di rinuncia, di mancato rinnovo o di rinuncia agli studi?","In caso di rinuncia alla borsa, di mancato rinnovo o di rinuncia agli studi, la borsa può essere assegnata, nella sua quota totale o residua, su proposta del Collegio dei docenti, a un dottorando privo di borsa dello stesso ciclo e dello stesso Corso. In ogni caso l'importo non utilizzato è reinvestito dal soggetto che ha attivato il Corso per il finanziamento di dottorati di ricerca.","In caso di rinuncia alla borsa, di mancato rinnovo della borsa o di rinuncia agli studi, la borsa, nella sua quota totale o residua, può essere assegnata, su proposta del Collegio dei docenti, a un dottorando privo di borsa dello stesso ciclo e dello stesso Corso, seguendo la relativa graduatoria e tenendo conto di eventuali idoneità per le borse a tema vincolato. L'importo della borsa non utilizzato viene reinvestito dal soggetto che ha attivato il Corso per il finanziamento di dottorati di ricerca. Tale finanziamento può essere riutilizzato previo accordo tra le parti o se le condizioni del finanziamento lo prevedono. Inoltre, i casi di rinuncia agli studi comportano l'interruzione immediata della borsa o della forma di sostegno economico equivalente erogata dall'Università e collegata alla frequenza del dottorato.",https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio,"1): (tokens: 247) (url: https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio) (score: 0.5572) 11 La borsa è soggetta al versament...
+2): (tokens: 945) (url: https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio) (score: 0.5472) # Art. 29 - Borse di studio
 
+1\. Le...
+3): (tokens: 452) (url: https://amm.units.it/normativa/regolamenti/articolo-44579/art-24-decadenza-esclusione-e-rinuncia-agli-studi) (score: 0.5151) # Art. 24 – Decadenza, esclusione e...",pass,0.5572,https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio,0.7716,1.0,0.9481,0.5,1.0
+Quali conseguenze può avere il rifiuto del dottorando di dedicarsi al tema di ricerca assegnato?,"Il Collegio dei docenti, sentito il dottorando, può disporre la decadenza dal dottorato oppure la revoca della borsa e l'attribuzione al dottorando di un nuovo tema di ricerca e di un nuovo supervisore, senza prolungamento della durata di 36 mesi del dottorato.","Se un dottorando non intende più dedicarsi al tema di ricerca assegnato o collaborare con il gruppo di ricerca e i supervisori, il Collegio dei docenti, dopo aver sentito il dottorando, può disporre la decadenza dal dottorato. In alternativa, può revocare la borsa di studio e assegnare al dottorando un nuovo tema di ricerca e un nuovo supervisore, senza che ciò comporti un prolungamento della durata complessiva del dottorato.",https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio,"1): (tokens: 452) (url: https://amm.units.it/normativa/regolamenti/articolo-44579/art-24-decadenza-esclusione-e-rinuncia-agli-studi) (score: 0.4733) # Art. 24 – Decadenza, esclusione e...
+2): (tokens: 247) (url: https://amm.units.it/normativa/regolamenti/articolo-44584/art-29-borse-studio) (score: 0.4318) 11 La borsa è soggetta al versament...
+3): (tokens: 928) (url: https://amm.units.it/normativa/regolamenti/articolo-44582/art-27-diritti-e-doveri-dottorandi) (score: 0.4305) # Art. 27 - Diritti e doveri dei do...",pass,0.4733,https://amm.units.it/normativa/regolamenti/articolo-44579/art-24-decadenza-esclusione-e-rinuncia-agli-studi,0.8318,1.0,0.7363,0.5,1.0
+Quali sono gli insegnamenti previsti nel semestre aperto per l'accesso a Medicina e Odontoiatria?,"Il semestre aperto prevede la frequenza e il superamento di tre insegnamenti da 6 CFU ciascuno: Chimica e propedeutica biochimica, Fisica e Biologia.","Gli insegnamenti previsti nel semestre aperto per l'accesso a Medicina e Odontoiatria sono:
+
+*   Chimica e propedeutica biochimica
+*   Fisica
+*   Biologia",https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria,"1): (tokens: 127) (url: https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria) (score: 0.6191) ## **Iscrizione al semestre aperto*...
+2): (tokens: 119) (url: https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria) (score: 0.5853) #### **Contributo economico per l’i...
+3): (tokens: 254) (url: https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria) (score: 0.5656) ## 
+
+Nell’anno accademico 2025/2026...",fail,0.6191,https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria,0.6841,1.0,1.0,0.3333,1.0
+Qual è il contributo economico richiesto per l'iscrizione al semestre aperto di Medicina?,Per l'iscrizione al semestre aperto è previsto un contributo forfettario unico a livello nazionale di 250 euro. L'importo verrà ricalcolato in un secondo momento in base all'ISEE Universitario e agli altri casi di esonero totale o parziale previsti dalla normativa vigente.,"Per l'iscrizione al semestre aperto è richiesto un contributo forfettario unico a livello nazionale di 250 euro. Questo importo potrà essere ricalcolato in un secondo momento in base all'ISEE Universitario e ad altri casi di esonero, con eventuale rimborso.",https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria,"1): (tokens: 119) (url: https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria) (score: 0.6275) #### **Contributo economico per l’i...
+2): (tokens: 57) (url: https://lauree.units.it/it/0320107304200001/semestre-aperto/come-iscriversi) (score: 0.5197) ##### Studenti richiedenti visto
+
+P...
+3): (tokens: 57) (url: https://lauree.units.it/it/0320107304200001/semestre-aperto/lezioni) (score: 0.5194) ##### Studenti richiedenti visto
+
+P...",pass,0.6275,https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria,0.8458,1.0,0.7986,1.0,1.0
+Cosa succede a chi non risulta in posizione utile in graduatoria dopo il semestre aperto di Medicina?,"Chi non risulta in posizione utile in graduatoria può accedere, sulla base della posizione raggiunta e dei posti disponibili, al corso affine scelto in fase di iscrizione.","Chi non risulta in posizione utile nella graduatoria dopo il semestre aperto ha diverse possibilità, a seconda del punteggio ottenuto negli esami:
+
+1.  **Immatricolazione a corsi affini**: Se lo studente ha ottenuto almeno 18/30 in tutti e tre gli esami, ma non rientra in posizione utile per il corso prescelto, può immatricolarsi al secondo semestre di un corso affine. Questa possibilità è limitata al 20% dei posti aggiuntivi riservati ai corsi a numero programmato. I CFU conseguiti nel semestre aperto vengono riconosciuti integralmente.
+
+2.  **Opzioni in caso di mancata ammissione (al corso prescelto o affine)**: Se lo studente non viene ammesso al secondo semestre del corso di laurea prescelto o di un corso affine, ha due possibilità:
+    *   **Ripetere il semestre aperto**: È possibile ripeterlo fino a un massimo di 3 volte, anche in anni accademici non consecutivi.
+    *   **Iscriversi a un altro corso di studio**: Si può scegliere un corso diverso, a condizione che siano rispettati i requisiti di accesso previsti (come il test TOLC) e ci siano posti disponibili. L'eventuale riconoscimento dei CFU già acquisiti sarà valutato dal Corso di laurea di destinazione.",https://portale.units.it/it/studiare/orientarsi/preparazione-test-area-medico-sanitaria,"1): (tokens: 531) (url: https://lauree.units.it/it/0320107304200001/come-iscriversi) (score: 0.4902) #### Graduatoria
+
+Il punteggio otte...
+2): (tokens: 507) (url: https://lauree.units.it/it/0320107304200001/come-iscriversi) (score: 0.4574) #### Anni successivi al primo
+
+È st...
+3): (tokens: 531) (url: https://lauree.units.it/it/0320107304700001/come-iscriversi) (score: 0.4549) #### Graduatoria
+
+Il punteggio otte...",fail,0.4902,https://lauree.units.it/it/0320107304200001/come-iscriversi,0.3197,1.0,0.8002,0.8333,1.0
+Quante ore minime di tirocinio pratico-valutativo sono richieste come primo operatore in Odontoiatria?,"Il tirocinio pratico-valutativo di Odontoiatria richiede un minimo di 600 ore di tirocinio come primo operatore, certificate dal Coordinatore del Corso di Studio.","Le informazioni fornite non specificano il numero minimo di ore di tirocinio pratico-valutativo richieste come primo operatore per il corso di Odontoiatria. Viene indicato che il tirocinio curriculare prevede 60 CFU, ma non viene fornita la conversione in ore per questo specifico corso.",https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato,"1): (tokens: 253) (url: https://lauree.units.it/it/0320106204800001-1/area-studenti/tirocinio-e-internato) (score: 0.5082) # Tirocinio e internato
+
+A partire ...
+2): (tokens: 253) (url: https://lauree.units.it/it/0320106204800001/area-studenti/tirocinio-e-internato) (score: 0.5082) # Tirocinio e internato
+
+A partire ...
+3): (tokens: 369) (url: https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato) (score: 0.4951) ## Tirocinio curricolare
+
+Il tiroci...",fail,0.5082,https://lauree.units.it/it/0320106204800001-1/area-studenti/tirocinio-e-internato,0.2108,0.6667,0.0,0.0,0.0
+In cosa consiste la prova pratica valutativa al termine del tirocinio di Odontoiatria?,"La prova pratica valutativa consiste nella discussione di 3 casi clinici multidisciplinari svolti dal candidato, con valutazione idoneo/non idoneo. Precede la discussione della tesi di laurea.",Al termine del tirocinio pratico-valutativo è prevista una prova pratica valutativa. Questa prova precede la discussione della tesi di laurea e si concentra sulle competenze professionali acquisite. Consiste nella discussione di tre casi clinici multidisciplinari che sono stati gestiti dal candidato. La valutazione di questa prova è espressa come idoneo o non idoneo.,https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato,"1): (tokens: 626) (url: https://degree.units.it/it/0320106204800001/area-studenti/insegnamenti/2025/115743/2017/9999/10333/2023/) (score: 0.5231) ## 
+
+La valutazione dello studente ...
+2): (tokens: 627) (url: https://degree.units.it/it/0320106204800001/area-studenti/insegnamenti/2025/116181/2017/9999/10333/2023/13204) (score: 0.5140) ## 
+
+La valutazione dello studente ...
+3): (tokens: 649) (url: https://lauree.units.it/it/0320107304700001/area-studenti/tirocinio-e-internato) (score: 0.5117) ## Tirocinio pratico-valutativo
+
+Du...",pass,0.5231,https://degree.units.it/it/0320106204800001/area-studenti/insegnamenti/2025/115743/2017/9999/10333/2023/,0.8254,1.0,0.6875,0.3333,1.0
+Come si registra il tirocinio da 9 CFU in Fisica?,"Per registrare il tirocinio da 9 CFU in Fisica, lo studente deve esporre l'attività svolta e i risultati raggiunti in un seminario pubblico di 20 minuti. Bisogna contattare il Prof. Andrea Bressan per l'iscrizione all'appello che si tiene ogni primo lunedì del mese.","Per registrare il tirocinio da 9 CFU, è necessario esporre l'attività svolta e i risultati raggiunti in un seminario pubblico della durata di 20 minuti. Per l'iscrizione online all'appello, che si tiene ogni primo lunedì del mese, occorre contattare il Prof. Andrea Bressan all'indirizzo ANDREA.BRESSAN@units.it.",https://lauree.units.it/it/0320106203000001/area-studenti/tirocinio-e-internato,"1): (tokens: 771) (url: https://lauree.units.it/it/0320106203000001/area-studenti/tirocinio-e-internato) (score: 0.4768) ### Organizzazione del Tirocinio
+
+D...
+2): (tokens: 211) (url: https://lauree.units.it/it/0320106202700001/area-studenti/tirocinio-e-internato) (score: 0.4579) ### Tirocinio interno all'Universit...
+3): (tokens: 169) (url: https://lauree.units.it/it/0320106202400001/area-studenti/tirocinio-e-internato) (score: 0.4570) ### Registrazione dei CFU
+
+Le attiv...",pass,0.4768,https://lauree.units.it/it/0320106203000001/area-studenti/tirocinio-e-internato,0.9242,1.0,0.7724,1.0,1.0
+Quanti CFU prevede il tirocinio curriculare di Fisica e quante ore corrispondono?,Il tirocinio curriculare di Fisica prevede 3 CFU per un totale di 75 ore. In alternativa è possibile optare per un tirocinio esteso da 9 CFU per 225 ore. Per gli immatricolati al primo anno a partire dall'a.a. 2024/2025 è previsto solamente il tirocinio da 3 CFU.,"Il tirocinio curriculare di Fisica prevede 5 CFU, corrispondenti a un totale di 125 ore.",https://lauree.units.it/it/0320106203000001/area-studenti/tirocinio-e-internato,"1): (tokens: 106) (url: https://lauree.units.it/it/0320107301800010/area-studenti/tirocinio-e-internato) (score: 0.6027) ### Descrizione e finalità del tiro...
+2): (tokens: 133) (url: https://lauree.units.it/it/0320106204800004/area-studenti/tirocinio-e-internato) (score: 0.5914) ### Programmazione del tirocinio
+
+L...
+3): (tokens: 181) (url: https://lauree.units.it/it/0320106202700001/area-studenti/tirocinio-e-internato) (score: 0.5788) # Tirocinio e internato
+
+Il tirocin...",fail,0.6027,https://lauree.units.it/it/0320107301800010/area-studenti/tirocinio-e-internato,0.2291,0.0,0.9864,0.0,0.0
+Entro quando deve arrivare la documentazione per avviare il tirocinio di Scienze e Tecnologie Biologiche?,"La documentazione per avviare il tirocinio di Scienze e Tecnologie Biologiche deve arrivare alla Segreteria Didattica entro il 15 del mese precedente l'inizio del tirocinio, per permettere l'approvazione da parte del Consiglio di Corso di Studi.","Le informazioni fornite non specificano una scadenza per l'invio della documentazione necessaria ad avviare il tirocinio per il corso di Scienze e Tecnologie Biologiche. Tuttavia, viene indicato che senza la consegna della documentazione completa prima dell’inizio, il tirocinio sarà annullato d’ufficio.",https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato,"1): (tokens: 446) (url: https://lauree.units.it/it/0320106201100001/area-studenti/tirocinio-e-internato) (score: 0.5278) #### Importante 
+
+Senza la consegna...
+2): (tokens: 155) (url: https://lauree.units.it/it/0320107307800002/area-studenti/tirocinio-e-internato) (score: 0.5268) Tutti i documenti vanno inviati **e...
+3): (tokens: 446) (url: https://lauree.units.it/it/0320107307900001/area-studenti/tirocinio-e-internato) (score: 0.5242) #### Importante 
+
+Senza la consegna...",fail,0.5278,https://lauree.units.it/it/0320106201100001/area-studenti/tirocinio-e-internato,0.3916,0.5,0.9189,0.0,0.0
+Quando è richiesto il test Mantoux per il tirocinio di Scienze e Tecnologie Biologiche?,"Il test Mantoux è richiesto quando il tirocinio prevede il contatto con persone fragili, come in strutture quali asili nidi, scuole dell'infanzia, ospedali, cliniche, case di riposo o centri di accoglienza. L'ateneo ha una convenzione con ASUGI per effettuare il test gratuitamente.","Il test Mantoux è richiesto se l'attività di tirocinio o internato prevede il contatto con persone fragili. Questo include contesti come asili nido, scuole dell'infanzia e primarie, ospedali, cliniche, case di riposo e centri di accoglienza.",https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato,"1): (tokens: 735) (url: https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato) (score: 0.5496) **Per i tirocini in Ateneo** segui ...
+2): (tokens: 618) (url: https://lauree.units.it/it/0320106202400001/area-studenti/tirocinio-e-internato) (score: 0.5322) ###   
+Come accedere al TPV
+
+Per ac...
+3): (tokens: 440) (url: https://lauree.units.it/it/0320107305200001/area-studenti/tirocinio-e-internato) (score: 0.5288) #### Dove svolgerlo
+
+Puoi scegliere...",fail,0.5496,https://lauree.units.it/it/0320106201300002/area-studenti/tirocinio-e-internato,0.7332,1.0,0.8202,1.0,1.0
