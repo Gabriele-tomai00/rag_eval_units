@@ -1,4 +1,4 @@
-question,ground_truth,answer,answer_source,contexts,judge_result,top_chunk_score,top_chunk_src,faithfulness,context_precision,context_recall
+question,ground_truth,answer,answer_source,contexts,judge_result,top_chunk_score,top_chunk_src,faithfulness,context_precision
 l aula T dell'edificio A è libera il giorno 20 marzo 2026?,Non ho informazioni sulla disponibilità dell'aula T per quella data specifica.,Le informazioni fornite non specificano la disponibilità dell'aula T dell'edificio A per il giorno 20 marzo 2026.,absent for choice,"1): (tokens: 663) (url: https://portale.units.it/it/studiare/post-lauream/formazione-insegnanti/60cfu) (score: 0.4125) L'immatricolazione sarà attiva **da...
 2): (tokens: 986) (url: https://portale.units.it/it/studiare/post-lauream/formazione-insegnanti/60cfu) (score: 0.4046) Il certificato va inviato alla mail...
 3): (tokens: 931) (url: https://portale.units.it/it/studiare/post-lauream/formazione-insegnanti/60cfu) (score: 0.4007) In allegato la lista delle scuole a...
@@ -7,7 +7,7 @@ l aula T dell'edificio A è libera il giorno 20 marzo 2026?,Non ho informazioni 
 
 Submiss...
 5): (tokens: 483) (url: https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica) (score: 0.3873) * Futuri studenti
-  * Studenti iscr...",pass,0.4125,https://portale.units.it/it/studiare/post-lauream/formazione-insegnanti/60cfu,1.0,0.5833,1.0
+  * Studenti iscr...",pass,0.4125,https://portale.units.it/it/studiare/post-lauream/formazione-insegnanti/60cfu,1.0,0.5833
 dimmi i corsi disponibili del dipartimento di musicologia,Non dispongo di informazioni sui corsi del dipartimento di Musicologia.,Le informazioni fornite non contengono dettagli sui corsi disponibili offerti da un dipartimento di musicologia.,absent for choice,"1): (tokens: 1003) (url: https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154) (score: 0.4325) ## 
 
 1). R. Martinelli, I filosofi ...
@@ -26,7 +26,7 @@ Area studenti
 
   * Contatti
   * Links Uti...
-5): (tokens: 584) (url: https://lauree.units.it/it/0320106204800001-1/area-studenti/scelta-piano-di-studi/descrizione-piano-di-studi) (score: 0.4076) > **Gli insegnamenti obbligatori so...",pass,0.4325,https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154,0.0,0.0,1.0
+5): (tokens: 584) (url: https://lauree.units.it/it/0320106204800001-1/area-studenti/scelta-piano-di-studi/descrizione-piano-di-studi) (score: 0.4076) > **Gli insegnamenti obbligatori so...",pass,0.4325,https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154,0.0,0.0
 Aula più grande in assoluto dell'università,Non dispongo di informazioni sulla dimensione delle aule dell'università.,Le informazioni fornite non contengono dettagli sulla dimensione delle aule o sull'aula più grande dell'università.,absent for choice,"1): (tokens: 997) (url: https://lauree.units.it/it/0320107308000002/area-studenti/laurea/laurea-info-specifiche) (score: 0.3499) Il massimo voto possibile è 110/110...
 2): (tokens: 928) (url: https://lauree.units.it/it/0320106203900001/area-studenti/insegnamenti/2025/116506/2016/9999/10249/2023/13177) (score: 0.3483) ## 
 
@@ -37,7 +37,7 @@ Lezioni frontali in aula suppo...
 LINGUA E TRADUZIONE ARABA I [0...
 5): (tokens: 907) (url: https://lauree.units.it/it/0320107309500008/area-studenti/laurea/laurea-info-generali) (score: 0.3446) **Come fare:**
 
-  * Salva la tua te...",pass,0.3499,https://lauree.units.it/it/0320107308000002/area-studenti/laurea/laurea-info-specifiche,1.0,0.0,1.0
+  * Salva la tua te...",pass,0.3499,https://lauree.units.it/it/0320107308000002/area-studenti/laurea/laurea-info-specifiche,1.0,0.0
 dove si trova l'edificio H7?,non è possibile indicarne la posizione.,Le informazioni fornite non contengono dettagli sulla posizione dell'edificio H7.,absent for choice,"1): (tokens: 141) (url: https://dia.units.it/en/department/departmental-facilities/facilities/6547) (score: 0.3609) Department of Engineering and Archi...
 2): (tokens: 140) (url: https://dia.units.it/en/department/departmental-facilities/facilities/6523) (score: 0.3147) Department of Engineering and Archi...
 3): (tokens: 381) (url: https://lauree.units.it/it/0320107311900002/organi-e-referenti) (score: 0.3107) ## 
@@ -46,7 +46,7 @@ dove si trova l'edificio H7?,non è possibile indicarne la posizione.,Le informa
 4): (tokens: 935) (url: https://dia.units.it/it/dipartimento/persone/allpers?field_all_all_gruppoatt_value=401&field_all_all_ruoloatt_value=All&field_all_pers_cognome_value=&field_all_pers_nome_value=&field_all_pers_matri_value=&field_all_all_sezione_value=All) (score: 0.3088) Dipartimento di Ingegneria e Archit...
 5): (tokens: 231) (url: https://degree.units.it/en/0320107311900002) (score: 0.3052) Any question?
 
-We are here to help ...",pass,0.3609,https://dia.units.it/en/department/departmental-facilities/facilities/6547,1.0,0.95,1.0
+We are here to help ...",pass,0.3609,https://dia.units.it/en/department/departmental-facilities/facilities/6547,1.0,0.95
 Date di laurea 2027 per la sessione estiva di Scienze e Tecnologie Biologiche,i documenti a disposizione non riportano le date della sessione estiva di laurea per il 2027,Le date di laurea per la sessione estiva 2027 del corso di Scienze e Tecnologie Biologiche non sono disponibili nelle informazioni fornite.,absent for choice,"1): (tokens: 851) (url: https://lauree.units.it/it/0320106201300002/piano-di-studi) (score: 0.4644) Area studenti
 
   * Home
@@ -63,7 +63,7 @@ Date di laurea 2027 per la sessione estiva di Scienze e Tecnologie Biologiche,i 
 5): (tokens: 778) (url: https://lauree.units.it/it/0320106204800004/area-studenti/laurea/laurea-info-specifiche) (score: 0.4471) Area studenti
 
   * Home
-  * Il cors...",pass,0.4644,https://lauree.units.it/it/0320106201300002/piano-di-studi,1.0,1.0,1.0
+  * Il cors...",pass,0.4644,https://lauree.units.it/it/0320106201300002/piano-di-studi,1.0,1.0
 Argomenti dell'insegnamento di Reti Stradali del corsi di Urbanistica,Nel materiale a disposizione non sono presenti descrizioni o elenchi degli argomenti trattati nell’insegnamento “Reti Stradali” del corso di Urbanistica.,"Non sono specificati gli argomenti di un insegnamento denominato ""Reti Stradali"" all'interno dei corsi di Urbanistica. Tuttavia, la disciplina urbanistica fornisce conoscenze e competenze relative ai contenuti progettuali e normativi degli strumenti di pianificazione urbanistica e territoriale, che includono la mobilità e l'accessibilità.",absent for choice,"1): (tokens: 340) (url: https://lauree.units.it/it/0320107311900002/il-corso) (score: 0.4069) In particolare sono fornite conosce...
 2): (tokens: 996) (url: https://lauree.units.it/it/0320106201200002/piano-di-studi) (score: 0.3983) ore
 
@@ -77,7 +77,7 @@ Student area
 4): (tokens: 972) (url: https://lauree.units.it/it/0320107311900002/il-corso) (score: 0.3857) Area 5 - Progettazione architettoni...
 5): (tokens: 887) (url: https://lauree.units.it/it/0320107309500008/piano-di-studi) (score: 0.3845) LINGUISTICI II ANNO - ABC:
 
-INTERPR...",pass,0.4069,https://lauree.units.it/it/0320107311900002/il-corso,1.0,1.0,1.0
+INTERPR...",pass,0.4069,https://lauree.units.it/it/0320107311900002/il-corso,1.0,1.0
 Che lezioni ci sono di lunedì per il corso di odontoiatria 2 anno nel primo semestre?,Nel materiale a disposizione non sono presenti informazioni a riguardo,"Le lezioni specifiche che si tengono di lunedì per il secondo anno del corso di Odontoiatria e Protesi Dentaria nel primo semestre non sono indicate direttamente. Gli orari delle lezioni sono disponibili su AgendaWeb e tramite l'app Orari UniTS, scaricabile da Apple Store o Google Play Store. È consigliabile consultare queste piattaforme regolarmente, poiché gli orari possono subire modifiche.",absent for choice,"1): (tokens: 912) (url: https://lauree.units.it/it/0320107304700001/semestre-aperto/lezioni) (score: 0.5085) ENG
 
 Area studenti
@@ -99,7 +99,7 @@ Area studenti
 Area studenti
 
   * Home
-  * Il...",pass,0.5085,https://lauree.units.it/it/0320107304700001/semestre-aperto/lezioni,1.0,1.0,1.0
+  * Il...",pass,0.5085,https://lauree.units.it/it/0320107304700001/semestre-aperto/lezioni,1.0,1.0
 Che lezioni ci sono di martedì per il corso di statistica 1 anno nel secondo semestre?,Nel materiale a disposizione non sono presenti informazioni a riguardo,"Le informazioni specifiche sulle lezioni del martedì per il corso di Statistica del primo anno, secondo semestre, non sono direttamente disponibili. L'orario delle lezioni è consultabile online e viene aggiornato in tempo reale.",absent for choice,"1): (tokens: 675) (url: https://degree.units.it/en/0320107304100001/students-area/taught-courses/2025/113277/2025/2/10801/2025/13029) (score: 0.4466) ITA
 
 Student area
@@ -129,7 +129,7 @@ Student area
 Student area
 
   * Home
-  * The...",pass,0.4466,https://degree.units.it/en/0320107304100001/students-area/taught-courses/2025/113277/2025/2/10801/2025/13029,1.0,1.0,1.0
+  * The...",pass,0.4466,https://degree.units.it/en/0320107304100001/students-area/taught-courses/2025/113277/2025/2/10801/2025/13029,1.0,1.0
 Qual'era il menu della mensa centrale il 27 aprile 2026?,Nel materiale a disposizione non sono presenti informazioni a riguardo,Le informazioni sul menu della mensa centrale per il 27 aprile 2026 non sono disponibili.,absent for choice,"1): (tokens: 991) (url: https://lauree.units.it/it/0320106204800010/piano-di-studi) (score: 0.3460) Area studenti
 
   * Home
@@ -145,7 +145,7 @@ Qual'era il menu della mensa centrale il 27 aprile 2026?,Nel materiale a disposi
 Area studenti
 
   * Home
-  * Il...",pass,0.346,https://lauree.units.it/it/0320106204800010/piano-di-studi,0.0,1.0,1.0
+  * Il...",pass,0.346,https://lauree.units.it/it/0320106204800010/piano-di-studi,0.0,1.0
 Quali sono gli strumenti richiesti per la prova di laboratorio di botania sistematica (corso scienze e tecnologie per l'ambiente e la natura)?,Nel materiale a disposizione non sono presenti informazioni a riguardo,Le informazioni fornite non specificano gli strumenti richiesti per la prova di laboratorio di Botanica Sistematica.,absent for choice,"1): (tokens: 868) (url: https://lauree.units.it/it/0320106203200001/area-studenti/insegnamenti/2025/119327/2023/3/10166/2023/13282) (score: 0.4937) Area studenti
 
   * Home
@@ -167,4 +167,4 @@ BOTANICA...
 5): (tokens: 247) (url: https://lauree.units.it/it/0320106203200001/area-studenti/insegnamenti/2025/112584/2025/3/10794/2025/13316) (score: 0.4612) Area studenti
 
   * Home
-  * Il cors...",pass,0.4937,https://lauree.units.it/it/0320106203200001/area-studenti/insegnamenti/2025/119327/2023/3/10166/2023/13282,1.0,0.6792,1.0
+  * Il cors...",pass,0.4937,https://lauree.units.it/it/0320106203200001/area-studenti/insegnamenti/2025/119327/2023/3/10166/2023/13282,1.0,0.6792

@@ -188,6 +188,7 @@ else:
 if _args.no_answare:
     ENABLE_RESPONSE_RELEVANCY       = False
     ENABLE_ANSWER_CORRECTNESS       = False
+    ENABLE_CONTEXT_RECALL           = False
 
 # Conservative config for a local/unstable vLLM service
 _timeout = float(os.getenv("TIMEOUT", "600"))

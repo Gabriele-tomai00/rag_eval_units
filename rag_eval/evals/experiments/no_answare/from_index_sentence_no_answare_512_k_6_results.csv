@@ -1,4 +1,4 @@
-question,ground_truth,answer,answer_source,contexts,judge_result,top_chunk_score,top_chunk_src,faithfulness,context_precision,context_recall
+question,ground_truth,answer,answer_source,contexts,judge_result,top_chunk_score,top_chunk_src,faithfulness,context_precision
 l aula T dell'edificio A è libera il giorno 20 marzo 2026?,Non ho informazioni sulla disponibilità dell'aula T per quella data specifica.,Le informazioni fornite non contengono dettagli sulla disponibilità dell'aula T dell'edificio A per il giorno 20 marzo 2026.,absent for choice,"1): (tokens: 407) (url: https://degree.units.it/en/0320106204700003/students-area/graduation/graduation-specific-information) (score: 0.3967) Extraordinary session
     
 
@@ -21,7 +21,7 @@ Student area
 
 11 Apr 
 
-Dal 15 apri...",pass,0.3967,https://degree.units.it/en/0320106204700003/students-area/graduation/graduation-specific-information,1.0,0.25,1.0
+Dal 15 apri...",pass,0.3967,https://degree.units.it/en/0320106204700003/students-area/graduation/graduation-specific-information,1.0,0.25
 dimmi i corsi disponibili del dipartimento di musicologia,Non dispongo di informazioni sui corsi del dipartimento di Musicologia.,"Le informazioni fornite non menzionano corsi specifici offerti da un dipartimento di musicologia.
 
 Tuttavia, è disponibile un corso chiamato ""Filosofie della Musica"" nell'ambito del corso di Laurea Magistrale in Filosofia. Questo corso è opzionale, ha una frequenza non obbligatoria, vale 6 CFU e si svolge a Trieste.",absent for choice,"1): (tokens: 294) (url: https://lauree.units.it/it/0320107301000001/area-studenti/scelta-piano-di-studi/descrizione-piano-di-studi) (score: 0.4311) Ogni anno, gli insegnamenti a scelt...
@@ -34,7 +34,7 @@ Tuttavia, è disponibile un corso chiamato ""Filosofie della Musica"" nell'ambit
 
      MARTINE...
 5): (tokens: 403) (url: https://lauree.units.it/it/0320106204800009/area-studenti/scelta-piano-di-studi/descrizione-piano-di-studi) (score: 0.4207) > **Gli insegnamenti obbligatori so...
-6): (tokens: 468) (url: https://lauree.units.it/it/0320106204800010/area-studenti/scelta-piano-di-studi/descrizione-piano-di-studi) (score: 0.4201) Puoi anche proporre attività format...",pass,0.4311,https://lauree.units.it/it/0320107301000001/area-studenti/scelta-piano-di-studi/descrizione-piano-di-studi,0.875,0.0,1.0
+6): (tokens: 468) (url: https://lauree.units.it/it/0320106204800010/area-studenti/scelta-piano-di-studi/descrizione-piano-di-studi) (score: 0.4201) Puoi anche proporre attività format...",pass,0.4311,https://lauree.units.it/it/0320107301000001/area-studenti/scelta-piano-di-studi/descrizione-piano-di-studi,0.875,0.0
 Aula più grande in assoluto dell'università,Non dispongo di informazioni sulla dimensione delle aule dell'università.,Le informazioni fornite non contengono dettagli sulla dimensione delle aule dell'università.,absent for choice,"1): (tokens: 439) (url: https://degree.units.it/it/0320107335200001/area-studenti/insegnamenti/2025/118575/2025/9999/10819/2025/13337) (score: 0.3669) ## 
 
 Lezione frontale in aula. Eser...
@@ -62,7 +62,7 @@ Lectures with teach...
 
 ## 
 
-Lectures with teach...",pass,0.3669,https://degree.units.it/it/0320107335200001/area-studenti/insegnamenti/2025/118575/2025/9999/10819/2025/13337,1.0,0.0,1.0
+Lectures with teach...",pass,0.3669,https://degree.units.it/it/0320107335200001/area-studenti/insegnamenti/2025/118575/2025/9999/10819/2025/13337,1.0,0.0
 dove si trova l'edificio H7?,non è possibile indicarne la posizione.,Le informazioni sull'edificio H7 non sono disponibili.,absent for choice,"1): (tokens: 141) (url: https://dia.units.it/en/department/departmental-facilities/facilities/6547) (score: 0.3609) Department of Engineering and Archi...
 2): (tokens: 140) (url: https://dia.units.it/en/department/departmental-facilities/facilities/6523) (score: 0.3147) Department of Engineering and Archi...
 3): (tokens: 474) (url: https://lauree.units.it/it/0320107311900002/organi-e-referenti) (score: 0.3066) ## Comitato di Indirizzo
@@ -76,7 +76,7 @@ We are here to help ...
   * Port...
 6): (tokens: 311) (url: https://lauree.units.it/it/0320107311900002/area-studenti) (score: 0.2998) Hai domande?
 
-Siamo pronti ad aiuta...",pass,0.3609,https://dia.units.it/en/department/departmental-facilities/facilities/6547,1.0,1.0,1.0
+Siamo pronti ad aiuta...",pass,0.3609,https://dia.units.it/en/department/departmental-facilities/facilities/6547,1.0,1.0
 Date di laurea 2027 per la sessione estiva di Scienze e Tecnologie Biologiche,i documenti a disposizione non riportano le date della sessione estiva di laurea per il 2027,Le informazioni relative alle date di laurea per la sessione estiva 2027 del corso di Scienze e Tecnologie Biologiche non sono disponibili.,absent for choice,"1): (tokens: 350) (url: https://lauree.units.it/it/0320106204800004/area-studenti/laurea/laurea-info-specifiche) (score: 0.4906) I candidati, in questo caso, sarann...
 2): (tokens: 334) (url: https://lauree.units.it/it/0320106201300002/area-studenti/insegnamenti/2027/114051/2025/9999/10793/2025/13312) (score: 0.4639) Area studenti
 
@@ -97,7 +97,7 @@ Date di laurea 2027 per la sessione estiva di Scienze e Tecnologie Biologiche,i 
 6): (tokens: 484) (url: https://lauree.units.it/it/0320106201300002/piano-di-studi) (score: 0.4607) Area studenti
 
   * Home
-  * Il cors...",pass,0.4906,https://lauree.units.it/it/0320106204800004/area-studenti/laurea/laurea-info-specifiche,1.0,1.0,1.0
+  * Il cors...",pass,0.4906,https://lauree.units.it/it/0320106204800004/area-studenti/laurea/laurea-info-specifiche,1.0,1.0
 Argomenti dell'insegnamento di Reti Stradali del corsi di Urbanistica,Nel materiale a disposizione non sono presenti descrizioni o elenchi degli argomenti trattati nell’insegnamento “Reti Stradali” del corso di Urbanistica.,Le informazioni fornite non contengono dettagli sugli argomenti dell'insegnamento di Reti Stradali per i corsi di Urbanistica.,absent for choice,"1): (tokens: 444) (url: https://degree.units.it/en/0320107308000002/students-area/regulations-and-documents) (score: 0.4028) Master's Degree 
 
 # GEOPHYSICS AND ...
@@ -111,7 +111,7 @@ The course is divided into two...
 5): (tokens: 480) (url: https://degree.units.it/en/0320107304100001/students-area/taught-courses/2025/121070/2025/1/10801/2025/13028) (score: 0.3981) ## 
 
 The course is divided into two...
-6): (tokens: 422) (url: https://degree.units.it/en/0320107308000002/students-area/taught-courses/2025/119303/2025/9999/10804) (score: 0.3975) ), 2000. Terrain Analysis: Principl...",pass,0.4028,https://degree.units.it/en/0320107308000002/students-area/regulations-and-documents,1.0,0.8333,1.0
+6): (tokens: 422) (url: https://degree.units.it/en/0320107308000002/students-area/taught-courses/2025/119303/2025/9999/10804) (score: 0.3975) ), 2000. Terrain Analysis: Principl...",pass,0.4028,https://degree.units.it/en/0320107308000002/students-area/regulations-and-documents,1.0,0.8333
 Che lezioni ci sono di lunedì per il corso di odontoiatria 2 anno nel primo semestre?,Nel materiale a disposizione non sono presenti informazioni a riguardo,Le informazioni specifiche sulle lezioni del lunedì per il secondo anno del corso di Odontoiatria e Protesi Dentaria nel primo semestre non sono dettagliate. Viene indicato che l'orario e il luogo delle lezioni sono consultabili online e sono soggetti ad aggiornamenti costanti.,absent for choice,"1): (tokens: 227) (url: https://lauree.units.it/it/0320107304700001/semestre-aperto/lezioni) (score: 0.5551) ENG
 
 Area studenti
@@ -138,7 +138,7 @@ Area studenti
 Area studenti
 
   * Home
-  * Il...",pass,0.5551,https://lauree.units.it/it/0320107304700001/semestre-aperto/lezioni,1.0,1.0,1.0
+  * Il...",pass,0.5551,https://lauree.units.it/it/0320107304700001/semestre-aperto/lezioni,1.0,1.0
 Che lezioni ci sono di martedì per il corso di statistica 1 anno nel secondo semestre?,Nel materiale a disposizione non sono presenti informazioni a riguardo,"Le informazioni fornite non specificano i giorni della settimana in cui si tengono le lezioni per i corsi del primo anno, secondo semestre, relativi alla statistica.",absent for choice,"1): (tokens: 178) (url: https://degree.units.it/en/0320107304100001/students-area/taught-courses/2025/117941/2024/1/10739/2024/12664) (score: 0.4770) ITA
 
 Student area
@@ -174,7 +174,7 @@ Student area
 Student area
 
   * Home
-  * The...",pass,0.477,https://degree.units.it/en/0320107304100001/students-area/taught-courses/2025/117941/2024/1/10739/2024/12664,0.5,1.0,1.0
+  * The...",pass,0.477,https://degree.units.it/en/0320107304100001/students-area/taught-courses/2025/117941/2024/1/10739/2024/12664,0.5,1.0
 Qual'era il menu della mensa centrale il 27 aprile 2026?,Nel materiale a disposizione non sono presenti informazioni a riguardo,Le informazioni fornite non contengono il menu della mensa centrale per il 27 aprile 2026.,absent for choice,"1): (tokens: 207) (url: https://portale.units.it:443/it/studiare/orientarsi/insegnanti) (score: 0.3463) EUROPA UNITA (Liceo F. Enriques - I...
 2): (tokens: 419) (url: https://lauree.units.it/it/0320106204800010/area-studenti/scelta-piano-di-studi/presentazione-piano-di-studi) (score: 0.3434) **Dopo il 17 aprile 2026 non potrai...
 3): (tokens: 332) (url: https://lauree.units.it/it/0320106204800010/area-studenti/calendario-didattico) (score: 0.3429) Area studenti
@@ -189,7 +189,7 @@ Qual'era il menu della mensa centrale il 27 aprile 2026?,Nel materiale a disposi
 6): (tokens: 465) (url: https://lauree.units.it/it/0320106204800010/area-studenti/appelli-esame) (score: 0.3406) Area studenti
 
   * Home
-  * Il cors...",pass,0.3463,https://portale.units.it:443/it/studiare/orientarsi/insegnanti,1.0,0.7708,1.0
+  * Il cors...",pass,0.3463,https://portale.units.it:443/it/studiare/orientarsi/insegnanti,1.0,0.7708
 Quali sono gli strumenti richiesti per la prova di laboratorio di botania sistematica (corso scienze e tecnologie per l'ambiente e la natura)?,Nel materiale a disposizione non sono presenti informazioni a riguardo,Le informazioni relative agli strumenti specifici richiesti per la prova di laboratorio di botanica sistematica non sono dettagliate. Le modalità di verifica dell'apprendimento e i requisiti per accedere alla prova finale verranno illustrati nelle ore introduttive al corso e nelle relative slide caricate sulla piattaforma MOODLE.,absent for choice,"1): (tokens: 473) (url: https://lauree.units.it/it/0320106203200001/area-studenti/insegnamenti/2025/112584/2025/3/10794/2025/13316) (score: 0.4812) • Studenti lavoratori: si prevede, ...
 2): (tokens: 477) (url: https://lauree.units.it/it/0320106203200001/piano-di-studi) (score: 0.4810) Area studenti
 
@@ -213,4 +213,4 @@ LI...
 84 ore
 
 CHIMICA ORG...
-6): (tokens: 408) (url: https://lauree.units.it/it/0320106203200001/il-corso) (score: 0.4717) Visite d'istruzione ed escursioni i...",pass,0.4812,https://lauree.units.it/it/0320106203200001/area-studenti/insegnamenti/2025/112584/2025/3/10794/2025/13316,1.0,0.9667,1.0
+6): (tokens: 408) (url: https://lauree.units.it/it/0320106203200001/il-corso) (score: 0.4717) Visite d'istruzione ed escursioni i...",pass,0.4812,https://lauree.units.it/it/0320106203200001/area-studenti/insegnamenti/2025/112584/2025/3/10794/2025/13316,1.0,0.9667
