@@ -1,0 +1,58 @@
+question,ground_truth,answer,answer_source,contexts,judge_result,top_chunk_score,top_chunk_src
+Is there an opera singing exam in the musicology program?,The available materials do not contain any information on this subject,Le informazioni fornite non contengono dettagli su un esame di canto lirico all'interno di un programma di musicologia.,absent for choice,"1): (tokens: 88) (url: https://degree.units.it/en/0320106204700003/students-area/taught-courses/2025/120683/2022/9999/10505/2023/) (score: 0.3988) ##  Full year 
+
+Frequency Mandatory...
+2): (tokens: 95) (url: https://degree.units.it/en/0320106204700003/students-area/taught-courses/2025/120683/2022/9999/10505/2025/13231) (score: 0.3930) ##  1° Year of course - Full year 
+...
+3): (tokens: 116) (url: https://degree.units.it/en/0320106204700003/students-area/taught-courses/2025/121241/2022/9999/10505/2025/) (score: 0.3865) ##  Full year 
+
+Frequency Not manda...
+4): (tokens: 100) (url: https://degree.units.it/en/0320107304100001/students-area/taught-courses/2025/120084/2024/2/10254) (score: 0.3860) ## 
+
+Oral exam of a duration of aro...
+5): (tokens: 130) (url: https://degree.units.it/en/0320106204800001/students-area/taught-courses/2025/115471-2/2017/9999/10333/2025/13205) (score: 0.3857) ##  1° Year of course - Second seme...",pass,0.3988,https://degree.units.it/en/0320106204700003/students-area/taught-courses/2025/120683/2022/9999/10505/2023/
+Esiste un esame di canto lirico al corso di musicologia?,Nel materiale a disposizione non sono presenti informazioni a riguardo,Non ci sono informazioni disponibili riguardo a un esame di canto lirico al corso di musicologia.,absent for choice,"1): (tokens: 39) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/121241/2022/9999/10505/2025) (score: 0.4341) ##### Ammissione
+
+**Numero programm...
+2): (tokens: 39) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120807-1/2022/9999/10505/2025) (score: 0.4331) ##### Ammissione
+
+**Numero programm...
+3): (tokens: 538) (url: https://lauree.units.it/it/0320106204800001-1/area-studenti/insegnamenti/2025/121258-3/2025/9999/10792/2025/13237) (score: 0.4313) ## 
+
+L’esame del Corso di Istologia...
+4): (tokens: 538) (url: https://degree.units.it/it/0320106204800001/area-studenti/insegnamenti/2025/121258-3/2025/9999/10792/2025/13237) (score: 0.4313) ## 
+
+L’esame del Corso di Istologia...
+5): (tokens: 39) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120812/2022/9999/10505/2025) (score: 0.4280) ##### Ammissione
+
+**Numero programm...",pass,0.4341,https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/121241/2022/9999/10505/2025
+Tell me about the courses offered by the Department of Musicology,The available materials do not contain any information on this subject.,"Le informazioni sui corsi offerti dal Dipartimento di Musicologia non sono disponibili nel contesto fornito. I corsi menzionati sono offerti dal Dipartimento Universitario Clinico di Scienze mediche, chirurgiche e della salute - DSM.",absent for choice,"1): (tokens: 35) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120683/2022/9999/10505/2025/13231) (score: 0.4675) ##### Dipartimento
+
+Il corso è offe...
+2): (tokens: 35) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120683/2022/9999/10505/2023) (score: 0.4675) ##### Dipartimento
+
+Il corso è offe...
+3): (tokens: 35) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120807-1/2022/9999/10505/2025) (score: 0.4668) ##### Dipartimento
+
+Il corso è offe...
+4): (tokens: 35) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2026/120807-1/2022/9999/10505/2025/13231) (score: 0.4637) ##### Dipartimento
+
+Il corso è offe...
+5): (tokens: 35) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/121241/2022/9999/10505/2025) (score: 0.4594) ##### Dipartimento
+
+Il corso è offe...",pass,0.4675,https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120683/2022/9999/10505/2025/13231
+dimmi i corsi disponibili del dipartimento di musicologia,The available materials do not contain any information on this subject.,"Le informazioni sui corsi disponibili del dipartimento di musicologia non sono presenti. I corsi menzionati sono offerti dal Dipartimento Universitario Clinico di Scienze mediche, chirurgiche e della salute - DSM.",absent for choice,"1): (tokens: 35) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120807-1/2022/9999/10505/2025) (score: 0.4670) ##### Dipartimento
+
+Il corso è offe...
+2): (tokens: 35) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120683/2022/9999/10505/2025/13231) (score: 0.4665) ##### Dipartimento
+
+Il corso è offe...
+3): (tokens: 35) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120683/2022/9999/10505/2023) (score: 0.4665) ##### Dipartimento
+
+Il corso è offe...
+4): (tokens: 35) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/121241/2022/9999/10505/2025) (score: 0.4602) ##### Dipartimento
+
+Il corso è offe...
+5): (tokens: 35) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120812/2022/9999/10505/2025) (score: 0.4597) ##### Dipartimento
+
+Il corso è offe...",pass,0.467,https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120807-1/2022/9999/10505/2025

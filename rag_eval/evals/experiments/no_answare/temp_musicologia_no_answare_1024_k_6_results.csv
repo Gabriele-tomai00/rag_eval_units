@@ -1,0 +1,74 @@
+question,ground_truth,answer,answer_source,contexts,judge_result,top_chunk_score,top_chunk_src
+Is there an opera singing exam in the musicology program?,The available materials do not contain any information on this subject,Le informazioni fornite non contengono dettagli su un programma di musicologia o su un esame di canto lirico.,absent for choice,"1): (tokens: 377) (url: https://degree.units.it/en/0320107304100001/students-area/taught-courses/2025/118288/2024/1/10739/2024/12664) (score: 0.4054) ## 
+
+http://www.math.sissa.it/educa...
+2): (tokens: 377) (url: https://degree.units.it/en/0320107304100001/students-area/taught-courses/2025/118288/2025/2/10801/2025/13029) (score: 0.4054) ## 
+
+http://www.math.sissa.it/educa...
+3): (tokens: 377) (url: https://degree.units.it/en/0320107304100001/students-area/taught-courses/2025/118288/2025/1/10801/2025/13028) (score: 0.4054) ## 
+
+http://www.math.sissa.it/educa...
+4): (tokens: 379) (url: https://degree.units.it/en/0320107308000002/students-area/taught-courses/2025/117686/2023/9999/10655/2024/13060) (score: 0.3953) ## 
+
+http://www.math.sissa.it/educa...
+5): (tokens: 373) (url: https://degree.units.it/en/0320106204800001/study-plan) (score: 0.3944) [ME15] Study Plan 2025/26 | ITA onl...
+6): (tokens: 551) (url: https://degree.units.it/en/0320107304700001/teaching-regulations) (score: 0.3897) ITA
+
+Student area
+
+  * Home
+  * The...",pass,0.4054,https://degree.units.it/en/0320107304100001/students-area/taught-courses/2025/118288/2024/1/10739/2024/12664
+Esiste un esame di canto lirico al corso di musicologia?,Nel materiale a disposizione non sono presenti informazioni a riguardo,Le informazioni fornite non indicano l'esistenza di un esame di canto lirico all'interno di un corso di musicologia.,absent for choice,"1): (tokens: 1003) (url: https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154) (score: 0.4281) ## 
+
+1). R. Martinelli, I filosofi ...
+2): (tokens: 783) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120683/2022/9999/10505/2025/13231) (score: 0.4254) Curricula:  PERCORSO COMUNE
+
+     C...
+3): (tokens: 783) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120683/2022/9999/10505/2023) (score: 0.4254) Curricula:  PERCORSO COMUNE
+
+     C...
+4): (tokens: 970) (url: https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154) (score: 0.4210) Area studenti
+
+  * Home
+  * Il cors...
+5): (tokens: 989) (url: https://lauree.units.it/it/0320106201000001/piano-di-studi) (score: 0.4124) Area studenti
+
+  * Home
+  * Il cors...
+6): (tokens: 252) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120683/2022/9999/10505/2025/13231) (score: 0.4116) ENG
+
+Area studenti
+
+  * Home
+  * Il...",pass,0.4281,https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154
+Tell me about the courses offered by the Department of Musicology,The available materials do not contain any information on this subject.,Le informazioni fornite non contengono dettagli sui corsi offerti dal Dipartimento di Musicologia.,absent for choice,"1): (tokens: 425) (url: https://degree.units.it/en/0320107304700001/university-fees) (score: 0.4252) A **contributions simulator** is av...
+2): (tokens: 400) (url: https://dsm.units.it/en/department/departmental-bodies/third-mission-committee?q=en/node/78931) (score: 0.4235) Department of Medicine, Surgery and...
+3): (tokens: 610) (url: https://dsm.units.it/en/teaching/degree-programmes/master-degree-programme) (score: 0.4211) Department of Medicine, Surgery and...
+4): (tokens: 551) (url: https://degree.units.it/en/0320107304700001/teaching-regulations) (score: 0.4196) ITA
+
+Student area
+
+  * Home
+  * The...
+5): (tokens: 948) (url: https://dsm.units.it/it/dipartimento/persone/riccio-matteo-maria/71982) (score: 0.4179) Dipartimento Universitario Clinico ...
+6): (tokens: 948) (url: https://dsm.units.it/it/node/77844) (score: 0.4152) Dipartimento Universitario Clinico ...",pass,0.4252,https://degree.units.it/en/0320107304700001/university-fees
+dimmi i corsi disponibili del dipartimento di musicologia,The available materials do not contain any information on this subject.,"Le informazioni fornite non menzionano un Dipartimento di Musicologia. Tuttavia, è disponibile un corso intitolato ""Filosofie della Musica"" per l'anno accademico 2025/2026. Questo corso è offerto dal Dipartimento di Studi Umanistici - DiSU e fa parte del percorso di Laurea Magistrale in Filosofia (classe LM-78 R - Scienze filosofiche). Il docente responsabile è Riccardo Martinelli.",absent for choice,"1): (tokens: 1003) (url: https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154) (score: 0.4325) ## 
+
+1). R. Martinelli, I filosofi ...
+2): (tokens: 970) (url: https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154) (score: 0.4297) Area studenti
+
+  * Home
+  * Il cors...
+3): (tokens: 891) (url: https://lauree.units.it/it/0320107304200001/piano-di-studi) (score: 0.4139) ENG
+
+Area studenti
+
+  * Home
+  * Il...
+4): (tokens: 174) (url: https://dsm.units.it/it/servizi-strumenti/strumenti/Modulistica) (score: 0.4080) *   * 
+
+
+  * Contatti
+  * Links Uti...
+5): (tokens: 584) (url: https://lauree.units.it/it/0320106204800001-1/area-studenti/scelta-piano-di-studi/descrizione-piano-di-studi) (score: 0.4076) > **Gli insegnamenti obbligatori so...
+6): (tokens: 592) (url: https://lauree.units.it/it/0320106204800009/area-studenti/scelta-piano-di-studi/descrizione-piano-di-studi) (score: 0.4051) > **Gli insegnamenti obbligatori so...",pass,0.4325,https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154

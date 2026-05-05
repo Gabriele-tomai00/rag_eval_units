@@ -103,7 +103,12 @@ uv run python evals.py
 python evals.py -t 1 -k 4 -c 256
 python evals.py -t 2 -k 10
 python evals.py -t 3 -c 1024 -a
-python evals.py -t 1 -n -k 5
+python evals.py -t 1 -n -k 
+python evals.py -t 1 -k 6 - c 1024 -o prova
+python evals.py -t 1 -k 6 -c 1024 --without_rewriting --parallel --all --name_file_output no_rewriting
+python evals.py -t 1 -k 3 -c 1024 --no_answare --parallel --name_file_output temp && python evals.py -t 1 -k 4 -c 1024 --no_answare --parallel --name_file_output temp_musicologia && \\
+python evals.py -t 3 -k 3 -c 1024 --no_answare --parallel --name_file_output temp && python evals.py -t 1 -k 4 -c 1024 --no_answare --parallel --name_file_output temp_musicologia && \\
+python evals.py -t 3 -k 5 -c 1024 --no_answare --parallel --name_file_output temp && python evals.py -t 1 -k 6 -c 1024 --no_answare --parallel --name_file_output temp_musicologia
 ```
 
 ### Customize Test Cases

@@ -93,3 +93,81 @@ Quali sono gli strumenti richiesti per la prova di laboratorio di botania sistem
 
   * Home
   * Il cors...",pass,0.4812,https://lauree.units.it/it/0320106203200001/area-studenti/insegnamenti/2025/112584/2025/3/10794/2025/13316,1.0,1.0
+Sono previsti esami TOLC al quinto piano di H3 per settembre 2027?,Nel materiale a disposizione non sono presenti informazioni a riguardo,Non sono disponibili informazioni riguardo a esami TOLC previsti per settembre 2027. Le date di validità per i TOLC-F indicate nel contesto terminano a settembre 2025. Non viene inoltre specificato che gli esami TOLC si svolgano al quinto piano dell'edificio H3.,absent for choice,"1): (tokens: 473) (url: https://lauree.units.it/it/0320107301400001/come-iscriversi) (score: 0.4451) Sono inoltre previsti**30 quesiti s...
+2): (tokens: 473) (url: https://lauree.units.it/it/0320107301400002/come-iscriversi) (score: 0.4425) Sono inoltre previsti**30 quesiti s...
+3): (tokens: 445) (url: https://lauree.units.it/it/0320106202700001/come-iscriversi) (score: 0.4119) Non hai ancora conseguito il titolo...",pass,0.4451,https://lauree.units.it/it/0320107301400001/come-iscriversi,1.0,1.0
+Come si chiama l'edificio del corso di gastornomia?,Nel materiale a disposizione non sono presenti informazioni a riguardo,Le informazioni fornite non contengono dettagli su un corso di gastronomia.,absent for choice,"1): (tokens: 303) (url: https://lauree.units.it/it/0320106204800010/area-studenti/tirocinio-e-internato) (score: 0.3716) Siamo pronti ad aiutarti
+
+Se hai du...
+2): (tokens: 465) (url: https://degree.units.it/en/0320107304700001/teaching-regulations) (score: 0.3565) ITA
+
+Student area
+
+  * Home
+  * The...
+3): (tokens: 325) (url: https://lauree.units.it/it/0320106204800010/area-studenti/insegnamenti/2025/120830/2024/9999/10738/2024/13235) (score: 0.3541) ORARIO DELLE LEZIONI
+
+APPELLI D’ESA...",pass,0.3716,https://lauree.units.it/it/0320106204800010/area-studenti/tirocinio-e-internato,1.0,0.3333
+Dove si trova l'ufficio del prof Mario Rossi di Fisica?,Nel materiale a disposizione non sono presenti informazioni a riguardo,Le informazioni fornite non contengono dettagli sull'ufficio del Prof. Mario Rossi del Dipartimento di Fisica.,absent for choice,"1): (tokens: 314) (url: https://www.units.it/persone/index.php/from/abook/persona/6546) (score: 0.4014) * Futuri studenti
+  * Studenti iscr...
+2): (tokens: 271) (url: https://www.units.it/persone/index.php/persona/044763) (score: 0.3949) * Futuri studenti
+  * Studenti iscr...
+3): (tokens: 399) (url: https://www.units.it/persone/index.php/from/abook/persona/8225) (score: 0.3941) * Futuri studenti
+  * Studenti iscr...",pass,0.4014,https://www.units.it/persone/index.php/from/abook/persona/6546,1.0,1.0
+Perché gli studenti russi devono frequentare un corso di italiano obbligatorio prima di iniziare le lezioni,Nel materiale a disposizione non sono presenti informazioni a riguardo,Le informazioni fornite non contengono dettagli riguardanti un corso di italiano obbligatorio per gli studenti russi prima dell'inizio delle lezioni. Il contesto descrive i corsi di Lingua russa I e Traduzione russo-italiano I.,absent for choice,"1): (tokens: 389) (url: https://lauree.units.it/it/0320106201200002/area-studenti/insegnamenti/2025/112600/2025/9999/10762/2025/13253) (score: 0.4496) ## 
+
+Lingua russa I:  
+L’esame cons...
+2): (tokens: 330) (url: https://lauree.units.it/it/0320106201200002/area-studenti/insegnamenti/2025/112600/2025/9999/10762/2025/13253) (score: 0.4474) ## 
+
+Conoscenza base della grammati...
+3): (tokens: 445) (url: https://lauree.units.it/it/0320106201200002/area-studenti/insegnamenti/2025/112600/2025/9999/10762/2025/13253) (score: 0.4469) ## 
+
+Lingua russa I:  
+\- Dispense ...",pass,0.4496,https://lauree.units.it/it/0320106201200002/area-studenti/insegnamenti/2025/112600/2025/9999/10762/2025/13253,1.0,1.0
+Dove si trova il bar più vicino alla sede centrale dell'università?,Nel materiale a disposizione non sono presenti informazioni a riguardo,Le informazioni fornite non contengono dettagli sulla posizione del bar più vicino alla sede centrale dell'università.,absent for choice,"1): (tokens: 238) (url: https://www.units.it/strutture/index.php/from/abook/area/ateneo/strutture/028711) (score: 0.3832) * Futuri studenti
+  * Studenti iscr...
+2): (tokens: 483) (url: https://portale.units.it/it/ateneo/campus/trieste/piazzale-europa-polo/aula-informatica) (score: 0.3781) * Futuri studenti
+  * Studenti iscr...
+3): (tokens: 193) (url: https://www.units.it/strutture/index.php/area/ateneo/strutture/000555?pf=stampa) (score: 0.3774) * * *
+
+# Career Service
+
+Sito web: ...",pass,0.3832,https://www.units.it/strutture/index.php/from/abook/area/ateneo/strutture/028711,1.0,0.5833
+Esiste un posto bici custodito in sede centrale?,Nel materiale a disposizione non sono presenti informazioni a riguardo,Le informazioni fornite non contengono dettagli riguardo all'esistenza di un posto bici custodito in sede centrale.,absent for choice,"1): (tokens: 397) (url: https://df.units.it/it/dipartimento/strutture-del-dipartimento/biblioteche) (score: 0.3741) 3738**Per accedere ai servizi di pr...
+2): (tokens: 443) (url: https://amm.units.it/normativa/regolamenti/articolo-52966/art-28-modalit-accesso-agli-spazi) (score: 0.3630) È cura dei Responsabili di Struttur...
+3): (tokens: 431) (url: https://amm.units.it/normativa/regolamenti/articolo-52960/art-22-principi-generali) (score: 0.3610) Gli spazi destinati alle funzioni d...",pass,0.3741,https://df.units.it/it/dipartimento/strutture-del-dipartimento/biblioteche,1.0,1.0
+Cosa prevede il regolamento universitario in merito all'abbigliamento estivo,Nel materiale a disposizione non sono presenti informazioni a riguardo,Il contesto fornito non contiene informazioni specifiche riguardo al regolamento universitario in merito all'abbigliamento estivo.,absent for choice,"1): (tokens: 443) (url: https://amm.units.it/normativa/regolamenti/articolo-22088/art-35-norme-disciplinari) (score: 0.4337) * Futuri studenti
+  * Studenti iscr...
+2): (tokens: 468) (url: https://amm.units.it/normativa/regolamenti/articolo-52954/art-18-comportamenti-vietati) (score: 0.4335) * Futuri studenti
+  * Studenti iscr...
+3): (tokens: 449) (url: https://amm.units.it/normativa/regolamenti/articolo-30666/articolo-1-ambito-applicazione-e-normativa-riferimento) (score: 0.4297) * Futuri studenti
+  * Studenti iscr...",pass,0.4337,https://amm.units.it/normativa/regolamenti/articolo-22088/art-35-norme-disciplinari,1.0,1.0
+Perché al corso di traduzione e interpretazioni c'è una presenta maggioritaria di studentesse femmine?,Nel materiale a disposizione non sono presenti informazioni a riguardo,Non è possibile rispondere a questa domanda basandosi esclusivamente sulle informazioni fornite. Il contesto non contiene dati o spiegazioni relative alla composizione di genere degli studenti del corso.,absent for choice,"1): (tokens: 399) (url: https://lauree.units.it/it/0320107309500008/il-corso) (score: 0.4401) ## 
+
+### Conoscenza e comprensione....
+2): (tokens: 422) (url: https://lauree.units.it/it/0320107309500008) (score: 0.4348) * richiedenti visto
+
+
+
+Vedi info am...
+3): (tokens: 429) (url: https://lauree.units.it/it/0320107309500008/il-corso) (score: 0.4325) Laurea Magistrale 
+
+# TRADUZIONE SP...",pass,0.4401,https://lauree.units.it/it/0320107309500008/il-corso,1.0,0.5833
+Esiste un esame di canto lirico al corso di musicologia?,Nel materiale a disposizione non sono presenti informazioni a riguardo,"Non è possibile determinare, sulla base delle informazioni fornite, se esista un esame di canto lirico al corso di musicologia. Le informazioni disponibili riguardano i corsi di Filosofia e Logopedia.",absent for choice,"1): (tokens: 485) (url: https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154) (score: 0.4392) ## 
+
+Il corso ha carattere seminari...
+2): (tokens: 333) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120683/2022/9999/10505/2025/13231) (score: 0.4329) ## 
+
+Chiara Corbo  
+e-mail: chiara....
+3): (tokens: 333) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120683/2022/9999/10505/2023) (score: 0.4329) ## 
+
+Chiara Corbo  
+e-mail: chiara....",pass,0.4392,https://lauree.units.it/it/0320107307900001/area-studenti/insegnamenti/2025/115671/2025/9999/10816/2025/13154,0.6667,1.0
+Perché l'università degli studi di Trieste è considerata la migliore università del mondo?,Nel materiale a disposizione non sono presenti informazioni a riguardo,"Le informazioni fornite non indicano che l'Università degli Studi di Trieste sia considerata la migliore università del mondo.
+
+Tuttavia, il rapporto di accreditamento ANVUR del 2025 ha collocato l'Università di Trieste nella fascia più alta dell'accreditamento periodico, con un giudizio di sede ""pienamente soddisfacente"", confermandola tra gli atenei di eccellenza in Italia. Viene inoltre evidenziata l'internazionalizzazione come elemento distintivo.",absent for choice,"1): (tokens: 477) (url: https://amm.units.it/placement/testimonial/aldo-vesnaver) (score: 0.4351) Da allora a oggi non è cambiato aff...
+2): (tokens: 495) (url: https://portale.units.it/it/visita-accreditamento-anvur-2025) (score: 0.4302) * Futuri studenti
+  * Studenti iscr...
+3): (tokens: 476) (url: https://amm.units.it/placement/testimonial/alice-giambalvo) (score: 0.4235) **6) COSA PORTI CON TE DELL’ESPERIE...",pass,0.4351,https://amm.units.it/placement/testimonial/aldo-vesnaver,1.0,1.0

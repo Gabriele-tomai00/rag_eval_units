@@ -112,3 +112,117 @@ BOTANICA...
 
 Il laboratorio di Zoologia int...
 4): (tokens: 142) (url: https://lauree.units.it/it/0320106203200001/area-studenti/insegnamenti/2025/119327/2023/3/10166/2023/13282) (score: 0.4720) Il test scritto prevede delle doman...",pass,0.4822,https://lauree.units.it/it/0320106203200001/piano-di-studi,1.0,1.0
+Sono previsti esami TOLC al quinto piano di H3 per settembre 2027?,Nel materiale a disposizione non sono presenti informazioni a riguardo,Non ci sono informazioni riguardo a esami TOLC previsti per settembre 2027 al quinto piano dell'edificio H3.,absent for choice,"1): (tokens: 170) (url: https://lauree.units.it/it/0320107301400002/come-iscriversi) (score: 0.4214) ### Modalità, date e iscrizione al ...
+2): (tokens: 170) (url: https://lauree.units.it/it/0320107301400001/come-iscriversi) (score: 0.4186) ### Modalità, date e iscrizione al ...
+3): (tokens: 445) (url: https://lauree.units.it/it/0320106202700001/come-iscriversi) (score: 0.4177) Non hai ancora conseguito il titolo...
+4): (tokens: 46) (url: https://lauree.units.it/it/0320107301400001/semestre-aperto) (score: 0.4126) ##### Ammissione
+
+**Numero programm...",pass,0.4214,https://lauree.units.it/it/0320107301400002/come-iscriversi,1.0,1.0
+Come si chiama l'edificio del corso di gastornomia?,Nel materiale a disposizione non sono presenti informazioni a riguardo,Le informazioni relative all'edificio del corso di gastronomia non sono disponibili.,absent for choice,"1): (tokens: 26) (url: https://lauree.units.it/it/0320107311900002/il-corso) (score: 0.3910) ##### Sede
+
+La sede di svolgimento ...
+2): (tokens: 17) (url: https://degree.units.it/en/0320106204800001/students-area/taught-courses/2025/116182-3/2017/9999/10333/2023/) (score: 0.3883) ##### Teaching modality
+
+The lectur...
+3): (tokens: 17) (url: https://degree.units.it/en/0320106204800001/students-area/taught-courses/2025/116182-3/2017/9999/10333/2025/13205) (score: 0.3883) ##### Teaching modality
+
+The lectur...
+4): (tokens: 23) (url: https://degree.units.it/it/0320106204800001/area-studenti/insegnamenti/2025/116182-3/2017/9999/10333/2023) (score: 0.3823) ##### Sede
+
+La sede di svolgimento ...",pass,0.391,https://lauree.units.it/it/0320107311900002/il-corso,1.0,0.6389
+Dove si trova l'ufficio del prof Mario Rossi di Fisica?,Nel materiale a disposizione non sono presenti informazioni a riguardo,Le informazioni fornite non contengono dettagli sull'ufficio del Prof. Mario Rossi.,absent for choice,"1): (tokens: 128) (url: https://df.units.it/it/dipartimento/strutture-del-dipartimento/biblioteche) (score: 0.4092) ##  SBA - Sistema Bibliotecario di ...
+2): (tokens: 274) (url: https://www.units.it/persone/index.php/from/abook/persona/8225) (score: 0.4036) ### Info:
+
+Recapito:| Dip. di Fisic...
+3): (tokens: 183) (url: https://www.units.it/persone/index.php/from/abook/persona/6546) (score: 0.3950) ### Info:
+
+Tel:| 040558.3435  
+---|...
+4): (tokens: 368) (url: https://df.units.it/it/content/aula-room) (score: 0.3941) Dipartimento di Fisica  Dipartiment...",pass,0.4092,https://df.units.it/it/dipartimento/strutture-del-dipartimento/biblioteche,1.0,0.8056
+Perché gli studenti russi devono frequentare un corso di italiano obbligatorio prima di iniziare le lezioni,Nel materiale a disposizione non sono presenti informazioni a riguardo,Le informazioni fornite non contengono dettagli riguardanti un corso di italiano obbligatorio per studenti russi prima dell'inizio delle lezioni. Il contesto descrive i corsi di Lingua e Traduzione Russa I.,absent for choice,"1): (tokens: 301) (url: https://lauree.units.it/it/0320106201200002/area-studenti/insegnamenti/2025/112600/2025/9999/10762/2025/13253) (score: 0.4775) ## 
+
+Lingua russa I:  
+L’esame cons...
+2): (tokens: 203) (url: https://lauree.units.it/it/0320106201200002/area-studenti/insegnamenti/2025/112600/2025/9999/10762/2025/13253) (score: 0.4691) ## 
+
+Lingua russa I: Lezioni fronta...
+3): (tokens: 303) (url: https://lauree.units.it/it/0320106201200002/area-studenti/insegnamenti/2025/112600/2025/9999/10762/2025/13253) (score: 0.4582) ## 
+
+Lingua russa I:  
+Il corso è i...
+4): (tokens: 131) (url: https://lauree.units.it/it/0320106201200002/area-studenti/insegnamenti/2025/112600/2025/9999/10762/2025/13253) (score: 0.4493) ## 
+
+Lingua russa I:  
+Formare comp...",pass,0.4775,https://lauree.units.it/it/0320106201200002/area-studenti/insegnamenti/2025/112600/2025/9999/10762/2025/13253,1.0,1.0
+Dove si trova il bar più vicino alla sede centrale dell'università?,Nel materiale a disposizione non sono presenti informazioni a riguardo,Le informazioni relative alla posizione del bar più vicino alla sede centrale dell'università non sono disponibili.,absent for choice,"1): (tokens: 27) (url: https://lauree.units.it/it/0320106204800010/area-studenti/laurea/laurea-info-specifiche) (score: 0.3955) ##### Sede
+
+La sede di svolgimento ...
+2): (tokens: 27) (url: https://lauree.units.it/it/0320106204800010/area-studenti) (score: 0.3944) ##### Sede
+
+La sede di svolgimento ...
+3): (tokens: 27) (url: https://lauree.units.it/it/0320106204800010/area-studenti/laurea/laurea-info-generali) (score: 0.3913) ##### Sede
+
+La sede di svolgimento ...
+4): (tokens: 27) (url: https://lauree.units.it/it/0320106204800010/area-studenti/app) (score: 0.3851) ##### Sede
+
+La sede di svolgimento ...",pass,0.3955,https://lauree.units.it/it/0320106204800010/area-studenti/laurea/laurea-info-specifiche,1.0,1.0
+Esiste un posto bici custodito in sede centrale?,Nel materiale a disposizione non sono presenti informazioni a riguardo,Non ci sono informazioni disponibili riguardo all'esistenza di un posto bici custodito in sede centrale.,absent for choice,"1): (tokens: 53) (url: https://df.units.it/it/dipartimento/strutture-del-dipartimento/biblioteche) (score: 0.3642) ##  Biblioteca Europa.Generale
+
+Ind...
+2): (tokens: 23) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/118256/2022/9999/10505/2025) (score: 0.3602) ##### Sede
+
+La sede di svolgimento ...
+3): (tokens: 23) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/118256/2022/9999/10505/2023/13230) (score: 0.3602) ##### Sede
+
+La sede di svolgimento ...
+4): (tokens: 23) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/121239/2022/9999/10505/2023) (score: 0.3592) ##### Sede
+
+La sede di svolgimento ...",pass,0.3642,https://df.units.it/it/dipartimento/strutture-del-dipartimento/biblioteche,1.0,1.0
+Cosa prevede il regolamento universitario in merito all'abbigliamento estivo,Nel materiale a disposizione non sono presenti informazioni a riguardo,Le informazioni fornite non contengono dettagli specifici in merito al regolamento universitario sull'abbigliamento estivo.,absent for choice,"1): (tokens: 359) (url: https://degree.units.it/en/0320107304100001/students-area/regulations-and-documents) (score: 0.4315) # Regulations and documents
+
+**Univ...
+2): (tokens: 359) (url: https://degree.units.it/en/0320107308000002/students-area/regulations-and-documents) (score: 0.4277) # Regulations and documents
+
+**Univ...
+3): (tokens: 413) (url: https://degree.units.it/en/0320107302500001/students-area/regulations-and-documents) (score: 0.4223) # Regulations and documents
+
+**Univ...
+4): (tokens: 471) (url: https://degree.units.it/en/0320107339100001/students-area/regulations-and-documents) (score: 0.4222) # Regulations and documents
+
+**Univ...",pass,0.4315,https://degree.units.it/en/0320107304100001/students-area/regulations-and-documents,1.0,1.0
+Perché al corso di traduzione e interpretazioni c'è una presenta maggioritaria di studentesse femmine?,Nel materiale a disposizione non sono presenti informazioni a riguardo,"Le informazioni fornite non contengono dettagli riguardanti la composizione di genere degli studenti nel corso di traduzione e interpretazione, né le ragioni di una eventuale maggioranza di studentesse.",absent for choice,"1): (tokens: 17) (url: https://degree.units.it/en/0320107302500001/bodies-and-representatives) (score: 0.4066) ##### Teaching modality
+
+The lectur...
+2): (tokens: 17) (url: https://degree.units.it/en/0320106204700003/bodies-and-representatives) (score: 0.3995) ##### Teaching modality
+
+The lectur...
+3): (tokens: 17) (url: https://degree.units.it/en/0320106204700003/students-area) (score: 0.3971) ##### Teaching modality
+
+The lectur...
+4): (tokens: 17) (url: https://lauree.units.it/en/0320107335200001/bodies-and-representatives) (score: 0.3957) ##### Teaching modality
+
+The lectur...",pass,0.4066,https://degree.units.it/en/0320107302500001/bodies-and-representatives,1.0,1.0
+Esiste un esame di canto lirico al corso di musicologia?,Nel materiale a disposizione non sono presenti informazioni a riguardo,Non ci sono informazioni riguardo a un esame di canto lirico al corso di musicologia.,absent for choice,"1): (tokens: 39) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/121241/2022/9999/10505/2025) (score: 0.4341) ##### Ammissione
+
+**Numero programm...
+2): (tokens: 39) (url: https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/120807-1/2022/9999/10505/2025) (score: 0.4331) ##### Ammissione
+
+**Numero programm...
+3): (tokens: 472) (url: https://lauree.units.it/it/0320106204800001-1/area-studenti/insegnamenti/2025/121258-3/2025/9999/10792/2025/13237) (score: 0.4312) ## 
+
+L’esame del Corso di Istologia...
+4): (tokens: 472) (url: https://degree.units.it/it/0320106204800001/area-studenti/insegnamenti/2025/121258-3/2025/9999/10792/2025/13237) (score: 0.4312) ## 
+
+L’esame del Corso di Istologia...",pass,0.4341,https://degree.units.it/it/0320106204700003/area-studenti/insegnamenti/2025/121241/2022/9999/10505/2025,1.0,1.0
+Perché l'università degli studi di Trieste è considerata la migliore università del mondo?,Nel materiale a disposizione non sono presenti informazioni a riguardo,"Le informazioni disponibili non indicano che l'Università degli Studi di Trieste sia considerata la migliore università del mondo.
+
+Tuttavia, l'Università di Trieste è riconosciuta come un'istituzione di eccellenza in Italia. Ha ottenuto un giudizio di sede ""pienamente soddisfacente"" dall'Agenzia Nazionale di Valutazione del Sistema Universitario e della Ricerca (ANVUR), posizionandosi nella fascia più alta dell'accreditamento periodico. Ha ricevuto la massima valutazione nell'86,7% dei punti di attenzione (20 su 23).
+
+Tra gli elementi distintivi che emergono, spicca l'internazionalizzazione, con una rilevante quota di studenti provenienti da Paesi esteri (8% degli iscritti totali nell'a.a. 2024/25, una delle percentuali più alte in Italia) e un'offerta didattica che propone percorsi di doppio titolo e titoli congiunti con università europee. Il giudizio dell'ANVUR è terzo e oggettivo, e considera il complesso delle attività dell'ateneo, inclusi didattica, ricerca, impegno pubblico e sociale, attività assistenziale in ambito sanitario, risorse e servizi.",absent for choice,"1): (tokens: 459) (url: https://portale.units.it/it/visita-accreditamento-anvur-2025) (score: 0.4304) ## Approvato il Rapporto di accredi...
+2): (tokens: 424) (url: https://amm.units.it/placement/testimonial/aldo-vesnaver) (score: 0.4283) **8) COSA CONSIGLIERESTI A UN NEOLA...
+3): (tokens: 102) (url: https://degree.units.it/en/0320107300700003/students-area/internship) (score: 0.4273) #### The Trieste System
+
+The ""Tries...
+4): (tokens: 326) (url: https://degree.units.it/en/0320107300700003/scholarship) (score: 0.4093) # Scholarship
+
+To contribute to mak...",pass,0.4304,https://portale.units.it/it/visita-accreditamento-anvur-2025,1.0,1.0

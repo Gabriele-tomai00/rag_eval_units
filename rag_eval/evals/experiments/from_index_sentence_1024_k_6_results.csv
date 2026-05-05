@@ -122,30 +122,28 @@ Per effettuare la prenotazione, è necessario accedere al servizio EasyPlanning 
   * Enrolled...
 6): (tokens: 247) (url: https://www.units.it/persone/index.php/from/abook/area/ateneo/persona/8185) (score: 0.4943) * Futuri studenti
   * Studenti iscr...",pass,0.5855,https://www.units.it/strutture/index.php/from/organigramma/area/ateneo/menu/organigramma/strutture/028718?pf=stampa,0.946,1.0,0.9317,0.25,1.0
-iniziativa Climbing for Climate (CFC),"Iniziativa promossa da RUS e CAI per sensibilizzare sul riscaldamento globale. Il nome richiama i clorofluorocarburi (CFC), gas responsabili del buco nell'ozono banditi dal Protocollo di Montreal. L'ateneo partecipa organizzando eventi sul territorio.","Le informazioni fornite non contengono dettagli sull'iniziativa ""Climbing for Climate (CFC)"".",https://portale.units.it/it/terza-missione/sostenibilita,"1): (tokens: 837) (url: https://lauree.units.it/it/0320107300700004/area-studenti/appelli-esame) (score: 0.3559) Area studenti
+dimmi qualcosa riguardo l'iniziativa Climbing for Climate (CFC),"L'iniziativa Climbing for Climate (CFC) è organizzata dalla Rete delle Università per lo Sviluppo Sostenibile (RUS) in collaborazione con il Club Alpino Italiano (CAI). Il suo scopo è impegnare le istituzioni aderenti nella lotta contro il riscaldamento globale, attraverso la formazione degli studenti, la promozione di ricerche finalizzate allo sviluppo sostenibile del pianeta e la sensibilizzazione dei cittadini. È interessante notare che CFC è anche l'acronimo dei CloroFluoroCarburi, composti chimici che sono stati banditi dalla produzione in seguito al protocollo di Montreal del 1987, essendo in parte responsabili della riduzione dello strato di ozono e avendo un elevato effetto serra. Questo protocollo ha rappresentato il primo accordo tra nazioni per la difesa del clima terrestre. L'Università di Trieste partecipa annualmente a questa iniziativa, anche co-organizzando un evento sul territorio regionale.","L'iniziativa Climbing for Climate (CFC) è organizzata dalla RUS-Rete delle Università per lo Sviluppo Sostenibile in collaborazione con il CAI-Club alpino italiano. Il suo acronimo richiama anche i CloroFluoroCarburi, composti chimici responsabili della riduzione dello strato di ozono e con un elevato effetto serra, banditi dal Protocollo di Montreal del 1987, che ha rappresentato il primo accordo tra nazioni per la difesa del clima terrestre.
+
+L'iniziativa mira a combattere il riscaldamento globale impegnando le istituzioni aderenti a formare gli studenti, promuovere ricerche finalizzate allo sviluppo sostenibile del pianeta e sensibilizzare i cittadini. L'Università di Trieste partecipa annualmente a questa iniziativa, co-organizzando anche un evento sul territorio regionale.",https://portale.units.it/it/terza-missione/sostenibilita,"1): (tokens: 936) (url: https://portale.units.it/it/terza-missione/sostenibilita) (score: 0.4158) Dal 2012, sotto la guida dell’Energ...
+2): (tokens: 860) (url: https://lauree.units.it/it/0320107300700004/assicurazione-qualita/rilevazione-opinione-studenti) (score: 0.3349) Area studenti
 
   * Home
   * Il cors...
-2): (tokens: 905) (url: https://lauree.units.it/it/0320107300700004/area-studenti/insegnamenti/2025/119364/2025/9999/10824/2025/13311) (score: 0.3543) Area studenti
+3): (tokens: 755) (url: https://lauree.units.it/it/0320107300700004/piano-di-studi) (score: 0.3339) economies and society"" (6 CFU):
+
+SU...
+4): (tokens: 541) (url: https://lauree.units.it/it/0320107300700004/area-studenti/altre-attivita) (score: 0.3337) Area studenti
 
   * Home
   * Il cors...
-3): (tokens: 507) (url: https://lauree.units.it/it/0320107300700004/piano-di-studi) (score: 0.3537) Area studenti
+5): (tokens: 905) (url: https://lauree.units.it/it/0320107300700004/area-studenti/insegnamenti/2025/119364/2025/9999/10824/2025/13311) (score: 0.3324) Area studenti
 
   * Home
   * Il cors...
-4): (tokens: 860) (url: https://lauree.units.it/it/0320107300700004/assicurazione-qualita/rilevazione-opinione-studenti) (score: 0.3533) Area studenti
+6): (tokens: 837) (url: https://lauree.units.it/it/0320107300700004/area-studenti/appelli-esame) (score: 0.3291) Area studenti
 
   * Home
-  * Il cors...
-5): (tokens: 541) (url: https://lauree.units.it/it/0320107300700004/area-studenti/altre-attivita) (score: 0.3511) Area studenti
-
-  * Home
-  * Il cors...
-6): (tokens: 641) (url: https://lauree.units.it/it/0320107300700004/area-studenti/laurea/modifica-domanda) (score: 0.3505) Area studenti
-
-  * Home
-  * Il cors...",fail,0.3559,https://lauree.units.it/it/0320107300700004/area-studenti/appelli-esame,0.1265,1.0,0.0,0.0,0.0
+  * Il cors...",pass,0.4158,https://portale.units.it/it/terza-missione/sostenibilita,0.9947,1.0,0.8419,1.0,1.0
 inizio e fine lezioni primo semestre SCIENZE INTERNAZIONALI E DIPLOMATICHE,Le lezioni iniziano il 22 settembre 2025 (il 1 ottobre per gli studenti del primo anno) e terminano il 19 dicembre 2025.,"Il primo semestre per il corso di SCIENZE INTERNAZIONALI E DIPLOMATICHE inizia il 22 settembre 2025 e termina il 19 dicembre 2025.
 
 Si segnala che gli studenti del 1° anno di SCIENZE INTERNAZIONALI E DIPLOMATICHE iniziano il primo semestre il 1° ottobre 2025.",https://degree.units.it/it/0320106203600002/area-studenti/calendario-didattico,"1): (tokens: 898) (url: https://degree.units.it/it/0320106203600002/area-studenti/calendario-didattico) (score: 0.5121) Area studenti

@@ -1,0 +1,25 @@
+question,ground_truth,answer,answer_source,contexts,judge_result,top_chunk_score,top_chunk_src
+dimmi qualcosa riguardo l'iniziativa Climbing for Climate (CFC),"Iniziativa promossa da RUS e CAI per sensibilizzare sul riscaldamento globale. Il nome richiama i clorofluorocarburi (CFC), gas responsabili del buco nell'ozono banditi dal Protocollo di Montreal. L'ateneo partecipa organizzando eventi sul territorio.","L'iniziativa Climbing for Climate (CFC) è organizzata dalla Rete delle Università per lo Sviluppo Sostenibile (RUS) in collaborazione con il Club Alpino Italiano (CAI). Il suo scopo è impegnare le istituzioni aderenti nella lotta contro il riscaldamento globale, attraverso la formazione degli studenti, la promozione di ricerche finalizzate allo sviluppo sostenibile del pianeta e la sensibilizzazione dei cittadini.
+
+È interessante notare che CFC è anche l'acronimo dei CloroFluoroCarburi, composti chimici che sono stati banditi dalla produzione in seguito al protocollo di Montreal del 1987, essendo in parte responsabili della riduzione dello strato di ozono e avendo un elevato effetto serra. Questo protocollo ha rappresentato il primo accordo tra nazioni per la difesa del clima terrestre.
+
+L'Università di Trieste partecipa annualmente a questa iniziativa, anche co-organizzando un evento sul territorio regionale.",https://portale.units.it/it/terza-missione/sostenibilita,"1): (tokens: 936) (url: https://portale.units.it/it/terza-missione/sostenibilita) (score: 0.4158) Dal 2012, sotto la guida dell’Energ...
+2): (tokens: 860) (url: https://lauree.units.it/it/0320107300700004/assicurazione-qualita/rilevazione-opinione-studenti) (score: 0.3349) Area studenti
+
+  * Home
+  * Il cors...
+3): (tokens: 755) (url: https://lauree.units.it/it/0320107300700004/piano-di-studi) (score: 0.3339) economies and society"" (6 CFU):
+
+SU...
+4): (tokens: 541) (url: https://lauree.units.it/it/0320107300700004/area-studenti/altre-attivita) (score: 0.3337) Area studenti
+
+  * Home
+  * Il cors...
+5): (tokens: 905) (url: https://lauree.units.it/it/0320107300700004/area-studenti/insegnamenti/2025/119364/2025/9999/10824/2025/13311) (score: 0.3324) Area studenti
+
+  * Home
+  * Il cors...
+6): (tokens: 837) (url: https://lauree.units.it/it/0320107300700004/area-studenti/appelli-esame) (score: 0.3291) Area studenti
+
+  * Home
+  * Il cors...",pass,0.4158,https://portale.units.it/it/terza-missione/sostenibilita
